@@ -25,7 +25,7 @@
         "issues": "https://github.com/Razorpay/razorpay-php/issues",
         "source": "https://github.com/Razorpay/razorpay-php"
     },
-    "homepage": "http://docs.razorpay.com",
+    "homepage": "https://docs.razorpay.com",
     "license": "MIT",
     "require": {
         "php": ">=5.3.2",
