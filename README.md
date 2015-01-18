@@ -1,5 +1,7 @@
 #Introduction
 
+[![Build Status](https://travis-ci.org/Razorpay/razorpay-php.svg?branch=master)](https://travis-ci.org/Razorpay/razorpay-php)
+
 Razorpay client PHP Api. The api follows the following practices:
 
 - namespaced under
