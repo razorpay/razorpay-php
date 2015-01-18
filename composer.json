@@ -1,0 +1,26 @@
+{
+    "name": "razorpay/razorpay",
+    "description": "Razorpay PHP Client Library",
+    "keywords":[
+        "razorpay",
+        "api",
+        "php",
+        "client"
+    ],
+    "homepage":"http://docs.razorpay.com",
+    "licence":"MIT",
+    "require": {
+        "php": ">=5.3.2",
+        "rmccue/requests": "v1.6.1",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "raveren/kint": ">=0.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Razorpay\\Api\\": "src/",
+            "Razorpay\\Tests\\": "tests/"
+        }
+    }
+}

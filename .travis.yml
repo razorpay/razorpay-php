@@ -1,0 +1,10 @@
+language: php
+php:
+- 5.5
+- 5.4
+- 5.3
+install: composer install
+before_script: cp phpunit.xml.dist phpunit.xml
+notifications:
+  slack:
+    secure: fLT1x7BCXi8+sP1Qk1lP74+60JIBCw2clUTSOmB0OuoQGWYIJ4qelKcGH5FFsADGuC1GX2pf0fKRiLdavVrGpBkD4MGFPpyYKPYb0S/FyArN3PjdaNvAqE1VgQCtKkbugP5bHH9bp631+lo2EGQVLWTjlwiijWbCEyDu3L0YVMY=
