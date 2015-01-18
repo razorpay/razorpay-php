@@ -1,14 +1,32 @@
 {
     "name": "razorpay/razorpay",
     "description": "Razorpay PHP Client Library",
-    "keywords":[
+    "keywords": [
         "razorpay",
         "api",
         "php",
         "client"
     ],
-    "homepage":"http://docs.razorpay.com",
-    "licence":"MIT",
+    "authors": [
+        {
+            "name": "Abhay Rana",
+            "email": "nemo@razorpay.com",
+            "homepage": "https://captnemo.in",
+            "role": "Developer"
+        },
+        {
+            "name": "Shashank Kumar",
+            "email": "shashank@razorpay.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "contact@razorpay.com",
+        "issues": "https://github.com/Razorpay/razorpay-php/issues",
+        "source": "https://github.com/Razorpay/razorpay-php"
+    },
+    "homepage": "http://docs.razorpay.com",
+    "license": "MIT",
     "require": {
         "php": ">=5.3.2",
         "rmccue/requests": "v1.6.1",
