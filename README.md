@@ -10,6 +10,19 @@ Razorpay client PHP Api. The api follows the following practices:
 - options are passed as a hash instead of multiple arguments wherever possible
 - All request and responses are communicated over JSON
 
+#Installation
+- If your project uses composer, add following to composer.json
+```json
+{
+    "require": {
+        "razorpay/razorpay": "1.*"
+    }
+}
+```
+- Otherwise, clone/download this repo inside your project
+- Install Composer on your system and do `composer install` in the repo root.
+- Require/Include the `Razorpay.php` file in this repo wherever you want to use the API.
+ 
 #Usage
 
 ```php
