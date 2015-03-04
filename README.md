@@ -31,7 +31,7 @@ use Razorpay\Api\Api
 $api = new Razorpay($api_key, $api_secret);
 $api->payment->all($options);//Returns array of payment objects
 $api->payment->fetch($id);//Returns a particular payment
-$api->payment->fetch($id)->capture(array('amount'=>$amount));//capture a payment, returns error instead of throwing
+$api->payment->fetch($id)->capture(array('amount'=>$amount));//capture a payment
 $api->payment->fetch($id)->refund($id);//refunds a payment
 ```
 
