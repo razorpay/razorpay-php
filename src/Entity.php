@@ -119,8 +119,15 @@ class Entity extends Resource implements ArrayableInterface
 
                     foreach ($value as $v)
                     {
-                        $entity = static::buildEntity($v);
-                        array_push($collection, $entity);
+                        if (is_array($v))
+                        {
+                            $entity = static::buildEntity($v);
+                            array_push($collection, $entity);
+                        }
+                        else
+                        {
+                            array_push($collection, $v);
+                        }
                     }
 
                     $value = $collection;
