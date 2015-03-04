@@ -28,7 +28,7 @@ Then, run `composer update`.
 
 ```php
 use Razorpay\Api\Api
-$api = new Razorpay($api_key);
+$api = new Razorpay($api_key, $api_secret);
 $api->payment->all($options);//Returns array of payment objects
 $api->payment->fetch($id);//Returns a particular payment
 $api->payment->fetch($id)->capture(array('amount'=>$amount));//capture a payment, returns error instead of throwing
