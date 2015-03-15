@@ -70,7 +70,7 @@ class Entity extends Resource implements ArrayableInterface
             }
             else
             {
-                ;
+                $entity = new static;
             }
         }
         else
