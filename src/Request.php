@@ -77,7 +77,7 @@ class Request
         // Replace underscores with space
         // Lowercase the words, capitalize first letter of each word
         // Remove spaces
-        $error = str_replace('_', ' ', $error);
+        $error = str_replace('_', ' ', $code);
         $error = ucwords(strtolower($error));
         $error = str_replace(' ', '', $error);
 
