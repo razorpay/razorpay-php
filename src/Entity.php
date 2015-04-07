@@ -2,6 +2,8 @@
 
 namespace Razorpay\Api;
 
+use Razorpay\Api\Errors;
+
 class Entity extends Resource implements ArrayableInterface
 {
     protected $attributes = array();
@@ -16,6 +18,18 @@ class Entity extends Resource implements ArrayableInterface
     protected function fetch($id)
     {
         $entityUrl = $this->getEntityUrl();
+
+        if ($id === null)
+        {
+            $path = explode('\\', get_class($this));
+            $class = strtolower(array_pop($path));
+
+            $message = 'The ' . $class . ' id provided is null';
+
+            $code = Errors\ErrorCode::BAD_REQUEST_ERROR;
+
+            throw new Errors\BadRequestError($message, $code, 500);
+        }
 
         $relativeUrl = $entityUrl . $id;
 
