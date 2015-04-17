@@ -23,16 +23,17 @@ Then, run `composer update`.
 - Otherwise, clone/download this repo inside your project
 - Install Composer on your system and do `composer install` in the repo root.
 - Require/Include the `Razorpay.php` file in this repo wherever you want to use the API.
- 
+
 #Usage
 
 ```php
-use Razorpay\Api\Api
-$api = new Razorpay($api_key, $api_secret);
-$api->payment->all($options);//Returns array of payment objects
-$api->payment->fetch($id);//Returns a particular payment
-$api->payment->fetch($id)->capture(array('amount'=>$amount));//capture a payment
-$api->payment->fetch($id)->refund($id);//refunds a payment
+use Razorpay\Api\Api;
+
+$api = new Api($api_key, $api_secret);
+$api->payment->all($options); // Returns array of payment objects
+$api->payment->fetch($id); // Returns a particular payment
+$api->payment->fetch($id)->capture(array('amount'=>$amount)); // Captures a payment
+$api->payment->fetch($id)->refund($id); // Refunds a payment
 ```
 
 For further help, see our documentation on <https://docs.razorpay.com>.
