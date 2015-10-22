@@ -1,10 +1,22 @@
 language: php
 php:
+- 5.6
 - 5.5
 - 5.4
 - 5.3
+- '7.0'
 install: composer install
 before_script: cp phpunit.xml.dist phpunit.xml
 notifications:
   slack:
     secure: fLT1x7BCXi8+sP1Qk1lP74+60JIBCw2clUTSOmB0OuoQGWYIJ4qelKcGH5FFsADGuC1GX2pf0fKRiLdavVrGpBkD4MGFPpyYKPYb0S/FyArN3PjdaNvAqE1VgQCtKkbugP5bHH9bp631+lo2EGQVLWTjlwiijWbCEyDu3L0YVMY=
+before_deploy: cat release.txt |zip -@ "razorpay-php.zip"
+deploy:
+  provider: releases
+  # Otherwise, we lose the vendor/ directory
+  skip_cleanup: true
+  api_key:
+    secure: bHcu1jUASH6aVSD1LmzXdjQC4hc0o8EBbVs9X8e5j+/OC7+UuBBRu+jh6gQje/XWu9Nj1W2LkWhv0IKX1tJbcs0uRstggx+xC0ZayRzkscsqErqeM4WeyJjxe5ewb2eeGujtl9+WWFB3wpUQJtxXaaPuGYtroYGGYuI23wzKN4A=
+  file: razorpay-php.zip
+  on:
+    repo: razorpay/razorpay-php
