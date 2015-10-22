@@ -11,22 +11,40 @@ use Razorpay\Api\Errors\ErrorCode;
  */
 class Request
 {
+
+    /**
+     * Headers to be sent with every http request to the API
+     * @var array
+     */
+    protected static $headers = array(
+        'Razorpay-API'  =>  1
+    );
+
     public function request($method, $url, $data = null)
     {
         $url = Api::$baseUrl . $url;
-
-        $headers = array('Razorpay-API' => 1);
 
         if ($data === null)
             $data = array();
 
         $options = array('auth'=> array(Api::$key, Api::$secret));
 
-        $response = \Requests::request($url, $headers, $data, $method, $options);
+        $response = \Requests::request($url, self::$headers, $data, $method, $options);
 
         $this->checkErrors($response);
 
         return json_decode($response->body, true);
+    }
+
+    /**
+     * Adds an additional header to all API requests
+     * @param string $key   Header key
+     * @param string $value Header value
+     * @return null
+     */
+    public static function addHeader($key, $value)
+    {
+        self::$headers[$key] = $value;
     }
 
     /**
