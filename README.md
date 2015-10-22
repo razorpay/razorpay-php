@@ -1,4 +1,4 @@
-#Introduction
+# razorpay-php
 
 [![Build Status](https://travis-ci.org/razorpay/razorpay-php.svg?branch=master)](https://travis-ci.org/razorpay/razorpay-php) [![Latest Stable Version](https://poser.pugx.org/razorpay/razorpay/v/stable.svg)](https://packagist.org/packages/razorpay/razorpay) [![License](https://poser.pugx.org/razorpay/razorpay/license.svg)](https://packagist.org/packages/razorpay/razorpay)
 
@@ -7,10 +7,12 @@ Razorpay client PHP Api. The api follows the following practices:
 - namespaced under Razorpay\Api
 - call $api->class->function() to access the api
 - api throws exceptions instead of returning errors
-- options are passed as a hash instead of multiple arguments wherever possible
+- options are passed as an array instead of multiple arguments wherever possible
 - All request and responses are communicated over JSON
+- A minimum of PHP 5.3 is required
 
-#Installation
+# Installation
+
 - If your project uses composer, add following to composer.json
 ```json
 {
@@ -19,23 +21,39 @@ Razorpay client PHP Api. The api follows the following practices:
     }
 }
 ```
-Then, run `composer update`.
-- Otherwise, clone/download this repo inside your project
-- Install Composer on your system and do `composer install` in the repo root.
-- Require/Include the `Razorpay.php` file in this repo wherever you want to use the API.
 
-#Usage
+Then, run `composer update`. If you are not using composer, download
+the latest release from [the releases section](https://github.com/razorpay/razorpay-php/releases).
+You should download the `razorpay-php.zip` file.
+
+After that include `Razorpay.php` in your application and you can use the
+API as usual.
+
+# Usage
 
 ```php
 use Razorpay\Api\Api;
 
 $api = new Api($api_key, $api_secret);
 $api->payment->all($options); // Returns array of payment objects
-$api->payment->fetch($id); // Returns a particular payment
+$payment = $api->payment->fetch($id); // Returns a particular payment
 $api->payment->fetch($id)->capture(array('amount'=>$amount)); // Captures a payment
 $api->payment->fetch($id)->refund($id); // Refunds a payment
+
+// To get the payment details
+echo $payment->amount;
+echo $payment->currency;
+// And so on for other attributes
 ```
 
 For further help, see our documentation on <https://docs.razorpay.com>.
 
 [composer-install]: https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx
+
+## Hacking
+
+See the [doc.md](doc.md) file for getting started with development.
+
+## License
+
+The Razorpay PHP SDK is released under the MIT License.
