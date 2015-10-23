@@ -10,7 +10,7 @@ class Api
 
     public static $secret = null;
 
-    const VERSION = '1.1.0';
+    const VERSION = '1.2.0';
 
     /**
      * @param string $api_key
