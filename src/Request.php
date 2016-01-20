@@ -48,6 +48,15 @@ class Request
     }
 
     /**
+     * Returns all headers attached so far
+     * @return array headers
+     */
+    public static function getHeaders()
+    {
+        return self::$headers;
+    }
+
+    /**
      * Process the statusCode of the response and throw exception if necessary
      * @param Object $response The response object returned by Requests
      */

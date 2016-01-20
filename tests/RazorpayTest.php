@@ -3,6 +3,7 @@
 namespace Razorpay\Tests;
 
 use Razorpay\Api\Api;
+use Razorpay\Api\Request;
 
 class RazorpayTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,5 +27,13 @@ class RazorpayTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($data->toArray()));
 
         $this->assertTrue(is_array($data['items']));
+    }
+
+    public function testHeaders()
+    {
+        Request::addHeader('DEMO', 1);
+
+        $headers = Request::getHeaders();
+        $this->assertEquals($headers['DEMO'], 1);
     }
 }
