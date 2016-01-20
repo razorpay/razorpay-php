@@ -12,7 +12,9 @@ notifications:
     secure: fLT1x7BCXi8+sP1Qk1lP74+60JIBCw2clUTSOmB0OuoQGWYIJ4qelKcGH5FFsADGuC1GX2pf0fKRiLdavVrGpBkD4MGFPpyYKPYb0S/FyArN3PjdaNvAqE1VgQCtKkbugP5bHH9bp631+lo2EGQVLWTjlwiijWbCEyDu3L0YVMY=
 # We are doing the releases for non-composer folks
 # So this includes the vendor directory
-before_deploy: cat release.txt |zip -r@ "razorpay-php.zip"
+before_deploy:
+  - echo $TRAVIS_TAG > version.txt
+  - cat release.txt |zip -r@ "razorpay-php.zip"
 deploy:
   provider: releases
   # Otherwise, we lose the vendor/ directory
