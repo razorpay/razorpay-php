@@ -20,6 +20,14 @@ class Request
         'Razorpay-API'  =>  1
     );
 
+    /**
+     * Fires a request to the API
+     * @param  string   $method HTTP Verb
+     * @param  string   $url    Relative URL for the request
+     * @param  array $data Data to be passed along the request
+     * @return array Response data in array format. Not meant
+     * to be used directly
+     */
     public function request($method, $url, $data = null)
     {
         $url = Api::$baseUrl . $url;
@@ -60,7 +68,7 @@ class Request
      * Process the statusCode of the response and throw exception if necessary
      * @param Object $response The response object returned by Requests
      */
-    private function checkErrors($response)
+    protected function checkErrors($response)
     {
         $body = $response->body;
         $httpStatusCode = $response->status_code;
