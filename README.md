@@ -62,6 +62,7 @@ The Razorpay PHP SDK is released under the MIT License.
 
 Steps to follow for a release:
 
+0. Merge the branch with the new code to master.
 1. Bump the Version in `src/Api.php`.
 2. Rename Unreleased to the new tag in `CHANGELOG`
 3. Fix links at bottom in `CHANGELOG`
