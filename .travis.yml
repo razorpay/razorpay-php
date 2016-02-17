@@ -6,7 +6,12 @@ php:
 - 5.3
 - '7.0'
 install: composer install
-before_script: cp phpunit.xml.dist phpunit.xml
+before_script: 
+  - cp phpunit.xml.dist phpunit.xml
+  # These two are required in the build step for non-composer-tests
+  - mkdir -p libs
+  - cd libs &&  wget https://github.com/rmccue/Requests/archive/v1.6.1.zip -O requests.zip && unzip requests.zip && rm requests.zip && cd ..
+
 notifications:
   slack:
     secure: fLT1x7BCXi8+sP1Qk1lP74+60JIBCw2clUTSOmB0OuoQGWYIJ4qelKcGH5FFsADGuC1GX2pf0fKRiLdavVrGpBkD4MGFPpyYKPYb0S/FyArN3PjdaNvAqE1VgQCtKkbugP5bHH9bp631+lo2EGQVLWTjlwiijWbCEyDu3L0YVMY=

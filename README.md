@@ -24,7 +24,7 @@ Razorpay client PHP Api. The api follows the following practices:
 
 Then, run `composer update`. If you are not using composer, download
 the latest release from [the releases section](https://github.com/razorpay/razorpay-php/releases).
-You should download the `razorpay-php.zip` file.
+**You should download the `razorpay-php.zip` file**.
 
 After that include `Razorpay.php` in your application and you can use the
 API as usual.
