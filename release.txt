@@ -1,5 +1,5 @@
 src/
-vendor/
+libs/
 README.md
 Razorpay.php
 composer.lock
