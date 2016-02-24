@@ -2,6 +2,10 @@
 
 Changelog for Razorpay-PHP SDK.
 
+## [Unreleased]
+### Added
+- Add support for Orders
+
 ## [1.2.2] - 2016-02-17
 ### Changed
 - Razorpay\Api\Request::checkErrors is now `protected` instead of `private`
