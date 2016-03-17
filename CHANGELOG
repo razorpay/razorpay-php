@@ -2,6 +2,10 @@
 
 Changelog for Razorpay-PHP SDK.
 
+## [Unreleased]
+### Added
+- Add support for overriding request headers
+
 ## [1.2.3] - 2016-02-24
 ### Added
 - Add support for Orders
