@@ -58,6 +58,8 @@ class Entity extends Resource implements ArrayableInterface
 
         $response = $request->request($method, $relativeUrl, $data);
 
+        sd($response);
+
         if ((isset($response['entity'])) and
             ($response['entity'] == $this->getEntity()))
         {
