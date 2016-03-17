@@ -24,6 +24,15 @@ class Api
         Request::addHeader('User-Agent', "Razorpay-PHP/".self::VERSION);
     }
 
+    /*
+     *  Set Headers
+     *
+     */
+    function setHeader($header, $value)
+    {
+        Request::addHeader($header, $value);
+    }
+
     /**
      * @param string $name
      */
