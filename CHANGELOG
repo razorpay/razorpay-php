@@ -2,10 +2,7 @@
 
 Changelog for Razorpay-PHP SDK.
 
-## [Unreleased]
-### Added
-
-## [1.2.4] - 2016-03-17
+## [1.2.5] - 2016-03-28
 ### Added
 - Add support for overriding request headers via setHeader
 
@@ -40,4 +37,4 @@ Changelog for Razorpay-PHP SDK.
 [1.2.0]: https://github.com/razorpay/razorpay-php/compare/1.2.0...1.1.0
 [1.2.2]: https://github.com/razorpay/razorpay-php/compare/1.2.2...1.2.1
 [1.2.3]: https://github.com/razorpay/razorpay-php/compare/1.2.3...1.2.2
-[1.2.4]: https://github.com/razorpay/razorpay-php/compare/1.2.4...1.2.3
+[1.2.4]: https://github.com/razorpay/razorpay-php/compare/1.2.5...1.2.3
