@@ -33,7 +33,7 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "raveren/kint": ">=0.9"
+        "raveren/kint": "1.*"
     },
     "autoload": {
         "psr-4": {
