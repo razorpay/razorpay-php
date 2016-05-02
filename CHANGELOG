@@ -2,6 +2,10 @@
 
 Changelog for Razorpay-PHP SDK.
 
+## [1.2.6] - 2016-03-28
+### Added
+- Adds better tracing when client is not able to recognize server response.
+
 ## [1.2.5] - 2016-03-28
 ### Added
 - Add support for overriding request headers via setHeader
@@ -38,3 +42,4 @@ Changelog for Razorpay-PHP SDK.
 [1.2.2]: https://github.com/razorpay/razorpay-php/compare/1.2.2...1.2.1
 [1.2.3]: https://github.com/razorpay/razorpay-php/compare/1.2.3...1.2.2
 [1.2.4]: https://github.com/razorpay/razorpay-php/compare/1.2.5...1.2.3
+[1.2.6]: https://github.com/razorpay/razorpay-php/compare/1.2.6...1.2.5
