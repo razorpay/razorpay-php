@@ -35,7 +35,10 @@ class Request
         if ($data === null)
             $data = array();
 
-        $options = array('auth'=> array(Api::$key, Api::$secret));
+        $options = array(
+            'auth'=> array(Api::$key, Api::$secret),
+            'timeout' => 60
+        );
 
         $response = \Requests::request($url, self::$headers, $data, $method, $options);
 
