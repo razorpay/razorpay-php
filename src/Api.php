@@ -13,7 +13,8 @@ class Api
     const VERSION = '1.2.6';
 
     /**
-     * @param string $api_key
+     * @param string $key
+     * @param string $secret
      */
     function __construct($key, $secret)
     {
@@ -35,6 +36,7 @@ class Api
 
     /**
      * @param string $name
+     * @return mixed
      */
     function __get($name)
     {
