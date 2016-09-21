@@ -2,6 +2,10 @@
 
 Changelog for Razorpay-PHP SDK.
 
+## [1.2.7] - 2016-09-21
+### Added
+- Increases the request timeout to 30 seconds for all requests.
+
 ## [1.2.6] - 2016-03-28
 ### Added
 - Adds better tracing when client is not able to recognize server response.
@@ -36,10 +40,11 @@ Changelog for Razorpay-PHP SDK.
 - Initial Release
 
 
-[Unreleased]: https://github.com/razorpay/razorpay-php/compare/1.2.4...HEAD
+[Unreleased]: https://github.com/razorpay/razorpay-php/compare/1.2.7...HEAD
 [1.2.1]: https://github.com/razorpay/razorpay-php/compare/1.2.1...1.2.0
 [1.2.0]: https://github.com/razorpay/razorpay-php/compare/1.2.0...1.1.0
 [1.2.2]: https://github.com/razorpay/razorpay-php/compare/1.2.2...1.2.1
 [1.2.3]: https://github.com/razorpay/razorpay-php/compare/1.2.3...1.2.2
 [1.2.4]: https://github.com/razorpay/razorpay-php/compare/1.2.5...1.2.3
 [1.2.6]: https://github.com/razorpay/razorpay-php/compare/1.2.6...1.2.5
+[1.2.7]: https://github.com/razorpay/razorpay-php/compare/1.2.7...1.2.6
