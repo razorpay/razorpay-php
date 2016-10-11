@@ -84,12 +84,12 @@ class Entity extends Resource implements ArrayableInterface
             }
             else
             {
-                $entity = new static;
+                $entity = new self;
             }
         }
         else
         {
-            $entity = new static;
+            $entity = new self;
         }
 
         $entity->fill($data);
