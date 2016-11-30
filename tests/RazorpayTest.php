@@ -30,7 +30,7 @@ class RazorpayTest extends \PHPUnit_Framework_TestCase
 
         $payment = $data['items'][0];
 
-        $this->assertTrue(get_class($payment['notes']) === 'Razorpay\Api\Entity');
+        $this->assertTrue(get_class($payment['notes']) === 'Razorpay\Api\Resource');
     }
 
     public function testHeaders()

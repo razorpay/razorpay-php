@@ -10,6 +10,11 @@ class Resource implements ArrayAccess, IteratorAggregate
 {
     protected $attributes = array();
 
+    public function fill($data)
+    {
+        $this->attributes = $data;
+    }
+
     public function getIterator()
     {
         return new ArrayIterator($this->attributes);
@@ -53,5 +58,10 @@ class Resource implements ArrayAccess, IteratorAggregate
     public function __unset($key)
     {
         unset($this->attributes[$key]);
+    }
+
+    public function toArray()
+    {
+        return $this->attributes;
     }
 }

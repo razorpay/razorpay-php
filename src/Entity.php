@@ -84,12 +84,12 @@ class Entity extends Resource implements ArrayableInterface
             }
             else
             {
-                $entity = new self;
+                $entity = new Resource;
             }
         }
         else
         {
-            $entity = new self;
+            $entity = new Resource;
         }
 
         $entity->fill($data);
@@ -134,7 +134,7 @@ class Entity extends Resource implements ArrayableInterface
                 {
                     $collection = array();
 
-                    foreach ($value as $v)
+                    foreach ($value as $k => $v)
                     {
                         if (is_array($v))
                         {
