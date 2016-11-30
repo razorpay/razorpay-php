@@ -75,17 +75,11 @@ class Entity extends Resource implements ArrayableInterface
     {
         $entities = static::getDefinedEntitiesArray();
 
-        if (isset($data['entity']))
+        if ((isset($data['entity']) === true) and
+            (in_array($data['entity'], $entities) === true))
         {
-            if (in_array($data['entity'], $entities))
-            {
-                $class = static::getEntityClass($data['entity']);
-                $entity = new $class;
-            }
-            else
-            {
-                $entity = new Resource;
-            }
+            $class = static::getEntityClass($data['entity']);
+            $entity = new $class;
         }
         else
         {
