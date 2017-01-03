@@ -65,8 +65,9 @@ Steps to follow for a release:
 
 0. Merge the branch with the new code to master.
 1. Bump the Version in `src/Api.php`.
-2. Rename Unreleased to the new tag in `CHANGELOG`
-3. Fix links at bottom in `CHANGELOG`
+2. Rename Unreleased to the new tag in `CHANGELOG.md`
+3. Add a new empty "Unreleased" section at the top of `CHANGELOG.md`
+3. Fix links at bottom in `CHANGELOG.md`
 4. Commit
 5. Tag the release and push to GitHub
-6. Create a release on GitHub using the website with more details about the release
+6. A release should automatically be created once the travis build passes. Edit the release to add some description.
