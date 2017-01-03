@@ -2,6 +2,10 @@
 
 Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangelog.com/en/0.3.0/) for formatting.
 
+## [Unreleased]
+### Added
+- Support for creating and fetching Invoices
+
 ## [1.2.8] - 2016-10-12
 ### Added
 - Support for Customer and Token entities
