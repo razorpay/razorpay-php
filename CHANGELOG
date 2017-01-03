@@ -2,7 +2,7 @@
 
 Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangelog.com/en/0.3.0/) for formatting.
 
-## [Unreleased]
+## [1.2.9] - 2017-01-03
 ### Added
 - Support for creating and fetching Invoices
 
@@ -57,3 +57,4 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 [1.2.6]: https://github.com/razorpay/razorpay-php/compare/1.2.5...1.2.6
 [1.2.7]: https://github.com/razorpay/razorpay-php/compare/1.2.6...1.2.7
 [1.2.8]: https://github.com/razorpay/razorpay-php/compare/1.2.7...1.2.8
+[1.2.9]: https://github.com/razorpay/razorpay-php/compare/1.2.8...1.2.9
