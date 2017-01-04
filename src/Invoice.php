@@ -6,7 +6,7 @@ class Invoice extends Entity
     /**
      *  @param $id invoice
      */
-    public function fetch($id = '')
+    public function fetch($id)
     {
         return parent::fetch($id);
     }
