@@ -26,11 +26,13 @@ class Api
     {
         self::$key = $key;
         self::$secret = $secret;
+
+        // Add the version to all HTTP Requests
+        Request::addHeader('User-Agent', "Razorpay-PHP/" . self::VERSION);
     }
 
     /*
      *  Set Headers
-     *
      */
     public function setHeader($header, $value)
     {

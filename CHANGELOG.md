@@ -17,6 +17,11 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 - Razorpay\Api\Api::$baseUrl, Razorpay\Api\Api::$key and Razorpay\Api\Api::$secret are now `protected` instead of `public`
 
 
+## Unreleased
+### Added
+- Support for creating and fetching Transfers
+- Support for creating Reversals on transfers
+
 ## [1.2.9] - 2017-01-03
 ### Added
 - Support for creating and fetching Invoices
