@@ -85,7 +85,9 @@ class Request
             $this->throwServerError($body, $httpStatusCode);
         }
 
-        if ($httpStatusCode !== 200)
+        $statusCodeSeries = (int) ($httpStatusCode / 100);
+
+        if ($statusCodeSeries !== 2)
         {
             $this->processError($body, $httpStatusCode, $response);
         }

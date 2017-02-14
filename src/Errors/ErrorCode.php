@@ -10,6 +10,8 @@ class ErrorCode
 
     public static function exists($code)
     {
+        $code = strtoupper($code);
+
         return defined(get_class().'::'.$code);
     }
 }

@@ -16,20 +16,20 @@ class Api
      * @param string $key
      * @param string $secret
      */
-    function __construct($key, $secret)
+    public function __construct($key, $secret)
     {
         self::$key = $key;
         self::$secret = $secret;
 
         // Add the version to all HTTP Requests
-        Request::addHeader('User-Agent', "Razorpay-PHP/".self::VERSION);
+        Request::addHeader('User-Agent', 'Razorpay-PHP/'.self::VERSION);
     }
 
     /*
      *  Set Headers
      *
      */
-    function setHeader($header, $value)
+    public function setHeader($header, $value)
     {
         Request::addHeader($header, $value);
     }
@@ -38,7 +38,7 @@ class Api
      * @param string $name
      * @return mixed
      */
-    function __get($name)
+    public function __get($name)
     {
         $className = __NAMESPACE__.'\\'.ucwords($name);
 
