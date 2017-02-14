@@ -30,13 +30,13 @@ class Request
      */
     public function request($method, $url, $data = null)
     {
-        $url = Api::$baseUrl . $url;
+        $url = Api::getBaseUrl() . $url;
 
         if ($data === null)
             $data = array();
 
         $options = array(
-            'auth'=> array(Api::$key, Api::$secret),
+            'auth' => array(Api::getKey(), Api::getSecret()),
             'timeout' => 60
         );
 

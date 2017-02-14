@@ -4,11 +4,11 @@ namespace Razorpay\Api;
 
 class Api
 {
-    public static $baseUrl = "https://api.razorpay.com/v1/";
+    protected static $baseUrl = 'https://api.razorpay.com/v1/';
 
-    public static $key = null;
+    protected static $key = null;
 
-    public static $secret = null;
+    protected static $secret = null;
 
     const VERSION = '1.2.9';
 
@@ -34,6 +34,11 @@ class Api
         Request::addHeader($header, $value);
     }
 
+    public function setBaseUrl($baseUrl)
+    {
+        self::$baseUrl = $baseUrl;
+    }
+
     /**
      * @param string $name
      * @return mixed
@@ -45,5 +50,20 @@ class Api
         $entity = new $className();
 
         return $entity;
+    }
+
+    public static function getBaseUrl()
+    {
+        return self::$baseUrl;
+    }
+
+    public static function getKey()
+    {
+        return self::$key;
+    }
+
+    public static function getSecret()
+    {
+        return self::$secret;
     }
 }

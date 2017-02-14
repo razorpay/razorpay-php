@@ -36,13 +36,4 @@ class Payment extends Entity
 
         return $this->request('POST', $relativeUrl, $attributes);
     }
-
-    public function refunds()
-    {
-        $refund = new Refund();
-
-        $refund['payment_id'] = $this->id;
-
-        return $refund;
-    }
 }
