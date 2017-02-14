@@ -40,7 +40,13 @@ class Request
             'timeout' => 60
         );
 
-        $response = \Requests::request($url, self::$headers, $data, $method, $options);
+        $uaHeader = array(
+            'User-Agent' => $this->constructUa()
+        );
+
+        $headers = array_merge(self::$headers, $uaHeader);
+
+        $response = \Requests::request($url, $headers, $data, $method, $options);
 
         $this->checkErrors($response);
 
@@ -55,14 +61,7 @@ class Request
      */
     public static function addHeader($key, $value)
     {
-        if (isset(self::$headers[$key]) === true)
-        {
-            self::$headers[$key] .= '; ' . $value;
-        }
-        else
-        {
-            self::$headers[$key] = $value;
-        }
+        self::$headers[$key] = $value;
     }
 
     /**
@@ -72,6 +71,15 @@ class Request
     public static function getHeaders()
     {
         return self::$headers;
+    }
+
+    protected function constructUa()
+    {
+        $ua = 'Razorpay-PHP/' . Api::VERSION;
+
+        $ua .= '; ' . Api::$appInfo;
+
+        return $ua;
     }
 
     /**
@@ -92,8 +100,8 @@ class Request
             $this->throwServerError($body, $httpStatusCode);
         }
 
-        if (($httpStatusCode >= 200) and
-            ($httpStatusCode < 300))
+        if (($httpStatusCode < 200) or
+            ($httpStatusCode >= 300))
         {
             $this->processError($body, $httpStatusCode, $response);
         }
