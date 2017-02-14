@@ -55,7 +55,14 @@ class Request
      */
     public static function addHeader($key, $value)
     {
-        self::$headers[$key] = $value;
+        if (isset(self::$headers[$key]) === true)
+        {
+            self::$headers[$key] .= '; ' . $value;
+        }
+        else
+        {
+            self::$headers[$key] = $value;
+        }
     }
 
     /**
@@ -85,9 +92,8 @@ class Request
             $this->throwServerError($body, $httpStatusCode);
         }
 
-        $statusCodeSeries = (int) ($httpStatusCode / 100);
-
-        if ($statusCodeSeries !== 2)
+        if (($httpStatusCode >= 200) and
+            ($httpStatusCode < 300))
         {
             $this->processError($body, $httpStatusCode, $response);
         }
