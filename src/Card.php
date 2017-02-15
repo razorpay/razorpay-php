@@ -12,9 +12,4 @@ class Card extends Entity
     {
         return parent::fetch($id);
     }
-
-    public function all($options = array())
-    {
-        return parent::all($options);
-    }
 }
