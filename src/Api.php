@@ -10,6 +10,10 @@ class Api
 
     protected static $secret = null;
 
+    /*
+     * App info is to store the Plugin/integration
+     * information
+     */
     public static $appInfo = null;
 
     const VERSION = '1.2.9';

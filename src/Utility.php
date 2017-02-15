@@ -24,7 +24,7 @@ class Utility
 
     public function verifySignature($payload, $exceptedSignature)
     {
-        $actualSignature = hmac_hash(self::SHA256, $payload, Api::getSecret());
+        $actualSignature = hash_hmac(self::SHA256, $payload, Api::getSecret());
 
         if (function_exists('hash_equals'))
         {
@@ -33,12 +33,25 @@ class Utility
                 return true;
             }
         }
-        else if ($actualSignature === $exceptedSignature)
+        else if (strlen($exceptedSignature) === strlen($actualSignature))
         {
-            return true;
+            $res = $exceptedSignature ^ $actualSignature;
+            $return = 0;
+
+            for ($i = strlen($res) - 1; $i >= 0; $i--)
+            {
+                $return |= ord($res[$i]);
+            }
+
+            if ($return === 0)
+            {
+                return true;
+            }
         }
 
         throw new Errors\BadRequestError(
             'Invalid signature');
     }
+
+
 }

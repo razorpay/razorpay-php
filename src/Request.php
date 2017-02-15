@@ -2,6 +2,7 @@
 
 namespace Razorpay\Api;
 
+use Requests;
 use Exception;
 use Razorpay\Api\Errors;
 use Razorpay\Api\Errors\ErrorCode;
@@ -46,7 +47,7 @@ class Request
 
         $headers = array_merge(self::$headers, $uaHeader);
 
-        $response = \Requests::request($url, $headers, $data, $method, $options);
+        $response = Requests::request($url, $headers, $data, $method, $options);
 
         $this->checkErrors($response);
 
