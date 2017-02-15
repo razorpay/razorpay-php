@@ -33,7 +33,18 @@ class Utility
                 return true;
             }
         }
-        else if (strlen($exceptedSignature) === strlen($actualSignature))
+        else if ($this->hash_equals($actualSignature, $exceptedSignature) === true)
+        {
+            return true;
+        }
+
+        throw new Errors\BadRequestError(
+            'Invalid signature');
+    }
+
+    private function hash_equals($actualSignature, $exceptedSignature)
+    {
+        if (strlen($exceptedSignature) === strlen($actualSignature))
         {
             $res = $exceptedSignature ^ $actualSignature;
             $return = 0;
@@ -43,15 +54,9 @@ class Utility
                 $return |= ord($res[$i]);
             }
 
-            if ($return === 0)
-            {
-                return true;
-            }
+            return ($return === 0);
         }
 
-        throw new Errors\BadRequestError(
-            'Invalid signature');
+        return false;
     }
-
-
 }
