@@ -8,45 +8,45 @@ class Utility
 
     public function verifyPaymentSignature($attributes)
     {
-        $exceptedSignature = $attributes['razorpay_signature'];
+        $expectedSignature = $attributes['razorpay_signature'];
         $orderId = $attributes['razorpay_order_id'];
         $paymentId = $attributes['razorpay_payment_id'];
 
         $payload = $orderId . '|' . $paymentId;
 
-        return self::validateSignature($payload, $exceptedSignature);
+        return self::verifySignature($payload, $expectedSignature);
     }
 
-    public function verifyWebhookSignature($payload, $exceptedSignature)
+    public function verifyWebhookSignature($payload, $expectedSignature)
     {
-        return self::verifySignature($payload, $exceptedSignature);
+        return self::verifySignature($payload, $expectedSignature);
     }
 
-    public function verifySignature($payload, $exceptedSignature)
+    public function verifySignature($payload, $expectedSignature)
     {
         $actualSignature = hash_hmac(self::SHA256, $payload, Api::getSecret());
 
+        // Use lang's built-in hash_equals if exists to mitigate timing attacks
         if (function_exists('hash_equals'))
         {
-            if (hash_equals($actualSignature, $exceptedSignature) === true)
+            if (hash_equals($actualSignature, $expectedSignature) === true)
             {
                 return true;
             }
         }
-        else if ($this->hash_equals($actualSignature, $exceptedSignature) === true)
+        else if ($this->hashEquals($actualSignature, $expectedSignature) === true)
         {
             return true;
         }
 
-        throw new Errors\BadRequestError(
-            'Invalid signature');
+        throw new Errors\BadRequestError('Invalid signature');
     }
 
-    private function hash_equals($actualSignature, $exceptedSignature)
+    private function hashEquals($actualSignature, $expectedSignature)
     {
-        if (strlen($exceptedSignature) === strlen($actualSignature))
+        if (strlen($expectedSignature) === strlen($actualSignature))
         {
-            $res = $exceptedSignature ^ $actualSignature;
+            $res = $expectedSignature ^ $actualSignature;
             $return = 0;
 
             for ($i = strlen($res) - 1; $i >= 0; $i--)
