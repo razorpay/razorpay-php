@@ -38,8 +38,9 @@ $api = new Api($api_key, $api_secret);
 $api->payment->all($options); // Returns array of payment objects
 $payment = $api->payment->fetch($id); // Returns a particular payment
 $api->payment->fetch($id)->capture(array('amount'=>$amount)); // Captures a payment
-$api->payment->fetch($id)->refund(); // Refunds a payment 
-$api->payment->fetch($id)->refund(array('amount'=>$refundAmount)); // Partially refunds a payment
+$api->refund->create(array('payment_id' => $id)); // Creates refund for a payment
+$api->refund->create(array('payment_id' => $id, 'amount'=>$refundAmount)); // Creates partial refund for a payment
+$refund = $api->refund->fetch($refundId); // Returns a particular refund
 
 // To get the payment details
 echo $payment->amount;
