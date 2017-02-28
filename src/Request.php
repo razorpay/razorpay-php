@@ -12,7 +12,6 @@ use Razorpay\Api\Errors\ErrorCode;
  */
 class Request
 {
-
     /**
      * Headers to be sent with every http request to the API
      * @var array
@@ -31,21 +30,19 @@ class Request
      */
     public function request($method, $url, $data = null)
     {
-        $url = Api::getBaseUrl() . $url;
+        $url = Api::getFullUrl($url);
 
         if ($data === null)
+        {
             $data = array();
+        }
 
         $options = array(
             'auth' => array(Api::getKey(), Api::getSecret()),
             'timeout' => 60
         );
 
-        $uaHeader = array(
-            'User-Agent' => $this->constructUa()
-        );
-
-        $headers = array_merge(self::$headers, $uaHeader);
+        $headers = $this->getRequestHeaders();
 
         $response = Requests::request($url, $headers, $data, $method, $options);
 
@@ -72,15 +69,6 @@ class Request
     public static function getHeaders()
     {
         return self::$headers;
-    }
-
-    protected function constructUa()
-    {
-        $ua = 'Razorpay-PHP/' . Api::VERSION;
-
-        $ua .= '; ' . Api::$appInfo;
-
-        return $ua;
     }
 
     /**
@@ -110,23 +98,7 @@ class Request
 
     protected function processError($body, $httpStatusCode, $response)
     {
-        if (is_array($body) === false)
-        {
-            $this->throwServerError($body, $httpStatusCode);
-        }
-
-        if ((isset($body['error']) === false) or
-            (isset($body['error']['code']) === false))
-        {
-            $this->throwServerError($body, $httpStatusCode);
-        }
-
-        $code = $body['error']['code'];
-
-        if (Errors\ErrorCode::exists($code) === false)
-        {
-            $this->throwServerError($body, $httpStatusCode);
-        }
+        $this->verifyErrorFormat($body, $httpStatusCode);
 
         // We are basically converting the error code to the Error class name
         // Replace underscores with space
@@ -163,5 +135,78 @@ class Request
             $description,
             ErrorCode::SERVER_ERROR,
             $httpStatusCode);
+    }
+
+    protected function getRequestHeaders()
+    {
+        $uaHeader = array(
+            'User-Agent' => $this->constructUa()
+        );
+
+        $headers = array_merge(self::$headers, $uaHeader);
+
+        return $headers;
+    }
+
+    protected function constructUa()
+    {
+        $ua = 'Razorpay/v1 PhpSdk/' . Api::VERSION;
+
+        $ua .= ' ' . $this->getAppDetailsUa();
+
+        return $ua;
+    }
+
+    protected function getAppDetailsUa()
+    {
+        $appsDetails = Api::$appsDetails;
+
+        $appsDetailsUa = '';
+
+        foreach ($appsDetails as $app)
+        {
+            if ((isset($app['title'])) and (is_string($app['title'])))
+            {
+                $appUa = $app['title'];
+
+                if ((isset($app['version'])) and (is_scalar($app['version'])))
+                {
+                    $appUa .= '/'.$app['version'];
+                }
+
+                $appsDetailsUa .= $appUa . ' ';
+            }
+        }
+
+        return $appsDetailsUa;
+    }
+
+    /**
+     * Verifies error is in proper format. If not then
+     * throws ServerErrorException
+     *
+     * @param  array $body
+     * @param  int $httpStatusCode
+     * @return void
+     */
+    protected function verifyErrorFormat($body, $httpStatusCode)
+    {
+        if (is_array($body) === false)
+        {
+            $this->throwServerError($body, $httpStatusCode);
+        }
+
+        if ((isset($body['error']) === false) or
+            (isset($body['error']['code']) === false))
+        {
+            $this->throwServerError($body, $httpStatusCode);
+        }
+
+        $code = $body['error']['code'];
+
+        if (Errors\ErrorCode::exists($code) === false)
+        {
+            $this->throwServerError($body, $httpStatusCode);
+        }
     }
 }

@@ -14,7 +14,7 @@ class Api
      * App info is to store the Plugin/integration
      * information
      */
-    public static $appInfo = null;
+    public static $appsDetails = null;
 
     const VERSION = '1.2.9';
 
@@ -37,9 +37,23 @@ class Api
         Request::addHeader($header, $value);
     }
 
-    public function setAppInfo($appInfo)
+    public function setAppDetails($title, $version = null)
     {
-        self::$appInfo = $appInfo;
+        if (self::$appsDetails === null)
+        {
+            self::$appsDetails = [];
+        }
+
+        $app = array(
+            'title' => $title,
+            'version' => $version);
+
+        array_push(self::$appsDetails, $app);
+    }
+
+    public function getAppsDetails()
+    {
+        return self::$appsDetails;
     }
 
     public function setBaseUrl($baseUrl)
@@ -73,5 +87,10 @@ class Api
     public static function getSecret()
     {
         return self::$secret;
+    }
+
+    public static function getFullUrl($relativeUrl)
+    {
+        return self::getBaseUrl() . $relativeUrl;
     }
 }
