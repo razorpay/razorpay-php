@@ -145,7 +145,7 @@ class Request
 
     protected function constructUa()
     {
-        $ua = 'Razorpay/v1 PHPSDK/' . Api::VERSION;
+        $ua = 'Razorpay/v1 PHPSDK/' . Api::VERSION . ' PHP/' . phpversion();
 
         $ua .= ' ' . $this->getAppDetailsUa();
 
