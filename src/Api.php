@@ -14,7 +14,7 @@ class Api
      * App info is to store the Plugin/integration
      * information
      */
-    public static $appsDetails = null;
+    public static $appsDetails = array();
 
     const VERSION = '1.2.9';
 
@@ -39,14 +39,10 @@ class Api
 
     public function setAppDetails($title, $version = null)
     {
-        if (self::$appsDetails === null)
-        {
-            self::$appsDetails = [];
-        }
-
         $app = array(
             'title' => $title,
-            'version' => $version);
+            'version' => $version
+        );
 
         array_push(self::$appsDetails, $app);
     }

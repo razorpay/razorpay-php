@@ -4,8 +4,8 @@ namespace Razorpay\Api;
 
 class Invoice extends Entity
 {
-    /*
-     *  @param $id Invoice id
+    /**
+     * @param $id Invoice id
      */
     public function fetch($id)
     {

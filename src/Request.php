@@ -28,14 +28,9 @@ class Request
      * @return array Response data in array format. Not meant
      * to be used directly
      */
-    public function request($method, $url, $data = null)
+    public function request($method, $url, $data = array())
     {
         $url = Api::getFullUrl($url);
-
-        if ($data === null)
-        {
-            $data = array();
-        }
 
         $options = array(
             'auth' => array(Api::getKey(), Api::getSecret()),
@@ -150,7 +145,7 @@ class Request
 
     protected function constructUa()
     {
-        $ua = 'Razorpay/v1 PhpSdk/' . Api::VERSION;
+        $ua = 'Razorpay/v1 PHPSDK/' . Api::VERSION;
 
         $ua .= ' ' . $this->getAppDetailsUa();
 
@@ -171,7 +166,7 @@ class Request
 
                 if ((isset($app['version'])) and (is_scalar($app['version'])))
                 {
-                    $appUa .= '/'.$app['version'];
+                    $appUa .= '/' . $app['version'];
                 }
 
                 $appsDetailsUa .= $appUa . ' ';
