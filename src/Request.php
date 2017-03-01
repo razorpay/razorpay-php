@@ -95,6 +95,8 @@ class Request
     {
         $this->verifyErrorFormat($body, $httpStatusCode);
 
+        $code = $body['error']['code'];
+
         // We are basically converting the error code to the Error class name
         // Replace underscores with space
         // Lowercase the words, capitalize first letter of each word
