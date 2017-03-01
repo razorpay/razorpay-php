@@ -35,11 +35,22 @@ API as usual.
 use Razorpay\Api\Api;
 
 $api = new Api($api_key, $api_secret);
+$order = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Creates order
+$order = $api->order->fetch($orderId); // Returns a particular order
+$api->order->all($options); // Returns array of order objects
 $api->payment->all($options); // Returns array of payment objects
 $payment = $api->payment->fetch($id); // Returns a particular payment
 $api->payment->fetch($id)->capture(array('amount'=>$amount)); // Captures a payment
-$api->payment->fetch($id)->refund(); // Refunds a payment 
-$api->payment->fetch($id)->refund(array('amount'=>$refundAmount)); // Partially refunds a payment
+$api->refund->create(array('payment_id' => $id)); // Creates refund for a payment
+$api->refund->create(array('payment_id' => $id, 'amount'=>$refundAmount)); // Creates partial refund for a payment
+$refund = $api->refund->fetch($refundId); // Returns a particular refund
+$card = $api->card->fetch($cardId); // Returns a particular card
+$customer = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates customer
+$customer = $api->customer->fetch($customerId); // Returns a particular customer
+$api->customer->edit(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Edits customer
+$token = $api->customer->token()->fetch($tokenId); // Returns a particular token
+$api->customer->token()->all($options); // Returns array of token objects
+$api->customer->token()->delete($tokenId); // Deletes a token
 
 // To get the payment details
 echo $payment->amount;

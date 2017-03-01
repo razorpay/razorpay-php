@@ -2,6 +2,7 @@
 
 namespace Razorpay\Api;
 
+use Requests;
 use Exception;
 use Razorpay\Api\Errors;
 use Razorpay\Api\Errors\ErrorCode;
@@ -11,7 +12,6 @@ use Razorpay\Api\Errors\ErrorCode;
  */
 class Request
 {
-
     /**
      * Headers to be sent with every http request to the API
      * @var array
@@ -28,19 +28,18 @@ class Request
      * @return array Response data in array format. Not meant
      * to be used directly
      */
-    public function request($method, $url, $data = null)
+    public function request($method, $url, $data = array())
     {
-        $url = Api::$baseUrl . $url;
-
-        if ($data === null)
-            $data = array();
+        $url = Api::getFullUrl($url);
 
         $options = array(
-            'auth'=> array(Api::$key, Api::$secret),
+            'auth' => array(Api::getKey(), Api::getSecret()),
             'timeout' => 60
         );
 
-        $response = \Requests::request($url, self::$headers, $data, $method, $options);
+        $headers = $this->getRequestHeaders();
+
+        $response = Requests::request($url, $headers, $data, $method, $options);
 
         $this->checkErrors($response);
 
@@ -85,7 +84,8 @@ class Request
             $this->throwServerError($body, $httpStatusCode);
         }
 
-        if ($httpStatusCode !== 200)
+        if (($httpStatusCode < 200) or
+            ($httpStatusCode >= 300))
         {
             $this->processError($body, $httpStatusCode, $response);
         }
@@ -93,23 +93,7 @@ class Request
 
     protected function processError($body, $httpStatusCode, $response)
     {
-        if (is_array($body) === false)
-        {
-            $this->throwServerError($body, $httpStatusCode);
-        }
-
-        if ((isset($body['error']) === false) or
-            (isset($body['error']['code']) === false))
-        {
-            $this->throwServerError($body, $httpStatusCode);
-        }
-
-        $code = $body['error']['code'];
-
-        if (Errors\ErrorCode::exists($code) === false)
-        {
-            $this->throwServerError($body, $httpStatusCode);
-        }
+        $this->verifyErrorFormat($body, $httpStatusCode);
 
         // We are basically converting the error code to the Error class name
         // Replace underscores with space
@@ -146,5 +130,78 @@ class Request
             $description,
             ErrorCode::SERVER_ERROR,
             $httpStatusCode);
+    }
+
+    protected function getRequestHeaders()
+    {
+        $uaHeader = array(
+            'User-Agent' => $this->constructUa()
+        );
+
+        $headers = array_merge(self::$headers, $uaHeader);
+
+        return $headers;
+    }
+
+    protected function constructUa()
+    {
+        $ua = 'Razorpay/v1 PHPSDK/' . Api::VERSION . ' PHP/' . phpversion();
+
+        $ua .= ' ' . $this->getAppDetailsUa();
+
+        return $ua;
+    }
+
+    protected function getAppDetailsUa()
+    {
+        $appsDetails = Api::$appsDetails;
+
+        $appsDetailsUa = '';
+
+        foreach ($appsDetails as $app)
+        {
+            if ((isset($app['title'])) and (is_string($app['title'])))
+            {
+                $appUa = $app['title'];
+
+                if ((isset($app['version'])) and (is_scalar($app['version'])))
+                {
+                    $appUa .= '/' . $app['version'];
+                }
+
+                $appsDetailsUa .= $appUa . ' ';
+            }
+        }
+
+        return $appsDetailsUa;
+    }
+
+    /**
+     * Verifies error is in proper format. If not then
+     * throws ServerErrorException
+     *
+     * @param  array $body
+     * @param  int $httpStatusCode
+     * @return void
+     */
+    protected function verifyErrorFormat($body, $httpStatusCode)
+    {
+        if (is_array($body) === false)
+        {
+            $this->throwServerError($body, $httpStatusCode);
+        }
+
+        if ((isset($body['error']) === false) or
+            (isset($body['error']['code']) === false))
+        {
+            $this->throwServerError($body, $httpStatusCode);
+        }
+
+        $code = $body['error']['code'];
+
+        if (Errors\ErrorCode::exists($code) === false)
+        {
+            $this->throwServerError($body, $httpStatusCode);
+        }
     }
 }

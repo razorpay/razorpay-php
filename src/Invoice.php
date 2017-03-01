@@ -1,10 +1,11 @@
 <?php
+
 namespace Razorpay\Api;
 
 class Invoice extends Entity
 {
     /**
-     *  @param $id invoice
+     * @param $id Invoice id
      */
     public function fetch($id)
     {
@@ -14,5 +15,10 @@ class Invoice extends Entity
     public function create($attributes = array())
     {
         return parent::create($attributes);
-    }    
+    }
+
+    public function all($options = array())
+    {
+        return parent::all($options);
+    }
 }

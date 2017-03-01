@@ -5,19 +5,20 @@ namespace Razorpay\Api;
 class Refund extends Entity
 {
     /**
-     * @param $id Payment id
+     * @param $id Refund id
      */
     public function fetch($id)
     {
-        $relativeUrl = 'payments/'.$this->payment_id.'/'.$this->getEntityUrl().$id;
+        return parent::fetch($id);
+    }
 
-        return $this->request('GET', $relativeUrl);
+    public function create($attributes = array())
+    {
+        return parent::create($attributes);
     }
 
     public function all($options = array())
     {
-        $relativeUrl = 'payments/'.$this->payment_id.'/'.$this->getEntityUrl();
-
-        return $this->request('GET', $relativeUrl, $options);
+        return parent::all($options);
     }
 }
