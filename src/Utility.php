@@ -29,7 +29,7 @@ class Utility
         // Use lang's built-in hash_equals if exists to mitigate timing attacks
         if (function_exists('hash_equals'))
         {
-            return hash_equals($actualSignature, $expectedSignature)
+            return hash_equals($actualSignature, $expectedSignature);
         }
         
         return $this->hashEquals($actualSignature, $expectedSignature);
