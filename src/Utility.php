@@ -41,8 +41,6 @@ class Utility
             throw new Errors\SignatureVerificationError(
                 'Invalid signature passed');
         }
-
-        return $verified;
     }
 
     private function hashEquals($actualSignature, $expectedSignature)
