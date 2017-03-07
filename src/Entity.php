@@ -67,34 +67,51 @@ class Entity extends Resource implements ArrayableInterface
         }
         else
         {
-            return static::buildEntity($response);
+            return static::buildEntity(null, $response);
         }
     }
 
-    protected static function buildEntity($data)
+    protected static function buildEntity($key, $data)
     {
         $entities = static::getDefinedEntitiesArray();
 
-        if (isset($data['entity']))
+        if (self::isNotes($key) === true)
         {
-            if (in_array($data['entity'], $entities))
-            {
-                $class = static::getEntityClass($data['entity']);
-                $entity = new $class;
-            }
-            else
-            {
-                $entity = new static;
-            }
+            $entity = $data;
         }
         else
         {
-            $entity = new static;
+            if (isset($data['entity']))
+            {
+                if (in_array($data['entity'], $entities))
+                {
+                    $class = static::getEntityClass($data['entity']);
+                    $entity = new $class;
+                }
+                else
+                {
+                    $entity = new self;
+                }
+            }
+            else
+            {
+                $entity = new self;
+            }
+
+            $entity->fill($data);
         }
 
-        $entity->fill($data);
-
         return $entity;
+    }
+
+    protected static function isNotes($key)
+    {
+        if ($key === 'notes')
+        {
+            return true;
+        }
+
+        return false;
     }
 
     protected static function getDefinedEntitiesArray()
@@ -138,7 +155,7 @@ class Entity extends Resource implements ArrayableInterface
                     {
                         if (is_array($v))
                         {
-                            $entity = static::buildEntity($v);
+                            $entity = static::buildEntity(null, $v);
                             array_push($collection, $entity);
                         }
                         else
@@ -151,7 +168,7 @@ class Entity extends Resource implements ArrayableInterface
                 }
                 else
                 {
-                    $value = static::buildEntity($value);
+                    $value = static::buildEntity($key, $value);
                 }
             }
 
