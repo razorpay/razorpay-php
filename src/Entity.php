@@ -155,7 +155,7 @@ class Entity extends Resource implements ArrayableInterface
                     {
                         if (is_array($v))
                         {
-                            $entity = static::buildEntity(null, $v);
+                            $entity = static::buildEntity($key, $v);
                             array_push($collection, $entity);
                         }
                         else
