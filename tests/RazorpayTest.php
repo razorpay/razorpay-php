@@ -4,8 +4,9 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Api;
 use Razorpay\Api\Request;
+use PHPUnit_Framework_TestCase;
 
-class RazorpayTest extends \PHPUnit_Framework_TestCase
+class RazorpayTest extends PHPUnit_Framework_TestCase
 {
     function setUp()
     {

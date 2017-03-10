@@ -11,6 +11,8 @@ before_script:
   # These two are required in the build step for non-composer-tests
   - mkdir -p libs
   - cd libs &&  wget https://github.com/rmccue/Requests/archive/v1.6.1.zip -O requests.zip && unzip requests.zip && rm requests.zip && cd ..
+script:
+  - phpunit
 
 notifications:
   slack:
