@@ -12,15 +12,10 @@ try
 
     if (version_compare(Requests::VERSION, '1.6.0') === -1)
     {
-        throwRequestsException();
+        throw new Exception('Requests class found but did not match');
     }
 }
 catch (\Exception $e)
-{
-    throwRequestsException();
-}
-
-function throwRequestsException()
 {
     throw new Exception('Requests class found but did not match');
 }
