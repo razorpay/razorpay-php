@@ -28,6 +28,10 @@ class RazorpayTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($data->toArray()));
 
         $this->assertTrue(is_array($data['items']));
+
+        $payment = $data['items'][0];
+
+        $this->assertTrue(get_class($payment['notes']) === 'Razorpay\Api\Entity');
     }
 
     public function testHeaders()
