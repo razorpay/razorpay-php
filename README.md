@@ -42,7 +42,7 @@ Thank you for considering contributing to the Razorpay PHP package. You can read
 
 ## Security
 
-If you discover any security related issues, please email to [support@razorpay.com](mailto:support@razorpay.com) instead of using the issue tracker.
+If you discover any security related issues, please email to [security@razorpay.com](mailto:security@razorpay.com) instead of using the issue tracker.
 
 ## Credits
 
