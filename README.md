@@ -24,7 +24,7 @@ composer require razorpay/razorpay
 
 - **Manually**
 
-Download the [latest release](https://github.com/razorpay/razorpay-php/releases) and then include `Razorpay.php` in your application, after which you can use the API as usual.
+Download the [latest release](https://github.com/razorpay/razorpay-php/releases). **You should download the `razorpay-php.zip` file**. Then include `Razorpay.php` in your application, after which you can use the API as usual.
 
 ## Docs
 
