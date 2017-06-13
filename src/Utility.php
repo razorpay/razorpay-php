@@ -9,10 +9,20 @@ class Utility
     public function verifyPaymentSignature($attributes)
     {
         $expectedSignature = $attributes['razorpay_signature'];
-        $orderId = $attributes['razorpay_order_id'];
         $paymentId = $attributes['razorpay_payment_id'];
 
-        $payload = $orderId . '|' . $paymentId;
+        if (isset($attributes['razorpay_order_id']) === true)
+        {
+            $orderId = $attributes['razorpay_order_id'];
+
+            $payload = $orderId . '|' . $paymentId;
+        }
+        else
+        {
+            $subscriptionId = $attributes['razorpay_subscription_id'];
+
+            $payload = $paymentId . '|' . $subscriptionId;
+        }
 
         return self::verifySignature($payload, $expectedSignature);
     }
