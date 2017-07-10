@@ -23,9 +23,24 @@ class Transfer extends Entity
         return parent::all($options);
     }
 
+    /**
+     * Create a direct transfer from merchant's account to
+     * any of the linked accounts, without linking it to a
+     * payment
+     */
     public function create($attributes = array())
     {
         return parent::create($attributes);
+    }
+
+    /**
+     * Create a transfer to a linked account for a payment
+     */
+    public function transfer($paymentId, $attributes = array())
+    {
+        $relativeUrl = 'payments/' . $paymentId. '/transfers';
+
+        return $this->request('POST', $relativeUrl, $options);
     }
 
     public function edit($attributes = null)
