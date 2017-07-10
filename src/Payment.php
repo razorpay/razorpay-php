@@ -59,8 +59,8 @@ class Payment extends Entity
     {
         $transfer = new Transfer();
 
-        $transfer['payment_id'] = $this->id;
+        $transfer->payment_id = $this->id;
 
-        return $transfer;
+        return $transfer->all();
     }
 }
