@@ -41,4 +41,11 @@ class Transfer extends Entity
 
         return $this->request('POST', $relativeUrl, $attributes);
     }
+
+    public function reversals($attributes = array())
+    {
+        $relativeUrl = $this->getEntityUrl() . $this->id . '/reversals';
+
+        return $this->request('POST', $relativeUrl, $attributes);
+    }
 }
