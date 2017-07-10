@@ -50,9 +50,12 @@ class Transfer extends Entity
         return $this->request('PATCH', $entityUrl, $attributes);
     }
 
+    /**
+     * Create a reversal for a transfer
+     */
     public function reverse($attributes = array())
     {
-        $relativeUrl = $this->getEntityUrl() . $this->id . '/reversal';
+        $relativeUrl = $this->getEntityUrl() . $this->id . '/reversals';
 
         return $this->request('POST', $relativeUrl, $attributes);
     }
