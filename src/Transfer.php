@@ -33,16 +33,6 @@ class Transfer extends Entity
         return parent::create($attributes);
     }
 
-    /**
-     * Create a transfer to a linked account for a payment
-     */
-    public function transfer($paymentId, $attributes = array())
-    {
-        $relativeUrl = 'payments/' . $paymentId. '/transfers';
-
-        return $this->request('POST', $relativeUrl, $options);
-    }
-
     public function edit($attributes = null)
     {
         $entityUrl = $this->getEntityUrl() .  $this->id;
