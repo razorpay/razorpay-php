@@ -41,7 +41,7 @@ class Payment extends Entity
 
     public function transfer($attributes = array())
     {
-        $relativeUrl = $this->getEntityUrl() . $this->id . '/transfer';
+        $relativeUrl = $this->getEntityUrl() . $this->id . '/transfers';
 
         return $this->request('POST', $relativeUrl, $attributes);
     }
