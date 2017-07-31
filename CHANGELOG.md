@@ -2,6 +2,13 @@
 
 Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangelog.com/en/0.3.0/) for formatting.
 
+## Unreleased
+
+## [2.0.1] - 2017-07-31
+### Fixed
+- Webhook signature verification
+- Conditional require of Request class
+
 ## [2.0.0] - 2017-03-07
 ### Added
 - Support for custom Application header
@@ -63,7 +70,7 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 - Initial Release
 
 
-[Unreleased]: https://github.com/razorpay/razorpay-php/compare/2.0.0...HEAD
+[Unreleased]: https://github.com/razorpay/razorpay-php/compare/2.0.1...HEAD
 [1.2.1]: https://github.com/razorpay/razorpay-php/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/razorpay/razorpay-php/compare/1.1.0...1.2.0
 [1.2.2]: https://github.com/razorpay/razorpay-php/compare/1.2.1...1.2.2
@@ -74,3 +81,4 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 [1.2.8]: https://github.com/razorpay/razorpay-php/compare/1.2.7...1.2.8
 [1.2.9]: https://github.com/razorpay/razorpay-php/compare/1.2.8...1.2.9
 [2.0.0]: https://github.com/razorpay/razorpay-php/compare/1.2.9...2.0.0
+[2.0.1]: https://github.com/razorpay/razorpay-php/compare/2.0.0...2.0.1
