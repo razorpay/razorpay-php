@@ -86,3 +86,4 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 [1.2.9]: https://github.com/razorpay/razorpay-php/compare/1.2.8...1.2.9
 [2.0.0]: https://github.com/razorpay/razorpay-php/compare/1.2.9...2.0.0
 [2.0.1]: https://github.com/razorpay/razorpay-php/compare/2.0.0...2.0.1
+[2.0.2]: https://github.com/razorpay/razorpay-php/compare/2.0.1...2.0.2
