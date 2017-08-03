@@ -30,7 +30,6 @@ class Api
 
     /*
      *  Set Headers
-     *
      */
     public function setHeader($header, $value)
     {

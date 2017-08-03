@@ -39,6 +39,13 @@ class Payment extends Entity
         return $this->request('POST', $relativeUrl, $attributes);
     }
 
+    public function transfer($attributes = array())
+    {
+        $relativeUrl = $this->getEntityUrl() . $this->id . '/transfers';
+
+        return $this->request('POST', $relativeUrl, $attributes);
+    }
+
     public function refunds()
     {
         $refund = new Refund;
@@ -46,5 +53,14 @@ class Payment extends Entity
         $options = array('payment_id' => $this->id);
 
         return $refund->all($options);
+    }
+
+    public function transfers()
+    {
+        $transfer = new Transfer();
+
+        $transfer->payment_id = $this->id;
+
+        return $transfer->all();
     }
 }
