@@ -17,7 +17,7 @@ Razorpay client PHP Api. The api follows the following practices:
 ```json
 {
     "require": {
-        "razorpay/razorpay": "1.*"
+        "razorpay/razorpay": "2.*"
     }
 }
 ```
