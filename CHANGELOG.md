@@ -4,6 +4,11 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 
 ## Unreleased
 
+## [2.0.2] - 2017-08-03
+### Added
+- Support for creating and fetching Transfers
+- Support for creating Reversals on transfers
+
 ## [2.0.1] - 2017-07-31
 ### Fixed
 - Webhook signature verification
@@ -22,12 +27,6 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 ### Changed
 - Razorpay\Api\Payment::refunds() now returns a Razorpay\Api\Collection object instead of Razorpay\Api\Refund object
 - Razorpay\Api\Api::$baseUrl, Razorpay\Api\Api::$key and Razorpay\Api\Api::$secret are now `protected` instead of `public`
-
-
-## Unreleased
-### Added
-- Support for creating and fetching Transfers
-- Support for creating Reversals on transfers
 
 ## [1.2.9] - 2017-01-03
 ### Added
@@ -75,7 +74,7 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 - Initial Release
 
 
-[Unreleased]: https://github.com/razorpay/razorpay-php/compare/2.0.1...HEAD
+[Unreleased]: https://github.com/razorpay/razorpay-php/compare/2.0.2...HEAD
 [1.2.1]: https://github.com/razorpay/razorpay-php/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/razorpay/razorpay-php/compare/1.1.0...1.2.0
 [1.2.2]: https://github.com/razorpay/razorpay-php/compare/1.2.1...1.2.2
