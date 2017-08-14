@@ -58,11 +58,11 @@ echo $payment->currency;
 // And so on for other attributes
 
 // Transfers
-$api->payment->fetch($paymentId)->transfer(['account' => $accountId, 'amount'=> 100, 'currency'=> 'INR]);
-$transfers = $api->transfer->all();
-$transfers = $api->payment->fetch($paymentId)->transfers();
-$editedTransfer = $api->transfer->fetch($transferId)->edit($options);
-$reversal = $api->transfer->fetch($transferId)->reverse();
+$api->payment->fetch($paymentId)->transfer([['account' => $accountId, 'amount' => 100, 'currency' => 'INR']]); // Create transfer
+$transfers = $api->transfer->all(); // Fetch all transfers
+$transfers = $api->payment->fetch($paymentId)->transfers(); // Fetch all transfers created on a payment 
+$editedTransfer = $api->transfer->fetch($transferId)->edit($options); // Edit a transfer
+$reversal = $api->transfer->fetch($transferId)->reverse(); // Reverse a transfer
 
 ```
 
