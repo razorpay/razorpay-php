@@ -58,7 +58,7 @@ echo $payment->currency;
 // And so on for other attributes
 
 // Transfers
-$api->payment->fetch($paymentId)->transfer([['account' => $accountId, 'amount' => 100, 'currency' => 'INR']]); // Create transfer
+$api->payment->fetch($paymentId)->transfer(array('transfers' => [ ['account' => $accountId, 'amount' => 100, 'currency' => 'INR']])); // Create transfer
 $transfers = $api->transfer->all(); // Fetch all transfers
 $transfers = $api->payment->fetch($paymentId)->transfers(); // Fetch all transfers created on a payment 
 $editedTransfer = $api->transfer->fetch($transferId)->edit($options); // Edit a transfer
