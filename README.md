@@ -13,21 +13,14 @@ Razorpay client PHP Api. The api follows the following practices:
 
 # Installation
 
-- If your project uses composer, add following to composer.json
-```json
-{
-    "require": {
-        "razorpay/razorpay": "2.*"
-    }
-}
+- If your project uses composer, run the below command
+```
+composer require razorpay/razorpay:2.*
 ```
 
-Then, run `composer update`. If you are not using composer, download
-the latest release from [the releases section](https://github.com/razorpay/razorpay-php/releases).
+- If you are not using composer, download the latest release from [the releases section](https://github.com/razorpay/razorpay-php/releases).
 **You should download the `razorpay-php.zip` file**.
-
-After that include `Razorpay.php` in your application and you can use the
-API as usual.
+After that include `Razorpay.php` in your application and you can use the API as usual.
 
 # Usage
 
@@ -60,7 +53,7 @@ echo $payment->currency;
 // Transfers
 $api->payment->fetch($paymentId)->transfer(array('transfers' => [ ['account' => $accountId, 'amount' => 100, 'currency' => 'INR']])); // Create transfer
 $transfers = $api->transfer->all(); // Fetch all transfers
-$transfers = $api->payment->fetch($paymentId)->transfers(); // Fetch all transfers created on a payment 
+$transfers = $api->payment->fetch($paymentId)->transfers(); // Fetch all transfers created on a payment
 $editedTransfer = $api->transfer->fetch($transferId)->edit($options); // Edit a transfer
 $reversal = $api->transfer->fetch($transferId)->reverse(); // Reverse a transfer
 
