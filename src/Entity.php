@@ -52,6 +52,17 @@ class Entity extends Resource implements ArrayableInterface
         return $className.'s/';
     }
 
+    /**
+     * Makes a HTTP request using Request class and assuming the API returns
+     * formatted entity or collection result, wraps the returned JSON as entity
+     * and returns.
+     *
+     * @param string $method
+     * @param string $relativeUrl
+     * @param array  $data
+     *
+     * @return Entity
+     */
     protected function request($method, $relativeUrl, $data = null)
     {
         $request = new Request();
@@ -71,6 +82,14 @@ class Entity extends Resource implements ArrayableInterface
         }
     }
 
+    /**
+     * Given the JSON response of an API call, wraps it to corresponding entity
+     * class or a collection and returns the same.
+     *
+     * @param array $data
+     *
+     * @return Entity
+     */
     protected static function buildEntity($data)
     {
         $entities = static::getDefinedEntitiesArray();
