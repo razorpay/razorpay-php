@@ -60,15 +60,15 @@ class Invoice extends Entity
     }
 
     /**
-     * Resends notification for invoice by given medium
+     * Send/re-send notification for invoice by given medium
      *
      * @param $medium - sms|email
      *
      * @return array
      */
-    public function resendNotification($medium)
+    public function notifyBy($medium)
     {
-        $url = $this->getEntityUrl() . $this->id . '/notify/' . $medium;
+        $url = $this->getEntityUrl() . $this->id . '/notify_by/' . $medium;
 
         return (new Request())->request(Requests::POST, $url);
     }
