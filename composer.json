@@ -28,7 +28,7 @@
     "homepage": "https://docs.razorpay.com",
     "license": "MIT",
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4.0",
         "rmccue/requests": "v1.6.1",
         "ext-json": "*"
     },
