@@ -96,7 +96,7 @@ class Invoice extends Entity
     {
         $url = $this->getEntityUrl() . $this->id . '/issue';
 
-        return $this->request(Requests::POST, $url, $attributes);
+        return $this->request(Requests::POST, $url);
     }
 
     /**
