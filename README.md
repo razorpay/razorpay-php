@@ -86,6 +86,15 @@ $invoice->issue();
 $invoice->notifyBy('email');
 $invoice->cancel();
 $invoice->delete();
+
+// Virtual Accounts
+$virtualAccount  = $api->virtualAccount->create(array('receiver_types' => array('bank_account'), 'description' => 'First Virtual Account', 'notes' => array('receiver_key' => 'receiver_value')));
+$virtualAccount  = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G');
+$virtualAccounts = $api->virtualAccount->all();
+$virtualAccount  = $api->virtualAccount->close('va_4xbQrmEoA5WJ0G');
+$payment         = $this->virtualAccount->payment('va_84lyVss1CRZ6eM');
+$bank_transfer   = $this->payment->bank_transfer('pay_8JpVEWsoNPKdQh');
+
 ```
 
 For further help, see our documentation on <https://docs.razorpay.com>.
