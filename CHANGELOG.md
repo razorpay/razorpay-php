@@ -4,10 +4,6 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 
 ## Unreleased
 
-## [2.2.0] - 2017-10-17
-### Added
-- Support for VirtualAccount entity
-
 ## [2.1.0] - 2017-10-10
 ### Added
 - Support for new actions(cancel, notifyBy, edit, issue, delete) on invoices
@@ -83,7 +79,7 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 - Initial Release
 
 
-[Unreleased]: https://github.com/razorpay/razorpay-php/compare/2.2.0...HEAD
+[Unreleased]: https://github.com/razorpay/razorpay-php/compare/2.1.0...HEAD
 [1.2.1]: https://github.com/razorpay/razorpay-php/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/razorpay/razorpay-php/compare/1.1.0...1.2.0
 [1.2.2]: https://github.com/razorpay/razorpay-php/compare/1.2.1...1.2.2
@@ -97,4 +93,3 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 [2.0.1]: https://github.com/razorpay/razorpay-php/compare/2.0.0...2.0.1
 [2.0.2]: https://github.com/razorpay/razorpay-php/compare/2.0.1...2.0.2
 [2.1.0]: https://github.com/razorpay/razorpay-php/compare/2.0.2...2.1.0
-[2.2.0]: https://github.com/razorpay/razorpay-php/compare/2.1.0...2.2.0
