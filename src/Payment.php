@@ -63,4 +63,11 @@ class Payment extends Entity
 
         return $transfer->all();
     }
+
+    public function details($id)
+    {
+        $relativeUrl = $this->getEntityUrl() . $id . '/bank_transfer';
+
+        return $this->request('GET', $relativeUrl);
+    }
 }
