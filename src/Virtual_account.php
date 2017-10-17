@@ -36,11 +36,4 @@ class Virtual_account extends Entity
 
         return $this->request('GET', $relativeUrl);
     }
-
-    public function payment_details($paymentId)
-    {
-        $relativeUrl = 'payments/' . $paymentId . '/bank_transfer';
-
-        return $this->request('GET', $relativeUrl);
-    }
 }
