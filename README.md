@@ -86,6 +86,18 @@ $invoice->issue();
 $invoice->notifyBy('email');
 $invoice->cancel();
 $invoice->delete();
+
+// Subscriptions
+$plan = $api->plan->create(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR')));
+$plan = $api->plan->fetch('plan_7wAosPWtrkhqZw');
+$plans = $api->plan->all();
+$subscription = $api->subscription->create(array('plan_id' => 'plan_7wAosPWtrkhqZw', 'customer_notify' => 1, 'total_count' => 6, 'start_at' => 1495995837, 'addons' => array(array('item' => array('name' => 'Delivery charges', 'amount' => 30000, 'currency' => 'INR')))));
+$subscription = $api->subscription->fetch('sub_82uBGfpFK47AlA');
+$subscriptions = $api->subscription->all();
+$subscription = $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancel();
+$addon = $api->subscription->fetch('sub_82uBGfpFK47AlA')->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 30000, 'currency' => 'INR'), 'quantity' => 2));
+$addon = $api->addon->fetch('ao_8nDvQYYGQI5o4H');
+$addon = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete();
 ```
 
 For further help, see our documentation on <https://docs.razorpay.com>.
