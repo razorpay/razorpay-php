@@ -30,9 +30,9 @@ class VirtualAccount extends Entity
         return $this->request('PATCH', $relativeUrl, $data);
     }
 
-    public function payments($id)
+    public function payments()
     {
-        $relativeUrl = $this->getEntityUrl() . $id . '/payments';
+        $relativeUrl = $this->getEntityUrl() . $this->id . '/payments';
 
         return $this->request('GET', $relativeUrl);
     }
