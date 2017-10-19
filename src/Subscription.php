@@ -23,11 +23,7 @@ class Subscription extends Entity
     {
         $relativeUrl = $this->getEntityUrl() . $this->id . '/cancel';
 
-        $data = [
-            'cancel_at_cycle_end' => 1
-        ];
-
-        return $this->request('POST', $relativeUrl, $data);
+        return $this->request('POST', $relativeUrl);
     }
 
     public function createAddon($attributes = array())
