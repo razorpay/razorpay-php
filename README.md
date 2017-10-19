@@ -87,6 +87,14 @@ $invoice->notifyBy('email');
 $invoice->cancel();
 $invoice->delete();
 
+// Virtual Accounts
+$virtualAccount  = $api->virtualAccount->create(array('receiver_types' => array('bank_account'), 'description' => 'First Virtual Account', 'notes' => array('receiver_key' => 'receiver_value')));
+$virtualAccounts = $api->virtualAccount->all();
+$virtualAccount  = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G');
+$virtualAccount  = $virtualAccount->close();
+$payments        = $virtualAccount->payments();
+$bank_transfer   = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bank_transfer();
+
 // Subscriptions
 $plan          = $api->plan->create(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR')));
 $plan          = $api->plan->fetch('plan_7wAosPWtrkhqZw');
@@ -98,6 +106,7 @@ $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancel();
 $addon         = $api->subscription->fetch('sub_82uBGfpFK47AlA')->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 30000, 'currency' => 'INR'), 'quantity' => 2));
 $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H');
 $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete();
+
 ```
 
 For further help, see our documentation on <https://docs.razorpay.com>.

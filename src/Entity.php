@@ -48,8 +48,17 @@ class Entity extends Resource implements ArrayableInterface
         $fullClassName = get_class($this);
         $pos = strrpos($fullClassName, '\\');
         $className = substr($fullClassName, $pos + 1);
-        $className = lcfirst($className);
+        $className = $this->snakeCase($className);
         return $className.'s/';
+    }
+
+    protected function snakeCase($input)
+    {
+        $delimiter = '_';
+        $output = preg_replace('/\s+/u', '', ucwords($input));
+        $output = preg_replace('/(.)(?=[A-Z])/u', '$1'.$delimiter, $output);
+        $output = strtolower($output);
+        return $output;
     }
 
     /**
