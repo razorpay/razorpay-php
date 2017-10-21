@@ -93,7 +93,7 @@ $virtualAccounts = $api->virtualAccount->all();
 $virtualAccount  = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G');
 $virtualAccount  = $virtualAccount->close();
 $payments        = $virtualAccount->payments();
-$bank_transfer   = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bank_transfer();
+$bankTransfer    = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer();
 
 ```
 
