@@ -48,10 +48,30 @@ class Entity extends Resource implements ArrayableInterface
         $fullClassName = get_class($this);
         $pos = strrpos($fullClassName, '\\');
         $className = substr($fullClassName, $pos + 1);
-        $className = lcfirst($className);
+        $className = $this->snakeCase($className);
         return $className.'s/';
     }
 
+    protected function snakeCase($input)
+    {
+        $delimiter = '_';
+        $output = preg_replace('/\s+/u', '', ucwords($input));
+        $output = preg_replace('/(.)(?=[A-Z])/u', '$1'.$delimiter, $output);
+        $output = strtolower($output);
+        return $output;
+    }
+
+    /**
+     * Makes a HTTP request using Request class and assuming the API returns
+     * formatted entity or collection result, wraps the returned JSON as entity
+     * and returns.
+     *
+     * @param string $method
+     * @param string $relativeUrl
+     * @param array  $data
+     *
+     * @return Entity
+     */
     protected function request($method, $relativeUrl, $data = null)
     {
         $request = new Request();
@@ -71,6 +91,14 @@ class Entity extends Resource implements ArrayableInterface
         }
     }
 
+    /**
+     * Given the JSON response of an API call, wraps it to corresponding entity
+     * class or a collection and returns the same.
+     *
+     * @param array $data
+     *
+     * @return Entity
+     */
     protected static function buildEntity($data)
     {
         $entities = static::getDefinedEntitiesArray();

@@ -28,34 +28,72 @@ After that include `Razorpay.php` in your application and you can use the API as
 use Razorpay\Api\Api;
 
 $api = new Api($api_key, $api_secret);
-$order = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Creates order
-$order = $api->order->fetch($orderId); // Returns a particular order
-$api->order->all($options); // Returns array of order objects
-$api->payment->all($options); // Returns array of payment objects
-$payment = $api->payment->fetch($id); // Returns a particular payment
-$api->payment->fetch($id)->capture(array('amount'=>$amount)); // Captures a payment
-$api->refund->create(array('payment_id' => $id)); // Creates refund for a payment
-$api->refund->create(array('payment_id' => $id, 'amount'=>$refundAmount)); // Creates partial refund for a payment
-$refund = $api->refund->fetch($refundId); // Returns a particular refund
-$card = $api->card->fetch($cardId); // Returns a particular card
-$customer = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates customer
-$customer = $api->customer->fetch($customerId); // Returns a particular customer
-$api->customer->edit(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Edits customer
-$token = $api->customer->token()->fetch($tokenId); // Returns a particular token
-$api->customer->token()->all($options); // Returns array of token objects
-$api->customer->token()->delete($tokenId); // Deletes a token
+
+// Orders
+$order  = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Creates order
+$order  = $api->order->fetch($orderId); // Returns a particular order
+$orders = $api->order->all($options); // Returns array of order objects
+
+// Payments
+$payments = $api->payment->all($options); // Returns array of payment objects
+$payment  = $api->payment->fetch($id); // Returns a particular payment
+$payment  = $api->payment->fetch($id)->capture(array('amount'=>$amount)); // Captures a payment
 
 // To get the payment details
 echo $payment->amount;
 echo $payment->currency;
 // And so on for other attributes
 
+// Refunds
+$refund = $api->refund->create(array('payment_id' => $id)); // Creates refund for a payment
+$refund = $api->refund->create(array('payment_id' => $id, 'amount'=>$refundAmount)); // Creates partial refund for a payment
+$refund = $api->refund->fetch($refundId); // Returns a particular refund
+
+// Cards
+$card = $api->card->fetch($cardId); // Returns a particular card
+
+// Customers
+$customer = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates customer
+$customer = $api->customer->fetch($customerId); // Returns a particular customer
+$customer = $api->customer->edit(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Edits customer
+
+// Tokens
+$token  = $api->customer->token()->fetch($tokenId); // Returns a particular token
+$tokens = $api->customer->token()->all($options); // Returns array of token objects
+$api->customer->token()->delete($tokenId); // Deletes a token
+
+
 // Transfers
-$api->payment->fetch($paymentId)->transfer(array('transfers' => [ ['account' => $accountId, 'amount' => 100, 'currency' => 'INR']])); // Create transfer
+$transfer  = $api->payment->fetch($paymentId)->transfer(array('transfers' => [ ['account' => $accountId, 'amount' => 100, 'currency' => 'INR']])); // Create transfer
 $transfers = $api->transfer->all(); // Fetch all transfers
 $transfers = $api->payment->fetch($paymentId)->transfers(); // Fetch all transfers created on a payment
-$editedTransfer = $api->transfer->fetch($transferId)->edit($options); // Edit a transfer
-$reversal = $api->transfer->fetch($transferId)->reverse(); // Reverse a transfer
+$transfer  = $api->transfer->fetch($transferId)->edit($options); // Edit a transfer
+$reversal  = $api->transfer->fetch($transferId)->reverse(); // Reverse a transfer
+
+// Payment Links
+$links = $api->all();
+$link  = $api->fetch('inv_00000000000001');
+$link  = $api->invoice->create(arary('type' => 'link', 'amount' => 500, 'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test')));
+$link->cancel();
+$link->notifyBy('sms');
+
+// Invoices
+$invoices = $api->all();
+$invoice  = $api->fetch('inv_00000000000001');
+$invoice  = $api->invoice->create($params); // Ref: razorpay.com/docs/invoices for request params example
+$invoice  = $invoice->edit($params);
+$invoice->issue();
+$invoice->notifyBy('email');
+$invoice->cancel();
+$invoice->delete();
+
+// Virtual Accounts
+$virtualAccount  = $api->virtualAccount->create(array('receiver_types' => array('bank_account'), 'description' => 'First Virtual Account', 'notes' => array('receiver_key' => 'receiver_value')));
+$virtualAccounts = $api->virtualAccount->all();
+$virtualAccount  = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G');
+$virtualAccount  = $virtualAccount->close();
+$payments        = $virtualAccount->payments();
+$bankTransfer    = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer();
 
 ```
 
