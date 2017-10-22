@@ -9,10 +9,26 @@ class Utility
     public function verifyPaymentSignature($attributes)
     {
         $actualSignature = $attributes['razorpay_signature'];
-        $orderId = $attributes['razorpay_order_id'];
+
         $paymentId = $attributes['razorpay_payment_id'];
 
-        $payload = $orderId . '|' . $paymentId;
+        if (isset($attributes['razorpay_order_id']) === true)
+        {
+            $orderId = $attributes['razorpay_order_id'];
+
+            $payload = $orderId . '|' . $paymentId;
+        }
+        else if (isset($attributes['razorpay_subscription_id']) === true)
+        {
+            $subscriptionId = $attributes['razorpay_subscription_id'];
+
+            $payload = $paymentId . '|' . $subscriptionId;
+        }
+        else
+        {
+            throw new Errors\SignatureVerificationError(
+                'Either razorpay_order_id or razorpay_subscription_id must be present.');
+        }
 
         $secret = Api::getSecret();
 
