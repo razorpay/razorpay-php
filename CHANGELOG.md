@@ -5,6 +5,7 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 ## Unreleased
 ### Added
 - Support for VirtualAccount entity
+- Support for Subscriptions
 
 ## [2.1.0] - 2017-10-10
 ### Added
