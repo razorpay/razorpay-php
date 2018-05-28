@@ -4,7 +4,7 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 
 ## Unreleased
 
-## [2.2.0] - 2017-10-23
+## [2.2.1] - 2018-05-28
 ### Added
 - Support for fetching all customer entities
 
