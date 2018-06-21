@@ -4,8 +4,21 @@ namespace Razorpay\Api;
 
 use Requests;
 use Exception;
+use Requests_Hooks;
 use Razorpay\Api\Errors;
 use Razorpay\Api\Errors\ErrorCode;
+
+
+// Note the values 1 and 6 come from their position in the enum that
+// defines them in cURL's source code.
+if (defined('CURL_SSLVERSION_TLSv1') === false)
+{
+    define('CURL_SSLVERSION_TLSv1', 1);
+}
+if (defined('CURL_SSLVERSION_TLSv1_2') === false)
+{
+    define('CURL_SSLVERSION_TLSv1_2', 6);
+}
 
 /**
  * Request class to communicate to the request libarary
@@ -32,9 +45,14 @@ class Request
     {
         $url = Api::getFullUrl($url);
 
+        $hooks = new Requests_Hooks();
+
+        $hooks->register('curl.before_send', [$this, 'setCurlSslOpts']);
+
         $options = array(
             'auth' => array(Api::getKey(), Api::getSecret()),
-            'timeout' => 60
+            'hook' => $hooks,
+            'timeout' => 60,
         );
 
         $headers = $this->getRequestHeaders();
@@ -44,6 +62,11 @@ class Request
         $this->checkErrors($response);
 
         return json_decode($response->body, true);
+    }
+
+    public function setCurlSslOpts($curl)
+    {
+        curl_setopt($curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1);
     }
 
     /**
