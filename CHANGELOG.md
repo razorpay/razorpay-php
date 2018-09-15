@@ -3,6 +3,8 @@
 Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangelog.com/en/0.3.0/) for formatting.
 
 ## Unreleased
+### Added
+- Add parameters to Subscription Cancel API
 
 ## [2.2.1] - 2018-05-28
 ### Added
