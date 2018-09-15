@@ -79,8 +79,8 @@ $link->cancel();
 $link->notifyBy('sms');
 
 // Invoices
-$invoices = $api->all();
-$invoice  = $api->fetch('inv_00000000000001');
+$invoices = $api->invoice->all();
+$invoice  = $api->invoice->fetch('inv_00000000000001');
 $invoice  = $api->invoice->create($params); // Ref: razorpay.com/docs/invoices for request params example
 $invoice  = $invoice->edit($params);
 $invoice->issue();
