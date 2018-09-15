@@ -3,6 +3,8 @@
 Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangelog.com/en/0.3.0/) for formatting.
 
 ## Unreleased
+### Added
+- Support for fetching Settlements
 
 ## [2.2.0] - 2017-10-23
 ### Added

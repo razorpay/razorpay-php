@@ -8,9 +8,9 @@ namespace Razorpay\Api;
 class Settlement extends Entity
 {
     /**
-     * fetch single settlement entity
-     * @param  [int] $id [settlement id]
-     * @return [Settlement]     [object of this class]
+     * Fetch single settlement entity
+     * @param  string      $id
+     * @return Settlement
      */
     public function fetch($id)
     {
@@ -18,9 +18,9 @@ class Settlement extends Entity
     }
 
     /**
-     * get all settlements according to options
-     * @param  array  $options [options for the api]
-     * @return [Collection]          [having each item as Settlement obj in $Collection->items]
+     * Get all settlements according to options
+     * @param  array       $options
+     * @return Collection
      */
     public function all($options = array())
     {
@@ -28,14 +28,15 @@ class Settlement extends Entity
     }
 
     /**
-     * get combined report of settlements
-     * @param  array  $attributes [attributes for the api]
-     * @return [array]          [having each item as an obj of this class]
+     * Get combined report of settlements
+     * @param  array  $options
+     * @return array
      */
-    public function reports($attributes = array())
+    public function reports($options = array())
     {
-        $relativeUrl = $this->getEntityUrl().'report/combined';
-        return $this->request('GET', $relativeUrl, $attributes);
+        $relativeUrl = $this->getEntityUrl() . 'report/combined';
+
+        return $this->request('GET', $relativeUrl, $options);
     }
 }
 
