@@ -72,15 +72,15 @@ $transfer  = $api->transfer->fetch($transferId)->edit($options); // Edit a trans
 $reversal  = $api->transfer->fetch($transferId)->reverse(); // Reverse a transfer
 
 // Payment Links
-$links = $api->all();
-$link  = $api->fetch('inv_00000000000001');
+$links = $api->invoice->all();
+$link  = $api->invoice->fetch('inv_00000000000001');
 $link  = $api->invoice->create(arary('type' => 'link', 'amount' => 500, 'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test')));
 $link->cancel();
 $link->notifyBy('sms');
 
 // Invoices
-$invoices = $api->all();
-$invoice  = $api->fetch('inv_00000000000001');
+$invoices = $api->invoice->all();
+$invoice  = $api->invoice->fetch('inv_00000000000001');
 $invoice  = $api->invoice->create($params); // Ref: razorpay.com/docs/invoices for request params example
 $invoice  = $invoice->edit($params);
 $invoice->issue();
