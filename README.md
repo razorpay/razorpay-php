@@ -108,6 +108,11 @@ $addon         = $api->subscription->fetch('sub_82uBGfpFK47AlA')->createAddon(ar
 $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H');
 $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete();
 
+// Settlements
+$settlement    = $api->settlement->fetch('setl_7IZKKI4Pnt2kEe');
+$settlements   = $api->settlement->all();
+$reports       = $api->settlement->reports(array('year' => 2018, 'month' => 2));
+
 ```
 
 For further help, see our documentation on <https://docs.razorpay.com>.

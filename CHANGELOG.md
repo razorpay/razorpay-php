@@ -5,6 +5,7 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 ## Unreleased
 ### Added
 - Add parameters to Subscription Cancel API
+- Support for fetching Settlements
 
 ## [2.2.1] - 2018-05-28
 ### Added
