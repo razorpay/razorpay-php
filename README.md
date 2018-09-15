@@ -33,6 +33,7 @@ $api = new Api($api_key, $api_secret);
 $order  = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Creates order
 $order  = $api->order->fetch($orderId); // Returns a particular order
 $orders = $api->order->all($options); // Returns array of order objects
+$payments = $api->order->fetch($orderId)->payments(); // Returns array of payment objects against an order
 
 // Payments
 $payments = $api->payment->all($options); // Returns array of payment objects
@@ -71,15 +72,15 @@ $transfer  = $api->transfer->fetch($transferId)->edit($options); // Edit a trans
 $reversal  = $api->transfer->fetch($transferId)->reverse(); // Reverse a transfer
 
 // Payment Links
-$links = $api->all();
-$link  = $api->fetch('inv_00000000000001');
+$links = $api->invoice->all();
+$link  = $api->invoice->fetch('inv_00000000000001');
 $link  = $api->invoice->create(arary('type' => 'link', 'amount' => 500, 'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test')));
 $link->cancel();
 $link->notifyBy('sms');
 
 // Invoices
-$invoices = $api->all();
-$invoice  = $api->fetch('inv_00000000000001');
+$invoices = $api->invoice->all();
+$invoice  = $api->invoice->fetch('inv_00000000000001');
 $invoice  = $api->invoice->create($params); // Ref: razorpay.com/docs/invoices for request params example
 $invoice  = $invoice->edit($params);
 $invoice->issue();
@@ -102,7 +103,7 @@ $plans         = $api->plan->all();
 $subscription  = $api->subscription->create(array('plan_id' => 'plan_7wAosPWtrkhqZw', 'customer_notify' => 1, 'total_count' => 6, 'start_at' => 1495995837, 'addons' => array(array('item' => array('name' => 'Delivery charges', 'amount' => 30000, 'currency' => 'INR')))));
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA');
 $subscriptions = $api->subscription->all();
-$subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancel();
+$subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancel($options); //$options = ['cancel_at_cycle_end' => 1];
 $addon         = $api->subscription->fetch('sub_82uBGfpFK47AlA')->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 30000, 'currency' => 'INR'), 'quantity' => 2));
 $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H');
 $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete();
