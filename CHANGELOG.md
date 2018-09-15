@@ -3,6 +3,8 @@
 Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangelog.com/en/0.3.0/) for formatting.
 
 ## Unreleased
+
+## [2.3.0] - 2018-09-15
 ### Added
 - Add parameters to Subscription Cancel API
 - Support for fetching Settlements
@@ -90,8 +92,7 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 ### Added
 - Initial Release
 
-
-[Unreleased]: https://github.com/razorpay/razorpay-php/compare/2.2.1...HEAD
+[Unreleased]: https://github.com/razorpay/razorpay-php/compare/2.3.0...HEAD
 [1.2.1]: https://github.com/razorpay/razorpay-php/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/razorpay/razorpay-php/compare/1.1.0...1.2.0
 [1.2.2]: https://github.com/razorpay/razorpay-php/compare/1.2.1...1.2.2
@@ -107,3 +108,4 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](http://keepachangel
 [2.1.0]: https://github.com/razorpay/razorpay-php/compare/2.0.2...2.1.0
 [2.2.0]: https://github.com/razorpay/razorpay-php/compare/2.1.0...2.2.0
 [2.2.1]: https://github.com/razorpay/razorpay-php/compare/2.2.0...2.2.1
+[2.3.0]: https://github.com/razorpay/razorpay-php/compare/2.2.1...2.3.0
