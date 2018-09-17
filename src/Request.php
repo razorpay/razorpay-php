@@ -9,15 +9,11 @@ use Razorpay\Api\Errors;
 use Razorpay\Api\Errors\ErrorCode;
 
 
-// Note the values 1 and 6 come from their position in the enum that
-// defines them in cURL's source code.
-if (defined('CURL_SSLVERSION_TLSv1') === false)
+// Available since PHP 5.5.19 and 5.6.3
+// https://git.io/fAMVS | https://secure.php.net/manual/en/curl.constants.php
+if (defined('CURL_SSLVERSION_TLSv1_1') === false)
 {
-    define('CURL_SSLVERSION_TLSv1', 1);
-}
-if (defined('CURL_SSLVERSION_TLSv1_2') === false)
-{
-    define('CURL_SSLVERSION_TLSv1_2', 6);
+    define('CURL_SSLVERSION_TLSv1_1', 5);
 }
 
 /**
@@ -66,7 +62,7 @@ class Request
 
     public function setCurlSslOpts($curl)
     {
-        curl_setopt($curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1);
+        curl_setopt($curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_1);
     }
 
     /**
