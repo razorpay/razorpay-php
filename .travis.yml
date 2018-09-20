@@ -13,7 +13,7 @@ before_script:
   - mkdir -p libs
   - cd libs &&  wget https://github.com/rmccue/Requests/archive/v1.6.1.zip -O requests.zip && unzip requests.zip && rm requests.zip && cd ..
 script:
-  - phpunit
+  - ./vendor/bin/phpunit
 
 notifications:
   slack:

@@ -1,12 +1,7 @@
 {
     "name": "razorpay/razorpay",
     "description": "Razorpay PHP Client Library",
-    "keywords": [
-        "razorpay",
-        "api",
-        "php",
-        "client"
-    ],
+    "keywords": ["razorpay", "api", "php", "client"],
     "authors": [
         {
             "name": "Abhay Rana",
@@ -34,7 +29,7 @@
     },
     "require-dev": {
         "raveren/kint": "1.*",
-        "phpunit/phpunit": "^4.8.0"
+        "phpunit/phpunit": "~4.8|~5.0"
     },
     "autoload": {
         "psr-4": {
