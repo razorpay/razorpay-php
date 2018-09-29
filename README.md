@@ -96,6 +96,10 @@ $virtualAccount  = $virtualAccount->close();
 $payments        = $virtualAccount->payments();
 $bankTransfer    = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer();
 
+// Bharat QR
+$bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'amount_expected' => 100, 'notes' => array('receiver_key' => 'receiver_value'))); // Create Static QR
+$bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'notes' => array('receiver_key' => 'receiver_value'))); // Create Dynamic QR
+
 // Subscriptions
 $plan          = $api->plan->create(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR')));
 $plan          = $api->plan->fetch('plan_7wAosPWtrkhqZw');
@@ -112,16 +116,6 @@ $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete();
 $settlement    = $api->settlement->fetch('setl_7IZKKI4Pnt2kEe');
 $settlements   = $api->settlement->all();
 $reports       = $api->settlement->reports(array('year' => 2018, 'month' => 2));
-
-// Bharat QR
-$bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'amount_expected' => 100, 'notes' => array('receiver_key' => 'receiver_value'))); // Create Static QR
-$bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'notes' => array('receiver_key' => 'receiver_value'))); // Create Dynamic QR
-
-$virtualAccounts = $api->virtualAccount->all();
-$virtualAccount  = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G');
-$virtualAccount  = $virtualAccount->close();
-$payments        = $virtualAccount->payments();
-$bankTransfer    = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer();
 
 ```
 
