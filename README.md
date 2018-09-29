@@ -113,6 +113,16 @@ $settlement    = $api->settlement->fetch('setl_7IZKKI4Pnt2kEe');
 $settlements   = $api->settlement->all();
 $reports       = $api->settlement->reports(array('year' => 2018, 'month' => 2));
 
+// Bharat QR
+$bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'amount_expected' => 100, 'notes' => array('receiver_key' => 'receiver_value'))); // Create Static QR
+$bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'notes' => array('receiver_key' => 'receiver_value'))); // Create Dynamic QR
+
+$virtualAccounts = $api->virtualAccount->all();
+$virtualAccount  = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G');
+$virtualAccount  = $virtualAccount->close();
+$payments        = $virtualAccount->payments();
+$bankTransfer    = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer();
+
 ```
 
 For further help, see our documentation on <https://docs.razorpay.com>.
