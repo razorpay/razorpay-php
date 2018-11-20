@@ -7,11 +7,11 @@ php:
 - 7.1
 - 7.2
 install: composer install
-before_script: 
+before_script:
   - cp phpunit.xml.dist phpunit.xml
   # These two are required in the build step for non-composer-tests
   - mkdir -p libs
-  - cd libs &&  wget https://github.com/rmccue/Requests/archive/v1.6.1.zip -O requests.zip && unzip requests.zip && rm requests.zip && cd ..
+  - cd libs &&  wget https://github.com/rmccue/Requests/archive/v1.7.0.zip -O requests.zip && unzip requests.zip && rm requests.zip && cd ..
 script:
   - ./vendor/bin/phpunit
 
