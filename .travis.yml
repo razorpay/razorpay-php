@@ -16,6 +16,8 @@ before_script:
   - cd libs &&  wget https://github.com/rmccue/Requests/archive/v1.7.0.zip -O requests.zip && unzip requests.zip && rm requests.zip && cd ..
   - rm -rf libs/Requests-1.7.0/examples libs/Requests-1.7.0/docs libs/Requests-1.7.0/bin libs/Requests-1.7.0/tests
 script:
+  # Run a syntax validation check on all PHP files
+  -  find . -path ./vendor -prune -o -iname '*.php' |xargs -n1 php -l
   - ./vendor/bin/phpunit
 
 notifications:
