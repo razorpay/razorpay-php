@@ -1,5 +1,7 @@
+dist: precise
 language: php
 php:
+- 5.3
 - 5.6
 - 5.5
 - 5.4
@@ -12,7 +14,10 @@ before_script:
   # These two are required in the build step for non-composer-tests
   - mkdir -p libs
   - cd libs &&  wget https://github.com/rmccue/Requests/archive/v1.7.0.zip -O requests.zip && unzip requests.zip && rm requests.zip && cd ..
+  - rm -rf libs/Requests-1.7.0/examples libs/Requests-1.7.0/docs libs/Requests-1.7.0/bin libs/Requests-1.7.0/tests
 script:
+  # Run a syntax validation check on all PHP files
+  -  find . -path ./vendor -prune -o -iname '*.php' |xargs -n1 php -l
   - ./vendor/bin/phpunit
 
 notifications:

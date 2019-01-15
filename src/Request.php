@@ -43,7 +43,7 @@ class Request
 
         $hooks = new Requests_Hooks();
 
-        $hooks->register('curl.before_send', [$this, 'setCurlSslOpts']);
+        $hooks->register('curl.before_send', array($this, 'setCurlSslOpts'));
 
         $options = array(
             'auth' => array(Api::getKey(), Api::getSecret()),
