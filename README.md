@@ -4,23 +4,24 @@
 
 Razorpay client PHP Api. The api follows the following practices:
 
-- namespaced under Razorpay\Api
-- call $api->class->function() to access the api
-- api throws exceptions instead of returning errors
-- options are passed as an array instead of multiple arguments wherever possible
-- All request and responses are communicated over JSON
-- A minimum of PHP 5.3 is required
+-   namespaced under Razorpay\Api
+-   call $api->class->function() to access the api
+-   api throws exceptions instead of returning errors
+-   options are passed as an array instead of multiple arguments wherever possible
+-   All request and responses are communicated over JSON
+-   A minimum of PHP 5.3 is required
 
 # Installation
 
-- If your project uses composer, run the below command
+-   If your project uses composer, run the below command
+
 ```
 composer require razorpay/razorpay:2.*
 ```
 
-- If you are not using composer, download the latest release from [the releases section](https://github.com/razorpay/razorpay-php/releases).
-**You should download the `razorpay-php.zip` file**.
-After that include `Razorpay.php` in your application and you can use the API as usual.
+-   If you are not using composer, download the latest release from [the releases section](https://github.com/razorpay/razorpay-php/releases).
+    **You should download the `razorpay-php.zip` file**.
+    After that include `Razorpay.php` in your application and you can use the API as usual.
 
 # Usage
 
@@ -116,7 +117,6 @@ $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete();
 $settlement    = $api->settlement->fetch('setl_7IZKKI4Pnt2kEe');
 $settlements   = $api->settlement->all();
 $reports       = $api->settlement->reports(array('year' => 2018, 'month' => 2));
-
 ```
 
 For further help, see our documentation on <https://docs.razorpay.com>.
@@ -129,17 +129,17 @@ See the [doc.md](doc.md) file for getting started with development.
 
 ## License
 
-The Razorpay PHP SDK is released under the MIT License.
+The Razorpay PHP SDK is released under the MIT License. See [LICENSE](LICENSE) file for more details.
 
 ## Release
 
 Steps to follow for a release:
 
-0. Merge the branch with the new code to master.
-1. Bump the Version in `src/Api.php`.
-2. Rename Unreleased to the new tag in `CHANGELOG.md`
-3. Add a new empty "Unreleased" section at the top of `CHANGELOG.md`
-3. Fix links at bottom in `CHANGELOG.md`
-4. Commit
-5. Tag the release and push to GitHub
-6. A release should automatically be created once the travis build passes. Edit the release to add some description.
+0.  Merge the branch with the new code to master.
+1.  Bump the Version in `src/Api.php`.
+1.  Rename Unreleased to the new tag in `CHANGELOG.md`
+1.  Add a new empty "Unreleased" section at the top of `CHANGELOG.md`
+1.  Fix links at bottom in `CHANGELOG.md`
+1.  Commit
+1.  Tag the release and push to GitHub
+1.  A release should automatically be created once the travis build passes. Edit the release to add some description.
