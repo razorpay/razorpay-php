@@ -2,13 +2,13 @@
 
 [![Build Status](https://travis-ci.org/razorpay/razorpay-php.svg?branch=master)](https://travis-ci.org/razorpay/razorpay-php) [![Latest Stable Version](https://poser.pugx.org/razorpay/razorpay/v/stable.svg)](https://packagist.org/packages/razorpay/razorpay) [![License](https://poser.pugx.org/razorpay/razorpay/license.svg)](https://packagist.org/packages/razorpay/razorpay)
 
-Razorpay client PHP Api. The api follows the following practices:
+Razorpay client PHP API. The Api follows the following practices:
 
--   namespaced under Razorpay\Api
--   call $api->class->function() to access the api
--   api throws exceptions instead of returning errors
--   options are passed as an array instead of multiple arguments wherever possible
--   All request and responses are communicated over JSON
+-   Namespaced under `Razorpay\Api`
+-   Call `$api->class->function()` to access the API
+-   API throws exceptions instead of returning errors
+-   Options are passed as an array instead of multiple arguments wherever possible
+-   All requests and responses are communicated over JSON
 -   A minimum of PHP 5.3 is required
 
 # Installation
@@ -21,7 +21,7 @@ composer require razorpay/razorpay:2.*
 
 -   If you are not using composer, download the latest release from [the releases section](https://github.com/razorpay/razorpay-php/releases).
     **You should download the `razorpay-php.zip` file**.
-    After that include `Razorpay.php` in your application and you can use the API as usual.
+    After that, include `Razorpay.php` in your application and you can use the API as usual.
 
 # Usage
 
