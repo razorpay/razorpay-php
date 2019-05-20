@@ -17,6 +17,17 @@ class Payment extends Entity
         return parent::all($options);
     }
 
+    public function edit($id, $options = array())
+    {
+        $entityUrl = $this->getEntityUrl();
+
+        $this->validateIdPresence($id);
+
+        $relativeUrl = $entityUrl . $id;
+
+        return $this->request('PATCH', $relativeUrl, $options);
+    }
+
     /**
      * @param $id Payment id
      */
