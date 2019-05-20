@@ -2,6 +2,8 @@
 
 namespace Razorpay\Api;
 
+use Requests;
+
 class Payment extends Entity
 {
     /**
@@ -17,15 +19,18 @@ class Payment extends Entity
         return parent::all($options);
     }
 
-    public function edit($id, $options = array())
+    /**
+     * Patches given payment with new attributes
+     *
+     * @param array $attributes
+     *
+     * @return Payment
+     */
+    public function edit($attributes = array())
     {
-        $entityUrl = $this->getEntityUrl();
+        $url = $this->getEntityUrl() . $this->id;
 
-        $this->validateIdPresence($id);
-
-        $relativeUrl = $entityUrl . $id;
-
-        return $this->request('PATCH', $relativeUrl, $options);
+        return $this->request(Requests::PATCH, $url, $attributes);
     }
 
     /**
