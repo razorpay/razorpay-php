@@ -4,6 +4,12 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 
 ## Unreleased
 
+## [2.5.0][2.5.0] - 2019-05-20
+
+### Added
+
+-   Adds support for payment edit API [[#100](https://github.com/razorpay/razorpay-php/pull/100)]
+
 ## [2.4.0-beta][2.4.0-beta] - 2018-11-28
 
 ### Changed
@@ -136,7 +142,7 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 
 -   Initial Release
 
-[unreleased]: https://github.com/razorpay/razorpay-php/compare/2.3.0...HEAD
+[unreleased]: https://github.com/razorpay/razorpay-php/compare/2.5.0...HEAD
 [1.2.1]: https://github.com/razorpay/razorpay-php/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/razorpay/razorpay-php/compare/1.1.0...1.2.0
 [1.2.2]: https://github.com/razorpay/razorpay-php/compare/1.2.1...1.2.2
@@ -155,3 +161,4 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 [2.2.1]: https://github.com/razorpay/razorpay-php/compare/2.2.0...2.2.1
 [2.3.0]: https://github.com/razorpay/razorpay-php/compare/2.2.1...2.3.0
 [2.4.0-beta]: https://github.com/razorpay/razorpay-php/compare/2.3.0...2.4.0-beta
+[2.5.0]: https://github.com/razorpay/razorpay-php/compare/2.4.0-beta...2.5.0
