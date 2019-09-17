@@ -29,6 +29,11 @@ class Request
         'Razorpay-API'  =>  1
     );
 
+    public static $options = array(
+        'timeout' => 60,
+        'connect_timeout' => 60
+    );
+
     /**
      * Fires a request to the API
      * @param  string   $method HTTP Verb
@@ -45,11 +50,10 @@ class Request
 
         $hooks->register('curl.before_send', array($this, 'setCurlSslOpts'));
 
-        $options = array(
+        $options = array_merge(static::$options, array(
             'auth' => array(Api::getKey(), Api::getSecret()),
-            'hook' => $hooks,
-            'timeout' => 60,
-        );
+            'hook' => $hooks
+        ));
 
         $headers = $this->getRequestHeaders();
 
