@@ -37,13 +37,15 @@ class Request
      * @return array Response data in array format. Not meant
      * to be used directly
      */
-    public function request($method, $url, $data = array())
+    public function request($method, $url, $data = array(), callable $traceFunc)
     {
         $url = Api::getFullUrl($url);
 
         $hooks = new Requests_Hooks();
 
         $hooks->register('curl.before_send', array($this, 'setCurlSslOpts'));
+
+        $hooks->register('curl.after_request', $traceFunc);
 
         $options = array(
             'auth' => array(Api::getKey(), Api::getSecret()),
