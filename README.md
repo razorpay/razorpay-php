@@ -61,9 +61,9 @@ $customer = $api->customer->fetch($customerId); // Returns a particular customer
 $customer = $api->customer->edit(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Edits customer
 
 // Tokens
-$token  = $api->customer->token()->fetch($tokenId); // Returns a particular token
-$tokens = $api->customer->token()->all($options); // Returns array of token objects
-$api->customer->token()->delete($tokenId); // Deletes a token
+$token  = $api->token->fetch(array('customer_id' => 'cust_example_m0bZoH', 'token_id' => 'token_FDGUP9jvcyCe' )); // Returns a particular token
+$tokens = $api->token->all(array('customer_id' => 'cust_example_m0bZoH')); // Returns array of token objects
+$api->token->delete(array('customer_id' => 'cust_example_m0bZoH', 'token_id' => 'token_FDGUP9jvcyCe' )); // Deletes a token
 
 
 // Transfers
