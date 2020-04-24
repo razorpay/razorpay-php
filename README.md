@@ -36,6 +36,7 @@ $orderId = $order['id']; // Get the created Order ID
 $order  = $api->order->fetch($orderId);
 $orders = $api->order->all($options); // Returns array of order objects
 $payments = $api->order->fetch($orderId)->payments(); // Returns array of payment objects against an order
+$order  = $api->order->create(array("amount" => 10000, "currency" => "INR", "payment_capture" => 1, "receipt"=> "sc_123","transfers" => array(array("account" => "acc_BpPgrgz61K90Ls", "amount" => 1000, "currency" => "INR", "notes" => array("txn_id" => "txn_1234"))))); // Creates order with transfer
 
 // Payments
 $payments = $api->payment->all($options); // Returns array of payment objects
