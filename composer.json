@@ -29,7 +29,7 @@
     },
     "require-dev": {
         "raveren/kint": "1.*",
-        "phpunit/phpunit": "~4.8|~5.0"
+        "phpunit/phpunit": "^9.2.4"
     },
     "autoload": {
         "psr-4": {
