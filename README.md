@@ -76,7 +76,7 @@ $reversal  = $api->transfer->fetch($transferId)->reverse(); // Reverse a transfe
 // Payment Links
 $links = $api->invoice->all();
 $link  = $api->invoice->fetch('inv_00000000000001');
-$link  = $api->invoice->create(arary('type' => 'link', 'amount' => 500, 'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test')));
+$link  = $api->invoice->create(array('type' => 'link', 'amount' => 500, 'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test')));
 $link->cancel();
 $link->notifyBy('sms');
 
