@@ -36,6 +36,14 @@ class Api
         Request::addHeader($header, $value);
     }
 
+    /*
+     *  Set Options
+     */
+    public function addRequestOptions($key, $value)
+    {
+        Request::addRequestOptions($key, $value);
+    }
+
     public function setAppDetails($title, $version = null)
     {
         $app = array(
