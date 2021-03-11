@@ -27,6 +27,7 @@ class Request
      */
     protected static $headers = array(
         'Razorpay-API'  =>  1
+       
     );
 
     /**
@@ -37,8 +38,9 @@ class Request
      * @return array Response data in array format. Not meant
      * to be used directly
      */
-    public function request($method, $url, $data = array())
+    public function request($method, $url, $data = array(),$contentType = 'application/x-www-form-urlencoded')
     {
+
         $url = Api::getFullUrl($url);
 
         $hooks = new Requests_Hooks();
@@ -48,13 +50,13 @@ class Request
         $options = array(
             'auth' => array(Api::getKey(), Api::getSecret()),
             'hook' => $hooks,
-            'timeout' => 60,
+            'timeout' => 60
         );
-
-        $headers = $this->getRequestHeaders();
-
+        
+        $headers = $this->getRequestHeaders($contentType);
+        
         $response = Requests::request($url, $headers, $data, $method, $options);
-
+        
         $this->checkErrors($response);
 
         return json_decode($response->body, true);
@@ -153,12 +155,17 @@ class Request
             $httpStatusCode);
     }
 
-    protected function getRequestHeaders()
+    protected function getRequestHeaders($contentType = 'application/x-www-form-urlencoded')
     {
+        
+            $ContentTypeHeader = array('Content-Type' => $contentType );
+            self::$headers = array_merge(self::$headers, $ContentTypeHeader);
+        
         $uaHeader = array(
             'User-Agent' => $this->constructUa()
+            
         );
-
+        
         $headers = array_merge(self::$headers, $uaHeader);
 
         return $headers;
