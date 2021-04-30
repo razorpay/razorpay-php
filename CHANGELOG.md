@@ -8,7 +8,7 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 
 ### Changed
 
--   Upgrades [requests](https://github.com/rmccue/Requests/) to v1.8.0
+-   Upgrades [requests](https://github.com/rmccue/Requests/) to v1.8. [[#221](https://github.com/razorpay/razorpay-php/pull/221)]
 
 ## [2.6.0][2.6.0] - 2021-04-05
 
