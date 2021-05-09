@@ -58,7 +58,7 @@ $card = $api->card->fetch($cardId); // Returns a particular card
 // Customers
 $customer = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates customer
 $customer = $api->customer->fetch($customerId); // Returns a particular customer
-$customer = $api->customer->edit(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Edits customer
+$customer = $api->customer->fetch($customerId)->edit(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Edits customer
 
 // Tokens
 $token  = $api->customer->token()->fetch($tokenId); // Returns a particular token
