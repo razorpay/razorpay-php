@@ -26,6 +26,7 @@ composer require razorpay/razorpay:2.*
 # Usage
 
 ```php
+require_once $_SERVER["DOCUMENT_ROOT"]."/vendor/autoload.php";
 use Razorpay\Api\Api;
 
 $api = new Api($api_key, $api_secret);
@@ -36,6 +37,9 @@ $orderId = $order['id']; // Get the created Order ID
 $order  = $api->order->fetch($orderId);
 $orders = $api->order->all($options); // Returns array of order objects
 $payments = $api->order->fetch($orderId)->payments(); // Returns array of payment objects against an order
+
+// Checkout
+$api->checkout->init($orderId)
 
 // Payments
 $payments = $api->payment->all($options); // Returns array of payment objects
