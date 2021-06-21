@@ -26,8 +26,7 @@ class Request
      * @var array
      */
     protected static $headers = array(
-        'Razorpay-API'  =>  1
-       
+        'Razorpay-API'  =>  1    
     );
 
     /**
@@ -40,7 +39,6 @@ class Request
      */
     public function request($method, $url, $data = array(),$contentType = 'application/x-www-form-urlencoded')
     {
-
         $url = Api::getFullUrl($url);
 
         $hooks = new Requests_Hooks();
@@ -54,9 +52,7 @@ class Request
         );
         
         $headers = $this->getRequestHeaders($contentType);
-        
-        $response = Requests::request($url, $headers, $data, $method, $options);
-        
+        $response = Requests::request($url, $headers, $data, $method, $options);  
         $this->checkErrors($response);
 
         return json_decode($response->body, true);

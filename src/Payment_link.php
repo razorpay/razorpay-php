@@ -4,15 +4,11 @@ namespace Razorpay\Api;
 
 use Requests;
 
-/**
- * Invoice entity gets used for both Payment Links and Invoices system.
- * Few of the methods are only meaningful for Invoices system and calling those
- * for against/for a Payment Link would throw Bad request error.
- */
+
 class Payment_link extends Entity
 {
     /**
-     * Creates invoice of any type(invoice|link|ecod).
+     * Creates Payment link .
      *
      * @param array $attributes
      *
@@ -25,7 +21,7 @@ class Payment_link extends Entity
     }
 
     /**
-     * Fetches invoice entity with given id
+     * Fetches Payment link entity with given id
      *
      * @param string $id
      *
@@ -37,7 +33,7 @@ class Payment_link extends Entity
     }
 
     /**
-     * Fetches multiple invoices with given query options
+     * Fetches multiple Payment link with given query options
      *
      * @param array $options
      *
@@ -49,7 +45,7 @@ class Payment_link extends Entity
     }
 
     /**
-     * Cancels issued invoice
+     * Cancels Payment link
      *
      * @return Payment_link
      */
@@ -60,57 +56,4 @@ class Payment_link extends Entity
         return $this->request(Requests::POST, $url);
     }
 
-    /**
-     * Send/re-send notification for invoice by given medium
-     *
-     * @param $medium - sms|email
-     *
-     * @return array
-     */
-    // public function notifyBy($medium)
-    // {
-    //     $url = $this->getEntityUrl() . $this->id . '/notify_by/' . $medium;
-    //     $r = new Request();
-
-    //     return $r->request(Requests::POST, $url);
-    // }
-
-    // /**
-    //  * Patches given invoice with new attributes
-    //  *
-    //  * @param array $attributes
-    //  *
-    //  * @return Payment_link
-    //  */
-    // public function edit($attributes = array())
-    // {
-    //     $url = $this->getEntityUrl() . $this->id;
-
-    //     return $this->request(Requests::PATCH, $url, $attributes);
-    // }
-
-    // /**
-    //  * Issues drafted invoice
-    //  *
-    //  * @return Payment_link
-    //  */
-    // public function issue()
-    // {
-    //     $url = $this->getEntityUrl() . $this->id . '/issue';
-
-    //     return $this->request(Requests::POST, $url);
-    // }
-
-    // /**
-    //  * Deletes drafted invoice
-    //  *
-    //  * @return Payment_link
-    //  */
-    // public function delete()
-    // {
-    //     $url = $this->getEntityUrl() . $this->id;
-    //     $r = new Request();
-
-    //     return $r->request(Requests::DELETE, $url);
-    // }
 }

@@ -19,15 +19,15 @@ class VirtualAccount extends Entity
         return parent::all($options);
     }
 
-    public function close()
+    public function close($id)
     {
-        $relativeUrl = $this->getEntityUrl() . $this->id;
+        $relativeUrl = $this->getEntityUrl() . $id . '/close';
 
         $data = array(
-            'status' => 'closed'
+            // 'status' => 'closed'
         );
 
-        return $this->request('PATCH', $relativeUrl, $data);
+        return $this->request('POST', $relativeUrl, $data);
     }
 
     public function payments()
