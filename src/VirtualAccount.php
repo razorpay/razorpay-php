@@ -21,13 +21,10 @@ class VirtualAccount extends Entity
 
     public function close()
     {
-        $relativeUrl = $this->getEntityUrl() . $this->id;
+        $relativeUrl = $this->getEntityUrl() . $this->id . '/close';
 
-        $data = array(
-            'status' => 'closed'
-        );
 
-        return $this->request('PATCH', $relativeUrl, $data);
+        return $this->request('POST', $relativeUrl);
     }
 
     public function payments()
