@@ -28,7 +28,7 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "raveren/kint": "1.*",
+        "raveren/kint": "3.*",
         "phpunit/phpunit": "~4.8|~5.0"
     },
     "autoload": {
