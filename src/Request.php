@@ -30,6 +30,14 @@ class Request
     );
 
     /**
+     * Headers to be sent with every http request to the API
+     * @var array
+     */
+    protected static $options = array(
+        'timeout' => 60,
+    );
+
+    /**
      * Fires a request to the API
      * @param  string   $method HTTP Verb
      * @param  string   $url    Relative URL for the request
@@ -45,11 +53,10 @@ class Request
 
         $hooks->register('curl.before_send', array($this, 'setCurlSslOpts'));
 
-        $options = array(
+        $options = array_merge(self::$options,array(
             'auth' => array(Api::getKey(), Api::getSecret()),
             'hook' => $hooks,
-            'timeout' => 60,
-        );
+        ));
 
         $headers = $this->getRequestHeaders();
 
@@ -58,6 +65,26 @@ class Request
         $this->checkErrors($response);
 
         return json_decode($response->body, true);
+    }
+
+    /**
+     * Adds an additional header to all API requests
+     * @param string $key   Header key
+     * @param string|array $value Header value
+     * @return null
+     */
+    public static function addRequestOptions($key, $value)
+    {
+        self::$options[$key] = $value;
+    }
+
+    /**
+     * Returns all options attached so far
+     * @return array options
+     */
+    protected function getRequestOptions()
+    {
+        return self::$options;
     }
 
     public function setCurlSslOpts($curl)
