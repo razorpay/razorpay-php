@@ -32,12 +32,12 @@ class Utility
 
         $secret = Api::getSecret();
 
-        self::verifySignature($payload, $actualSignature, $secret);
+        return self::verifySignature($payload, $actualSignature, $secret);
     }
 
     public function verifyWebhookSignature($payload, $actualSignature, $secret)
     {
-        self::verifySignature($payload, $actualSignature, $secret);
+        return self::verifySignature($payload, $actualSignature, $secret);
     }
 
     public function verifySignature($payload, $actualSignature, $secret)
@@ -59,6 +59,8 @@ class Utility
             throw new Errors\SignatureVerificationError(
                 'Invalid signature passed');
         }
+
+        return true;
     }
 
     private function hashEquals($expectedSignature, $actualSignature)
