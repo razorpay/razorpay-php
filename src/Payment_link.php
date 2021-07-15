@@ -14,10 +14,13 @@ class Payment_link extends Entity
      *
      * @return Payment_link
      */
-    public function create($attributes = array(), $contentType = 'application/x-www-form-urlencoded')
+    public function create($attributes = array())
     {
-        
-        return parent::create($attributes,$contentType);
+        $additionHeader['Content-Type'] = 'application/json';
+
+        parent::setAdditionHeader($additionHeader) ;
+
+        return parent::create($attributes);
     }
 
     /**

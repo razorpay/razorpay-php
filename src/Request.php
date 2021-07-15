@@ -34,10 +34,11 @@ class Request
      * @param  string   $method HTTP Verb
      * @param  string   $url    Relative URL for the request
      * @param  array $data Data to be passed along the request
+     * @param  array $additionHeader headers to be passed along the request
      * @return array Response data in array format. Not meant
      * to be used directly
      */
-    public function request($method, $url, $data = array(),$contentType = 'application/x-www-form-urlencoded')
+    public function request($method, $url, $data = array(), $additionHeader = array())
     {
         $url = Api::getFullUrl($url);
 
@@ -51,7 +52,8 @@ class Request
             'timeout' => 60
         );
         
-        $headers = $this->getRequestHeaders($contentType);
+        $headers = $this->getRequestHeaders($additionHeader);
+
         $response = Requests::request($url, $headers, $data, $method, $options);  
         $this->checkErrors($response);
 
@@ -151,18 +153,19 @@ class Request
             $httpStatusCode);
     }
 
-    protected function getRequestHeaders($contentType = 'application/x-www-form-urlencoded')
+    protected function getRequestHeaders($additionHeader)
     {
-        
-            $ContentTypeHeader = array('Content-Type' => $contentType );
-            self::$headers = array_merge(self::$headers, $ContentTypeHeader);
-        
         $uaHeader = array(
             'User-Agent' => $this->constructUa()
             
         );
         
         $headers = array_merge(self::$headers, $uaHeader);
+
+        if(empty($additionHeader) === false)
+        {         
+            $headers = array_merge($headers, $additionHeader);
+        }
 
         return $headers;
     }

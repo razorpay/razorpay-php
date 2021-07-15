@@ -2,13 +2,31 @@
 
 Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachangelog.com/en/1.0.0/) for formatting.
 
+### Added
+
+-   Added Payment Link end point API [[#233](https://github.com/razorpay/razorpay-php/pull/233)]
+
+## [2.7.1][2.7.1] - 2021-09-16
+
 ## Unreleased
 
-## [2.5.0][2.5.0] - 2019-05-20
+## [2.7.0][2.7.0] - 2021-05-07
 
 ### Added
 
--   Adds support for payment edit API [[#100](https://github.com/razorpay/razorpay-php/pull/100)]
+-   Adds support for payment page enity API [[#224](https://github.com/razorpay/razorpay-php/pull/224)]
+
+## [2.6.1][2.6.1] - 2021-04-30
+
+### Changed
+
+-   Upgrades [requests](https://github.com/rmccue/Requests/) to v1.8. [[#221](https://github.com/razorpay/razorpay-php/pull/221)]
+
+## [2.6.0][2.6.0] - 2021-04-05
+
+### Added
+
+-   Adds support for webhook enity API [[#212](https://github.com/razorpay/razorpay-php/pull/212)]
 
 ## [2.4.0-beta][2.4.0-beta] - 2018-11-28
 
