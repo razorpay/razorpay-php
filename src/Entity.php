@@ -7,12 +7,18 @@ use Razorpay\Api\Errors;
 class Entity extends Resource implements ArrayableInterface
 {
     protected $attributes = array();
-
-    protected function create($attributes = null)
+ /**
+     * Creates a payment link 
+     *
+     * @param array $attributes 
+     * @param string $contentType
+     * @return Payment_link
+     */
+    protected function create($attributes = null, $contentType= 'application/x-www-form-urlencoded')
     {
         $entityUrl = $this->getEntityUrl();
 
-        return $this->request('POST', $entityUrl, $attributes);
+        return $this->request('POST', $entityUrl, $attributes,$contentType);
     }
 
     protected function fetch($id)
@@ -46,7 +52,7 @@ class Entity extends Resource implements ArrayableInterface
     protected function all($options = array())
     {
         $entityUrl = $this->getEntityUrl();
-
+        
         return $this->request('GET', $entityUrl, $options);
     }
 
@@ -79,11 +85,11 @@ class Entity extends Resource implements ArrayableInterface
      *
      * @return Entity
      */
-    protected function request($method, $relativeUrl, $data = null)
+    protected function request($method, $relativeUrl, $data = null,$contentType = 'application/x-www-form-urlencoded')
     {
         $request = new Request();
 
-        $response = $request->request($method, $relativeUrl, $data);
+        $response = $request->request($method, $relativeUrl, $data, $contentType);
 
         if ((isset($response['entity'])) and
             ($response['entity'] == $this->getEntity()))
