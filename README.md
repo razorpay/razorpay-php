@@ -110,6 +110,9 @@ $subscription  = $api->subscription->create(array('plan_id' => 'plan_7wAosPWtrkh
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA');
 $subscriptions = $api->subscription->all();
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancel($options); //$options = ['cancel_at_cycle_end' => 1];
+$subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->update($options); //$options = ['plan_id'=>'plan_00000000000002','offer_id'=>'offer_JHD834hjbxzhd38d','quantity'=>5];  //Update a Subscription
+$subscription  = $api->subscription->fetch('sub_HrkBvbMnwIURVf')->pendingUpdate(); // Fetch Details of Pending Update
+$subscription =  $api->subscription->fetch('sub_HrkBvbMnwIURVf')->cancelUpdate(); // Cancel an update
 $addon         = $api->subscription->fetch('sub_82uBGfpFK47AlA')->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 30000, 'currency' => 'INR'), 'quantity' => 2));
 $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H');
 $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete();
