@@ -53,4 +53,26 @@ class Subscription extends Entity
 
         return $this->request('POST', $relativeUrl, null);
     }
+
+    public function pause($attributes = array())
+    {
+        $relativeUrl = $this->getEntityUrl() . $this->id.'/pause';
+        
+        return $this->request('POST', $relativeUrl, $attributes);  
+    }
+
+    public function resume($attributes = array())
+    {
+        $relativeUrl = $this->getEntityUrl() . $this->id.'/resume';
+        
+        return $this->request('POST', $relativeUrl, $attributes);  
+    }
+
+    public function deleteOffer($id)
+    {
+        $relativeUrl = $this->getEntityUrl() . $this->id.'/'.$id;
+        
+        return $this->request('DELETE', $relativeUrl);
+    }
+
 }

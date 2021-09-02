@@ -112,4 +112,10 @@ class Invoice extends Entity
 
         return $r->request(Requests::DELETE, $url);
     }
+
+    public function subscription($id){
+        $url = $this->getEntityUrl() .'?subscription_id='.$id ;
+        
+        return $this->request(Requests::GET, $url); 
+    }
 }
