@@ -83,6 +83,7 @@ $link->notifyBy('sms');
 // Invoices
 $invoices = $api->invoice->all();
 $invoice  = $api->invoice->fetch('inv_00000000000001');
+$invoice =  $api->invoice->subscription('sub_82uBGfpFK47AlA'); // Fetch All Invoices for a Subscription
 $invoice  = $api->invoice->create($params); // Ref: razorpay.com/docs/invoices for request params example
 $invoice  = $invoice->edit($params);
 $invoice->issue();
@@ -111,8 +112,11 @@ $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA');
 $subscriptions = $api->subscription->all();
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancel($options); //$options = ['cancel_at_cycle_end' => 1];
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->update($options); //$options = ['plan_id'=>'plan_00000000000002','offer_id'=>'offer_JHD834hjbxzhd38d','quantity'=>5];  //Update a Subscription
-$subscription  = $api->subscription->fetch('sub_HrkBvbMnwIURVf')->pendingUpdate(); // Fetch Details of Pending Update
-$subscription =  $api->subscription->fetch('sub_HrkBvbMnwIURVf')->cancelUpdate(); // Cancel an update
+$subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->pendingUpdate(); // Fetch Details of Pending Update
+$subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancelUpdate(); // Cancel an update
+$subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->pause(['resume_at'=>'now']); // Pause Subscription
+$subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->resume(['resume_at'=>'now']); // Resume Subscription
+$subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->deleteOffer('offer_JHD834hjbxzhd38d') // Delete an Offer Linked to a Subscription
 $addon         = $api->subscription->fetch('sub_82uBGfpFK47AlA')->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 30000, 'currency' => 'INR'), 'quantity' => 2));
 $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H');
 $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete();
