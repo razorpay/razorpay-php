@@ -33,7 +33,7 @@ $api = new Api($api_key, $api_secret);
 // Orders
 $order  = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Creates order
 $orderId = $order['id']; // Get the created Order ID
-$order  = $api->order->fetch($orderId);
+$order  = $api->order->fetch($orderId); // Fetch an Order With Id
 $orders = $api->order->all($options); // Returns array of order objects
 $payments = $api->order->fetch($orderId)->payments(); // Returns array of payment objects against an order
 
@@ -74,30 +74,30 @@ $transfer  = $api->transfer->fetch($transferId)->edit($options); // Edit a trans
 $reversal  = $api->transfer->fetch($transferId)->reverse(); // Reverse a transfer
 
 // Payment Links
-$links = $api->invoice->all();
-$link  = $api->invoice->fetch('inv_00000000000001');
-$link  = $api->invoice->create(arary('type' => 'link', 'amount' => 500, 'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test')));
-$link->cancel();
-$link->notifyBy('sms');
+$links = $api->invoice->all(); //Fetch Multiple Invoice
+$link  = $api->invoice->fetch('inv_00000000000001');  // Fetch an Invoice by Id
+$link  = $api->invoice->create(arary('type' => 'link', 'amount' => 500, 'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test')));  // Create an Invoice
+$link->cancel();  // Cancel an Invoice
+$link->notifyBy('sms'); // Send Notifications
 
 // Invoices
-$invoices = $api->invoice->all();
-$invoice  = $api->invoice->fetch('inv_00000000000001');
+$invoices = $api->invoice->all(); //Fetch Multiple Invoice
+$invoice  = $api->invoice->fetch('inv_00000000000001'); // Fetch an Invoice by Id
 $invoice =  $api->invoice->subscription('sub_82uBGfpFK47AlA'); // Fetch All Invoices for a Subscription
 $invoice  = $api->invoice->create($params); // Ref: razorpay.com/docs/invoices for request params example
-$invoice  = $invoice->edit($params);
-$invoice->issue();
-$invoice->notifyBy('email');
-$invoice->cancel();
-$invoice->delete();
+$invoice  = $invoice->edit($params); // Update an Invoice
+$invoice->issue(); // Issue an Invoice
+$invoice->notifyBy('email'); // Send Notifications
+$invoice->cancel(); // Cancel an Invoice
+$invoice->delete(); // Delete an Invoice
 
 // Virtual Accounts
-$virtualAccount  = $api->virtualAccount->create(array('receiver_types' => array('bank_account'), 'description' => 'First Virtual Account', 'notes' => array('receiver_key' => 'receiver_value')));
-$virtualAccounts = $api->virtualAccount->all();
-$virtualAccount  = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G');
-$virtualAccount  = $virtualAccount->close();
-$payments        = $virtualAccount->payments();
-$bankTransfer    = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer();
+$virtualAccount  = $api->virtualAccount->create(array('receiver_types' => array('bank_account'), 'description' => 'First Virtual Account', 'notes' => array('receiver_key' => 'receiver_value'))); //Create a Virtual Account
+$virtualAccounts = $api->virtualAccount->all(); // Fetch All Virtual Accounts
+$virtualAccount  = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G'); // Fetch Virtual Account by ID
+$virtualAccount  = $virtualAccount->close(); // Close a Virtual Accoun
+$payments        = $virtualAccount->payments(); // Fetch Payments made to a Virtual Account
+$bankTransfer    = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer(); // Bank Transfer
 
 // Bharat QR
 $bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'amount_expected' => 100, 'notes' => array('receiver_key' => 'receiver_value'))); // Create Static QR
@@ -126,9 +126,9 @@ $addon = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete(); // Delete an Add-on
 $addon = $api->addon->fetchAll(['from'=>1629790292,'to'=>1630646240,'count'=>1]); // Fetch all Add-ons
 
 // Settlements
-$settlement    = $api->settlement->fetch('setl_7IZKKI4Pnt2kEe');
-$settlements   = $api->settlement->all();
-$reports       = $api->settlement->reports(array('year' => 2018, 'month' => 2));
+$settlement    = $api->settlement->fetch('setl_7IZKKI4Pnt2kEe'); // Fetch Settlement using ID
+$settlements   = $api->settlement->all(); // Fetch all Settlements
+$reports       = $api->settlement->reports(array('year' => 2018, 'month' => 2)); 
 ```
 
 For further help, see our documentation on <https://docs.razorpay.com>.
