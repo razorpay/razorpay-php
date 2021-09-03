@@ -104,15 +104,15 @@ $bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => a
 $bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'notes' => array('receiver_key' => 'receiver_value'))); // Create Dynamic QR
 
 // Subscriptions
-$plan          = $api->plan->create(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR')));
-$plan          = $api->plan->fetch('plan_7wAosPWtrkhqZw');
-$plans         = $api->plan->all();
+$plan          = $api->plan->create(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR'))); // Create a Plan
+$plan          = $api->plan->fetch('plan_7wAosPWtrkhqZw'); // Fetch a Plan by ID
+$plans         = $api->plan->all(); // Fetch all Plans 
 $subscription  = $api->subscription->create(array('plan_id' => 'plan_7wAosPWtrkhqZw', 'customer_notify' => 1, 'total_count' => 6, 'start_at' => 1495995837, 'addons' => array(array('item' => array('name' => 'Delivery charges', 'amount' => 30000, 'currency' => 'INR')))));  // Create a Subscription
 
 $subscription = $api->subscription->create(array('plan_id' => 'plan_HoYg68p5kmuvzD','total_count' => 12,'quantity' => 1,'expire_by' => 1633237807,'customer_notify' => 1, 'addons' => array(array('item'=>array('name' => 'Delivery charges','amount' => 30000,'currency' => 'INR'))),'offer_id' => 'offer_HrkIvgue2Uneqd','notes'=>array('notes_key_1'=>'Tea, Earl Grey, Hot','notes_key_2'=>'Tea, Earl Grey… decaf.'),'notify_info'=>array('notify_phone' => '9123456789','notify_email'=> 'gaurav.kumar@example.com')));  // Create a Subscription Link
 
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA'); // Fetch Subscription by ID
-$subscriptions = $api->subscription->all();
+$subscriptions = $api->subscription->all(); // Fetch All Subscriptions 
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancel($options); //$options = ['cancel_at_cycle_end' => 1];
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->update($options); //$options = ['plan_id'=>'plan_00000000000002','offer_id'=>'offer_JHD834hjbxzhd38d','quantity'=>5];  //Update a Subscription
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->pendingUpdate(); // Fetch Details of Pending Update
@@ -120,9 +120,9 @@ $subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancelUpdate()
 $subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->pause(['resume_at'=>'now']); // Pause Subscription
 $subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->resume(['resume_at'=>'now']); // Resume Subscription
 $subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->deleteOffer('offer_JHD834hjbxzhd38d') // Delete an Offer Linked to a Subscription
-$addon         = $api->subscription->fetch('sub_82uBGfpFK47AlA')->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 30000, 'currency' => 'INR'), 'quantity' => 2));
-$addon = $api->addon->fetch('ao_8nDvQYYGQI5o4H');
-$addon = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete();
+$addon         = $api->subscription->fetch('sub_82uBGfpFK47AlA')->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 30000, 'currency' => 'INR'), 'quantity' => 2)); // Create an Add-on
+$addon = $api->addon->fetch('ao_8nDvQYYGQI5o4H'); // Fetch an Add-on by ID
+$addon = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete(); // Delete an Add-on
 $addon = $api->addon->fetchAll(['from'=>1629790292,'to'=>1630646240,'count'=>1]); // Fetch all Add-ons
 
 // Settlements
