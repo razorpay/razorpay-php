@@ -18,4 +18,12 @@ class Addon extends Entity
 
         return $this->request('DELETE', $entityUrl . $this->id);
     }
+
+    public function fetchAll($attributes = array()){
+        
+        $entityUrl = $this->getEntityUrl(); 
+
+        return $this->request('GET', $entityUrl , $attributes);
+       // print_r($entityUrl); die;
+    }
 }
