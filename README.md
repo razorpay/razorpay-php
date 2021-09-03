@@ -107,7 +107,10 @@ $bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => a
 $plan          = $api->plan->create(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR')));
 $plan          = $api->plan->fetch('plan_7wAosPWtrkhqZw');
 $plans         = $api->plan->all();
-$subscription  = $api->subscription->create(array('plan_id' => 'plan_7wAosPWtrkhqZw', 'customer_notify' => 1, 'total_count' => 6, 'start_at' => 1495995837, 'addons' => array(array('item' => array('name' => 'Delivery charges', 'amount' => 30000, 'currency' => 'INR')))));
+$subscription  = $api->subscription->create(array('plan_id' => 'plan_7wAosPWtrkhqZw', 'customer_notify' => 1, 'total_count' => 6, 'start_at' => 1495995837, 'addons' => array(array('item' => array('name' => 'Delivery charges', 'amount' => 30000, 'currency' => 'INR')))));  // Create a Subscription
+
+$subscription = $api->subscription->create(array('plan_id' => 'plan_HoYg68p5kmuvzD','total_count' => 12,'quantity' => 1,'expire_by' => 1633237807,'customer_notify' => 1, 'addons' => array(array('item'=>array('name' => 'Delivery charges','amount' => 30000,'currency' => 'INR'))),'offer_id' => 'offer_HrkIvgue2Uneqd','notes'=>array('notes_key_1'=>'Tea, Earl Grey, Hot','notes_key_2'=>'Tea, Earl Grey… decaf.'),'notify_info'=>array('notify_phone' => '9123456789','notify_email'=> 'gaurav.kumar@example.com')));  // Create a Subscription Link
+
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA');
 $subscriptions = $api->subscription->all();
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancel($options); //$options = ['cancel_at_cycle_end' => 1];
