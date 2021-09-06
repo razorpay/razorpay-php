@@ -129,7 +129,12 @@ $addon = $api->addon->fetchAll(['from'=>1629790292,'to'=>1630646240,'count'=>1])
 $settlement    = $api->settlement->fetch('setl_7IZKKI4Pnt2kEe'); // Fetch Settlement using ID
 $settlements   = $api->settlement->all(); // Fetch all Settlements
 $reports       = $api->settlement->reports(array('year' => 2018, 'month' => 2)); 
+
+// Authentication Transaction : Check demo folder
+// Payment Verfication : Check demo folder
 ```
+
+
 
 For further help, see our documentation on <https://docs.razorpay.com>.
 
