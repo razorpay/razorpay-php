@@ -1,7 +1,5 @@
 <?php
 
-//require('src/Request.php');
-
 // Include Requests only if not already defined
 if (class_exists('Requests') === false)
 {
