@@ -27,10 +27,17 @@ class VirtualAccount extends Entity
         return $this->request('POST', $relativeUrl);
     }
 
-    public function payments()
+    public function payments($options = array())
     {
         $relativeUrl = $this->getEntityUrl() . $this->id . '/payments';
 
-        return $this->request('GET', $relativeUrl);
+        return $this->request('GET', $relativeUrl, $options);
+    }
+
+    public function addReceiver($attributes = array())
+    {
+        $relativeUrl = $this->getEntityUrl() . $this->id . '/receivers';
+
+        return $this->request('POST', $relativeUrl, $attributes); 
     }
 }

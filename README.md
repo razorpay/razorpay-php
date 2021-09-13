@@ -91,12 +91,43 @@ $invoice->cancel();
 $invoice->delete();
 
 // Virtual Accounts
-$virtualAccount  = $api->virtualAccount->create(array('receiver_types' => array('bank_account'), 'description' => 'First Virtual Account', 'notes' => array('receiver_key' => 'receiver_value')));
-$virtualAccounts = $api->virtualAccount->all();
-$virtualAccount  = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G');
-$virtualAccount  = $virtualAccount->close();
-$payments        = $virtualAccount->payments();
-$bankTransfer    = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer();
+// Virtual Accounts
+$virtualAccount  = $api->virtualAccount->create(
+    ['receivers' => [
+      'types'=> ['bank_account'] // bank_account,vpa,qr_code
+       ],
+      'allowed_payers' => [ 
+         [
+           'type'=>'bank_account',
+           'bank_account'=> [
+               'ifsc'=>'RATN0VAAPIS',
+               'account_number'=>'2223330027558515'
+            ]
+         ]
+       ], 
+     'description' => 'Virtual Account created for Raftar Soft', // optional
+     'close_by' => 1631865919, // optional
+     'customer_id' => 'cust_HssUOFiOd2b1TJ', 
+     'notes' => ['project_name' => 'Banking Software'] // optional
+    ]
+ ); //Create a Virtual Account
+$virtualAccount = $api->virtualAccount->fetch('va_HubTH8fZ4tnBnP')->addReceiver([
+    'types' => ['vpa'],  // bank_account , vpa
+     'vpa' => ['descriptor'=>'gauravkumar']  // Unique UPI ID. (only when types is vpa)  
+]); // Add Receiver to an Existing Virtual Account 
+$virtualAccounts = $api->virtualAccount->all([
+    'from'=>1631023247, //optional
+    'to'=>1631023879, //optional
+    'count'=>1 //optional
+]); // Fetch All Virtual Accounts
+$virtualAccount  = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G'); // Fetch a Virtual Account by ID
+$virtualAccount  = $virtualAccount->close(); // Close a Virtual Account
+$payments        = $virtualAccount->payments([
+   'from'=> 1631099841, //optional
+   'to'=> 1631099852, //optional
+   'count'=> 1 //optional
+ ]); // Fetch Payments made to a Virtual Account
+$bankTransfer    = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer(); // Fetch Payment Details using ID and Transfer Method
 
 // Bharat QR
 $bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'amount_expected' => 100, 'notes' => array('receiver_key' => 'receiver_value'))); // Create Static QR
