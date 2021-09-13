@@ -47,7 +47,7 @@ class Subscription extends Entity
         return $this->request('GET', $relativeUrl, null);
     }
 
-    public function cancelNextCycle()
+    public function cancelAtNextCycle()
     {
         $relativeUrl = $this->getEntityUrl() . $this->id . '/cancel_scheduled_changes';
 
@@ -68,9 +68,9 @@ class Subscription extends Entity
         return $this->request('POST', $relativeUrl, $attributes);  
     }
 
-    public function deleteOffer($id)
+    public function deleteOffer($offer_id)
     {
-        $relativeUrl = $this->getEntityUrl() . $this->id.'/'.$id;
+        $relativeUrl = $this->getEntityUrl() . $this->id.'/'.$offer_id;
         
         return $this->request('DELETE', $relativeUrl);
     }

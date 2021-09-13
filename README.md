@@ -33,7 +33,7 @@ $api = new Api($api_key, $api_secret);
 // Orders
 $order  = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Creates order
 $orderId = $order['id']; // Get the created Order ID
-$order  = $api->order->fetch($orderId); // Fetch an Order With Id
+$order  = $api->order->fetch($orderId);
 $orders = $api->order->all($options); // Returns array of order objects
 $payments = $api->order->fetch($orderId)->payments(); // Returns array of payment objects against an order
 
@@ -74,39 +74,38 @@ $transfer  = $api->transfer->fetch($transferId)->edit($options); // Edit a trans
 $reversal  = $api->transfer->fetch($transferId)->reverse(); // Reverse a transfer
 
 // Payment Links
-$links = $api->invoice->all(); //Fetch Multiple Invoice
-$link  = $api->invoice->fetch('inv_00000000000001');  // Fetch an Invoice by Id
-$link  = $api->invoice->create(arary('type' => 'link', 'amount' => 500, 'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test')));  // Create an Invoice
-$link->cancel();  // Cancel an Invoice
-$link->notifyBy('sms'); // Send Notifications
+$links = $api->invoice->all();
+$link  = $api->invoice->fetch('inv_00000000000001');
+$link  = $api->invoice->create(arary('type' => 'link', 'amount' => 500, 'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test')));
+$link->cancel();
+$link->notifyBy('sms');
 
 // Invoices
-$invoices = $api->invoice->all(); //Fetch Multiple Invoice
-$invoice  = $api->invoice->fetch('inv_00000000000001'); // Fetch an Invoice by Id
-$invoice =  $api->invoice->subscription('sub_82uBGfpFK47AlA'); // Fetch All Invoices for a Subscription
+$invoices = $api->invoice->all();
+$invoice  = $api->invoice->fetch('inv_00000000000001');
 $invoice  = $api->invoice->create($params); // Ref: razorpay.com/docs/invoices for request params example
-$invoice  = $invoice->edit($params); // Update an Invoice
-$invoice->issue(); // Issue an Invoice
-$invoice->notifyBy('email'); // Send Notifications
-$invoice->cancel(); // Cancel an Invoice
-$invoice->delete(); // Delete an Invoice
+$invoice  = $invoice->edit($params);
+$invoice->issue();
+$invoice->notifyBy('email');
+$invoice->cancel();
+$invoice->delete();
 
 // Virtual Accounts
-$virtualAccount  = $api->virtualAccount->create(array('receiver_types' => array('bank_account'), 'description' => 'First Virtual Account', 'notes' => array('receiver_key' => 'receiver_value'))); //Create a Virtual Account
-$virtualAccounts = $api->virtualAccount->all(); // Fetch All Virtual Accounts
-$virtualAccount  = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G'); // Fetch Virtual Account by ID
-$virtualAccount  = $virtualAccount->close(); // Close a Virtual Accoun
-$payments        = $virtualAccount->payments(); // Fetch Payments made to a Virtual Account
-$bankTransfer    = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer(); // Bank Transfer
+$virtualAccount  = $api->virtualAccount->create(array('receiver_types' => array('bank_account'), 'description' => 'First Virtual Account', 'notes' => array('receiver_key' => 'receiver_value')));
+$virtualAccounts = $api->virtualAccount->all();
+$virtualAccount  = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G');
+$virtualAccount  = $virtualAccount->close();
+$payments        = $virtualAccount->payments();
+$bankTransfer    = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer();
 
 // Bharat QR
 $bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'amount_expected' => 100, 'notes' => array('receiver_key' => 'receiver_value'))); // Create Static QR
 $bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'notes' => array('receiver_key' => 'receiver_value'))); // Create Dynamic QR
 
 // Subscriptions
-$plan          = $api->plan->create(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR'))); // Create a Plan
-$plan          = $api->plan->fetch('plan_7wAosPWtrkhqZw'); // Fetch a Plan by ID
-$plans         = $api->plan->all(); // Fetch all Plans 
+$plan          = $api->plan->create(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR')));
+$plan          = $api->plan->fetch('plan_7wAosPWtrkhqZw');
+$plans         = $api->plan->all();
 $subscription  = $api->subscription->create(array('plan_id' => 'plan_7wAosPWtrkhqZw', 'customer_notify' => 1, 'total_count' => 6, 'start_at' => 1495995837, 'addons' => array(array('item' => array('name' => 'Delivery charges', 'amount' => 30000, 'currency' => 'INR')))));  // Create a Subscription
 
 $subscription = $api->subscription->create(array('plan_id' => 'plan_HoYg68p5kmuvzD','total_count' => 12,'quantity' => 1,'expire_by' => 1633237807,'customer_notify' => 1, 'addons' => array(array('item'=>array('name' => 'Delivery charges','amount' => 30000,'currency' => 'INR'))),'offer_id' => 'offer_HrkIvgue2Uneqd','notes'=>array('notes_key_1'=>'Tea, Earl Grey, Hot','notes_key_2'=>'Tea, Earl Grey… decaf.'),'notify_info'=>array('notify_phone' => '9123456789','notify_email'=> 'gaurav.kumar@example.com')));  // Create a Subscription Link
@@ -116,25 +115,20 @@ $subscriptions = $api->subscription->all(); // Fetch All Subscriptions
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancel($options); //$options = ['cancel_at_cycle_end' => 1];
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->update($options); //$options = ['plan_id'=>'plan_00000000000002','offer_id'=>'offer_JHD834hjbxzhd38d','schedule_change_at'=>'cycle_end','quantity'=>5];  //Update a Subscription
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->pendingUpdate(); // Fetch Details of Pending Update
-$subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancelNextCycle(); // Cancel an update
+$subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancelAtNextCycle(); // Cancel an update
 $subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->pause(['pause_at'=>'now']); // Pause Subscription
 $subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->resume(['resume_at'=>'now']); // Resume Subscription
 $subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->deleteOffer('offer_JHD834hjbxzhd38d') // Delete an Offer Linked to a Subscription
+$subscription = $api->invoice->all(['subscription_id'=>'sub_HvNIkQUz9I5GBA']); // Fetch All Invoices for a Subscription
 $addon         = $api->subscription->fetch('sub_82uBGfpFK47AlA')->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 30000, 'currency' => 'INR'), 'quantity' => 2)); // Create an Add-on
-$addon = $api->addon->fetch('ao_8nDvQYYGQI5o4H'); // Fetch an Add-on by ID
-$addon = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete(); // Delete an Add-on
-$addon = $api->addon->fetchAll(['from'=>1629790292,'to'=>1630646240,'count'=>1]); // Fetch all Add-ons
+$addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H');
+$addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete();
 
 // Settlements
-$settlement    = $api->settlement->fetch('setl_7IZKKI4Pnt2kEe'); // Fetch Settlement using ID
-$settlements   = $api->settlement->all(); // Fetch all Settlements
-$reports       = $api->settlement->reports(array('year' => 2018, 'month' => 2)); 
-
-// Authentication Transaction : Check demo folder
-// Payment Verfication : Check demo folder
+$settlement    = $api->settlement->fetch('setl_7IZKKI4Pnt2kEe');
+$settlements   = $api->settlement->all();
+$reports       = $api->settlement->reports(array('year' => 2018, 'month' => 2));
 ```
-
-
 
 For further help, see our documentation on <https://docs.razorpay.com>.
 
