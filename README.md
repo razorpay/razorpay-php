@@ -32,7 +32,8 @@ $api = new Api($api_key, $api_secret);
 
 // Orders
 $order  = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Creates order
-$order  = $api->order->fetch($orderId); // Returns a particular order
+$orderId = $order['id']; // Get the created Order ID
+$order  = $api->order->fetch($orderId);
 $orders = $api->order->all($options); // Returns array of order objects
 $payments = $api->order->fetch($orderId)->payments(); // Returns array of payment objects against an order
 $order  = $api->order->create(array('amount' => 1000, 'currency' => 'INR','transfers' => [ ['account' => 'acc_HjVXbtpSCIxENR', 'amount' => 500, 'currency' => 'INR']])); // Creates transfers from order
@@ -97,10 +98,20 @@ $transfers = $api->transfer->all(array('recipient_settlement_id'=> $settlementId
 $transfers = $api->transfer->all(array('expand[]'=> 'recipient_settlement')); // Fetch settlement details along with transfers
 
 // Payment Links
-$links = $api->invoice->all();
-$link  = $api->invoice->fetch('inv_00000000000001');
-$link  = $api->invoice->create(arary('type' => 'link', 'amount' => 500, 'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test')));
+$links = $api->payment_link->all(); // fetch all payment links
+
+$link  = $api->payment_link->fetch('plink_GiwM9xbIZqbkJp'); // fetch payment link with id
+
+$data = json_encode(
+    [
+    'amount' => 98765,
+    'description' => 'For XYZ purpose',
+    'customer' => array('email' => 'test@test.test')
+    ]);
+$link->payment_link->create($data); // create payment link , pass $data.
+$link  = $api->payment_link->fetch('plink_GiwM9xbIZqbkJp'); // cancel payment link , first fetch payment link with id and then call cancel method like $link->cancel();
 $link->cancel();
+
 $link->notifyBy('sms');
 $links = $api->payment_link->all(); // fetch all payment links
 $link  = $api->payment_link->fetch('plink_GiwM9xbIZqbkJp'); // fetch payment link with id
@@ -192,6 +203,7 @@ $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete();
 $settlement    = $api->settlement->fetch('setl_7IZKKI4Pnt2kEe');
 $settlements   = $api->settlement->all();
 $reports       = $api->settlement->reports(array('year' => 2018, 'month' => 2));
+
 ```
 
 For further help, see our documentation on <https://docs.razorpay.com>.
