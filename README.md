@@ -32,10 +32,10 @@ $api = new Api($api_key, $api_secret);
 
 // Orders
 $order  = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Creates order
-$orderId = $order['id']; // Get the created Order ID
-$order  = $api->order->fetch($orderId);
+$order  = $api->order->fetch($orderId); // Returns a particular order
 $orders = $api->order->all($options); // Returns array of order objects
 $payments = $api->order->fetch($orderId)->payments(); // Returns array of payment objects against an order
+$order  = $api->order->create(array('amount' => 1000, 'currency' => 'INR','transfers' => [ ['account' => 'acc_HjVXbtpSCIxENR', 'amount' => 500, 'currency' => 'INR']])); // Creates transfers from order
 
 // Payments
 $payments = $api->payment->all($options); // Returns array of payment objects
@@ -90,8 +90,18 @@ $transfers = $api->transfer->all(); // Fetch all transfers
 $transfers = $api->payment->fetch($paymentId)->transfers(); // Fetch all transfers created on a payment
 $transfer  = $api->transfer->fetch($transferId)->edit($options); // Edit a transfer
 $reversal  = $api->transfer->fetch($transferId)->reverse(); // Reverse a transfer
+$transfer = $api->transfer->create(array('account' => 'acc_HjVXbtpSCIxENR', 'amount' => 500, 'currency' => 'INR')); // Creates direct transfer from merchant's account
+$transfers = $api->order->fetch($orderId)->transfers(array('expand[]'=>'transfers')); // Fetch all transfers created on order
+$transfer  = $api->transfer->fetch($transferId); // Fetch a transfer
+$transfers = $api->transfer->all(array('recipient_settlement_id'=> $settlementId)); // Fetch all transfers made for particular settlement id
+$transfers = $api->transfer->all(array('expand[]'=> 'recipient_settlement')); // Fetch settlement details along with transfers
 
 // Payment Links
+$links = $api->invoice->all();
+$link  = $api->invoice->fetch('inv_00000000000001');
+$link  = $api->invoice->create(arary('type' => 'link', 'amount' => 500, 'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test')));
+$link->cancel();
+$link->notifyBy('sms');
 $links = $api->payment_link->all(); // fetch all payment links
 $link  = $api->payment_link->fetch('plink_GiwM9xbIZqbkJp'); // fetch payment link with id
 $link = $api->payment_link->create(array('amount' => 98765,'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test'))); // create payment link

@@ -16,6 +16,13 @@ class Payment extends Entity
 
     public function all($options = array())
     {
+        if(isset($options['X-Razorpay-Account'])){
+            $request = new Request;
+            $request->addHeader('X-Razorpay-Account', $options['X-Razorpay-Account']);
+
+            unset($options['X-Razorpay-Account']);
+        }
+
         return parent::all($options);
     }
 
