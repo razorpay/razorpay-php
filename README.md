@@ -74,10 +74,20 @@ $transfer  = $api->transfer->fetch($transferId)->edit($options); // Edit a trans
 $reversal  = $api->transfer->fetch($transferId)->reverse(); // Reverse a transfer
 
 // Payment Links
-$links = $api->invoice->all();
-$link  = $api->invoice->fetch('inv_00000000000001');
-$link  = $api->invoice->create(arary('type' => 'link', 'amount' => 500, 'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test')));
+$links = $api->payment_link->all(); // fetch all payment links
+
+$link  = $api->payment_link->fetch('plink_GiwM9xbIZqbkJp'); // fetch payment link with id
+
+$data = json_encode(
+    [
+    'amount' => 98765, 
+    'description' => 'For XYZ purpose', 
+    'customer' => array('email' => 'test@test.test')
+    ]);
+$link->payment_link->create($data); // create payment link , pass $data.
+$link  = $api->payment_link->fetch('plink_GiwM9xbIZqbkJp'); // cancel payment link , first fetch payment link with id and then call cancel method like $link->cancel();
 $link->cancel();
+
 $link->notifyBy('sms');
 
 // Invoices

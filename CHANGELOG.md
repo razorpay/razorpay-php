@@ -2,6 +2,12 @@
 
 Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachangelog.com/en/1.0.0/) for formatting.
 
+### Added
+
+-   Added Payment Link end point API [[#233](https://github.com/razorpay/razorpay-php/pull/233)]
+
+## [2.7.1][2.7.1] - 2021-09-16
+
 ## Unreleased
 
 ## [2.7.0][2.7.0] - 2021-05-07

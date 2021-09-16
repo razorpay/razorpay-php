@@ -7,12 +7,20 @@ use Razorpay\Api\Errors;
 class Entity extends Resource implements ArrayableInterface
 {
     protected $attributes = array();
-
-    protected function create($attributes = null)
+    private $additionHeader = array();
+ /**
+     * Create method 
+     *
+     * @param array $attributes 
+     * @param array $additionHeader
+     *
+     * 
+     */
+    protected function create($attributes = null) 
     {
         $entityUrl = $this->getEntityUrl();
-
-        return $this->request('POST', $entityUrl, $attributes);
+        
+        return $this->request('POST', $entityUrl, $attributes, $this->additionHeader);
     }
 
     protected function fetch($id)
@@ -22,7 +30,7 @@ class Entity extends Resource implements ArrayableInterface
         $this->validateIdPresence($id);
 
         $relativeUrl = $entityUrl . $id;
-
+       
         return $this->request('GET', $relativeUrl);
     }
 
@@ -46,7 +54,7 @@ class Entity extends Resource implements ArrayableInterface
     protected function all($options = array())
     {
         $entityUrl = $this->getEntityUrl();
-
+        
         return $this->request('GET', $entityUrl, $options);
     }
 
@@ -76,17 +84,17 @@ class Entity extends Resource implements ArrayableInterface
      * @param string $method
      * @param string $relativeUrl
      * @param array  $data
+     * @param array  $additionHeader
      *
      * @return Entity
      */
-    protected function request($method, $relativeUrl, $data = null)
+    protected function request($method, $relativeUrl, $data = null, $additionHeader = array())
     {
         $request = new Request();
 
-        $response = $request->request($method, $relativeUrl, $data);
+        $response = $request->request($method, $relativeUrl, $data, $additionHeader);
 
-        if ((isset($response['entity'])) and
-            ($response['entity'] == $this->getEntity()))
+        if ((isset($response['entity'])) and ($response['entity'] == $this->getEntity()))
         {
             $this->fill($response);
 
@@ -98,6 +106,19 @@ class Entity extends Resource implements ArrayableInterface
         }
     }
 
+    /**
+     * set Additional Header
+     *
+     *
+     * @param array  $additionHeader
+     *
+     * @return Entity
+     */
+    protected function setAdditionHeader($additionHeader){
+
+        $this->additionHeader = $additionHeader;
+
+    }
     /**
      * Given the JSON response of an API call, wraps it to corresponding entity
      * class or a collection and returns the same.
