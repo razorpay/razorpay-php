@@ -107,6 +107,7 @@ $smartCollect = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G'); // Fetch a Vir
 $smartCollect = $api->virtualAccount->all(array('from'=>1631023247,'to'=>1631023879,'count'=>1)); // Fetch All Virtual Accounts
 $smartCollect = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer(); // Fetch Payment Details using ID and Transfer Method
 $smartCollect = $virtualAccount->payments(array('from'=> 1631099841,'to'=> 1631099852,'count'=> 1)); // Fetch Payments made to a Virtual Account
+$smartCollect = $api->virtualAccount->fetch('va_HubTH8fZ4tnBnP')->addReceiver(array('types' => array('vpa'),'vpa' => array('descriptor'=>'gauravkumar'))); // Add Receiver to an Existing Virtual Account 
 $smartCollect  = $virtualAccount->close(); // Close a Virtual Account
 
 // Bharat QR
