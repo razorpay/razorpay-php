@@ -64,6 +64,7 @@ $upi = $api->payment->fetch($id); // Fetch Token by Payment ID
 $upi = $api->customer->fetch($customerId)->tokens()->fetch($tokenId); // Fetch Tokens by Customer ID
 $upi = $api->customer->fetch($customerId)->tokens()->delete($tokenId); // Deletes a token
 $upi = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Create an Order to Charge the Customer 
+https://razorpay.com/docs/api/recurring-payments/upi/authorization-transaction/#113-create-an-authorization-payment // Create an Authorization Payment
 
 // Customers
 $customer = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates customer
