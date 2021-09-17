@@ -53,6 +53,8 @@ $refund = $api->refund->create(array('payment_id' => $id, 'amount'=>$refundAmoun
 $refund = $api->refund->fetch($refundId); // Returns a particular refund
 
 // Cards
+$customer = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates an customer
+$order  = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Creates an order
 $card = $api->card->fetch($cardId); // Returns a particular card
 $card = $api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('method'=>'card','max_amount'=>'500','expire_at'=>'1634215992'),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992)); // Create a Registration Link
 
@@ -65,7 +67,7 @@ $customer = $api->customer->edit(array('name' => 'Razorpay User', 'email' => 'cu
 // Tokens
 $token  = $api->customer->fetch($customerId)->tokens()->fetch($tokenId); // Returns a particular token
 $tokens = $api->customer->token()->all($options); // Returns array of token objects
-$api->customer->fetch($customerId)->tokens()->delete($tokenId); // Deletes a token
+$token  =  $api->customer->fetch($customerId)->tokens()->delete($tokenId); // Deletes a token
 
 
 // Transfers
