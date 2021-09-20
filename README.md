@@ -94,19 +94,26 @@ $invoice->delete();
 $virtualAccount  = $api->virtualAccount->create(array('receivers' => array('types'=> arra('bank_account')),'allowed_payers' => array(array('type'=>'bank_account','bank_account'=>array('ifsc'=>'RATN0VAAPIS','account_number'=>'2223330027558515'))),'description' => 'Virtual Account created for Raftar','customer_id' => 'cust_HssUOFiOd2b1TJ', 'notes' => array('project_name' => 'Banking Software')));  //Create a Virtual Account
 
 $virtualAccount = $api->virtualAccount->fetch('va_HubTH8fZ4tnBnP')->addReceiver(array('types' => array('vpa'),'vpa' => array('descriptor'=>'gauravkumar'))); // Add Receiver to an Existing Virtual Account 
+$options = array('from'=> 1631099841,'to'=> 1631099852,'count'=> 1);
+$virtualAccount = $api->virtualAccount->all($options); // Fetch All Virtual Accounts
 
-$virtualAccounts = $api->virtualAccount->all(array('from'=>1631023247,'to'=>1631023879,'count'=>1)); // Fetch All Virtual Accounts
 $virtualAccount  = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G'); // Fetch a Virtual Account by ID
 $virtualAccount  = $virtualAccount->close(); // Close a Virtual Account
-$payments        = $virtualAccount->payments(array('from'=> 1631099841,'to'=> 1631099852,'count'=> 1)); // Fetch Payments made to a Virtual Account
+
+$options = array('from'=> 1631099841,'to'=> 1631099852,'count'=> 1);
+$virtualAccount = $virtualAccount->payments($options); // Fetch Payments made to a Virtual Account
 $bankTransfer    = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer(); // Fetch Payment Details using ID and Transfer Method
 
 // Smart Collect TPV APIs
 $smartCollect = $api->virtualAccount->create(array('receivers' => array('types'=> arra('bank_account')),'allowed_payers' => array(array('type'=>'bank_account','bank_account'=>array('ifsc'=>'RATN0VAAPIS','account_number'=>'2223330027558515'))),'description' => 'Virtual Account created for Raftar','customer_id' => 'cust_HssUOFiOd2b1TJ', 'notes' => array('project_name' => 'Banking Software')));  //Create a Virtual Account
 $smartCollect = $api->virtualAccount->fetch('va_4xbQrmEoA5WJ0G'); // Fetch a Virtual Account by ID
-$smartCollect = $api->virtualAccount->all(array('from'=>1631023247,'to'=>1631023879,'count'=>1)); // Fetch All Virtual Accounts
+
+$options = array('from'=> 1631099841,'to'=> 1631099852,'count'=> 1);
+$smartCollect = $api->virtualAccount->all($options); // Fetch All Virtual Accounts
 $smartCollect = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer(); // Fetch Payment Details using ID and Transfer Method
-$smartCollect = $virtualAccount->payments(array('from'=> 1631099841,'to'=> 1631099852,'count'=> 1)); // Fetch Payments made to a Virtual Account
+
+$options = array('from'=> 1631099841,'to'=> 1631099852,'count'=> 1);
+$smartCollect = $virtualAccount->payments($options); // Fetch Payments made to a Virtual Account
 $smartCollect = $api->virtualAccount->fetch('va_HubTH8fZ4tnBnP')->addReceiver(array('types' => array('vpa'),'vpa' => array('descriptor'=>'gauravkumar'))); // Add Receiver to an Existing Virtual Account 
 $smartCollect  = $virtualAccount->close(); // Close a Virtual Account
 
