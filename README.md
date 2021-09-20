@@ -62,6 +62,7 @@ $card = $api->subscription->createSubscriptionRegistration(array('customer'=>arr
 $card = $api->invoice->fetch('inv_00000000000001')->notifyBy('sms'); // Send/Resend Notifications
 $card = $api->payment->fetch($id); // Fetch Token by Payment ID
 $card = $api->customer->fetch($customerId)->tokens()->fetch($tokenId); // Fetch Tokens by Customer ID
+$card = $api->invoice->fetch('inv_00000000000001')->cancel(); // Cancel a Registration Link
 $card = $api->customer->fetch($customerId)->tokens()->delete($tokenId); // Deletes a token
 $card = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Create an Order to Charge the Customer
 
