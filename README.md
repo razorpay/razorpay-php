@@ -42,6 +42,7 @@ $order  = $api->order->create(array('amount' => 1000, 'currency' => 'INR','trans
 $payments = $api->payment->all($options); // Returns array of payment objects
 $payment  = $api->payment->fetch($id); // Returns a particular payment
 $payment  = $api->payment->fetch($id)->capture(array('amount'=>$amount)); // Captures a payment
+$payments = $api->payment->all(array('X-Razorpay-Account'=>'acc_HjVXbtpSCIxENR')); // Fetch payments of a linked account
 
 // To get the payment details
 echo $payment->amount;
