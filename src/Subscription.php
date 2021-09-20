@@ -68,9 +68,9 @@ class Subscription extends Entity
         return $this->request('POST', $relativeUrl, $attributes);  
     }
 
-    public function deleteOffer($offer_id)
+    public function deleteOffer($offerId)
     {
-        $relativeUrl = $this->getEntityUrl() . $this->id.'/'.$offer_id;
+        $relativeUrl = $this->getEntityUrl() . $this->id.'/'.$offerId;
         
         return $this->request('DELETE', $relativeUrl);
     }

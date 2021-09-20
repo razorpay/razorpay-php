@@ -121,7 +121,11 @@ $subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->resume(['resum
 $subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->deleteOffer('offer_JHD834hjbxzhd38d') // Delete an Offer Linked to a Subscription
 $subscription = $api->invoice->all(['subscription_id'=>'sub_HvNIkQUz9I5GBA']); // Fetch All Invoices for a Subscription
 //For authentication transaction in subscription please refer this link https://razorpay.com/docs/api/subscriptions/#authentication-transaction 
-//For payment verification in subscription please refer this link https://razorpay.com/docs/api/subscriptions/#payment-verification
+
+$attributes = array( 'razorpay_signature' => $razorpaySignature, 'razorpay_payment_id' => $razorpayPaymentId, 'razorpay_subscription_id' => $razorpaySubscriptionId);
+$subscription = $api->utility->verifyPaymentSignature($attributes); // Payment Verification
+
+
 $addon         = $api->addon->fetchAll($option); // Fetch all Add-ons
 $addon         = $api->subscription->fetch('sub_82uBGfpFK47AlA')->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 30000, 'currency' => 'INR'), 'quantity' => 2)); // Create an Add-on
 $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H');
