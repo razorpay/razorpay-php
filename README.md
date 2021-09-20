@@ -112,6 +112,16 @@ $bankTransfer    = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer();
 $bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'amount_expected' => 100, 'notes' => array('receiver_key' => 'receiver_value'))); // Create Static QR
 $bharatQR = $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'notes' => array('receiver_key' => 'receiver_value'))); // Create Dynamic QR
 
+// QR Code
+$qrCode = $api->qrCode->create(array("type" => "upi_qr","name" => "Store_1", "usage" => "single_use","fixed_amount" => 1,"payment_amount" => 300,"customer_id" => "cust_HKsR5se84c5LTO","description" => "For Store 1","close_by" => 1681615838,"notes" => array("purpose" => "Test UPI QR code notes"))); // Create QR Code
+$qrCode = $api->qrCode->create(array("type" => "upi_qr","name" => "Store_1", "usage" => "single_use","fixed_amount" => 1,"payment_amount" => 300,"customer_id" => "cust_HKsR5se84c5LTO","description" => "For Store 1","close_by" => 1681615838,"notes" => array("purpose" => "Test UPI QR code notes"),"tax_invoice" => array("number" => "INV001", "date" => 1589994898,"customer_name" => "Gaurav Kumar", "business_gstin"=> "06AABCU9605R1ZR","gst_amount" => 4000, "cess_amount" => 0, "supply_type" => "interstate"))); // Create QR Code GST
+$closeQRCode = $api->qrCode->fetch('qr_HMsVL8HOpbMcjU')->close() // Close QR code
+$qrCode = $api->qrCode->fetch('qr_HMsVL8HOpbMcjU') // Fetch particular QR code
+$qrCode = $api->qrCode->all(["customer_id" => 'cust_HKsR5se84c5LTO']) // Fetch QR code for particular customer id
+$qrCode = $api->qrCode->all(["payment_id" => 'pay_Di5iqCqA1WEHq6']) // Fetch QR code for particular payment id
+$qrCode = $api->qrCode->all() // Fetch all QR code
+$qrCode = $api->qrCode->fetch('qr_HMsVL8HOpbMcjU')->fetchAllPayments() // Fetch Payments for a QR Code
+
 // Subscriptions
 $plan          = $api->plan->create(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR')));
 $plan          = $api->plan->fetch('plan_7wAosPWtrkhqZw');
