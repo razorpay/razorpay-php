@@ -165,7 +165,8 @@ class Entity extends Resource implements ArrayableInterface
 
     public function fill($data)
     {
-     $attributes = array();
+        $attributes = array();
+        
      if(is_array($data))
      {   
         foreach ($data as $key => $value)
