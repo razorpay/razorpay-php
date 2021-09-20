@@ -61,7 +61,7 @@ $upi = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency'
 $upi = $api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('method'=>'upi','max_amount'=>'500','expire_at'=>'1634215992'),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992)); // Create a Registration Link 
 $upi = $api->invoice->fetch('inv_00000000000001')->notifyBy('sms'); // Send/Resend Notifications
 $upi = $api->payment->fetch($id); // Fetch Token by Payment ID
-$upi = $api->customer->fetch($customerId)->tokens()->fetch($tokenId); // Fetch Tokens by Customer ID
+$upi = $api->customer->fetch($customerId)->tokens()->all(); // Fetch Tokens by Customer ID
 $upi = $api->invoice->fetch('inv_00000000000001')->cancel(); // Cancel a Registration Link
 $upi = $api->customer->fetch($customerId)->tokens()->delete($tokenId); // Deletes a token
 $upi = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Create an Order to Charge the Customer 
