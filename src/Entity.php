@@ -165,42 +165,38 @@ class Entity extends Resource implements ArrayableInterface
 
     public function fill($data)
     {
-        $attributes = array();
-        
-        if(is_array($data))
-        {  
-            foreach ($data as $key => $value)
+     $attributes = array();
+     if(is_array($data))
+     {   
+        foreach ($data as $key => $value)
+        {
+            if (is_array($value))
             {
-                if (is_array($value))
+                if  (static::isAssocArray($value) === false)
                 {
-                    if  (static::isAssocArray($value) === false)
+                    $collection = array();
+                    foreach ($value as $v)
                     {
-                        $collection = array();
-
-                        foreach ($value as $v)
+                        if (is_array($v))
                         {
-                            if (is_array($v))
-                            {
-                                $entity = static::buildEntity($v);
-                                array_push($collection, $entity);
-                            }
-                            else
-                            {
-                                array_push($collection, $v);
-                            }
+                            $entity = static::buildEntity($v);
+                            array_push($collection, $entity);
                         }
-
-                        $value = $collection;
+                        else
+                        {
+                            array_push($collection, $v);
+                        }
                     }
-                    else
-                    {
-                        $value = static::buildEntity($value);
-                    }
+                    $value = $collection;
                 }
-
-                $attributes[$key] = $value;
+                else
+                {
+                    $value = static::buildEntity($value);
+                }
             }
+            $attributes[$key] = $value;
         }
+      }
         $this->attributes = $attributes;
     }
 
