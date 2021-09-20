@@ -55,6 +55,19 @@ $refund = $api->refund->fetch($refundId); // Returns a particular refund
 // Cards
 $card = $api->card->fetch($cardId); // Returns a particular card
 
+//Register Emandate and Charge First Payment Together
+$emandate = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates an customer
+$emandate = $api->order->create(array('receipt' => 'Receipt No. 1', 'amount' => 100, 'currency' => 'INR','method'=>'emandate','customer_id'=>'cust_1Aa00000000001','notes'=>array('notes_key_1'=>'Beam me up Scotty','notes_key_2'=>'Engage'),'token'=>array('first_payment_amount'=>100,'auth_type'=>'netbanking','max_amount'=> 9999900,'expire_at'=>4102444799,'bank_account'=>array('beneficiary_name'=>'Gaurav Kumar','account_number'=>'1121431121541121','account_type'=>'savings','ifsc_code'=>'HDFC0000001')))); // Creates an order
+$emandate = $api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('first_payment_amount'=>100,'method'=>'emandate','auth_type'=>'netbanking','expire_at'=>1634215992,'max_amount'=>50000,'bank_account'=>array('beneficiary_name'=>'Gaurav Kumar','account_number'=>'11214311215411','account_type'=>'savings','ifsc_code'=>'HDFC0001233')),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992)); // Create a Registration Link 
+$emandate = $api->invoice->fetch('inv_00000000000001')->notifyBy('sms'); // Send/Resend Notifications
+$emandate = $api->payment->fetch($id); // Fetch Token by Payment ID
+$emandate = $api->customer->fetch($customerId)->tokens()->all(); // Fetch Tokens by Customer ID
+$emandate = $api->invoice->fetch('inv_00000000000001')->cancel(); // Cancel a Registration Link
+$emandate = $api->customer->fetch($customerId)->tokens()->delete($tokenId); // Deletes a token
+$emandate = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Create an Order to Charge the Customer 
+$emandate = $api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>100,'currency'=>'INR','order_id'=>'order_1Aa00000000002','customer_id'=>'cust_1Aa00000000001','token'=>'token_1Aa00000000001','recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar']); // Create a Recurring Payment
+//For payment authorization in "registration and charge first payment together" please refer this link https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#113-create-an-authorization-payment
+
 // Customers
 $customer = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates customer
 $customer = $api->customer->fetch($customerId); // Returns a particular customer
