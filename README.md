@@ -148,6 +148,7 @@ $order  = $api->order->create(array ('amount' => 0,'currency' => 'INR','method' 
 $api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('first_payment_amount'=> 10000,'method'=>'nach','auth_type'=>'physical','max_amount'=>'500','expire_at'=>'1634215992','bank_account'=>array('beneficiary_name'=>'Gaurav Kumar','account_number'=>'11214311215411','account_type'=>'savings','ifsc_code'=>'HDFC0001233')),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992)); // Create a Registration Link
 
 
+
 ```
 
 For further help, see our documentation on <https://docs.razorpay.com>.
