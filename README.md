@@ -55,6 +55,19 @@ $refund = $api->refund->fetch($refundId); // Returns a particular refund
 // Cards
 $card = $api->card->fetch($cardId); // Returns a particular card
 
+//Upi
+$upi = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates an customer
+$upi = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR','customer_id'=>'cust_4xbQrmEoA5WJ01','method'=>'upi','token'=>array('max_amount'=>20000,'expire_at'=>1634215992,'frequency'=>'monthly'),'receipt'=>'Receipt No. 1')); // Creates an order
+$upi = $api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('method'=>'upi','max_amount'=>'500','expire_at'=>'1634215992'),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992)); // Create a Registration Link 
+$upi = $api->invoice->fetch('inv_00000000000001')->notifyBy('sms'); // Send/Resend Notifications
+$upi = $api->payment->fetch($id); // Fetch Token by Payment ID
+$upi = $api->customer->fetch($customerId)->tokens()->all(); // Fetch Tokens by Customer ID
+$upi = $api->invoice->fetch('inv_00000000000001')->cancel(); // Cancel a Registration Link
+$upi = $api->customer->fetch($customerId)->tokens()->delete($tokenId); // Deletes a token
+$upi = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Create an Order to Charge the Customer 
+$upi = $api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>100,'currency'=>'INR','order_id'=>'order_1Aa00000000002','customer_id'=>'cust_1Aa00000000001','token'=>'token_1Aa00000000001','recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar']); // Create a Recurring Payment
+//For payment authorization in upi please refer this link https://razorpay.com/docs/api/recurring-payments/upi/authorization-transaction/#113-create-an-authorization-payment
+
 // Customers
 $customer = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates customer
 $customer = $api->customer->fetch($customerId); // Returns a particular customer
