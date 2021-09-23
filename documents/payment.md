@@ -76,6 +76,43 @@ $api->payment->fetch($paymentId)->edit(array('notes'=> array('key_1'=> 'value1',
 
 -------------------------------------------------------------------------------------------------------
 
+### Fecth card details with id
+
+```php
+$api->payment->fetchCardDetails('pay_I0rj4T3fNqnjam');
+```
+
+**Parameters:**
+
+| Name        | Type    | Description                          |
+|-------------|---------|--------------------------------------|
+| paymentId* | string  | Id of the payment to update          |
+
+-------------------------------------------------------------------------------------------------------
+
+### Fetch Payment Downtime Details
+
+```php
+$api->payment->fetchPaymentDowntime();
+```
+
+
+-------------------------------------------------------------------------------------------------------
+
+### Fecth card details with id
+
+```php
+$api->payment->fetchPaymentDowntimeById('down_F1cxDoHWD4fkQt');
+
+```
+
+**Parameters:**
+
+| Name        | Type    | Description                          |
+|-------------|---------|--------------------------------------|
+| Id* | string  | Id to fetch payment downtime         |
+
+-------------------------------------------------------------------------------------------------------
 
 **PN: * indicates mandatory fields**
 <br>

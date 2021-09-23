@@ -50,6 +50,67 @@ $api->settlement->reports(array("year"=>2020,"month"=>09));
 
 -------------------------------------------------------------------------------------------------------
 
+### create Ondemand Settlement
+
+```php
+$api->settlement->createOndemandSettlement(array("amount"=> 1221, "settle_full_balance"=> false, "description"=>"Testing","notes" => array("notes_key_1"=> "Tea, Earl Grey, Hot","notes_key_2"=> "Tea, Earl Grey… decaf.")));
+```
+
+**Parameters:**
+
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+| amount*| integer      | Maximum amount that can be settled  |
+| settle_full_balance* | boolean      | true or false   |
+| description | string   | The description may not be greater than 30 characters    |
+| notes   | object   | A key-value pair     |
+
+-------------------------------------------------------------------------------------------------------
+
+### Get Settlement Recon
+
+```php
+$api->settlement->settlementRecon(array('year' => 2018, 'month' => 2, 'day'=>11));
+
+```
+
+**Parameters:**
+
+|
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+| year* | integer      | The year the settlement was received in the `YYYY` format. For example, `2020`   |
+| month* | integer      | The month the settlement was received in the `MM` format. For example, `09`   |
+| day | integer   | The day the settlement was received in the `DD` format. For example,      |
+
+
+-------------------------------------------------------------------------------------------------------
+
+### Fetch All On-demand Settlements
+
+```php
+
+$api->settlement->fetchAllOndemandSettlement();
+
+```
+
+-------------------------------------------------------------------------------------------------------
+
+### Fetch by On-demand Settlements by ID
+
+```php
+$api->settlement->fetchOndemandSettlementById('setlod_I0tEeDapQmA1r7');
+
+```
+
+**Parameters:**
+
+| Name       | Type   | Description                       |
+|------------|--------|-----------------------------------|
+| Id* | string | Settlement Id of the On-demand settlement|
+
+-------------------------------------------------------------------------------------------------------
+
 **PN: * indicates mandatory fields**
 <br>
 <br>
