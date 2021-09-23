@@ -67,7 +67,7 @@ $api->settlement->createOndemandSettlement(array("amount"=> 1221, "settle_full_b
 
 -------------------------------------------------------------------------------------------------------
 
-### Get Settlement Recon
+### Settlement Recon
 
 ```php
 $api->settlement->settlementRecon(array('year' => 2018, 'month' => 2, 'day'=>11));
@@ -90,16 +90,24 @@ $api->settlement->settlementRecon(array('year' => 2018, 'month' => 2, 'day'=>11)
 
 ```php
 
-$api->settlement->fetchAllOndemandSettlement();
+$api->settlement->fetchAllOndemandSettlement($options);
 
 ```
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| from  | timestamp | timestamp after which the payments were created  |
+| to    | timestamp | timestamp before which the payments were created |
+| count | integer   | number of payments to fetch (default: 10)        |
+| skip  | integer   | number of payments to be skipped (default: 0)    |
 
 -------------------------------------------------------------------------------------------------------
 
-### Fetch by On-demand Settlements by ID
+### Fetch On-demand Settlement by ID
 
 ```php
-$api->settlement->fetchOndemandSettlementById('setlod_I0tEeDapQmA1r7');
+$api->settlement->fetchOndemandSettlementById($settlementId);
 
 ```
 
@@ -107,7 +115,7 @@ $api->settlement->fetchOndemandSettlementById('setlod_I0tEeDapQmA1r7');
 
 | Name       | Type   | Description                       |
 |------------|--------|-----------------------------------|
-| Id* | string | Settlement Id of the On-demand settlement|
+| $settlementId* | string | Settlement Id of the On-demand settlement|
 
 -------------------------------------------------------------------------------------------------------
 

@@ -76,10 +76,10 @@ $api->payment->fetch($paymentId)->edit(array('notes'=> array('key_1'=> 'value1',
 
 -------------------------------------------------------------------------------------------------------
 
-### Fecth card details with id
+### Fetch card details with paymentId
 
 ```php
-$api->payment->fetchCardDetails('pay_I0rj4T3fNqnjam');
+$api->payment->fetchCardDetails(paymentId);
 ```
 
 **Parameters:**
@@ -99,10 +99,10 @@ $api->payment->fetchPaymentDowntime();
 
 -------------------------------------------------------------------------------------------------------
 
-### Fecth card details with id
+### Fetch Payment Downtime
 
 ```php
-$api->payment->fetchPaymentDowntimeById('down_F1cxDoHWD4fkQt');
+$api->payment->fetchPaymentDowntimeById($downtimeId);
 
 ```
 
@@ -110,7 +110,7 @@ $api->payment->fetchPaymentDowntimeById('down_F1cxDoHWD4fkQt');
 
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| Id* | string  | Id to fetch payment downtime         |
+| downtimeId* | string  | Id to fetch payment downtime         |
 
 -------------------------------------------------------------------------------------------------------
 
