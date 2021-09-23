@@ -36,6 +36,8 @@ $orderId = $order['id']; // Get the created Order ID
 $order  = $api->order->fetch($orderId);
 $orders = $api->order->all($options); // Returns array of order objects
 $payments = $api->order->fetch($orderId)->payments(); // Returns array of payment objects against an order
+$order = $api->order->fetch('order_I0PzZrMTaN3lvL')->edit(array('notes'=> array('notes_key_1'=>'Beam me up Scotty. 1', 'notes_key_2'=>'Engage'))); // Update the Order
+$order = $api->order->fetch('order_I06i6hYPV2ieZS')->payments(); // Fetch Payments for an Order
 
 // Payments
 $payments = $api->payment->all($options); // Returns array of payment objects
