@@ -32,16 +32,4 @@ class Subscription extends Entity
 
         return $this->request('POST', $relativeUrl, $attributes);
     }
-
-    /**
-     * Create a Registration Link
-     * @param  array $attributes
-     * @return array
-     */
-    public function createSubscriptionRegistration($attributes = array())
-    {
-        $relativeUrl = 'subscription_registration/auth_links';
-        
-        return $this->request('POST', $relativeUrl, $attributes);
-    }
 }
