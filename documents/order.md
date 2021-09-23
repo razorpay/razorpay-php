@@ -44,7 +44,7 @@ $api->order->fetch($orderId);
 
 | Name     | Type   | Description                         |
 |----------|--------|-------------------------------------|
-| orderId* | string | The id of the order to be retrieved |
+| orderId* | string | The id of the order to be fetched |
 
 -------------------------------------------------------------------------------------------------------
 

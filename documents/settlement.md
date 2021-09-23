@@ -44,6 +44,7 @@ $api->settlement->reports(array("year"=>2020,"month"=>09));
 |---------------|-------------|---------------------------------------------|
 | year* | integer      | The year the settlement was received in the `YYYY` format. For example, `2020`   |
 | month* | integer      | The month the settlement was received in the `MM` format. For example, `09`   |
+| day | integer      | The date the settlement was received in the `DD` format. For example, `01`   |
 | count | integer   | number of settlements to fetch (default: 10)        |
 | skip  | integer   | number of settlements to be skipped (default: 0)    |
 
