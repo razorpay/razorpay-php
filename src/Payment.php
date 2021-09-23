@@ -93,4 +93,65 @@ class Payment extends Entity
  
         return $this->request('POST', $relativeUrl, $attributes);   
     }
+    /**
+     * fetch Card Details
+     *
+     * @param id $id
+     *
+     * @return card
+     */
+    public function fetchCardDetails()
+    {
+        $relativeUrl = $this->getEntityUrl() . $this->id . '/card';
+
+        return $this->request('GET', $relativeUrl);
+    }
+     /**
+     * fetchPaymentDowntime
+     *
+     */
+    public function fetchPaymentDowntime()
+    {
+        $relativeUrl = $this->getEntityUrl() . 'downtimes';
+
+        return $this->request('GET', $relativeUrl);
+    }
+    /**
+     * fetch Payment Downtime Id
+     *
+     * @param id $id
+     *
+     * @return card
+     */
+    public function fetchPaymentDowntimeById()
+    {
+        $relativeUrl = $this->getEntityUrl() . 'downtimes' . $this->id;
+
+        return $this->request('GET', $relativeUrl);
+    }
+    /**
+     * create Payment Json
+     *
+     * @param array $attributes
+     */
+    public function createPaymentJson($attributes = array())
+    {
+        $relativeUrl = $this->getEntityUrl() . 'create/json';
+ 
+        return $this->request('POST', $relativeUrl, $attributes);   
+    }
+    /**
+     * submit otp
+     *
+     * @param id $id
+     *
+     * @param array $attributes
+     */
+    public function otp($attributes = array())
+    {
+        $relativeUrl = $this->getEntityUrl(). $this->id . '/otp/submit';
+ 
+        return $this->request('POST', $relativeUrl, $attributes);   
+    }
+
 }
