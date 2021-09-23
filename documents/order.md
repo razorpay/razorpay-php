@@ -14,6 +14,7 @@ $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'IN
 | currency*        | string  | Currency of the order. Currently only INR is supported.                      |
 | receipt         | string  | Your system order reference id.                                              |
 | notes           | object  | A key-value pair                                                             |
+
 -------------------------------------------------------------------------------------------------------
 
 ### Fetch all orders
@@ -26,11 +27,11 @@ $api->order->all($options);
 
 | Name       | Type      | Description                                                  |
 |------------|-----------|--------------------------------------------------------------|
-| from       | timestamp | timestamp after which the payments were created              |
-| to         | timestamp | timestamp before which the payments were created             |
-| count      | integer   | number of payments to fetch (default: 10)                    |
-| skip       | integer   | number of payments to be skipped (default: 0)                |
-| authorized | boolean   | Orders for which payments are currently in authorized state. |
+| from       | timestamp | timestamp after which the orders were created              |
+| to         | timestamp | timestamp before which the orders were created             |
+| count      | integer   | number of orders to fetch (default: 10)                    |
+| skip       | integer   | number of orders to be skipped (default: 0)                |
+| authorized | boolean   | Orders for which orders are currently in authorized state. |
 | receipt    | string    | Orders with the provided value for receipt.                  |
 
 -------------------------------------------------------------------------------------------------------
@@ -47,7 +48,20 @@ $api->order->fetch($orderId);
 
 -------------------------------------------------------------------------------------------------------
 
-**PN: * are mandatory fields**
+### Fetch payments for an order
+
+```php
+$api->order->fetch($orderId)->payments();
+```
+**Parameters**
+
+| Name     | Type   | Description                         |
+|----------|--------|-------------------------------------|
+| orderId* | string | The id of the order to be retrieve payment info |
+
+-------------------------------------------------------------------------------------------------------
+
+**PN: * indicates mandatory fields**
 <br>
 <br>
 **For reference click [here](https://razorpay.com/docs/api/orders/)**

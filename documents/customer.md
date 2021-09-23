@@ -13,6 +13,7 @@ $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@raz
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
 | notes         | object      | A key-value pair                            |
+
 -------------------------------------------------------------------------------------------------------
 ### Edit a customer
 ```php
@@ -23,10 +24,11 @@ $api->customer->fetch($customerId)->edit(array('name' => 'Razorpay User', 'email
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| customerId*          | string      | The id of the customer to be updated                        |
+| customerId*          | string      | The id of the customer to be updated  |
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
 | notes         | object      | A key-value pair                            |
+
 -------------------------------------------------------------------------------------------------------
 
 ### Fetch a customer
@@ -38,10 +40,11 @@ $api->customer->fetch($customerId)
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| customerId*          | string      | The id of the customer to be fetched                        |
+| customerId*          | string      | The id of the customer to be fetched  |
+
 -------------------------------------------------------------------------------------------------------
 
-**PN: * are mandatory fields**
+**PN: * indicates mandatory fields**
 <br>
 <br>
 **For reference click [here](https://razorpay.com/docs/api/customers/)**
