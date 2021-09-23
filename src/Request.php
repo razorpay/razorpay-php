@@ -38,7 +38,7 @@ class Request
      * @return array Response data in array format. Not meant
      * to be used directly
      */
-    public function request($method, $url, $data = array(), $additionHeader = array())
+    public function request($method, $url, $data = array())
     {
         $url = Api::getFullUrl($url);
 
@@ -52,7 +52,7 @@ class Request
             'timeout' => 60
         );
         
-        $headers = $this->getRequestHeaders($additionHeader);
+        $headers = $this->getRequestHeaders();
 
         $response = Requests::request($url, $headers, $data, $method, $options);  
         $this->checkErrors($response);
@@ -153,7 +153,7 @@ class Request
             $httpStatusCode);
     }
 
-    protected function getRequestHeaders($additionHeader)
+    protected function getRequestHeaders()
     {
         $uaHeader = array(
             'User-Agent' => $this->constructUa()
@@ -161,11 +161,6 @@ class Request
         );
         
         $headers = array_merge(self::$headers, $uaHeader);
-
-        if(empty($additionHeader) === false)
-        {         
-            $headers = array_merge($headers, $additionHeader);
-        }
 
         return $headers;
     }

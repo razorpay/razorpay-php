@@ -5,20 +5,20 @@ namespace Razorpay\Api;
 use Requests;
 
 
-class Payment_link extends Entity
+class PaymentLink extends Entity
 {
     /**
      * Creates Payment link .
      *
      * @param array $attributes
      *
-     * @return Payment_link
+     * @return PaymentLink
      */
     public function create($attributes = array())
     {
-        $additionHeader['Content-Type'] = 'application/json';
+        $attributes = json_encode($attributes);
 
-        parent::setAdditionHeader($additionHeader) ;
+        Request::addHeader('Content-Type', 'application/json');
 
         return parent::create($attributes);
     }
@@ -28,7 +28,7 @@ class Payment_link extends Entity
      *
      * @param string $id
      *
-     * @return Payment_link
+     * @return PaymentLink
      */
     public function fetch($id)
     {
@@ -50,7 +50,7 @@ class Payment_link extends Entity
     /**
      * Cancels Payment link
      *
-     * @return Payment_link
+     * @return PaymentLink
      */
     public function cancel()
     {
