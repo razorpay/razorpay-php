@@ -1,61 +1,8 @@
 ## Refunds
 
-### Create refund for a payment
-```php
-$api->payment->create(array('payment_id' => $paymentId);
-```
-
-**Parameters:**
-
-| Name          | Type        | Description                                 |
-|---------------|-------------|---------------------------------------------|
-|  paymentId*          | string      | The id of the payment                |
-
--------------------------------------------------------------------------------------------------------
-
-### Create partial refund for a payment
-```php
-$api->refund->create(array('payment_id' => $paymentId, 'amount'=>$refundAmount));
-```
-
-**Parameters:**
-
-| Name          | Type        | Description                                 |
-|---------------|-------------|---------------------------------------------|
-|  paymentId*   | string      | The id of the payment                |
-|  amount       | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
-
--------------------------------------------------------------------------------------------------------
-
-### Fetch particular refund
-```php
-$api->refund->fetch($refundId);
-```
-
-**Parameters:**
-
-| Name          | Type        | Description                                 |
-|---------------|-------------|---------------------------------------------|
-|  refundId*   | string      | The id of the refund                |
-
--------------------------------------------------------------------------------------------------------
-
-### Fetch refund by payment
-```php
-$api->payment->fetch($paymentId);
-```
-
-**Parameters:**
-
-| Name          | Type        | Description                                 |
-|---------------|-------------|---------------------------------------------|
-|  paymentId*          | string      | The id of the payment                       |
-
--------------------------------------------------------------------------------------------------------
-
 ### Create a normal refund
 ```php
-$api->payment->fetch($paymentId)->refund(array("amount"=> "100"));
+$api->payment->fetch($paymentId)->refund(array("amount"=> "100", "speed"=>"normal", "notes"=>array("notes_key_1"=>"Beam me up Scotty.", "notes_key_2"=>"Engage"), "receipt"=>"Receipt No. 31"));
 ```
 
 **Parameters:**
@@ -88,7 +35,7 @@ $api->payment->fetch($paymentId)->refund(array("amount"=> "100","speed"=>"optimu
 
 ### Fetch multiple refunds for a payment
 ```php
-$api->payment->fetch($paymentId)->fetchMultipleRefund($option);
+$api->payment->fetch($paymentId)->fetchRefund($option);
 ```
 
 **Parameters:**
@@ -100,6 +47,20 @@ $api->payment->fetch($paymentId)->fetchMultipleRefund($option);
 | to    | timestamp | timestamp before which the payments were created |
 | count | integer   | number of payments to fetch (default: 10)        |
 | skip  | integer   | number of payments to be skipped (default: 0)    |
+
+-------------------------------------------------------------------------------------------------------
+
+### Fetch a specific refund for a payment
+```php
+$api->payment->fetch($paymentId)->fetchRefund($refundId);
+```
+
+**Parameters:**
+
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+|  payment_id*   | string      | The id of the payment to be fetched        |
+|  refundId*   | string      | The id of the refund to be fetched           |
 
 -------------------------------------------------------------------------------------------------------
 
@@ -116,6 +77,19 @@ $api->refund->all($options);
 | to    | timestamp | timestamp before which the payments were created |
 | count | integer   | number of payments to fetch (default: 10)        |
 | skip  | integer   | number of payments to be skipped (default: 0)    |
+
+-------------------------------------------------------------------------------------------------------
+
+### Fetch particular refund
+```php
+$api->refund->fetch($refundId);
+```
+
+**Parameters:**
+
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+|  refundId*   | string      | The id of the refund                |
 
 -------------------------------------------------------------------------------------------------------
 
