@@ -25,7 +25,7 @@ $api->invoice->create(array ('type' => 'invoice','date' => 1589994898, 'customer
 
 -------------------------------------------------------------------------------------------------------
 
-### Fetch invoices
+### Fetch all invoices
 
 ```php
 $api->invoice->all();

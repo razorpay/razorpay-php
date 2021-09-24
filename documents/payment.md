@@ -72,7 +72,7 @@ $api->payment->fetch($paymentId)->edit(array('notes'=> array('key_1'=> 'value1',
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
 | paymentId* | string  | Id of the payment to update          |
-| notes*       | object  | A key-value pair                     |
+| notes*       | array  | A key-value pair                     |
 
 -------------------------------------------------------------------------------------------------------
 

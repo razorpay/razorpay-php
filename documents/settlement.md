@@ -63,7 +63,7 @@ $api->settlement->createOndemandSettlement(array("amount"=> 1221, "settle_full_b
 | amount*| integer      | Maximum amount that can be settled  |
 | settle_full_balance* | boolean      | true or false   |
 | description | string   | The description may not be greater than 30 characters    |
-| notes   | object   | A key-value pair     |
+| notes   | array   | A key-value pair     |
 
 -------------------------------------------------------------------------------------------------------
 

@@ -12,7 +12,7 @@ $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@raz
 | name*          | string      | Name of the customer                        |
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
-| notes         | object      | A key-value pair                            |
+| notes         | array      | A key-value pair                            |
 
 -------------------------------------------------------------------------------------------------------
 ### Edit customer
@@ -27,7 +27,7 @@ $api->customer->fetch($customerId)->edit(array('name' => 'Razorpay User', 'email
 | customerId*          | string      | The id of the customer to be updated  |
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
-| notes         | object      | A key-value pair                            |
+| notes         | array      | A key-value pair                            |
 
 -------------------------------------------------------------------------------------------------------
 
