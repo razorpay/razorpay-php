@@ -58,6 +58,7 @@ $refund = $api->payment->fetch('pay_Hzoihn45TEHGK0')->refund(["amount"=> "100","
 
 $options = array('from'=> 1631099841,'to'=> 1631099852,'count'=> 1);
 $refund = $api->payment->fetch('pay_HvNPnCmBX7J0vS')->fetchMultipleRefund($option); // Fetch Multiple Refunds for a Payment
+$refund = $api->payment->fetch('pay_HvNPnCmBX7J0vS')->fetchRefund($refundId); // Fetch a Specific Refund for a Payment
 $refund = $api->refund->all(); // Fetch All Refunds
 $refund = $api->refund->fetch('rfnd_I0oScykxxawv1E')->edit(array('notes'=> array('notes_key_1'=>'Beam me up Scotty.', 'notes_key_2'=>'Engage'))); // Update the Refund
 

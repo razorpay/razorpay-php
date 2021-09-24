@@ -101,6 +101,13 @@ class Payment extends Entity
         return $this->request('GET', $relativeUrl, $options);
     }
 
+    public function fetchRefund($refundId)
+    {
+        $relativeUrl = $this->getEntityUrl() . $this->id . '/refunds/'.$refundId;
+
+        return $this->request('GET', $relativeUrl);
+    }
+
     public function createRecurring($attributes = array())
     {
         $relativeUrl = $this->getEntityUrl() . 'create/recurring';
