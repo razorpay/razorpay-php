@@ -27,6 +27,20 @@ $api->customer->fetch($customerId)->tokens()->delete($tokenId);
 
 -------------------------------------------------------------------------------------------------------
 
+### Fetch particular token
+```php
+$api->customer->fetch($customerId)->tokens()->fetch($tokenId);
+```
+
+**Parameters:**
+
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+| customerId*          | string      | The id of the customer to be fetched |
+| tokenId*          | string      | The id of the token to be fetched |
+
+-------------------------------------------------------------------------------------------------------
+
 **PN: * indicates mandatory fields**
 <br>
 <br>
