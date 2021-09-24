@@ -35,7 +35,7 @@ $api->payment->fetch($paymentId)->refund(array("amount"=> "100","speed"=>"optimu
 
 ### Fetch multiple refunds for a payment
 ```php
-$api->payment->fetch($paymentId)->fetchRefund($option);
+$api->payment->fetch($paymentId)->fetchMultipleRefund($option);
 ```
 
 **Parameters:**
@@ -89,7 +89,7 @@ $api->refund->fetch($refundId);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-|  refundId*   | string      | The id of the refund                |
+|  refundId*   | string      | The id of the refund to be fetched           |
 
 -------------------------------------------------------------------------------------------------------
 
@@ -102,7 +102,7 @@ $api->refund->fetch($refundId)->edit(array('notes'=> array('notes_key_1'=>'Beam 
 
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
-| refundId*   | string    | The id of the refund                             |
+| refundId*   | string    | The id of the refund to be fetched     |
 | notes* | array  | A key-value pair                                 |
 
 -------------------------------------------------------------------------------------------------------
