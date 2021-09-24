@@ -1,6 +1,6 @@
 ## Refunds
 
-### Creates refund for a payment
+### Create refund for a payment
 ```php
 $api->payment->create(array('payment_id' => $paymentId);
 ```
@@ -13,9 +13,9 @@ $api->payment->create(array('payment_id' => $paymentId);
 
 -------------------------------------------------------------------------------------------------------
 
-### Creates partial refund for a payment
+### Create partial refund for a payment
 ```php
-$refund = $api->refund->create(array('payment_id' => $paymentId, 'amount'=>$refundAmount));
+$api->refund->create(array('payment_id' => $paymentId, 'amount'=>$refundAmount));
 ```
 
 **Parameters:**
@@ -23,13 +23,13 @@ $refund = $api->refund->create(array('payment_id' => $paymentId, 'amount'=>$refu
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
 |  paymentId*   | string      | The id of the payment                |
-|  amount       | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |   
+|  amount       | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 
 -------------------------------------------------------------------------------------------------------
 
-### Returns a particular refund
+### Fetch particular refund
 ```php
-$refund = $api->refund->fetch($refundId);
+$api->refund->fetch($refundId);
 ```
 
 **Parameters:**
@@ -40,7 +40,7 @@ $refund = $api->refund->fetch($refundId);
 
 -------------------------------------------------------------------------------------------------------
 
-### Fetch refund by id
+### Fetch refund by payment
 ```php
 $api->payment->fetch($paymentId);
 ```
@@ -105,8 +105,18 @@ $api->payment->fetch($paymentId)->fetchMultipleRefund($option);
 
 ### Fetch all refunds
 ```php
-$api->refund->all();
+$api->refund->all($options);
 ```
+
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| from  | timestamp | timestamp after which the payments were created  |
+| to    | timestamp | timestamp before which the payments were created |
+| count | integer   | number of payments to fetch (default: 10)        |
+| skip  | integer   | number of payments to be skipped (default: 0)    |
+
 -------------------------------------------------------------------------------------------------------
 
 ### Update the refund
