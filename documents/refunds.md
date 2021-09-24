@@ -27,7 +27,7 @@ $api->payment->fetch($paymentId)->refund(["amount"=> "100"]);
 
 -------------------------------------------------------------------------------------------------------
 
-### CCreate an Instant Refund
+### Create an Instant Refund
 ```php
 $api->payment->fetch($paymentId)->refund(["amount"=> "100","speed"=>"optimum","receipt"=>"Receipt No. 31"]);
 ```
