@@ -61,6 +61,20 @@ $api->order->fetch($orderId)->payments();
 
 -------------------------------------------------------------------------------------------------------
 
+### Update the Order
+
+```php
+$api->order->fetch($orderId)->edit(array('notes'=> array('notes_key_1'=>'Beam me up Scotty. 1', 'notes_key_2'=>'Engage')));
+```
+**Parameters**
+
+| Name     | Type   | Description                         |
+|----------|--------|-------------------------------------|
+| orderId* | string | The id of the order to be retrieve payment info |
+| notes*   | object | A key-value pair                    |
+
+-------------------------------------------------------------------------------------------------------
+
 **PN: * indicates mandatory fields**
 <br>
 <br>
