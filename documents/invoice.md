@@ -68,7 +68,7 @@ $api->invoice->fetch($invoiceId)->edit(array('line_items' => array(array('id' =>
 | invoiceId*          | string | The id of the invoice to be fetched                         |
 -------------------------------------------------------------------------------------------------------
 
-### Issues an invoice
+### Issue an invoice
 
 ```php
 $api->invoice->fetch($invoiceId)->issue();

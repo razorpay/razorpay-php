@@ -15,7 +15,7 @@ $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@raz
 | notes         | object      | A key-value pair                            |
 
 -------------------------------------------------------------------------------------------------------
-### Edit a customer
+### Edit customer
 ```php
 $api->customer->fetch($customerId)->edit(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com','notes'=> array('notes_key_1'=> 'Tea, Earl Grey, Hot','notes_key_2'=> 'Tea, Earl Grey… decaf')));
 ```
