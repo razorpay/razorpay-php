@@ -61,7 +61,7 @@ $api->order->fetch($orderId)->payments();
 
 -------------------------------------------------------------------------------------------------------
 
-### Update the Order
+### Update order
 
 ```php
 $api->order->fetch($orderId)->edit(array('notes'=> array('notes_key_1'=>'Beam me up Scotty. 1', 'notes_key_2'=>'Engage')));
@@ -71,7 +71,7 @@ $api->order->fetch($orderId)->edit(array('notes'=> array('notes_key_1'=>'Beam me
 | Name     | Type   | Description                         |
 |----------|--------|-------------------------------------|
 | orderId* | string | The id of the order to be retrieve payment info |
-| notes*   | object | A key-value pair                    |
+| notes*   | array  | A key-value pair                    |
 
 -------------------------------------------------------------------------------------------------------
 
