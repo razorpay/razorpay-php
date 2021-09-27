@@ -72,7 +72,6 @@ $upi = $api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','cont
 $customer = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates customer
 $customer = $api->customer->fetch($customerId); // Returns a particular customer
 $customer = $api->customer->edit(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Edits customer
-$customer = $api->
 $customer = $api->fundAccount->create(array('customer_id'=>'cust_HxMXzMDXKAXEO7','account_type'=>'bank_account','bank_account'=>array('name'=>'Gaurav Kumar', 'account_number'=>'11214311215411', 'ifsc'=>'HDFC0000053'))); // Create a Fund Account 
 $customer = $api->fundAccount->all(array('customer_id'=>'cust_HxMXzMDXKAXEO7')); // Fetch All Fund Accounts
 
