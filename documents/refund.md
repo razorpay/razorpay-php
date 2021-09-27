@@ -59,7 +59,7 @@ $api->payment->fetch($paymentId)->fetchRefund($refundId);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-|  payment_id*   | string      | The id of the payment to be fetched        |
+|  paymentId*   | string      | The id of the payment to be fetched        |
 |  refundId*   | string      | The id of the refund to be fetched           |
 
 -------------------------------------------------------------------------------------------------------

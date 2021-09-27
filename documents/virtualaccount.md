@@ -10,7 +10,7 @@ $api->virtualAccount->create(array('receivers' => array('types'=> arra('bank_acc
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
 | receivers*    | array      | Array that defines what receivers are available for this Virtual Account                        |
-| allowed_payers*  | array      | All keys listed here https://razorpay.com/docs/api/smart-collect-tpv/#create-virtual-account are supported                    |
+| allowed_payers*  | array      | All keys listed [here](https://razorpay.com/docs/api/smart-collect-tpv/#create-virtual-account) are supported                    |
 
 -------------------------------------------------------------------------------------------------------
 
