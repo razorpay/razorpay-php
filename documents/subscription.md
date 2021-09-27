@@ -59,7 +59,7 @@ $api->subscription->all();
 
 -------------------------------------------------------------------------------------------------------
 
-### Fetch a subscription
+### Fetch particular subscription
 
 ```php
 $api->subscription->fetch($subscriptionId);
@@ -73,7 +73,7 @@ $api->subscription->fetch($subscriptionId);
 
 -------------------------------------------------------------------------------------------------------
 
-### Cancel a subscription
+### Cancel particular subscription
 
 ```php
 $api->subscription->fetch($subscriptionId)->cancel($options);
@@ -85,6 +85,124 @@ $api->subscription->fetch($subscriptionId)->cancel($options);
 |-------|-----------|--------------------------------------------------|
 | subscriptionId*  | string | The id of the subscription to be cancelled  |
 | cancel_at_cycle_end  | boolean | Possible values:<br>0 (default): Cancel the subscription immediately. <br> 1: Cancel the subscription at the end of the current billing cycle.  |
+
+-------------------------------------------------------------------------------------------------------
+
+### Update particular subscription
+
+```php
+$api->subscription->fetch($subscriptionId)->update($options);
+```
+
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| subscriptionId*  | string | The id of the subscription to be updated  |
+| options  | array | All parameters listed [here](https://razorpay.com/docs/api/subscriptions/#update-a-subscription) for update   |
+
+-------------------------------------------------------------------------------------------------------
+
+### Fetch details of pending update
+
+```php
+$api->subscription->fetch($subscriptionId)->pendingUpdate()
+```
+
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| subscriptionId*  | string | The id of the subscription to fetch pending update  |
+
+-------------------------------------------------------------------------------------------------------
+
+### Cancel a update
+
+```php
+$api->subscription->fetch($subscriptionId)->cancelAtNextCycle();
+```
+
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| subscriptionId*  | string | The id of the subscription to be cancel an update  |
+
+-------------------------------------------------------------------------------------------------------
+
+### Pause a subscription
+
+```php
+$api->subscription->fetch($subscriptionId)->pause(array('pause_at'=>'now'))
+```
+
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| subscriptionId*  | string | The id of the subscription to be paused  |
+| pause_at  | string | To pause the subscription, possible values: `now`  |
+
+-------------------------------------------------------------------------------------------------------
+
+### Resume a subscription
+
+```php
+$api->subscription->fetch($subscriptionId)->resume(array('resume_at'=>'now'))
+```
+
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| subscriptionId*  | string | The id of the subscription to be resumed  |
+| resume_at  | string | To resume the subscription, possible values: `now`  |
+
+-------------------------------------------------------------------------------------------------------
+
+### Fetch all invoices for a subscription
+
+```php
+$api->invoice->all(['subscription_id'=>$subscriptionId]);
+```
+
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| subscriptionId*  | string | The id of the subscription to fetch invoices  |
+
+-------------------------------------------------------------------------------------------------------
+
+### Delete offer link to a subscription
+
+```php
+$api->subscription->fetch($subscriptionId)->offer($offerId)
+```
+
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| subscriptionId*  | string | The id of the subscription to offer need to be deleted  |
+| offerId*  | string | The id of the offer linked to subscription  |
+
+-------------------------------------------------------------------------------------------------------
+
+### Authentication payment
+
+please refer this [doc](https://razorpay.com/docs/api/subscriptions/#authentication-transaction) for authentication of transaction
+
+-------------------------------------------------------------------------------------------------------
+
+### Payment verification
+
+```php
+$api->utility->verifyPaymentSignature($options)
+```
+
+please refer this [doc](https://razorpay.com/docs/api/subscriptions/#payment-verification) for payment verification
 
 -------------------------------------------------------------------------------------------------------
 
