@@ -29,6 +29,7 @@ $api->order->create(array('amount' => 100, 'currency' => 'INR',  'receipt' => '1
 |-----------------|---------|------------------------------------------------------------------------------|
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
+| customerId*   | string      | The id of the customer to be fetched | 
 | receipt      | string  | Your system order reference id.  |
 | method      | string  | Payment method used to make the registration transaction. Possible value is `card`.  |
 | token  | array  | All keys listed [here] https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#112-create-an-order are supported |
