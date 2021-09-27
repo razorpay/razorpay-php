@@ -47,7 +47,7 @@ class Subscription extends Entity
         return $this->request('GET', $relativeUrl, null);
     }
 
-    public function cancelAtNextCycle()
+    public function cancelScheduledChanges()
     {
         $relativeUrl = $this->getEntityUrl() . $this->id . '/cancel_scheduled_changes';
 
