@@ -48,15 +48,14 @@ $api->transfer->create(array('account' => $accountId, 'amount' => 500, 'currency
 
 ### Fetch transfer payment
 ```php
-$api->order->fetch($orderId)->transfers($transferId);
+$api->payment->fetch($paymentId)->transfer();
 ```
 
 **Parameters:**
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| orderId*   | string      | The id of the order to be fetched  |
-| transferId*   | string      | The id of the transfer to be fetched  |
+| paymentId*   | string      | The id of the payment to be fetched  |
 
 -------------------------------------------------------------------------------------------------------
 
