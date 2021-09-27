@@ -1,5 +1,18 @@
 ## Tokens
 
+### Fetch token by payment id
+```php
+$api->payment->fetch($paymentId);
+```
+
+**Parameters:**
+
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+| paymentId*    | string      | The id of the payment to be fetched |
+
+-------------------------------------------------------------------------------------------------------
+
 ### Fetch tokens by customer id
 ```php
 $api->customer->fetch($customerId)->tokens()->all();
@@ -13,9 +26,9 @@ $api->customer->fetch($customerId)->tokens()->all();
 
 -------------------------------------------------------------------------------------------------------
 
-### Delete token
+### Fetch particular token
 ```php
-$api->customer->fetch($customerId)->tokens()->delete($tokenId);
+$api->customer->fetch($customerId)->tokens()->fetch($tokenId);
 ```
 
 **Parameters:**
@@ -27,9 +40,9 @@ $api->customer->fetch($customerId)->tokens()->delete($tokenId);
 
 -------------------------------------------------------------------------------------------------------
 
-### Fetch particular token
+### Delete token
 ```php
-$api->customer->fetch($customerId)->tokens()->fetch($tokenId);
+$api->customer->fetch($customerId)->tokens()->delete($tokenId);
 ```
 
 **Parameters:**

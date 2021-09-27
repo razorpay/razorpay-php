@@ -9,44 +9,22 @@ $api->payment->fetch($paymentId)->transfer(array('transfers'=>array(array('accou
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| $paymentId*   | string      | The id of the payment to be fetched         |
+| paymentId*   | string      | The id of the payment to be fetched         |
 | transfers*    | array       | Details regarding the transfer.   |
 
 -------------------------------------------------------------------------------------------------------
 
-### Fetch all transfers
+### Fetch transfer for an order
 ```php
-$api->transfer->all();
-```
-
--------------------------------------------------------------------------------------------------------
-
-### Reverse a transfer
-```php
-$api->transfer->fetch($transferId)->reverse($option);
+$api->order->fetch($orderId)->transfers(array('expand[]'=>'transfers'));
 ```
 
 **Parameters:**
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| transferId*   | string      | The id of the transfer to be fetched  |
-| amount   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
-
--------------------------------------------------------------------------------------------------------
-
-### Direct transfers
-```php
-$api->transfer->create(array('account' => $accountId, 'amount' => 500, 'currency' => 'INR'));
-```
-
-**Parameters:**
-
-| Name          | Type        | Description                                 |
-|---------------|-------------|---------------------------------------------|
-| accountId*   | string      | The id of the account to be fetched  |
-| amount   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
-| currency   | string  | The currency of the payment (defaults to INR)                                  |
+| orderId*   | string      | The id of the order to be fetched  |
+| expand*   | string    | Supported value is `transfer`  |
 
 -------------------------------------------------------------------------------------------------------
 
@@ -86,6 +64,35 @@ $$api->transfer->all(array('expand[]'=> 'recipient_settlement'));
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
 | expand*   | string    | Supported value is `recipient_settlement`  |
+
+-------------------------------------------------------------------------------------------------------
+
+### Reverse transfers from all linked accounts
+```php
+$api->transfer->fetch($transferId)->reverse(array('amount'=>'100'));
+```
+
+**Parameters:**
+
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+| transferId*   | string      | The id of the transfer to be fetched  |
+| amount   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
+
+-------------------------------------------------------------------------------------------------------
+
+### Direct transfers
+```php
+$api->transfer->create(array('account' => $accountId, 'amount' => 500, 'currency' => 'INR'));
+```
+
+**Parameters:**
+
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+| accountId*   | string      | The id of the account to be fetched  |
+| amount   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
+| currency   | string  | The currency of the payment (defaults to INR)                                  |
 
 -------------------------------------------------------------------------------------------------------
 
