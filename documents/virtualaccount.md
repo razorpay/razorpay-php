@@ -1,4 +1,4 @@
-## Smart collect
+## Virtual account
 
 ### Create a virtual account
 ```php
