@@ -14,6 +14,38 @@ $api->virtualAccount->create(array('receivers' => array('types'=> arra('bank_acc
 
 -------------------------------------------------------------------------------------------------------
 
+### Create static qr
+```php
+$api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'amount_expected' => 100, 'notes' => array('receiver_key' => 'receiver_value')));
+```
+
+**Parameters:**
+
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+| receivers*    | array      | Array that defines what receivers are available for this Virtual Account                        |
+| description  | string      | A brief description of the payment.   |
+| amount_expected  | integer   | The maximum amount you expect to receive in this virtual account. Pass `69999` for ₹699.99.   |
+| notes       | array | All keys listed [here](https://razorpay.com/docs/payments/payments/payment-methods/bharatqr/api/#create) are supported   |
+
+-------------------------------------------------------------------------------------------------------
+
+### Create dynamic qr
+```php
+$api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'amount_expected' => 100, 'notes' => array('receiver_key' => 'receiver_value')));
+```
+
+**Parameters:**
+
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+| receivers*    | array      | Array that defines what receivers are available for this Virtual Account                        |
+| description  | string      | A brief description of the payment.   |
+| amount_expected  | integer   | The maximum amount you expect to receive in this virtual account. Pass `69999` for ₹699.99.   |
+| notes       | array | All keys listed [here](https://razorpay.com/docs/payments/payments/payment-methods/bharatqr/api/#create) are supported   |
+
+-------------------------------------------------------------------------------------------------------
+
 ### Fetch virtual account by id
 ```php
 $api->virtualAccount->fetch($virtualId);
@@ -45,7 +77,7 @@ $api->virtualAccount->all($options);
 
 ### Fetch payments for a virtual account
 ```php
-$api->virtualAccount->fetch($virtualId)->payments($options);;
+$api->virtualAccount->fetch($virtualId)->payments($options);
 ```
 
 **Parameters:**
@@ -70,6 +102,19 @@ $api->payment->fetch($virtualId)->bankTransfer();
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
 | virtualId*  | string    | The id of the virtual to be updated  |
+
+-------------------------------------------------------------------------------------------------------
+
+### Refund payments made to a virtual account
+```php
+$api->payment->fetch($paymentId)->refunds();
+```
+
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| paymentId*  | string    | The id of the payment to be updated  |
 
 -------------------------------------------------------------------------------------------------------
 
@@ -105,4 +150,4 @@ $api->virtualAccount->fetch($virtualId)->close();
 **PN: * indicates mandatory fields**
 <br>
 <br>
-**For reference click [here](https://razorpay.com/docs/api/smart-collect/)**
+**For reference click [here](https://razorpay.com/docs/smart-collect/api/)**
