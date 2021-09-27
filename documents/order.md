@@ -11,7 +11,7 @@ $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'IN
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
 | amount*          | integer | Amount of the order to be paid                                               |
-| currency*        | string  | Currency of the order. Currently only INR is supported.                      |
+| currency*        | string  | Currency of the order. Currently only `INR` is supported.                      |
 | receipt         | string  | Your system order reference id.                                              |
 | notes           | array  | A key-value pair                                                             |
 

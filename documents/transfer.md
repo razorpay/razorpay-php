@@ -11,7 +11,7 @@ $api->payment->fetch($paymentId)->transfer(array('transfers' => array('account'=
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
 | paymentId*   | string      | The id of the payment to be fetched  |
-| transfers   | array     | All keys listed [here](https://razorpay.com/docs/api/route/#create-transfers-from-payments) are supported |
+| transfers   | array     | All parameters listed [here](https://razorpay.com/docs/api/route/#create-transfers-from-payments) are supported |
 
 -------------------------------------------------------------------------------------------------------
 
@@ -29,7 +29,7 @@ $api->payment->fetch($paymentId)->transfer('amount'=>'1000', 'currency'=>'INR', 
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 |  receipt      | string      | A unique identifier provided by you for your internal reference. |
-| transfers   | array     | All keys listed [here](https://razorpay.com/docs/api/route/#create-transfers-from-orders) are supported |
+| transfers   | array     | All parameters listed [here](https://razorpay.com/docs/api/route/#create-transfers-from-orders) are supported |
 
 -------------------------------------------------------------------------------------------------------
 
@@ -167,7 +167,7 @@ $api->payment->fetch($paymentId)->transfer(array('account' => $accountId, 'amoun
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
 | paymentId*   | string      | The id of the payment to be fetched  |
-| transfers   | array     | All keys listed here https://razorpay.com/docs/api/route/#hold-settlements-for-transfers are supported |
+| transfers   | array     | All parameters listed here https://razorpay.com/docs/api/route/#hold-settlements-for-transfers are supported |
 
 -------------------------------------------------------------------------------------------------------
 
@@ -181,7 +181,7 @@ $api->transfer->fetch($paymentId)->edit(array('on_hold' => '1', 'on_hold_until' 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
 | paymentId*   | string      | The id of the payment to be fetched  |
-| transfers   | array     | All keys listed here https://razorpay.com/docs/api/route/#hold-settlements-for-transfers are supported |
+| transfers   | array     | All parameters listed here https://razorpay.com/docs/api/route/#hold-settlements-for-transfers are supported |
 
 -------------------------------------------------------------------------------------------------------
 

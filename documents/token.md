@@ -14,6 +14,7 @@ $api->payment->fetch($paymentId);
 -------------------------------------------------------------------------------------------------------
 
 ### Fetch tokens by customer id
+
 ```php
 $api->customer->fetch($customerId)->tokens()->all();
 ```
@@ -41,6 +42,7 @@ $api->customer->fetch($customerId)->tokens()->fetch($tokenId);
 -------------------------------------------------------------------------------------------------------
 
 ### Delete token
+
 ```php
 $api->customer->fetch($customerId)->tokens()->delete($tokenId);
 ```
