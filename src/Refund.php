@@ -29,10 +29,10 @@ class Refund extends Entity
         return $this->request('PATCH', $url, $attributes);
     }
 
-    public function refund()
+    public function refund($options = array())
     {
         $relativeUrl = $this->getEntityUrl() . $this->id . '/refund';
 
-        return $this->request('POST', $relativeUrl, $attributes);
+        return $this->request('POST', $relativeUrl, $options);
     }
 }
