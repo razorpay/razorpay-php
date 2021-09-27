@@ -22,13 +22,6 @@ class Order extends Entity
         return parent::all($options);
     }
 
-    public function edit($attributes = array())
-    {
-        $url = $this->getEntityUrl() . $this->id;
-
-        return $this->request('PATCH', $url, $attributes);
-    }
-
     public function payments()
     {
         $relativeUrl = $this->getEntityUrl().$this->id.'/payments';
