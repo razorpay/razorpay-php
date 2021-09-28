@@ -50,7 +50,7 @@ $api->settlement->reports(array("year"=>2020,"month"=>09));
 
 -------------------------------------------------------------------------------------------------------
 
-### create Ondemand Settlement
+### Create on-demand Settlement
 
 ```php
 $api->settlement->createOndemandSettlement(array("amount"=> 1221, "settle_full_balance"=> false, "description"=>"Testing","notes" => array("notes_key_1"=> "Tea, Earl Grey, Hot","notes_key_2"=> "Tea, Earl Grey… decaf.")));

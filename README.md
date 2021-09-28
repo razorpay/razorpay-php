@@ -25,10 +25,11 @@ composer require razorpay/razorpay:2.*
 ####Note:
 This PHP library follows the following practices:
 
--   Namespaced under `Razorpay\Api`
--   API throws exceptions instead of returning errors
--   Options are passed as an array instead of multiple arguments wherever possible
--   All requests and responses are communicated over JSON
+- Namespaced under `Razorpay\Api`
+- API throws exceptions instead of returning errors
+- Options are passed as an array instead of multiple arguments wherever possible
+- All requests and responses are communicated over JSON
+
 # Documentation
 
 Documentation of Razorpay's API and their usage is available at <https://docs.razorpay.com>
