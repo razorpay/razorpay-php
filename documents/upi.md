@@ -37,7 +37,7 @@ $api->order->create(array('amount' => 0,'currency' => 'INR','method' => 'upi','c
 
 ### Create an Authorization Payment
 
-please refer this [doc](https://razorpay.com/docs/api/recurring-payments/upi/authorization-transaction/#113-create-an-authorization-payment) for authorization payment
+Please refer this [doc](https://razorpay.com/docs/api/recurring-payments/upi/authorization-transaction/#113-create-an-authorization-payment) for authorization payment
 
 -------------------------------------------------------------------------------------------------------
 

@@ -29,10 +29,10 @@ $api->order->create(array('amount' => 100, 'currency' => 'INR',  'receipt' => '1
 |-----------------|---------|------------------------------------------------------------------------------|
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
-| customerId*   | string      | The id of the customer to be fetched | 
+| customerId*   | string      | The id of the customer to be fetched |
 | receipt      | string  | Your system order reference id.  |
 | method*      | string  | Payment method used to make the registration transaction. Possible value is `card`.  |
-| token  | array  | All keys listed [here] https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#112-create-an-order are supported |
+| token  | array  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#112-create-an-order) are supported |
 | notes | array  | A key-value pair  |
 
 -------------------------------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | description*  | string      | A brief description of the payment.   |
-| subscription_registration   | array  | All keys listed [here] https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#121-create-a-registration-link are supported  |
+| subscription_registration   | array  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#121-create-a-registration-link) are supported  |
 | receipt      | string  | Your system order reference id.  |
 | sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
 | email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
@@ -63,7 +63,7 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 ## Create an order to charge the customer
 
 ```php
-$api->order->create(array('amount' => '100', 'currency' => 'INR', 'customer_id'=> $customerId, 'method'=>'card',  'receipt' => 'Receipt No. 1', 'token'=>array('max_amount'=>'5000', 'expire_at'=>'2709971120', 'frequency'=>'monthly'), 'notes'=> array('key1'=> 'value3','key2'=> 'value2'))); 
+$api->order->create(array('amount' => '100', 'currency' => 'INR', 'customer_id'=> $customerId, 'method'=>'card',  'receipt' => 'Receipt No. 1', 'token'=>array('max_amount'=>'5000', 'expire_at'=>'2709971120', 'frequency'=>'monthly'), 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
 ```
 **Parameters:**
 
@@ -74,7 +74,7 @@ $api->order->create(array('amount' => '100', 'currency' => 'INR', 'customer_id'=
 | customerId*   | string      | The id of the customer to be fetched |
 | method*      | string  | Payment method used to make the registration transaction. Possible value is `card`.  |
 | receipt      | string  | Your system order reference id.  |
-| token  | array  | All keys listed [here] https://razorpay.com/docs/api/recurring-payments/cards/subsequent-payments/#31-create-an-order-to-charge-the-customer are supported |
+| token  | array  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/cards/subsequent-payments/#31-create-an-order-to-charge-the-customer) are supported |
 | notes | array  | A key-value pair  |
 
 -------------------------------------------------------------------------------------------------------
@@ -82,7 +82,7 @@ $api->order->create(array('amount' => '100', 'currency' => 'INR', 'customer_id'=
 ## Create a recurring payment
 
 ```php
-$api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>100,'currency'=>'INR','order_id'=>$orderid,'customer_id'=>$customerId,'token'=>$tokenId,'recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar', 'notes'=> array('key1'=> 'value3','key2'=> 'value2'))); 
+$api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>100,'currency'=>'INR','order_id'=>$orderid,'customer_id'=>$customerId,'token'=>$tokenId,'recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
 ```
 **Parameters:**
 
@@ -100,6 +100,13 @@ $api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'
 | notes | array  | A key-value pair  |
 
 -------------------------------------------------------------------------------------------------------
+
+### Create an Authorization Payment
+
+Please refer this [doc](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#113-create-an-authorization-payment) for authorization payment
+
+-------------------------------------------------------------------------------------------------------
+
 
 ## Send/Resend notifications
 

@@ -192,7 +192,7 @@ $api->subscription->fetch($subscriptionId)->deleteOffer($offerId)
 
 ### Authentication Transaction
 
-please refer this [doc](https://razorpay.com/docs/api/subscriptions/#authentication-transaction) for authentication of transaction
+Please refer this [doc](https://razorpay.com/docs/api/subscriptions/#authentication-transaction) for authentication of transaction
 
 -------------------------------------------------------------------------------------------------------
 
@@ -202,7 +202,7 @@ please refer this [doc](https://razorpay.com/docs/api/subscriptions/#authenticat
 $api->utility->verifyPaymentSignature($options)
 ```
 
-please refer this [doc](https://razorpay.com/docs/api/subscriptions/#payment-verification) for payment verification
+Please refer this [doc](https://razorpay.com/docs/api/subscriptions/#payment-verification) for payment verification
 
 -------------------------------------------------------------------------------------------------------
 

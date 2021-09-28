@@ -30,7 +30,7 @@ All parameters listed [here](https://razorpay.com/docs/api/route/#create-transfe
 
 ### Create an Authorization Payment
 
-please refer this [doc](https://razorpay.com/docs/api/recurring-payments/paper-nach/authorization-transaction/#113-create-an-authorization-payment) for authorization payment
+Please refer this [doc](https://razorpay.com/docs/api/recurring-payments/paper-nach/authorization-transaction/#113-create-an-authorization-payment) for authorization payment
 
 -------------------------------------------------------------------------------------------------------
 
