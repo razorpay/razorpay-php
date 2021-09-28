@@ -15,7 +15,7 @@ $api->payment_link->create(array('amount'=>500, 'currency'=>'INR', 'accept_parti
 
 Request #2
 UPI Payment Link
-`customer_id` and `item_id`
+
 ```php
 $api->payment_link->create(array('upi_link'=>true,'amount'=>500, 'currency'=>'INR', 'accept_partial'=>true, 
 'first_min_partial_amount'=>100, 'description' => 'For XYZ purpose', 'customer' => array('name'=>'Gaurav Kumar', 
@@ -38,7 +38,7 @@ $api->payment_link->create(array('upi_link'=>true,'amount'=>500, 'currency'=>'IN
 |notes           | json object  | Key-value pair that can be used to store additional information about the entity. Maximum 15 key-value pairs, 256 characters (maximum) each. For example, "note_key": "Beam me up Scotty”                     |
 -------------------------------------------------------------------------------------------------------
 
-### Fetch all invoices
+### Fetch all Payemnt Link
 
 ```php
 $api->paymentLink->all();
@@ -54,7 +54,7 @@ $api->paymentLink->all();
 
 -------------------------------------------------------------------------------------------------------
 
-### Fetch invoice
+### Fetch Payemnt Link
 
 ```php
 $api->paymentLink->fetch($paymentLink_id);
@@ -67,7 +67,7 @@ $api->paymentLink->fetch($paymentLink_id);
 | paymentLink_id*          | string |  Unique identifier of the Payment Link.                         |
 -------------------------------------------------------------------------------------------------------
 
-### Update invoice
+### Update Payemnt Link
 
 ```php
 $api->paymentLink->fetch($paymentLink_id)->edit(array("reference_id"=>"TS42", "expire_by"=>"1640270451" , "reminder_enable"=>0, "notes"=>["policy_name"=>"Jeevan Saral 2"]));
