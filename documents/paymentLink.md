@@ -38,7 +38,7 @@ $api->payment_link->create(array('upi_link'=>true,'amount'=>500, 'currency'=>'IN
 |notes           | json object  | Key-value pair that can be used to store additional information about the entity. Maximum 15 key-value pairs, 256 characters (maximum) each. For example, "note_key": "Beam me up Scotty”                     |
 -------------------------------------------------------------------------------------------------------
 
-### Fetch all Payemnt Link
+### Fetch all Payment Link
 
 ```php
 $api->paymentLink->all();
@@ -54,7 +54,7 @@ $api->paymentLink->all();
 
 -------------------------------------------------------------------------------------------------------
 
-### Fetch Payemnt Link
+### Fetch Payment Link
 
 ```php
 $api->paymentLink->fetch($paymentLink_id);
@@ -67,7 +67,7 @@ $api->paymentLink->fetch($paymentLink_id);
 | paymentLink_id*          | string |  Unique identifier of the Payment Link.                         |
 -------------------------------------------------------------------------------------------------------
 
-### Update Payemnt Link
+### Update Payment Link
 
 ```php
 $api->paymentLink->fetch($paymentLink_id)->edit(array("reference_id"=>"TS42", "expire_by"=>"1640270451" , "reminder_enable"=>0, "notes"=>["policy_name"=>"Jeevan Saral 2"]));
