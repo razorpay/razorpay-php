@@ -1,4 +1,4 @@
-## Cards
+## Register emandate and charge first payment together
 
 ### Create customer
 ```php
@@ -20,7 +20,7 @@ $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@raz
 ### Create Order
 
 ```php
-$api->order->create(array('amount' => 100, 'currency' => 'INR',  'receipt' => '123', 'customer_id'=> $customerId, 'method'=>'card', 'token'=>array('max_amount'=>'5000', 'expire_at'=>'2709971120', 'frequency'=>'monthly'), 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+$api->order->create(array('amount' => 100, 'currency' => 'INR', 'method'=>'emandate', 'customer_id'=>$customerId, 'receipt'=>'Receipt No. 5', 'notes'=> array('note_key 1'=> 'Beam me up Scotty','note_key 2'=> 'Engage'), 'token'=>array('first_payment_amount'=>10000, 'auth_type'=>'netbanking' ,'max_amount'=>'9999900','expire_at'=>'4102444799', 'notes'=>array('note_key 1'=> 'Tea, Earl Grey… decaf.','note_key 2'=> 'Tea. Earl Gray. Hot.'), 'bank_account'=>array('beneficiary_name'=>'Gaurav Kumar', 'account_number'=>'11214311215411', 'account_type'=>'savings', 'ifsc_code'=>'HDFC0001233'))));
 ```
 
 **Parameters:**
@@ -30,9 +30,9 @@ $api->order->create(array('amount' => 100, 'currency' => 'INR',  'receipt' => '1
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | customerId*   | string      | The id of the customer to be fetched | 
+| method*      | string  | Payment method used to make the registration transaction. Possible value is `emandate`.  |
 | receipt      | string  | Your system order reference id.  |
-| method*      | string  | Payment method used to make the registration transaction. Possible value is `card`.  |
-| token  | array  | All keys listed [here] https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#112-create-an-order are supported |
+| token  | array  | All keys listed [here] https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#112-create-an-order are supported |
 | notes | array  | A key-value pair  |
 
 -------------------------------------------------------------------------------------------------------
@@ -40,19 +40,19 @@ $api->order->create(array('amount' => 100, 'currency' => 'INR',  'receipt' => '1
 ### Create registration link
 
 ```php
-$api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('method'=>'card','max_amount'=>'500','expire_at'=>'1634215992'),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992, 'notes'=> array('note_key 1'=> 'Beam me up Scotty','note_key 2'=> 'Tea. Earl Gray. Hot.')));
+$api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('first_payment_amount'=>100, 'method'=>'emandate', 'auth_type'=>'netbanking' ,'max_amount'=>'50000','expire_at'=>'1634215992','bank_account'=>array('beneficiary_name'=>'Gaurav Kumar', 'account_number'=>'11214311215411', 'account_type'=>'savings', 'ifsc_code'=>'HDFC0001233')),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992, 'notes'=> array('note_key 1'=> 'Beam me up Scotty','note_key 2'=> 'Tea. Earl Gray. Hot.'))   );
 ```
 
 **Parameters:**
 
-| Name            | Type    | Description                                                                  |
-|-----------------|---------|------------------------------------------------------------------------------|
+| Name            | Type    | Description                                                   |
+|-----------------|---------|---------------------------------------------------------------|
 | customer   | array      | Details of the customer to whom the registration link will be sent. |
 | type*  | array | the value is `link`. |
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | description*  | string      | A brief description of the payment.   |
-| subscription_registration   | array  | All keys listed [here] https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#121-create-a-registration-link are supported  |
+| subscription_registration   | array  | All keys listed [here] https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#121-create-a-registration-link are supported  |
 | receipt      | string  | Your system order reference id.  |
 | sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
 | email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
@@ -63,7 +63,7 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 ## Create an order to charge the customer
 
 ```php
-$api->order->create(array('amount' => '100', 'currency' => 'INR', 'customer_id'=> $customerId, 'method'=>'card',  'receipt' => 'Receipt No. 1', 'token'=>array('max_amount'=>'5000', 'expire_at'=>'2709971120', 'frequency'=>'monthly'), 'notes'=> array('key1'=> 'value3','key2'=> 'value2'))); 
+$api->order->create(array('amount' => '100', 'currency' => 'INR',  'receipt' => 'Receipt No. 1', 'notes'=> array('key1'=> 'value3','key2'=> 'value2'))); 
 ```
 **Parameters:**
 
@@ -71,10 +71,7 @@ $api->order->create(array('amount' => '100', 'currency' => 'INR', 'customer_id'=
 |-----------------|---------|------------------------------------------------------------------------------|
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
-| customerId*   | string      | The id of the customer to be fetched |
-| method*      | string  | Payment method used to make the registration transaction. Possible value is `card`.  |
 | receipt      | string  | Your system order reference id.  |
-| token  | array  | All keys listed [here] https://razorpay.com/docs/api/recurring-payments/cards/subsequent-payments/#31-create-an-order-to-charge-the-customer are supported |
 | notes | array  | A key-value pair  |
 
 -------------------------------------------------------------------------------------------------------
@@ -82,7 +79,7 @@ $api->order->create(array('amount' => '100', 'currency' => 'INR', 'customer_id'=
 ## Create a recurring payment
 
 ```php
-$api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>100,'currency'=>'INR','order_id'=>$orderid,'customer_id'=>$customerId,'token'=>$tokenId,'recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar', 'notes'=> array('key1'=> 'value3','key2'=> 'value2'))); 
+$api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>1000,'currency'=>'INR','order_id'=>$orderid,'customer_id'=>$customerId,'token'=>$tokenId,'recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar', 'notes'=> array('key1'=> 'value3','key2'=> 'value2'))); 
 ```
 **Parameters:**
 
@@ -108,7 +105,7 @@ $api->invoice->fetch($invoiceId)->notifyBy($medium);
 ```
 **Parameters:**
 
-| Name            | Type    | Description                                                                  |
+| Name            | Type    |Description      |
 |-----------------|---------|------------------------------------------------------------------------------|
 | invoiceId*   | string      | The id of the invoice to be fetched |
 | medium*   | string      | Possible values are `sms` or `email` |
@@ -154,20 +151,6 @@ $api->customer->fetch($customerId)->tokens()->all();
 
 -------------------------------------------------------------------------------------------------------
 
-### Fetch card
-
-```php
-$api->card->fetch($cardId);
-```
-
-**Parameters:**
-
-| Name            | Type    | Description                                                                  |
-|-----------------|---------|------------------------------------------------------------------------------|
-| cardId*          | string | card id to be fetched                                               |
-
--------------------------------------------------------------------------------------------------------
-
 ## Delete tokens
 
 ```php
@@ -185,4 +168,4 @@ $api->customer->fetch($customerId)->tokens()->delete($tokenId);
 **PN: * indicates mandatory fields**
 <br>
 <br>
-**For reference click [here](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/)**
+**For reference click [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/)**
