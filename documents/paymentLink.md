@@ -27,7 +27,7 @@ $api->payment_link->create(array('upi_link'=>true,'amount'=>500, 'currency'=>'IN
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|upi_link*          | boolean | boolean Must be set to true for creating UPI Payment Link)   //   for  UPI Payment Link                                       |
+|upi_link*          | boolean | boolean Must be set to true   //   to creating UPI Payment Link only                                     |
 |amount*        | integer  | Amount to be paid using the Payment Link.                     |
 |currency           | string  |  A three-letter ISO code for the currency in which you want to accept the payment. For example, INR.                     |
 |description           | string  | A brief description of the Payment Link                     |
