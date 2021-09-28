@@ -120,7 +120,7 @@ $api->subscription->fetch($subscriptionId)->pendingUpdate()
 ### Cancel a update
 
 ```php
-$api->subscription->fetch($subscriptionId)->cancelAtNextCycle();
+$api->subscription->fetch($subscriptionId)->cancelScheduledChanges();
 ```
 
 **Parameters:**
@@ -178,7 +178,7 @@ $api->invoice->all(['subscription_id'=>$subscriptionId]);
 ### Delete offer link to a subscription
 
 ```php
-$api->subscription->fetch($subscriptionId)->offer($offerId)
+$api->subscription->fetch($subscriptionId)->deleteOffer($offerId)
 ```
 
 **Parameters:**
@@ -190,7 +190,7 @@ $api->subscription->fetch($subscriptionId)->offer($offerId)
 
 -------------------------------------------------------------------------------------------------------
 
-### Authentication payment
+### Authentication Transaction
 
 please refer this [doc](https://razorpay.com/docs/api/subscriptions/#authentication-transaction) for authentication of transaction
 
