@@ -139,8 +139,15 @@ $api->payment->fetch($paymentId)->refund(array('amount'=> '100','reverse_all'=>'
 ### Fetch payments of a linked account
 
 ```php
-$api->payment->all();
+$api->payment->all(array('X-Razorpay-Account'=> $linkedAccountId));
 ```
+
+**Parameters:**
+
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+| X-Razorpay-Account   | string      | The linked account id to fetch the payments received by linked account |
+
 -------------------------------------------------------------------------------------------------------
 
 ### Reverse transfers from all linked accounts
