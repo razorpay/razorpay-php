@@ -75,6 +75,8 @@ $api->order->fetch($orderId)->edit(array('notes'=> array('notes_key_1'=>'Beam me
 
 -------------------------------------------------------------------------------------------------------
 
+[API Response](entityResponse.md#order-api-response)
+
 **PN: * indicates mandatory fields**
 <br>
 <br>

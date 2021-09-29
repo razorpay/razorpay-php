@@ -113,6 +113,7 @@ $api->payment->fetchPaymentDowntimeById($downtimeId);
 | downtimeId* | string  | Id to fetch payment downtime         |
 
 -------------------------------------------------------------------------------------------------------
+[API Response](entityResponse.md#payments-api-response)
 
 **PN: * indicates mandatory fields**
 <br>

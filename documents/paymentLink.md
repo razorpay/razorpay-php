@@ -2,12 +2,12 @@
 
 ### Create Payment Link
 
-Request #1 
+Request #1
 Standard Payment Link
 
 ```php
-$api->payment_link->create(array('amount'=>500, 'currency'=>'INR', 'accept_partial'=>true, 
-'first_min_partial_amount'=>100, 'description' => 'For XYZ purpose', 'customer' => array('name'=>'Gaurav Kumar', 
+$api->payment_link->create(array('amount'=>500, 'currency'=>'INR', 'accept_partial'=>true,
+'first_min_partial_amount'=>100, 'description' => 'For XYZ purpose', 'customer' => array('name'=>'Gaurav Kumar',
 'email' => 'gaurav.kumar@example.com', 'contact'=>'+919999999999'),  'notify'=>array('sms'=>true, 'email'=>true) ,
 'reminder_enable'=>true ,'notes'=>array('policy_name'=> 'Jeevan Bima'),'callback_url' => 'https://example-callback-url.com/',
 'callback_method'=>'get'));
@@ -17,8 +17,8 @@ Request #2
 UPI Payment Link
 
 ```php
-$api->payment_link->create(array('upi_link'=>true,'amount'=>500, 'currency'=>'INR', 'accept_partial'=>true, 
-'first_min_partial_amount'=>100, 'description' => 'For XYZ purpose', 'customer' => array('name'=>'Gaurav Kumar', 
+$api->payment_link->create(array('upi_link'=>true,'amount'=>500, 'currency'=>'INR', 'accept_partial'=>true,
+'first_min_partial_amount'=>100, 'description' => 'For XYZ purpose', 'customer' => array('name'=>'Gaurav Kumar',
 'email' => 'gaurav.kumar@example.com', 'contact'=>'+919999999999'),  'notify'=>array('sms'=>true, 'email'=>true) ,
 'reminder_enable'=>true ,'notes'=>array('policy_name'=> 'Jeevan Bima')));
 ```
@@ -50,34 +50,34 @@ $api->paymentLink->all();
 |-----------------|---------|------------------------------------------------------------------------------|
 |payment_id          | string | Unique identifier of the payment associated with the Payment Link.                                               |
 |reference_id        | string  | The unique reference number entered by you while creating the Payment Link.                     |
-                     
+
 
 -------------------------------------------------------------------------------------------------------
 
 ### Fetch Payment Link
 
 ```php
-$api->paymentLink->fetch($paymentLink_id);
+$api->paymentLink->fetch($paymentLinkId);
 ```
 
 **Parameters:**
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| paymentLink_id*          | string |  Unique identifier of the Payment Link.                         |
+| paymentLinkId*          | string |  Unique identifier of the Payment Link.                         |
 -------------------------------------------------------------------------------------------------------
 
 ### Update Payment Link
 
 ```php
-$api->paymentLink->fetch($paymentLink_id)->edit(array("reference_id"=>"TS42", "expire_by"=>"1640270451" , "reminder_enable"=>0, "notes"=>["policy_name"=>"Jeevan Saral 2"]));
+$api->paymentLink->fetch($paymentLinkId)->edit(array("reference_id"=>"TS42", "expire_by"=>"1640270451" , "reminder_enable"=>0, "notes"=>["policy_name"=>"Jeevan Saral 2"]));
 ```
 
 **Parameters:**
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| paymentLink_id*          | string | The unique identifier of the Payment Link that needs to be updated.                         |
+| paymentLinkId*          | string | The unique identifier of the Payment Link that needs to be updated.                         |
 | accept_partial         | boolean | Indicates whether customers can make partial payments using the Payment Link. Possible values: true - Customer can make partial payments. false (default) - Customer cannot make partial payments.                         |
 | reference_id          | string | Adds a unique reference number to an existing link.                         |
 | expire_by         | integer | Timestamp, in Unix format, when the payment links should expire.                         |
@@ -89,27 +89,27 @@ $api->paymentLink->fetch($paymentLink_id)->edit(array("reference_id"=>"TS42", "e
 ### Cancel a Payment Link
 
 ```php
-$api->paymentLink->fetch($paymentLink_id)->cancel();
+$api->paymentLink->fetch($paymentLinkId)->cancel();
 ```
 
 **Parameters:**
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| paymentLink_id*          | string | Unique identifier of the Payment Link.                         |
+| paymentLinkId*          | string | Unique identifier of the Payment Link.                         |
 -------------------------------------------------------------------------------------------------------
 
 ### Send notification
 
 ```php
-$api->paymentLink->fetch($paymentLink_id)->notifyBy($medium));
+$api->paymentLink->fetch($paymentLinkId)->notifyBy($medium));
 ```
 
 **Parameters:**
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| paymentLink_id*          | string | Unique identifier of the Payment Link that should be resent.                         |
+| paymentLinkId*          | string | Unique identifier of the Payment Link that should be resent.                         |
 | medium*          | string | `sms`/`email`,Medium through which the Payment Link must be resent. Allowed values are:           |
 -------------------------------------------------------------------------------------------------------
 
@@ -188,7 +188,7 @@ $api->payment_link->create(array('amount'=>500, 'currency'=>'INR', 'accept_parti
 |expire_by           | integer  | Timestamp, in Unix, at which the Payment Link will expire. By default, a Payment Link will be valid for six months from the date of creation.                     |
 |notify           | object  | sms or email (boolean)                     |
 |reminder_enable       | boolean  | To disable reminders for a Payment Link, pass reminder_enable as false                     |
-|options*       | array  | Options to rename the labels for partial payment fields in the checkout form. Parent parameter under which the checkout and partial_payment child parameters must be passed. 
+|options*       | array  | Options to rename the labels for partial payment fields in the checkout form. Parent parameter under which the checkout and partial_payment child parameters must be passed.
 -------------------------------------------------------------------------------------------------------
 
 ### Change Business Name
@@ -209,7 +209,7 @@ $api->payment_link->create(array('amount'=>500, 'currency'=>'INR', 'accept_parti
 |customer           | array  | name, email, contact                 |
 |notify           | object  | sms or email (boolean)                     |
 |reminder_enable       | boolean  | To disable reminders for a Payment Link, pass reminder_enable as false                     |
-|options*       | array  | Option to customize the business name. Parent parameter under which the checkout child parameter must be passed.| 
+|options*       | array  | Option to customize the business name. Parent parameter under which the checkout child parameter must be passed.|
 -------------------------------------------------------------------------------------------------------
 
 ### Prefill Checkout Fields
@@ -230,7 +230,7 @@ $api->payment_link->create(array('amount'=>500, 'currency'=>'INR', 'accept_parti
 |customer           | array  | name, email, contact                 |
 |notify           | object  | sms or email (boolean)                     |
 |reminder_enable       | boolean  | To disable reminders for a Payment Link, pass reminder_enable as false                     |
-|options*       | array  | Options to customize Checkout. Parent parameter under which the checkout and prefill child parameters must be passed.| 
+|options*       | array  | Options to customize Checkout. Parent parameter under which the checkout and prefill child parameters must be passed.|
 -------------------------------------------------------------------------------------------------------
 
 ### Customize Payment Methods
@@ -251,7 +251,7 @@ $api->payment_link->create(array('amount'=>500, 'currency'=>'INR', 'accept_parti
 |customer           | array  | name, email, contact                 |
 |notify           | object  | sms or email (boolean)                     |
 |reminder_enable       | boolean  | To disable reminders for a Payment Link, pass reminder_enable as false                     |
-|options*       | array  | Options to display or hide payment methods on the Checkout section. Parent parameter under which the checkout and method child parameters must be passed.| 
+|options*       | array  | Options to display or hide payment methods on the Checkout section. Parent parameter under which the checkout and method child parameters must be passed.|
 -------------------------------------------------------------------------------------------------------
 
 ### Set Checkout Fields as Read-Only
@@ -272,7 +272,7 @@ $api->payment_link->create(array('amount'=>500, 'currency'=>'INR', 'accept_parti
 |customer           | array  | name, email, contact                 |
 |notify           | object  | sms or email (boolean)                     |
 |reminder_enable       | boolean  | To disable reminders for a Payment Link, pass reminder_enable as false                     |
-|options*       | array  | Options to set contact and email as read-only fields on Checkout. Parent parameter under which the checkout and readonly child parameters must be passed.| 
+|options*       | array  | Options to set contact and email as read-only fields on Checkout. Parent parameter under which the checkout and readonly child parameters must be passed.|
 -------------------------------------------------------------------------------------------------------
 
 ### Implement Thematic Changes in Payment Links Checkout Section
@@ -293,7 +293,7 @@ $api->payment_link->create(array('amount'=>500, 'currency'=>'INR', 'accept_parti
 |customer           | array  | name, email, contact                 |
 |notify           | object  | sms or email (boolean)                     |
 |reminder_enable       | boolean  | To disable reminders for a Payment Link, pass reminder_enable as false                     |
-|options*       | array  | Options to show or hide the top bar. Parent parameter under which the checkout and theme child parameters must be passed.| 
+|options*       | array  | Options to show or hide the top bar. Parent parameter under which the checkout and theme child parameters must be passed.|
 -------------------------------------------------------------------------------------------------------
 
 
@@ -316,7 +316,7 @@ $api->payment_link->create(array('amount'=>500, 'currency'=>'INR', 'accept_parti
 |customer           | array  | name, email, contact                 |
 |notify           | object  | sms or email (boolean)                     |
 |reminder_enable       | boolean  | To disable reminders for a Payment Link, pass reminder_enable as false                     |
-|options*       | array  | Parent parameter under which the hosted_page and label child parameters must be passed.| 
+|options*       | array  | Parent parameter under which the hosted_page and label child parameters must be passed.|
 -------------------------------------------------------------------------------------------------------
 
 

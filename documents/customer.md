@@ -44,6 +44,8 @@ $api->customer->fetch($customerId)
 
 -------------------------------------------------------------------------------------------------------
 
+[API Response](entityResponse.md#customer-api-response)
+
 **PN: * indicates mandatory fields**
 <br>
 <br>
