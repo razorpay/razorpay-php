@@ -15,6 +15,22 @@ $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@raz
 | fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `0` or `1`|
 | notes         | array      | A key-value pair                            |
 
+**Response:**
+```json
+{
+  "id": "cust_1Aa00000000003",
+  "entity": "customer",
+  "name": "Gaurav Kumar",
+  "email": "Gaurav.Kumar@example.com",
+  "contact": "9000000000",
+  "gstin": null,
+  "notes": {
+    "notes_key_1": "Tea, Earl Grey, Hot",
+    "notes_key_2": "Tea, Earl Grey… decaf."
+  },
+  "created_at": 1582033731
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ### Create Order
@@ -35,6 +51,34 @@ $api->order->create(array('amount' => 100, 'currency' => 'INR',  'receipt' => '1
 | token  | array  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#112-create-an-order) are supported |
 | notes | array  | A key-value pair  |
 
+**Response:**
+```json
+{
+   "id":"order_1Aa00000000002",
+   "entity":"order",
+   "amount":100,
+   "amount_paid":0,
+   "amount_due":100,
+   "currency":"INR",
+   "receipt":"Receipt No. 1",
+   "method":"card",
+   "description":null,
+   "customer_id":"cust_4xbQrmEoA5WJ01",
+   "token":{
+      "max_amount":5000,
+      "expire_at":2709971120,
+      "frequency":"monthly"
+   },
+   "offer_id":null,
+   "status":"created",
+   "attempts":0,
+   "notes":{
+      "notes_key_1":"Tea, Earl Grey, Hot",
+      "notes_key_2":"Tea, Earl Grey… decaf."
+   },
+   "created_at":1565172642
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ### Create registration link
@@ -58,6 +102,65 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 | email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
 | expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
 | notes | array  | A key-value pair  |
+
+**Response:**
+```json
+{
+  "id": "inv_FHrXGIpd3N17DX",
+  "entity": "invoice",
+  "receipt": "Receipt No. 24",
+  "invoice_number": "Receipt No. 24",
+  "customer_id": "cust_BMB3EwbqnqZ2EI",
+  "customer_details": {
+    "id": "cust_BMB3EwbqnqZ2EI",
+    "name": "Gaurav Kumar",
+    "email": "gaurav.kumar@example.com",
+    "contact": "9123456780",
+    "gstin": null,
+    "billing_address": null,
+    "shipping_address": null,
+    "customer_name": "Gaurav Kumar",
+    "customer_email": "gaurav.kumar@example.com",
+    "customer_contact": "9123456780"
+  },
+  "order_id": "order_FHrXGJNngJyEAe",
+  "line_items": [],
+  "payment_id": null,
+  "status": "issued",
+  "expire_by": 4102444799,
+  "issued_at": 1595491014,
+  "paid_at": null,
+  "cancelled_at": null,
+  "expired_at": null,
+  "sms_status": "pending",
+  "email_status": "pending",
+  "date": 1595491014,
+  "terms": null,
+  "partial_payment": false,
+  "gross_amount": 100,
+  "tax_amount": 0,
+  "taxable_amount": 0,
+  "amount": 100,
+  "amount_paid": 0,
+  "amount_due": 100,
+  "currency": "INR",
+  "currency_symbol": "₹",
+  "description": "Registration Link for Gaurav Kumar",
+  "notes": {
+    "note_key 1": "Beam me up Scotty",
+    "note_key 2": "Tea. Earl Gray. Hot."
+  },
+  "comment": null,
+  "short_url": "https://rzp.io/i/VSriCfn",
+  "view_less": true,
+  "billing_start": null,
+  "billing_end": null,
+  "type": "link",
+  "group_taxes_discounts": false,
+  "created_at": 1595491014,
+  "idempotency_key": null
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ## Create an order to charge the customer
@@ -77,6 +180,34 @@ $api->order->create(array('amount' => '100', 'currency' => 'INR', 'customer_id'=
 | token  | array  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/cards/subsequent-payments/#31-create-an-order-to-charge-the-customer) are supported |
 | notes | array  | A key-value pair  |
 
+**Response:**
+```json
+{
+   "id":"order_1Aa00000000002",
+   "entity":"order",
+   "amount":100,
+   "amount_paid":0,
+   "amount_due":100,
+   "currency":"INR",
+   "receipt":"Receipt No. 1",
+   "method":"card",
+   "description":null,
+   "customer_id":"cust_4xbQrmEoA5WJ01",
+   "token":{
+      "max_amount":5000,
+      "expire_at":2709971120,
+      "frequency":"monthly"
+   },
+   "offer_id":null,
+   "status":"created",
+   "attempts":0,
+   "notes":{
+      "notes_key_1":"Tea, Earl Grey, Hot",
+      "notes_key_2":"Tea, Earl Grey… decaf."
+   },
+   "created_at":1565172642
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ## Create a recurring payment
@@ -99,6 +230,14 @@ $api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'
 | description  | string      | A brief description of the payment.   |
 | notes | array  | A key-value pair  |
 
+**Response:**
+```json
+{
+  "razorpay_payment_id" : "pay_1Aa00000000001",
+  "razorpay_order_id" : "order_1Aa00000000001",
+  "razorpay_signature" : "9ef4dffbfd84f1318f6739a3ce19f9d85851857ae648f114332d8401e0949a3d"
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ### Create an Authorization Payment
@@ -106,7 +245,6 @@ $api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'
 Please refer this [doc](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#113-create-an-authorization-payment) for authorization payment
 
 -------------------------------------------------------------------------------------------------------
-
 
 ## Send/Resend notifications
 
@@ -120,6 +258,12 @@ $api->invoice->fetch($invoiceId)->notifyBy($medium);
 | invoiceId*   | string      | The id of the invoice to be fetched |
 | medium*   | string      | Possible values are `sms` or `email` |
 
+**Response:**
+```json
+{
+    "success": true
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ## Cancel registration link
@@ -133,6 +277,64 @@ $api->invoice->fetch($invoiceId)->cancel();
 |-----------------|---------|------------------------------------------------------------------------------|
 | invoiceId*   | string      | The id of the invoice to be fetched |
 
+**Response:**
+```json
+{
+    "id": "inv_FHrfRupD2ouKIt",
+    "entity": "invoice",
+    "receipt": "Receipt No. 1",
+    "invoice_number": "Receipt No. 1",
+    "customer_id": "cust_BMB3EwbqnqZ2EI",
+    "customer_details": {
+        "id": "cust_BMB3EwbqnqZ2EI",
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9123456780",
+        "gstin": null,
+        "billing_address": null,
+        "shipping_address": null,
+        "customer_name": "Gaurav Kumar",
+        "customer_email": "gaurav.kumar@example.com",
+        "customer_contact": "9123456780"
+    },
+    "order_id": "order_FHrfRw4TZU5Q2L",
+    "line_items": [],
+    "payment_id": null,
+    "status": "cancelled",
+    "expire_by": 4102444799,
+    "issued_at": 1595491479,
+    "paid_at": null,
+    "cancelled_at": 1595491488,
+    "expired_at": null,
+    "sms_status": "sent",
+    "email_status": "sent",
+    "date": 1595491479,
+    "terms": null,
+    "partial_payment": false,
+    "gross_amount": 100,
+    "tax_amount": 0,
+    "taxable_amount": 0,
+    "amount": 100,
+    "amount_paid": 0,
+    "amount_due": 100,
+    "currency": "INR",
+    "currency_symbol": "₹",
+    "description": "Registration Link for Gaurav Kumar",
+    "notes": {
+        "note_key 1": "Beam me up Scotty",
+        "note_key 2": "Tea. Earl Gray. Hot."
+    },
+    "comment": null,
+    "short_url": "https://rzp.io/i/QlfexTj",
+    "view_less": true,
+    "billing_start": null,
+    "billing_end": null,
+    "type": "link",
+    "group_taxes_discounts": false,
+    "created_at": 1595491480,
+    "idempotency_key": null
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ## Fetch token by payment id
@@ -146,6 +348,47 @@ $api->payment->fetch($paymentId);
 |-----------------|---------|------------------------------------------------------------------------------|
 | paymentId*   | string      | The id of the payment to be fetched |
 
+**Response:**
+```json
+{
+  "id": "pay_FHfqtkRzWvxky4",
+  "entity": "payment",
+  "amount": 100,
+  "currency": "INR",
+  "status": "captured",
+  "order_id": "order_FHfnswDdfu96HQ",
+  "invoice_id": null,
+  "international": false,
+  "method": "card",
+  "amount_refunded": 0,
+  "refund_status": null,
+  "captured": true,
+  "description": null,
+  "card_id": "card_F0zoXUp4IPPGoI",
+  "bank": null,
+  "wallet": null,
+  "vpa": null,
+  "email": "gaurav.kumar@example.com",
+  "contact": "+919876543210",
+  "customer_id": "cust_DtHaBuooGHTuyZ",
+  "token_id": "token_FHfn3rIiM1Z8nr",
+  "notes": {
+    "note_key 1": "Beam me up Scotty",
+    "note_key 2": "Tea. Earl Gray. Hot."
+  },
+  "fee": 0,
+  "tax": 0,
+  "error_code": null,
+  "error_description": null,
+  "error_source": null,
+  "error_step": null,
+  "error_reason": null,
+  "acquirer_data": {
+    "auth_code": "541898"
+  },
+  "created_at": 1595449871
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ## Fetch tokens by customer id
@@ -159,6 +402,52 @@ $api->customer->fetch($customerId)->tokens()->all();
 |-----------------|---------|------------------------------------------------------------------------------|
 | customerId*   | string      | The id of the customer to be fetched |
 
+**Response:**
+```json
+{
+   "entity":"collection",
+   "count":1,
+   "items":[
+      {
+         "id":"token_HouA2OQR5Z2jTL",
+         "entity":"token",
+         "token":"2JPRk664pZHUWG",
+         "bank":null,
+         "wallet":null,
+         "method":"card",
+         "card":{
+            "entity":"card",
+            "name":"Gaurav Kumar",
+            "last4":"8950",
+            "network":"Visa",
+            "type":"credit",
+            "issuer":"STCB",
+            "international":false,
+            "emi":false,
+            "sub_type":"consumer",
+            "expiry_month":12,
+            "expiry_year":2021,
+            "flows":{
+               "otp":true,
+               "recurring":true
+            }
+         },
+         "recurring":true,
+         "recurring_details":{
+            "status":"confirmed",
+            "failure_reason":null
+         },
+         "auth_type":null,
+         "mrn":null,
+         "used_at":1629779657,
+         "created_at":1629779657,
+         "expired_at":1640975399,
+         "dcc_enabled":false,
+         "billing_address":null
+      }
+   ]
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ### Fetch card
@@ -187,6 +476,12 @@ $api->customer->fetch($customerId)->tokens()->delete($tokenId);
 | customerId*   | string      | The id of the customer to be fetched |
 | tokenId*   | string      | The id of the token to be fetched |
 
+**Response:**
+```json
+{
+    "deleted": true
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 **PN: * indicates mandatory fields**

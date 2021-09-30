@@ -12,6 +12,9 @@ $api->virtualAccount->create(array('receivers' => array('types'=> arra('bank_acc
 | receivers*    | array      | Array that defines what receivers are available for this Virtual Account                        |
 | allowed_payers*  | array      | All parameters listed [here](https://razorpay.com/docs/api/smart-collect-tpv/#create-virtual-account) are supported                    |
 
+**Response:**
+For create virtual account response please click [here](https://razorpay.com/docs/api/smart-collect/#create-virtual-account)
+
 -------------------------------------------------------------------------------------------------------
 
 ### Create static qr
@@ -27,6 +30,34 @@ $api->virtualAccount->create(array('receivers' => array('types' => array('qr_cod
 | description  | string      | A brief description of the payment.   |
 | amount_expected  | integer   | The maximum amount you expect to receive in this virtual account. Pass `69999` for ₹699.99.   |
 | notes       | array | All keys listed [here](https://razorpay.com/docs/payments/payments/payment-methods/bharatqr/api/#create) are supported   |
+
+**Response:**
+```json
+{
+  "id": "va_4xbQrmEoA5WJ0G",
+  "name": "Acme Corp",
+  "entity": "virtual_account",
+  "status": "active",
+  "description": "First Payment by BharatQR",
+  "amount_expected": null,
+  "notes": {
+    "reference_key": "reference_value"
+  },
+  "amount_paid": 0,
+  "customer_id": "cust_805c8oBQdBGPwS",
+  "receivers": [
+    {
+      "id": "qr_4lsdkfldlteskf",
+      "entity": "qr_code",
+      "reference": "AgdeP8aBgZGckl",
+      "short_url": "https://rzp.io/i/PLs03pOc"
+    }
+  ],
+  "close_by": null,
+  "closed_at": null,
+  "created_at": 1607938184
+}
+```
 
 -------------------------------------------------------------------------------------------------------
 
@@ -44,6 +75,33 @@ $api->virtualAccount->create(array('receivers' => array('types' => array('qr_cod
 | amount_expected  | integer   | The maximum amount you expect to receive in this virtual account. Pass `69999` for ₹699.99.   |
 | notes       | array | All keys listed [here](https://razorpay.com/docs/payments/payments/payment-methods/bharatqr/api/#create) are supported   |
 
+**Response:**
+```json
+{
+  "id": "va_4xbQrmEoA5WJ0G",
+  "name": "Acme Corp",
+  "entity": "virtual_account",
+  "status": "active",
+  "description": "First Payment by BharatQR",
+  "amount_expected": null,
+  "notes": {
+    "reference_key": "reference_value"
+  },
+  "amount_paid": 0,
+  "customer_id": "cust_805c8oBQdBGPwS",
+  "receivers": [
+    {
+      "id": "qr_4lsdkfldlteskf",
+      "entity": "qr_code",
+      "reference": "AgdeP8aBgZGckl",
+      "short_url": "https://rzp.io/i/PLs03pOc"
+    }
+  ],
+  "close_by": null,
+  "closed_at": null,
+  "created_at": 1607938184
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ### Fetch virtual account by id
@@ -57,6 +115,8 @@ $api->virtualAccount->fetch($virtualId);
 |---------------|-------------|---------------------------------------------|
 | virtualId*          | string      | The id of the virtual to be updated  |
 
+**Response:**
+For fetch virtual account by id response please click [here](https://razorpay.com/docs/api/smart-collect/#fetch-a-virtual-account-by-id)
 -------------------------------------------------------------------------------------------------------
 
 ### Fetch all virtual account
@@ -73,6 +133,42 @@ $api->virtualAccount->all($options);
 | count | integer   | number of payments to fetch (default: 10)        |
 | skip  | integer   | number of payments to be skipped (default: 0)    |
 
+**Response:**
+```json
+{
+  "entity": "collection",
+  "count": 1,
+  "items": [
+    {
+      "id": "va_Di5gbNptcWV8fQ",
+      "name": "Acme Corp",
+      "entity": "virtual_account",
+      "status": "closed",
+      "description": "Virtual Account created for M/S ABC Exports",
+      "amount_expected": 2300,
+      "notes": {
+        "material": "teakwood"
+      },
+      "amount_paid": 239000,
+      "customer_id": "cust_DOMUFFiGdCaCUJ",
+      "receivers": [
+        {
+          "id": "ba_Di5gbQsGn0QSz3",
+          "entity": "bank_account",
+          "ifsc": "RATN0VAAPIS",
+          "bank_name": "RBL Bank",
+          "name": "Acme Corp",
+          "notes": [],
+          "account_number": "1112220061746877"
+        }
+      ],
+      "close_by": 1574427237,
+      "closed_at": 1574164078,
+      "created_at": 1574143517
+    }
+  ]
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ### Fetch payments for a virtual account
@@ -90,6 +186,44 @@ $api->virtualAccount->fetch($virtualId)->payments($options);
 | count | integer   | number of payments to fetch (default: 10)        |
 | skip  | integer   | number of payments to be skipped (default: 0)    |
 
+**Response:**
+```json
+{
+  "entity": "collection",
+  "count": 1,
+  "items": [
+    {
+      "id": "pay_Di5iqCqA1WEHq6",
+      "entity": "payment",
+      "amount": 239000,
+      "currency": "INR",
+      "status": "captured",
+      "order_id": null,
+      "invoice_id": null,
+      "international": false,
+      "method": "bank_transfer",
+      "amount_refunded": 0,
+      "refund_status": null,
+      "captured": true,
+      "description": "",
+      "card_id": null,
+      "bank": null,
+      "wallet": null,
+      "vpa": null,
+      "email": "saurav.kumar@example.com",
+      "contact": "+919972139994",
+      "customer_id": "cust_DOMUFFiGdCaCUJ",
+      "notes": [],
+      "fee": 2820,
+      "tax": 430,
+      "error_code": null,
+      "error_description": null,
+      "created_at": 1574143644
+    }
+  ]
+}
+```
+
 -------------------------------------------------------------------------------------------------------
 
 ### Fetch payment details using id and transfer method
@@ -103,6 +237,54 @@ $api->payment->fetch($virtualId)->bankTransfer();
 |-------|-----------|--------------------------------------------------|
 | virtualId*  | string    | The id of the virtual to be updated  |
 
+**Response:**
+```json
+{
+  "id": "bt_Di5iqCElVyRlCb",
+  "entity": "bank_transfer",
+  "payment_id": "pay_Di5iqCqA1WEHq6",
+  "mode": "NEFT",
+  "bank_reference": "157414364471",
+  "amount": 239000,
+  "payer_bank_account": {
+    "id": "ba_Di5iqSxtYrTzPU",
+    "entity": "bank_account",
+    "ifsc": "UTIB0003198",
+    "bank_name": "Axis Bank",
+    "name": "Acme Corp",
+    "notes": [],
+    "account_number": "765432123456789"
+  },
+  "virtual_account_id": "va_Di5gbNptcWV8fQ",
+  "virtual_account": {
+    "id": "va_Di5gbNptcWV8fQ",
+    "name": "Acme Corp",
+    "entity": "virtual_account",
+    "status": "closed",
+    "description": "Virtual Account created for M/S ABC Exports",
+    "amount_expected": 2300,
+    "notes": {
+      "material": "teakwood"
+    },
+    "amount_paid": 239000,
+    "customer_id": "cust_DOMUFFiGdCaCUJ",
+    "receivers": [
+      {
+        "id": "ba_Di5gbQsGn0QSz3",
+        "entity": "bank_account",
+        "ifsc": "RATN0VAAPIS",
+        "bank_name": "RBL Bank",
+        "name": "Acme Corp",
+        "notes": [],
+        "account_number": "1112220061746877"
+      }
+    ],
+    "close_by": 1574427237,
+    "closed_at": 1574164078,
+    "created_at": 1574143517
+  }
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ### Refund payments made to a virtual account
@@ -116,6 +298,25 @@ $api->payment->fetch($paymentId)->refunds();
 |-------|-----------|--------------------------------------------------|
 | paymentId*  | string    | The id of the payment to be updated  |
 
+**Response:**
+```json
+{
+  "id": "rfnd_E6j36ZEKvsWsEn",
+  "entity": "refund",
+  "amount": 100,
+  "currency": "INR",
+  "payment_id": "pay_E54n391WnEAV9H",
+  "notes": {
+    "key_1": "value1",
+    "key_2": "value2"
+  },
+  "receipt": null,
+  "acquirer_data": {
+    "rrn": null
+  },
+  "created_at": 1579522301
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ### Add receiver to an existing virtual account
@@ -131,6 +332,8 @@ $api->virtualAccount->fetch($virtualId)->addReceiver(array('types' => array('vpa
 | types*  | array | The receiver type to be added to the virtual account. Possible values are `vpa` or `bank_account`  |
 | vpa    | array | This is to be passed only when `vpa` is passed as the receiver types. |
 
+**Response:**
+For add receiver to an existing virtual account response please click [here](https://razorpay.com/docs/api/smart-collect/#add-receiver-to-an-existing-virtual-account)
 
 -------------------------------------------------------------------------------------------------------
 
@@ -145,6 +348,8 @@ $api->virtualAccount->fetch($virtualId)->close();
 |-------|-----------|--------------------------------------------------|
 | virtualId*  | string    | The id of the virtual to be updated  |
 
+**Response:**
+For close virtual account response please click [here](https://razorpay.com/docs/api/smart-collect/#close-a-virtual-account)
 -------------------------------------------------------------------------------------------------------
 
 **PN: * indicates mandatory fields**

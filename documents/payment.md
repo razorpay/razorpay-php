@@ -345,9 +345,41 @@ $api->payment->fetchPaymentDowntimeById($downtimeId);
 For payment downtime by id response please click [here](https://razorpay.com/docs/api/payments/downtime/#fetch-payment-downtime-details-by-id)
 -------------------------------------------------------------------------------------------------------
 
+### Payment capture settings API
+
+```php
+$api->order->create(array('amount' => 50000,'currency' => 'INR','receipt' => 'rcptid_11','payment' => array('capture' => 'automatic','capture_options' => array('automatic_expiry_period' => 12,'manual_expiry_period' => 7200,'refund_speed' => 'optimum'))));
+
+```
+
+**Parameters:**
+
+| Name        | Type    | Description                          |
+|-------------|---------|--------------------------------------|
+| amount*          | integer | Amount of the order to be paid                                               |
+| currency*        | string  | Currency of the order. Currently only `INR` is supported.       |
+| receipt         | string  | Your system order reference id.                                              |
+| payment         | array  | please refer this [doc](https://razorpay.com/docs/payments/payments/capture-settings/api/) for params                       |
+
+**Response:** <br>
+```json
+{
+  "id": "order_DBJOWzybf0sJbb",
+  "entity": "order",
+  "amount": 50000,
+  "amount_paid": 0,
+  "amount_due": 50000,
+  "currency": "INR",
+  "receipt": "rcptid_11",
+  "status": "created",
+  "attempts": 0,
+  "notes": [],
+  "created_at": 1566986570
+}
+```
+-------------------------------------------------------------------------------------------------------
+
 **PN: * indicates mandatory fields**
 <br>
 <br>
 **For reference click [here](https://razorpay.com/docs/api/payments/)**
-
-

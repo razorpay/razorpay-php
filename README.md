@@ -12,7 +12,7 @@ Read up here for getting started and understanding the payment flow with Razorpa
 
 ## Installation
 
--   If your project uses composer, run the below command
+-   If your project using composer, run the below command
 
 ```
 composer require razorpay/razorpay:2.*
@@ -22,7 +22,7 @@ composer require razorpay/razorpay:2.*
     **You should download the `razorpay-php.zip` file**.
     After that, include `Razorpay.php` in your application and you can use the API as usual.
 
-####Note:
+##Note:
 This PHP library follows the following practices:
 
 - Namespaced under `Razorpay\Api`
@@ -30,11 +30,11 @@ This PHP library follows the following practices:
 - Options are passed as an array instead of multiple arguments wherever possible
 - All requests and responses are communicated over JSON
 
-# Documentation
+## Documentation
 
 Documentation of Razorpay's API and their usage is available at <https://docs.razorpay.com>
 
-# Basic Usage
+## Basic Usage
 
 Instantiate the razorpay php instance with `key_id` & `key_secret`. You can obtain the keys from the dashboard app ([https://dashboard.razorpay.com/#/app/keys](https://dashboard.razorpay.com/#/app/keys))
 
@@ -51,7 +51,7 @@ The resources can be accessed via the `$api` object. All the methods invocations
     //Example
     $api->payment->fetch($paymentId);
 ```
-# Supported Resources
+## Supported Resources
 - [Customer](documents/customer.md)
 - [Token](documents/token.md)
 - [Order](documents/order.md)
@@ -75,7 +75,6 @@ The resources can be accessed via the `$api` object. All the methods invocations
 ## Development
 
 See the [doc.md](doc.md) file for getting started with development.
-
 
 ## Release
 
