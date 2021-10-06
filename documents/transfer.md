@@ -48,15 +48,14 @@ $api->payment->fetch($paymentId)->transfer(array('transfers' => array('account'=
 ### Create transfers from order
 
 ```php
-$api->payment->fetch($paymentId)->transfer('amount'=>'1000', 'currency'=>'INR', array('transfers' => array('account'=> $accountId, 'amount'=> '100', 'currency'=>'INR', 'notes'=> array('branch'=>'Acme Corp Bangalore North', 'name'=>'Gaurav Kumar'), 'linked_account_notes'=>array('branch'), 'on_hold'=>'1', 'on_hold_until'=>'1671222870')));
+$api->order->create(array('amount' => 2000,'currency' => 'INR','transfers' => array(array('account' => 'acc_CPRsN1LkFccllA','amount' => 1000,'currency' => 'INR','notes' => array('branch' => 'Acme Corp Bangalore North','name' => 'Gaurav Kumar'),'linked_account_notes' => array('branch'),'on_hold' => 1,'on_hold_until' => 1671222870),array('account' => 'acc_CNo3jSI8OkFJJJ','amount' => 1000,'currency' => 'INR','notes' => array('branch' => 'Acme Corp Bangalore South','name' => 'Saurav Kumar'),'linked_account_notes' => array('branch'),'on_hold' => 0))));
 ```
 
 **Parameters:**
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| paymentId*   | string      | The id of the payment to be fetched  |
-| amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
+| amount*   | integer      | The transaction amount, in paise |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 |  receipt      | string      | A unique identifier provided by you for your internal reference. |
 | transfers   | array     | All parameters listed [here](https://razorpay.com/docs/api/route/#create-transfers-from-orders) are supported |
