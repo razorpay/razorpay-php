@@ -90,8 +90,8 @@ class Payment extends Entity
     public function createRecurring($attributes = array())
     {
         $relativeUrl = $this->getEntityUrl() . 'create/recurring';
- 
-        return $this->request('POST', $relativeUrl, $attributes);   
+
+        return $this->request('POST', $relativeUrl, $attributes);
     }
     /**
      * fetch Card Details
@@ -123,9 +123,9 @@ class Payment extends Entity
      *
      * @return card
      */
-    public function fetchPaymentDowntimeById()
+    public function fetchPaymentDowntimeById($id)
     {
-        $relativeUrl = $this->getEntityUrl() . 'downtimes' . $this->id;
+        $relativeUrl = $this->getEntityUrl() . 'downtimes' . $id;
 
         return $this->request('GET', $relativeUrl);
     }
@@ -137,8 +137,8 @@ class Payment extends Entity
     public function createPaymentJson($attributes = array())
     {
         $relativeUrl = $this->getEntityUrl() . 'create/json';
- 
-        return $this->request('POST', $relativeUrl, $attributes);   
+
+        return $this->request('POST', $relativeUrl, $attributes);
     }
     /**
      * submit otp
@@ -147,11 +147,25 @@ class Payment extends Entity
      *
      * @param array $attributes
      */
-    public function otp($attributes = array())
+    public function otpSubmit($attributes = array())
     {
         $relativeUrl = $this->getEntityUrl(). $this->id . '/otp/submit';
- 
-        return $this->request('POST', $relativeUrl, $attributes);   
+
+        return $this->request('POST', $relativeUrl, $attributes);
+    }
+
+    /**
+     * Generate otp
+     *
+     * @param id $id
+     *
+     * @param array $attributes
+     */
+    public function otpGenerate()
+    {
+        $relativeUrl = $this->getEntityUrl(). $this->id . '/otp/otp_generate';
+
+        return $this->request('POST', $relativeUrl);
     }
 
 }
