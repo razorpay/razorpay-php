@@ -418,7 +418,7 @@ For all on-demand settlements response please click [here](https://razorpay.com/
 ### Fetch on-demand settlement by ID
 
 ```php
-$api->settlement->fetchOndemandSettlementById($settlementId);
+$api->settlement->fetch($settlementId)->fetchOndemandSettlementById();
 ```
 
 **Parameters:**

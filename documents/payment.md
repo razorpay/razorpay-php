@@ -292,7 +292,7 @@ For expanded card or emi details for payments response please click [here](https
 ### Fetch card details with paymentId
 
 ```php
-$api->payment->fetchCardDetails(paymentId);
+$api->payment->fetch($paymentId)->fetchCardDetails();
 ```
 
 **Parameters:**
@@ -375,6 +375,104 @@ $api->order->create(array('amount' => 50000,'currency' => 'INR','receipt' => 'rc
   "attempts": 0,
   "notes": [],
   "created_at": 1566986570
+}
+```
+-------------------------------------------------------------------------------------------------------
+
+### Create Payment Json
+
+```php
+$api->payment->createPaymentJson(array('amount' => 100,'currency' => 'INR','email' => 'gaurav.kumar@example.com','contact' => '9123456789','order_id' => 'order_I6LVPRQ6upW3uh','method' => 'card','card' => array('number' => '4854980604708430','cvv' => '123','expiry_month' => '12','expiry_year' => '21','name' => 'Gaurav Kumar')));
+```
+
+**Parameters:**
+ please refer this [doc](https://razorpay.com/docs/payment-gateway/s2s-integration/payment-methods/) for params
+
+**Response:** <br>
+```json
+{
+  "razorpay_payment_id": "pay_FVmAstJWfsD3SO",
+  "next": [
+    {
+      "action": "redirect",
+      "url": "https://api.razorpay.com/v1/payments/FVmAtLUe9XZSGM/authorize"
+    },
+    {
+      "action": "otp_generate",
+      "url": "https://api.razorpay.com/v1/payments/pay_FVmAstJWfsD3SO/otp_generate?track_id=FVmAtLUe9XZSGM&key_id=<YOUR_KEY_ID>"
+    }
+  ]
+}
+```
+-------------------------------------------------------------------------------------------------------
+
+### OTP Generate
+
+```php
+$api->payment->fetch($paymenmtId)->otpGenrate();
+```
+
+**Parameters:**
+
+| Name        | Type    | Description                          |
+|-------------|---------|--------------------------------------|
+| paymentId*    | integer | Unique identifier of the payment                                               |
+
+**Response:** <br>
+
+```json
+{
+ "razorpay_payment_id": "pay_FVmAstJWfsD3SO",
+ "next": [
+  {
+   "action": "otp_submit",
+   "url": "https://api.razorpay.com/v1/payments/pay_FVmAstJWfsD3SO/otp_submit/ac2d415a8be7595de09a24b41661729fd9028fdc?key_id=<YOUR_KEY_ID>"
+  },
+  {
+   "action": "otp_resend",
+   "url": "https://api.razorpay.com/v1/payments/pay_FVmAstJWfsD3SO/otp_resend/json?key_id=<YOUR_KEY_ID>"
+  }
+ ],
+ "metadata": {
+  "issuer": "HDFC",
+  "network": "MC",
+  "last4": "1111",
+  "iin": "411111"
+ }
+}
+```
+
+-------------------------------------------------------------------------------------------------------
+
+### OTP Submit
+
+```php
+$api->payment->fetch($paymenmtId)->otp(array('otp'=> '12345'));
+```
+
+**Parameters:**
+
+| Name        | Type    | Description                          |
+|-------------|---------|--------------------------------------|
+| paymentId*    | integer | Unique identifier of the payment                                               |
+
+**Response:** <br>
+Success
+```json
+{
+ "razorpay_payment_id": "pay_D5jmY2H6vC7Cy3",
+ "razorpay_order_id": "order_9A33XWu170gUtm",
+ "razorpay_signature": "9ef4dffbfd84f1318f6739a3ce19f9d85851857ae648f114332d8401e0949a3d"
+}
+```
+Failure
+```json
+{
+  "error": {
+    "code" : "BAD_REQUEST_ERROR",
+    "description": "payment processing failed because of incorrect otp"
+  },
+  "next": ["otp_submit", "otp_resend"]
 }
 ```
 -------------------------------------------------------------------------------------------------------
