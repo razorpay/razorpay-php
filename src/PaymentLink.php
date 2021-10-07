@@ -59,4 +59,26 @@ class PaymentLink extends Entity
         return $this->request(Requests::POST, $url);
     }
 
+    public function edit($attributes = array())
+    {   
+        $relativeUrl = $this->getEntityUrl() . $this->id;
+
+        return $this->request('PATCH', $relativeUrl, $attributes);   
+    }
+
+    /**
+     * Send/re-send notification with short url by given medium
+     *
+     * @param $medium - sms|email
+     *
+     * @return array
+     */
+    public function notifyBy($medium)
+    {
+        $url = $this->getEntityUrl() . $this->id . '/notify_by/' . $medium;
+        $r = new Request();
+
+        return $r->request(Requests::POST, $url);
+    }
+
 }
