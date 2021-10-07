@@ -163,7 +163,7 @@ class Payment extends Entity
      */
     public function otpGenerate()
     {
-        $relativeUrl = $this->getEntityUrl(). $this->id . '/otp/otp_generate';
+        $relativeUrl = $this->getEntityUrl(). $this->id . '/otp_generate';
 
         return $this->request('POST', $relativeUrl);
     }
