@@ -28,4 +28,11 @@ class Order extends Entity
 
         return $this->request('GET', $relativeUrl);
     }
+
+    public function transfers($options = array())
+    {
+        $relativeUrl = $this->getEntityUrl().$this->id;
+
+        return $this->request('GET', $relativeUrl, $options);
+    }
 }
