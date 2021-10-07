@@ -33,11 +33,23 @@ class Subscription extends Entity
         return $this->request('POST', $relativeUrl, $attributes);
     }
 
+    /**
+     * Create a Registration Link
+     * @param  array $attributes
+     * @return array
+     */
+    public function createSubscriptionRegistration($attributes = array())
+    {
+        $relativeUrl = 'subscription_registration/auth_links';
+
+        return $this->request('POST', $relativeUrl, $attributes);
+    }
+
     public function update($attributes = array())
     {
         $relativeUrl = $this->getEntityUrl() . $this->id;
-        
-        return $this->request('PATCH', $relativeUrl, $attributes);   
+
+        return $this->request('PATCH', $relativeUrl, $attributes);
     }
 
     public function pendingUpdate()
@@ -57,21 +69,21 @@ class Subscription extends Entity
     public function pause($attributes = array())
     {
         $relativeUrl = $this->getEntityUrl() . $this->id.'/pause';
-        
-        return $this->request('POST', $relativeUrl, $attributes);  
+
+        return $this->request('POST', $relativeUrl, $attributes);
     }
 
     public function resume($attributes = array())
     {
         $relativeUrl = $this->getEntityUrl() . $this->id.'/resume';
-        
-        return $this->request('POST', $relativeUrl, $attributes);  
+
+        return $this->request('POST', $relativeUrl, $attributes);
     }
 
     public function deleteOffer($offerId)
     {
         $relativeUrl = $this->getEntityUrl() . $this->id.'/'.$offerId;
-        
+
         return $this->request('DELETE', $relativeUrl);
     }
 
