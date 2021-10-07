@@ -40,4 +40,18 @@ class VirtualAccount extends Entity
 
         return $this->request('POST', $relativeUrl, $attributes); 
     }
+
+    public function addAllowedPayer($attributes = array())
+    {
+        $relativeUrl = $this->getEntityUrl() . $this->id . '/allowed_payers';
+
+        return $this->request('POST', $relativeUrl, $attributes);
+    }
+
+    public function deleteAllowedPayer($allowedPlayerId)
+    {
+        $relativeUrl = $this->getEntityUrl() . $this->id . '/allowed_payers/'.$allowedPlayerId;
+ 
+        return $this->request('DELETE', $relativeUrl); 
+    }
 }

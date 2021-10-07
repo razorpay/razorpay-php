@@ -166,7 +166,9 @@ class Entity extends Resource implements ArrayableInterface
     public function fill($data)
     {
         $attributes = array();
-
+        
+     if(is_array($data))
+     {   
         foreach ($data as $key => $value)
         {
             if (is_array($value))
@@ -174,7 +176,6 @@ class Entity extends Resource implements ArrayableInterface
                 if  (static::isAssocArray($value) === false)
                 {
                     $collection = array();
-
                     foreach ($value as $v)
                     {
                         if (is_array($v))
@@ -187,7 +188,6 @@ class Entity extends Resource implements ArrayableInterface
                             array_push($collection, $v);
                         }
                     }
-
                     $value = $collection;
                 }
                 else
@@ -198,7 +198,7 @@ class Entity extends Resource implements ArrayableInterface
 
             $attributes[$key] = $value;
         }
-
+      }
         $this->attributes = $attributes;
     }
 

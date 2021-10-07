@@ -77,7 +77,7 @@ $reversal  = $api->transfer->fetch($transferId)->reverse(); // Reverse a transfe
 $links = $api->payment_link->all(); // fetch all payment links
 $link  = $api->payment_link->fetch('plink_GiwM9xbIZqbkJp'); // fetch payment link with id
 $link = $api->payment_link->create(array('amount' => 98765,'description' => 'For XYZ purpose', 'customer' => array('email' => 'test@test.test'))); // create payment link
-$link  = $api->payment_link->fetch('plink_GiwM9xbIZqbkJp')->cancel(); //cancel payment link 
+$link  = $api->payment_link->fetch('plink_GiwM9xbIZqbkJp')->cancel(); //cancel payment link
 
 // Invoices
 $invoices = $api->invoice->all();
@@ -92,7 +92,7 @@ $invoice->delete();
 // Virtual Accounts
 $virtualAccount  = $api->virtualAccount->create(array('receivers' => array('types'=> arra('bank_account')),'allowed_payers' => array(array('type'=>'bank_account','bank_account'=>array('ifsc'=>'RATN0VAAPIS','account_number'=>'2223330027558515'))),'description' => 'Virtual Account created for Raftar','customer_id' => 'cust_HssUOFiOd2b1TJ', 'notes' => array('project_name' => 'Banking Software')));  //Create a Virtual Account
 
-$virtualAccount = $api->virtualAccount->fetch('va_HubTH8fZ4tnBnP')->addReceiver(array('types' => array('vpa'),'vpa' => array('descriptor'=>'gauravkumar'))); // Add Receiver to an Existing Virtual Account 
+$virtualAccount = $api->virtualAccount->fetch('va_HubTH8fZ4tnBnP')->addReceiver(array('types' => array('vpa'),'vpa' => array('descriptor'=>'gauravkumar'))); // Add Receiver to an Existing Virtual Account
 $options = array('from'=> 1631099841,'to'=> 1631099852,'count'=> 1);
 $virtualAccount = $api->virtualAccount->all($options); // Fetch All Virtual Accounts
 
@@ -113,7 +113,7 @@ $smartCollect = $api->payment->fetch('pay_8JpVEWsoNPKdQh')->bankTransfer(); // F
 
 $options = array('from'=> 1631099841,'to'=> 1631099852,'count'=> 1);
 $smartCollect = $virtualAccount->payments($options); // Fetch Payments made to a Virtual Account
-$smartCollect = $api->virtualAccount->fetch('va_HubTH8fZ4tnBnP')->addReceiver(array('types' => array('vpa'),'vpa' => array('descriptor'=>'gauravkumar'))); // Add Receiver to an Existing Virtual Account 
+$smartCollect = $api->virtualAccount->fetch('va_HubTH8fZ4tnBnP')->addReceiver(array('types' => array('vpa'),'vpa' => array('descriptor'=>'gauravkumar'))); // Add Receiver to an Existing Virtual Account
 $smartCollect  = $virtualAccount->close(); // Close a Virtual Account
 
 // Bharat QR
@@ -139,7 +139,7 @@ $subscription  = $api->subscription->create(array('plan_id' => 'plan_7wAosPWtrkh
 $subscription = $api->subscription->create(array('plan_id' => 'plan_HoYg68p5kmuvzD','total_count' => 12,'quantity' => 1,'expire_by' => 1633237807,'customer_notify' => 1, 'addons' => array(array('item'=>array('name' => 'Delivery charges','amount' => 30000,'currency' => 'INR'))),'offer_id' => 'offer_HrkIvgue2Uneqd','notes'=>array('notes_key_1'=>'Tea, Earl Grey, Hot','notes_key_2'=>'Tea, Earl Grey… decaf.'),'notify_info'=>array('notify_phone' => '9123456789','notify_email'=> 'gaurav.kumar@example.com')));  // Create a Subscription Link
 
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA'); // Fetch Subscription by ID
-$subscriptions = $api->subscription->all(); // Fetch All Subscriptions 
+$subscriptions = $api->subscription->all(); // Fetch All Subscriptions
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancel($options); //$options = ['cancel_at_cycle_end' => 1];
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->update($options); //$options = ['plan_id'=>'plan_00000000000002','offer_id'=>'offer_JHD834hjbxzhd38d','schedule_change_at'=>'cycle_end','quantity'=>5];  //Update a Subscription
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->pendingUpdate(); // Fetch Details of Pending Update
@@ -148,7 +148,7 @@ $subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->pause(['pause_
 $subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->resume(['resume_at'=>'now']); // Resume Subscription
 $subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->deleteOffer('offer_JHD834hjbxzhd38d') // Delete an Offer Linked to a Subscription
 $subscription = $api->invoice->all(['subscription_id'=>'sub_HvNIkQUz9I5GBA']); // Fetch All Invoices for a Subscription
-//For authentication transaction in subscription please refer this link https://razorpay.com/docs/api/subscriptions/#authentication-transaction 
+//For authentication transaction in subscription please refer this link https://razorpay.com/docs/api/subscriptions/#authentication-transaction
 
 $attributes = array( 'razorpay_signature' => $razorpaySignature, 'razorpay_payment_id' => $razorpayPaymentId, 'razorpay_subscription_id' => $razorpaySubscriptionId);
 $subscription = $api->utility->verifyPaymentSignature($attributes); // Payment Verification
