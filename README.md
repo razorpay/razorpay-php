@@ -78,13 +78,13 @@ $card = $api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','con
 //Register Emandate and Charge First Payment Together
 $emandate = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates an customer
 $emandate = $api->order->create(array('receipt' => 'Receipt No. 1', 'amount' => 100, 'currency' => 'INR','method'=>'emandate','customer_id'=>'cust_1Aa00000000001','notes'=>array('notes_key_1'=>'Beam me up Scotty','notes_key_2'=>'Engage'),'token'=>array('first_payment_amount'=>100,'auth_type'=>'netbanking','max_amount'=> 9999900,'expire_at'=>4102444799,'bank_account'=>array('beneficiary_name'=>'Gaurav Kumar','account_number'=>'1121431121541121','account_type'=>'savings','ifsc_code'=>'HDFC0000001')))); // Creates an order
-$emandate = $api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('first_payment_amount'=>100,'method'=>'emandate','auth_type'=>'netbanking','expire_at'=>1634215992,'max_amount'=>50000,'bank_account'=>array('beneficiary_name'=>'Gaurav Kumar','account_number'=>'11214311215411','account_type'=>'savings','ifsc_code'=>'HDFC0001233')),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992)); // Create a Registration Link 
+$emandate = $api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('first_payment_amount'=>100,'method'=>'emandate','auth_type'=>'netbanking','expire_at'=>1634215992,'max_amount'=>50000,'bank_account'=>array('beneficiary_name'=>'Gaurav Kumar','account_number'=>'11214311215411','account_type'=>'savings','ifsc_code'=>'HDFC0001233')),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992)); // Create a Registration Link
 $emandate = $api->invoice->fetch('inv_00000000000001')->notifyBy('sms'); // Send/Resend Notifications
 $emandate = $api->payment->fetch($id); // Fetch Token by Payment ID
 $emandate = $api->customer->fetch($customerId)->tokens()->all(); // Fetch Tokens by Customer ID
 $emandate = $api->invoice->fetch('inv_00000000000001')->cancel(); // Cancel a Registration Link
 $emandate = $api->customer->fetch($customerId)->tokens()->delete($tokenId); // Deletes a token
-$emandate = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Create an Order to Charge the Customer 
+$emandate = $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Create an Order to Charge the Customer
 $emandate = $api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>100,'currency'=>'INR','order_id'=>'order_1Aa00000000002','customer_id'=>'cust_1Aa00000000001','token'=>'token_1Aa00000000001','recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar']); // Create a Recurring Payment
 //For payment authorization in "registration and charge first payment together" please refer this link https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#113-create-an-authorization-payment
 
@@ -217,6 +217,26 @@ $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete();
 $settlement    = $api->settlement->fetch('setl_7IZKKI4Pnt2kEe');
 $settlements   = $api->settlement->all();
 $reports       = $api->settlement->reports(array('year' => 2018, 'month' => 2));
+
+
+//Paper NACH
+$customer = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates customer
+$order  = $api->order->create(array ('amount' => 0,'currency' => 'INR','method' => 'nach','customer_id' => 'cust_1Aa00000000001','receipt' => 'Receipt No. 1','notes' => array ('notes_key_1' => 'Beam me up Scotty','notes_key_2' => 'Engage'),'token' => array ('auth_type' => 'physical','max_amount' => 10000000,'expire_at' => 2709971120,'notes' => array ('notes_key_1' => 'Tea, Earl Grey, Hot','notes_key_2' => 'Tea, Earl Grey… decaf.'),'bank_account' => array ('account_number' => '11214311215411','ifsc_code' => 'HDFC0000001','beneficiary_name' => 'Gaurav Kumar','account_type' => 'savings'),'nach' =>array ('form_reference1' => 'Recurring Payment for Gaurav Kumar','form_reference2' => 'Method Paper NACH','description' => 'Paper NACH Gaurav Kumar')))); // Creates order for paper Nach
+$api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR')); // Creates an order to charge customer for paper nach
+$api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('method'=>'card','max_amount'=>'500','expire_at'=>'1634215992'),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992)); // Create a Registration Link
+$api->invoice->fetch('inv_00000000000001')->notifyBy('sms'); // Send/Resend Notifications (can pass any one of the following sms/email)
+$api->invoice->fetch('inv_00000000000001')->cancel() // Cancel a registration link for Paper NACH
+$api->order->fetch($orderId)->payments(); // Fetch Payment ID using Order ID
+$api->payment->fetch($id); //Fetch token by Payment ID
+$api->customer->fetch($customerId)->tokens()->fetch($tokenId); // Fetch Tokens by Customer ID
+$api->customer->fetch($customerId)->tokens()->delete($tokenId); // Deletes a token
+$api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>100,'currency'=>'INR','order_id'=>'order_1Aa00000000002','customer_id'=>'cust_1Aa00000000001','token'=>'token_1Aa00000000001','recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar']); // Create a Recurring Payment
+//For payment authoiraztion in Paper Nach please refer this link https://razorpay.com/docs/api/recurring-payments/paper-nach/authorization-transaction/#113-create-an-authorization-payment
+
+//Register NACH and Charge First Payment together
+$order  = $api->order->create(array ('amount' => 0,'currency' => 'INR','method' => 'nach','customer_id' => 'cust_1Aa00000000001','receipt' => 'Receipt No. 1','notes' => array ('notes_key_1' => 'Beam me up Scotty','notes_key_2' => 'Engage'),'token' => array ('first_payment_amount'=> 10000,'auth_type' => 'physical','max_amount' => 10000000,'expire_at' => 2709971120,'notes' => array ('notes_key_1' => 'Tea, Earl Grey, Hot','notes_key_2' => 'Tea, Earl Grey… decaf.'),'bank_account' => array ('account_number' => '11214311215411','ifsc_code' => 'HDFC0000001','beneficiary_name' => 'Gaurav Kumar','account_type' => 'savings'),'nach' =>array ('form_reference1' => 'Recurring Payment for Gaurav Kumar','form_reference2' => 'Method Paper NACH','description' => 'Paper NACH Gaurav Kumar')))); // Creates an order
+$api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('first_payment_amount'=> 10000,'method'=>'nach','auth_type'=>'physical','max_amount'=>'500','expire_at'=>'1634215992','bank_account'=>array('beneficiary_name'=>'Gaurav Kumar','account_number'=>'11214311215411','account_type'=>'savings','ifsc_code'=>'HDFC0001233')),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992)); // Create a Registration Link
+
 
 ```
 
