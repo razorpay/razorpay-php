@@ -53,6 +53,17 @@ echo $payment->currency;
 $refund = $api->refund->create(array('payment_id' => $id)); // Creates refund for a payment
 $refund = $api->refund->create(array('payment_id' => $id, 'amount'=>$refundAmount)); // Creates partial refund for a payment
 $refund = $api->refund->fetch($refundId); // Returns a particular refund
+$refund = $api->payment->fetch('pay_I06kC1xnIuG5e2')->refund(["amount"=> "100"]); // Create a Normal Refund
+$refund = $api->payment->fetch('pay_Hzoihn45TEHGK0')->refund(["amount"=> "100","speed"=>"optimum","receipt"=>"Receipt No. 31"]); // Create an Instant Refund
+
+$options = array('from'=> 1631099841,'to'=> 1631099852,'count'=> 1);
+$refund = $api->payment->fetch('pay_HvNPnCmBX7J0vS')->fetchMultipleRefund($option); // Fetch Multiple Refunds for a Payment
+$refund = $api->payment->fetch('pay_HvNPnCmBX7J0vS')->fetchRefund($refundId); // Fetch a Specific Refund for a Payment
+$refund = $api->refund->all(); // Fetch All Refunds
+$refund = $api->refund->fetch('rfnd_I0oScykxxawv1E')->edit(array('notes'=> array('notes_key_1'=>'Beam me up Scotty.', 'notes_key_2'=>'Engage'))); // Update the Refund
+
+// Cards
+$card = $api->card->fetch($cardId); // Returns a particular card
 
 // Cards
 $card = $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com')); // Creates an customer
