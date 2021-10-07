@@ -115,13 +115,31 @@ $qrCode = $api->qrCode->fetch('qr_HMsVL8HOpbMcjU')->fetchAllPayments() // Fetch 
 $plan          = $api->plan->create(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR')));
 $plan          = $api->plan->fetch('plan_7wAosPWtrkhqZw');
 $plans         = $api->plan->all();
-$subscription  = $api->subscription->create(array('plan_id' => 'plan_7wAosPWtrkhqZw', 'customer_notify' => 1, 'total_count' => 6, 'start_at' => 1495995837, 'addons' => array(array('item' => array('name' => 'Delivery charges', 'amount' => 30000, 'currency' => 'INR')))));
-$subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA');
-$subscriptions = $api->subscription->all();
+$subscription  = $api->subscription->create(array('plan_id' => 'plan_7wAosPWtrkhqZw', 'customer_notify' => 1, 'total_count' => 6, 'start_at' => 1495995837, 'addons' => array(array('item' => array('name' => 'Delivery charges', 'amount' => 30000, 'currency' => 'INR')))));  // Create a Subscription
+
+$subscription = $api->subscription->create(array('plan_id' => 'plan_HoYg68p5kmuvzD','total_count' => 12,'quantity' => 1,'expire_by' => 1633237807,'customer_notify' => 1, 'addons' => array(array('item'=>array('name' => 'Delivery charges','amount' => 30000,'currency' => 'INR'))),'offer_id' => 'offer_HrkIvgue2Uneqd','notes'=>array('notes_key_1'=>'Tea, Earl Grey, Hot','notes_key_2'=>'Tea, Earl Grey… decaf.'),'notify_info'=>array('notify_phone' => '9123456789','notify_email'=> 'gaurav.kumar@example.com')));  // Create a Subscription Link
+
+$subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA'); // Fetch Subscription by ID
+$subscriptions = $api->subscription->all(); // Fetch All Subscriptions 
 $subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancel($options); //$options = ['cancel_at_cycle_end' => 1];
-$addon         = $api->subscription->fetch('sub_82uBGfpFK47AlA')->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 30000, 'currency' => 'INR'), 'quantity' => 2));
+$subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->update($options); //$options = ['plan_id'=>'plan_00000000000002','offer_id'=>'offer_JHD834hjbxzhd38d','schedule_change_at'=>'cycle_end','quantity'=>5];  //Update a Subscription
+$subscription  = $api->subscription->fetch('sub_82uBGfpFK47AlA')->pendingUpdate(); // Fetch Details of Pending Update
+$subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->cancelAtNextCycle(); // Cancel an update
+$subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->pause(['pause_at'=>'now']); // Pause Subscription
+$subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->resume(['resume_at'=>'now']); // Resume Subscription
+$subscription =  $api->subscription->fetch('sub_82uBGfpFK47AlA')->deleteOffer('offer_JHD834hjbxzhd38d') // Delete an Offer Linked to a Subscription
+$subscription = $api->invoice->all(['subscription_id'=>'sub_HvNIkQUz9I5GBA']); // Fetch All Invoices for a Subscription
+//For authentication transaction in subscription please refer this link https://razorpay.com/docs/api/subscriptions/#authentication-transaction 
+
+$attributes = array( 'razorpay_signature' => $razorpaySignature, 'razorpay_payment_id' => $razorpayPaymentId, 'razorpay_subscription_id' => $razorpaySubscriptionId);
+$subscription = $api->utility->verifyPaymentSignature($attributes); // Payment Verification
+
+
+$addon         = $api->addon->fetchAll($option); // Fetch all Add-ons
+$addon         = $api->subscription->fetch('sub_82uBGfpFK47AlA')->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 30000, 'currency' => 'INR'), 'quantity' => 2)); // Create an Add-on
 $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H');
 $addon         = $api->addon->fetch('ao_8nDvQYYGQI5o4H')->delete();
+
 
 // Settlements
 $settlement    = $api->settlement->fetch('setl_7IZKKI4Pnt2kEe');
