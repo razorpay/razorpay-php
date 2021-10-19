@@ -11,7 +11,7 @@ class AddonTest extends TestCase
         parent::setUp();
     }
     
-    public function testcreate()  // Create an Add-on
+    public function testcreate()  ### Create an addon
     {
         $data =  $this->api->subscription->fetch('sub_HowiBGCx3q8sVs')->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 30000, 'currency' => 'INR'), 'quantity' => 2));
         
@@ -20,7 +20,7 @@ class AddonTest extends TestCase
         $this->assertTrue(is_object($data['item']));
     }
     
-    public function testFetchId() // Fetch Subscription Link by ID
+    public function testFetchId() ### Fetch all addons
     {
         $data = $this->api->addon->fetch('ao_I47DYIbTSXtqcU');
         
@@ -29,7 +29,7 @@ class AddonTest extends TestCase
         $this->assertTrue($data['entity']=='addon');
     }
     
-    public function testFetchall() // Fetch all addons
+    public function testFetchall() ### Fetch an addon
     {
         $data = $this->api->addon->fetchAll(array('from'=>1634625266,'to'=>1634641405,'count'=>1));
 
