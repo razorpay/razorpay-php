@@ -45,7 +45,7 @@ $api->order->create(array('amount' => 0,'currency' => 'INR','method' => 'upi','c
 |-----------------|---------|------------------------------------------------------------------------------|
 | amount*          | integer | Amount of the order to be paid                                               |
 | currency*        | string  | Currency of the order. Currently only `INR` is supported.                      |
-| method*        | string  | The authorization method. In this case the value will be `emandate`                      |
+| method*        | string  | The authorization method. In this case the value will be `upi`                      |
 | receipt         | string  | Your system order reference id.                                              |
 | notes           | array  | A key-value pair                                                             |
 | token           | array  | A key-value pair                                                             |
@@ -81,7 +81,7 @@ Please refer this [doc](https://razorpay.com/docs/api/recurring-payments/upi/aut
 ### Create registration link
 
 ```php
-$api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('method'=>'card','max_amount'=>'500','expire_at'=>'1634215992'),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992,'notes' => array('note_key 1' => 'Beam me up Scotty','note_key 2' => 'Tea. Earl Gray. Hot.')));
+$api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('method'=>'upi','max_amount'=>'500','expire_at'=>'1634215992'),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992,'notes' => array('note_key 1' => 'Beam me up Scotty','note_key 2' => 'Tea. Earl Gray. Hot.')));
 ```
 
 **Parameters:**
