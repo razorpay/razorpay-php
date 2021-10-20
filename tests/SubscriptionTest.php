@@ -20,7 +20,7 @@ class SubscriptionTest extends TestCase
         $this->assertTrue(in_array('id',$data->toArray()));
     }
     
-    public function testFetchId() ### Fetch particular subscription
+    public function testFetchId() // Fetch particular subscription
     {
         $data = $this->api->subscription->fetch('sub_I3Ett1owwtx89j');
         
@@ -29,7 +29,7 @@ class SubscriptionTest extends TestCase
         $this->assertTrue(in_array('plan_id',$data->toArray()));
     }
     
-       public function testupdate() ### Update particular subscription
+       public function testupdate() // Update particular subscription
        {
            $data = $this->api->subscription->fetch('sub_I3Ett1owwtx89j')->update(array('plan_id'=>'plan_HuXrfsI0ZZ3peu','offer_id'=>'offer_I3FdCGKaLmyToR','schedule_change_at'=>'cycle_end','quantity'=>2));
            
@@ -38,7 +38,7 @@ class SubscriptionTest extends TestCase
            $this->assertTrue(in_array('customer_id',$data->toArray()));
        }
 
-       public function testpendingUpdate() ### Fetch details of pending update
+       public function testpendingUpdate() // Fetch details of pending update
        {
          $data = $this->api->subscription->fetch('sub_I3Epz0GoyH6NPc')->pendingUpdate();
 
@@ -47,7 +47,7 @@ class SubscriptionTest extends TestCase
          $this->assertTrue(in_array('id',$data->toArray()));
        }
 
-       public function testCancelUpdate() ### Cancel a update
+       public function testCancelUpdate() // Cancel a update
        {
          $data = $this->api->subscription->fetch('sub_I3Ett1owwtx89j')->cancelScheduledChanges();
 
@@ -56,7 +56,7 @@ class SubscriptionTest extends TestCase
          $this->assertTrue(in_array('id',$data->toArray()));
        }
        
-       public function testCancel() ### Cancel particular subscription
+       public function testCancel() // Cancel particular subscription
        {
          $data = $this->api->subscription->fetch('sub_HoxKBd2O0heXfu')->cancel();
          
@@ -65,7 +65,7 @@ class SubscriptionTest extends TestCase
          $this->assertTrue(in_array('id',$data->toArray()));
        }
     
-       public function testPause() ### Pause a subscription
+       public function testPause() // Pause a subscription
        {
          $data = $this->api->subscription->fetch('sub_I3Epz0GoyH6NPc')->pause(['pause_at'=>'now']);
 
@@ -76,7 +76,7 @@ class SubscriptionTest extends TestCase
         $this->assertTrue($data['status'] == 'paused');
        }  
     
-    public function testResume() ### Resume a subscription
+    public function testResume() // Resume a subscription
     {
       $data = $this->api->subscription->fetch('sub_I3Epz0GoyH6NPc')->resume(['resume_at'=>'now']);
 
@@ -87,7 +87,7 @@ class SubscriptionTest extends TestCase
       $this->assertTrue($data['status'] == 'active');
     } 
 
-    public function testSubscriptionInvoices() ### Fetch all invoices for a subscription
+    public function testSubscriptionInvoices() // Fetch all invoices for a subscription
     {
       $data = $this->api->invoice->all(['subscription_id'=>'sub_HvNIkQUz9I5GBA']);
 
@@ -96,7 +96,7 @@ class SubscriptionTest extends TestCase
       $this->assertTrue(is_array($data['items']));
     } 
     
-    public function testDeleteOffer() ### Delete offer linked to a subscription
+    public function testDeleteOffer() // Delete offer linked to a subscription
     {
       $data =  $this->api->subscription->fetch('sub_I3GGEs7Xgmnozy')->deleteOffer('offer_I3FdCGKaLmyToR');
 
@@ -106,7 +106,7 @@ class SubscriptionTest extends TestCase
     }
 
 
-    public function testSubscriptions() ### Fetch all subscriptions
+    public function testSubscriptions() // Fetch all subscriptions
     {
         $data = $this->api->subscription->all();
 
