@@ -2,6 +2,54 @@
 
 ### Create a virtual account
 ```php
+$api->virtualAccount->create(array('receivers' => array('types' => array('bank_account')),'description' => 'Virtual Account created for Raftar Soft','customer_id' => 'cust_CaVDm8eDRSXYME','close_by' => 1681615838,'notes' => array('project_name' => 'Banking Software')));
+```
+
+**Parameters:**
+
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+| receivers*    | array      | Array that defines what receivers are available for this Virtual Account                        |
+| description  | string      | A brief description of the virtual account.                    |
+| customer_id  | string      | Unique identifier of the customer to whom the virtual account must be tagged.                    |
+| close_by  | integer      | UNIX timestamp at which the virtual account is scheduled to be automatically closed.                  |
+| notes  | integer      | Any custom notes you might want to add to the virtual account can be entered here.                  |
+
+**Response:**
+```json
+{
+  "id":"va_DlGmm7jInLudH9",
+  "name":"Acme Corp",
+  "entity":"virtual_account",
+  "status":"active",
+  "description":"Virtual Account created for Raftar Soft",
+  "amount_expected":null,
+  "notes":{
+    "project_name":"Banking Software"
+  },
+  "amount_paid":0,
+  "customer_id":"cust_CaVDm8eDRSXYME",
+  "receivers":[
+    {
+      "id":"ba_DlGmm9mSj8fjRM",
+      "entity":"bank_account",
+      "ifsc":"RATN0VAAPIS",
+      "bank_name": "RBL Bank",
+      "name":"Acme Corp",
+      "notes":[],
+      "account_number":"2223330099089860"
+    }
+  ],
+  "close_by":1681615838,
+  "closed_at":null,
+  "created_at":1574837626
+}
+```
+
+-------------------------------------------------------------------------------------------------------
+
+### Create a virtual account with TPV
+```php
 $api->virtualAccount->create(array('receivers' => array('types'=> array('bank_account')),'allowed_payers' => array(array('type'=>'bank_account','bank_account'=>array('ifsc'=>'RATN0VAAPIS','account_number'=>'2223330027558515'))),'description' => 'Virtual Account created for Raftar Soft','customer_id' => 'cust_HssUOFiOd2b1TJ', 'notes' => array('project_name' => 'Banking Software')));
 ```
 
@@ -10,10 +58,56 @@ $api->virtualAccount->create(array('receivers' => array('types'=> array('bank_ac
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
 | receivers*    | array      | Array that defines what receivers are available for this Virtual Account                        |
-| allowed_payers*  | array      | All parameters listed [here](https://razorpay.com/docs/api/smart-collect-tpv/#create-virtual-account) are supported                    |
+| allowed_payers*  | array      | All parameters listed [here](https://razorpay.com/docs/api/smart-collect-tpv/#create-virtual-account) are supported
 
 **Response:**
-For create virtual account response please click [here](https://razorpay.com/docs/api/smart-collect/#create-virtual-account)
+```json
+{
+  "id":"va_DlGmm7jInLudH9",
+  "name":"Acme Corp",
+  "entity":"virtual_account",
+  "status":"active",
+  "description":"Virtual Account created for Raftar Soft",
+  "amount_expected":null,
+  "notes":{
+    "project_name":"Banking Software"
+  },
+  "amount_paid":0,
+  "customer_id":"cust_CaVDm8eDRSXYME",
+  "receivers":[
+    {
+      "id":"ba_DlGmm9mSj8fjRM",
+      "entity":"bank_account",
+      "ifsc":"RATN0VAAPIS",
+      "bank_name": "RBL Bank",
+      "name":"Acme Corp",
+      "notes":[],
+      "account_number":"2223330099089860"
+    }
+  ],
+  "allowed_payers": [
+    {
+      "type": "bank_account",
+      "id":"ba_DlGmm9mSj8fjRM",
+      "bank_account": {
+        "ifsc": "UTIB0000013",
+        "account_number": "914010012345679"
+      }
+    },
+    {
+      "type": "bank_account",
+      "id":"ba_Cmtnm5tSj6agUW",
+      "bank_account": {
+        "ifsc": "UTIB0000014",
+        "account_number": "914010012345680"
+      }
+    }
+  ],
+  "close_by":1681615838,
+  "closed_at":null,
+  "created_at":1574837626
+}
+```
 
 -------------------------------------------------------------------------------------------------------
 
