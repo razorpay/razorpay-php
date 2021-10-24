@@ -6,30 +6,43 @@ use Razorpay\Api\Request;
 
 class CustomerTest extends TestCase
 {
+    private static $customerId;
+
     public function setUp()
     {
         parent::setUp();
     }
     
-    public function testcreate()  // Create customer
+    /**
+     * Create customer
+     */
+    public function testcreate()
     {
-        $data = $this->api->customer->create(array('name' => 'Razorpay User 12', 'email' => 'customer12@razorpay.com'));
-        
+        $data = $this->api->customer->create(array('name' => 'Razorpay User 38', 'email' => 'customer38@razorpay.com'));
+
+        self::$customerId = $data->id;
+
         $this->assertTrue(is_array($data->toArray()));
 
         $this->assertTrue(in_array('customer',$data->toArray()));
     }
     
-    public function testedit()  // Edit customer
+    /**
+     * Edit customer
+     */
+    public function testedit()
     {
-        $data = $this->api->customer->fetch('cust_I4LnzRjiJYJES7')->edit(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com','contact'=>'9123456780'));
+        $data = $this->api->customer->fetch(self::$customerId)->edit(array('name' => 'Razorpay User'.time() ,'contact'=>'9123456780'));
         
         $this->assertTrue(is_array($data->toArray()));
 
-        $this->assertTrue(in_array('cust_I4LnzRjiJYJES7',$data->toArray()));
+        $this->assertTrue(in_array(self::$customerId, $data->toArray()));
     }
 
-    public function testfetchAll()  // Fetch customer All
+    /**
+     * Fetch customer All
+     */
+    public function testfetchAll()
     {
         $data = $this->api->customer->all();
         
@@ -38,12 +51,15 @@ class CustomerTest extends TestCase
         $this->assertTrue(is_array($data['items']));
     }
 
-    public function testfetch()  // Fetch a customer
+    /**
+     * Fetch a customer
+     */
+    public function testfetch()
     {
-        $data = $this->api->customer->fetch('cust_I4LnzRjiJYJES7');
+        $data = $this->api->customer->fetch(self::$customerId);
         
         $this->assertTrue(is_array($data->toArray()));
 
-        $this->assertTrue(in_array('cust_I4LnzRjiJYJES7',$data->toArray()));
+        $this->assertTrue(in_array(self::$customerId, $data->toArray()));
     }
 }

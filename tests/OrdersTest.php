@@ -6,22 +6,31 @@ use Razorpay\Api\Request;
 
 class OrdersTest extends TestCase
 {
+    private static $orderId;
+
     public function setUp()
     {
         parent::setUp();
     }
     
-    public function testcreate()  // Create order
+    /**
+     * Create order
+     */
+    public function testcreate()
     {
         $data = $this->api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+
+        self::$orderId = $data->id;
 
         $this->assertTrue(is_array($data->toArray()));
 
         $this->assertTrue(in_array('id',$data->toArray()));
     }
 
-
-    public function testAll()  // Fetch all orders
+    /**
+     * Fetch all orders
+     */
+    public function testAll()
     {
         $data = $this->api->order->all();
 
@@ -30,27 +39,35 @@ class OrdersTest extends TestCase
         $this->assertTrue(is_array($data['items']));
     }
     
-    public function testfetch()  // Fetch particular order
+    /**
+     * Fetch particular order
+     */
+    public function testfetch()
     {
-        $data = $this->api->order->fetch('order_I80LnO03SgjIzD');
+        $data = $this->api->order->fetch(self::$orderId);
 
         $this->assertTrue(is_array($data->toArray()));
 
         $this->assertTrue(in_array('order',$data->toArray()));
     }
 
-    public function testfetchById()  // Fetch payments for an order
+    /**
+     * Fetch payments for an order
+     */
+    public function testfetchById()
     {
-        $data = $this->api->order->fetch('order_I80LnO03SgjIzD')->payments();
+        $data = $this->api->order->fetch(self::$orderId)->payments();
 
         $this->assertTrue(is_array($data->toArray()));
 
-        $this->assertTrue(is_array($data['items']));
     }
     
-    public function testUpdate() // Update Order
+    /**
+     * Update Order
+     */
+    public function testUpdate()
     {
-        $data = $this->api->order->fetch('order_I80LnO03SgjIzD')->edit(array('notes'=> array('notes_key_1'=>'Beam me up Scotty. 1', 'notes_key_2'=>'Engage')));
+        $data = $this->api->order->fetch(self::$orderId)->edit(array('notes'=> array('notes_key_1'=>'Beam me up Scotty. 1', 'notes_key_2'=>'Engage')));
 
         $this->assertTrue(is_array($data->toArray()));
 
