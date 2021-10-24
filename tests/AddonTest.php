@@ -6,35 +6,53 @@ use Razorpay\Api\Request;
 
 class AddonTest extends TestCase
 {
+    public static $addonId;
+
     public function setUp()
     {
         parent::setUp();
     }
     
-    public function testcreate() // Create an addon
+    /**
+     * Create an Add-on
+     */
+    public function testcreate()
     {
-        $data =  $this->api->subscription->fetch('sub_HowiBGCx3q8sVs')->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 30000, 'currency' => 'INR'), 'quantity' => 2));
+        $plan = $this->api->plan->create(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR'),'notes'=> array('key1'=> 'value3','key2'=> 'value2')));  
+
+        $subscription = $this->api->subscription->create(array('plan_id' => $plan->id, 'customer_notify' => 1,'quantity'=>1, 'total_count' => 6, 'addons' => array(array('item' => array('name' => 'Delivery charges', 'amount' => 3000, 'currency' => 'INR'))),'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
         
+        $data =  $this->api->subscription->fetch($subscription->id)->createAddon(array('item' => array('name' => 'Extra Chair', 'amount' => 3000, 'currency' => 'INR'), 'quantity' => 1));
+        
+        self::$addonId = $data->id;
+
         $this->assertTrue(is_array($data->toArray()));
         
         $this->assertTrue(is_object($data['item']));
     }
     
-    public function testFetchId() // Fetch all addons
+    /**
+     * Fetch Subscription Link by ID
+     */
+    public function testFetchId()
     {
-        $data = $this->api->addon->fetch('ao_I47DYIbTSXtqcU');
+        $data = $this->api->addon->fetch(self::$addonId);
         
         $this->assertTrue(is_array($data->toArray()));
         
         $this->assertTrue($data['entity']=='addon');
     }
     
-    public function testFetchall() // Fetch an addon
+    /**
+     * Fetch all addons
+     */
+    public function testFetchall()
     {
-        $data = $this->api->addon->fetchAll(array('from'=>1634625266,'to'=>1634641405,'count'=>1));
-
+        $data = $this->api->addon->fetchAll();
+        
         $this->assertTrue(is_array($data->toArray()));
         
         $this->assertTrue(is_array($data['items']));
     }
+
 }

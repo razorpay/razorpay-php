@@ -387,6 +387,77 @@ For add receiver to an existing virtual account response please click [here](htt
 
 -------------------------------------------------------------------------------------------------------
 
+### Add an Allowed Payer Account
+```php
+$api->virtualAccount->fetch($virtualId)->addAllowedPayer(array('types' => 'bank_account','bank_account' => array('ifsc'=>'UTIB0000013','account_number'=>'914010012345679')));
+```
+
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| virtualId*  | string    | The id of the virtual to be updated  |
+| bank_account*    | array | Indicates the bank account details such as `ifsc` and `account_number` |
+
+**Response:**
+```json
+{
+  "id":"va_DlGmm7jInLudH9",
+  "name":"Acme Corp",
+  "entity":"virtual_account",
+  "status":"active",
+  "description":"Virtual Account created for Raftar Soft",
+  "amount_expected":null,
+  "notes":{
+    "project_name":"Banking Software"
+  },
+  "amount_paid":0,
+  "customer_id":"cust_CaVDm8eDRSXYME",
+  "receivers":[
+    {
+      "id":"ba_DlGmm9mSj8fjRM",
+      "entity":"bank_account",
+      "ifsc":"RATN0VAAPIS",
+      "bank_name": "RBL Bank",
+      "name":"Acme Corp",
+      "notes":[],
+      "account_number":"2223330099089860"
+    }
+  ],
+  "allowed_payers": [
+    {
+      "type": "bank_account",
+      "id":"ba_DlGmm9mSj8fjRM",
+      "bank_account": {
+        "ifsc": "UTIB0000013",
+        "account_number": "914010012345679"
+      }
+    }
+  ],
+  "close_by":1681615838,
+  "closed_at":null,
+  "created_at":1574837626
+}
+```
+-------------------------------------------------------------------------------------------------------
+
+### Delete an Allowed Payer Account
+```php
+$api->virtualAccount->fetch($virtualId)->deleteAllowedPayer($allowedPayersId);
+```
+
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| virtualId*  | string    | The id of the virtual to be updated  |
+| allowedPayersId*  | string    | The id of the allowed payers to be updated  |
+
+**Response:**
+```json
+{}
+```
+-------------------------------------------------------------------------------------------------------
 ### Close virtual account
 ```php
 $api->virtualAccount->fetch($virtualId)->close();
