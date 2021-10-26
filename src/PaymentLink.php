@@ -62,6 +62,10 @@ class PaymentLink extends Entity
     public function edit($attributes = array())
     {   
         $relativeUrl = $this->getEntityUrl() . $this->id;
+        
+        $attributes = json_encode($attributes);
+
+        Request::addHeader('Content-Type', 'application/json');
 
         return $this->request('PATCH', $relativeUrl, $attributes);   
     }

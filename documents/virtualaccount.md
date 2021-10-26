@@ -278,7 +278,7 @@ $api->virtualAccount->fetch($virtualId)->payments($options);
 
 ### Fetch payment details using id and transfer method
 ```php
-$api->payment->fetch($virtualId)->bankTransfer();
+$api->payment->fetch($paymentId)->bankTransfer();
 ```
 
 **Parameters:**
