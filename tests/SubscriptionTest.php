@@ -6,9 +6,9 @@ use Razorpay\Api\Request;
 
 class SubscriptionTest extends TestCase
 {
-    private static $subscriptionId;
+    private static $createdSubscriptionId;
 
-    private static $offerId;
+    private static $activeSubscriptionId;
 
     public function setUp()
     {
@@ -24,9 +24,7 @@ class SubscriptionTest extends TestCase
 
         $data = $this->api->subscription->create(array('plan_id' => $plan->id, 'customer_notify' => 1,'quantity'=>1, 'total_count' => 6, 'addons' => array(array('item' => array('name' => 'Delivery charges', 'amount' => 3000, 'currency' => 'INR'))),'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
         
-        self::$subscriptionId = $data->id;
-
-        self::$offerId = $data->offer_id;
+        self::$createdSubscriptionId = $data->id;
 
         $this->assertTrue(is_array($data->toArray()));
 
@@ -38,7 +36,7 @@ class SubscriptionTest extends TestCase
      */
     public function testFetchId()
     {
-        $data = $this->api->subscription->fetch(self::$subscriptionId);
+        $data = $this->api->subscription->fetch(self::$createdSubscriptionId);
         
         $this->assertTrue(is_array($data->toArray()));
 
@@ -50,13 +48,29 @@ class SubscriptionTest extends TestCase
      */
     public function testPause()
     {
-      $data = $this->api->subscription->fetch(self::$subscriptionId)->pause(['pause_at'=>'now']);
+      $subscription = $this->api->subscription->all(['count'=>50]);
 
-      $this->assertTrue(is_array($data->toArray()));
+      if($subscription['count'] !== 0){
+         
+        foreach($subscription['items'] as $subscription){
 
-      $this->assertTrue(in_array('id',$data->toArray()));
+          if($subscription['status'] == 'active'){
 
-    $this->assertTrue($data['status'] == 'paused');
+            $data = $this->api->subscription->fetch($subscription['id'])->pause(['pause_at'=>'now']);
+
+            self::$activeSubscriptionId = $data->id;
+
+            $this->assertTrue(is_array($data->toArray()));
+      
+            $this->assertTrue(in_array('id',$data->toArray()));
+      
+            $this->assertTrue($data['status'] == 'paused');
+
+            break;
+          }
+        }
+        
+      }
     }  
     
     /**
@@ -64,7 +78,7 @@ class SubscriptionTest extends TestCase
      */
     public function testResume()
     {
-      $data = $this->api->subscription->fetch(self::$subscriptionId)->resume(['resume_at'=>'now']);
+      $data = $this->api->subscription->fetch(self::$activeSubscriptionId)->resume(['resume_at'=>'now']);
 
       $this->assertTrue(is_array($data->toArray()));
 
@@ -78,7 +92,7 @@ class SubscriptionTest extends TestCase
      */
     public function testupdate()
     {
-        $data = $this->api->subscription->fetch(self::$subscriptionId)->update(array('schedule_change_at'=>'cycle_end','quantity'=>2));
+        $data = $this->api->subscription->fetch(self::$activeSubscriptionId)->update(array('schedule_change_at'=>'cycle_end','quantity'=>2));
         
         $this->assertTrue(is_array($data->toArray()));
 
@@ -90,7 +104,7 @@ class SubscriptionTest extends TestCase
      */
     public function testpendingUpdate()
     {
-      $data = $this->api->subscription->fetch(self::$subscriptionId)->pendingUpdate();
+      $data = $this->api->subscription->fetch(self::$activeSubscriptionId)->pendingUpdate();
 
       $this->assertTrue(is_array($data->toArray()));
 
@@ -102,7 +116,7 @@ class SubscriptionTest extends TestCase
      */
     public function testCancelUpdate()
     {
-      $data = $this->api->subscription->fetch(self::$subscriptionId)->cancelScheduledChanges();
+      $data = $this->api->subscription->fetch(self::$activeSubscriptionId)->cancelScheduledChanges();
 
       $this->assertTrue(is_array($data->toArray()));
 
@@ -114,24 +128,12 @@ class SubscriptionTest extends TestCase
      */
     public function testSubscriptionInvoices()
     {
-      $data = $this->api->invoice->all(['subscription_id'=>self::$subscriptionId]);
+      $data = $this->api->invoice->all(['subscription_id'=>self::$activeSubscriptionId]);
 
       $this->assertTrue(is_array($data->toArray()));
 
       $this->assertTrue(is_array($data['items']));
     } 
-    
-    /**
-     * Delete an Offer Linked to a Subscription
-     */
-    public function testDeleteOffer()
-    {
-      $data =  $this->api->subscription->fetch(self::$subscriptionId)->deleteOffer(self::$offerId);
-
-      $this->assertTrue(is_array($data->toArray()));
-
-      $this->assertTrue(in_array('id',$data->toArray()));
-    }
 
     /**
      * Fetch all Add-ons
