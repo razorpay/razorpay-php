@@ -22,7 +22,7 @@ class registerNachTest extends TestCase
      */
     public function testCreateCustomerForNachTest() 
     {
-        $data = $this->api->customer->create(array('name' => 'Razorpay User 21', 'email' => 'customer21@razorpay.com'));
+        $data = $this->api->customer->create(array('name' => 'Razorpay User 21', 'email' => 'customer21@razorpay.com','fail_existing'=>'0'));
         
         $this->assertTrue(is_array($data->toArray()));
 
@@ -72,8 +72,6 @@ class registerNachTest extends TestCase
         $data = $this->api->order->fetch($this->orderId)->payments();
 
         $this->assertTrue(is_array($data->toArray()));
-
-        $this->assertTrue(is_array($data['items']));
     }
 
     /**
@@ -84,8 +82,6 @@ class registerNachTest extends TestCase
        $data = $this->api->customer->fetch($this->customerId)->tokens()->all();
 
        $this->assertTrue(is_array($data->toArray()));
-
-       $this->assertTrue(is_array($data['items']));
     }
 
     /**
