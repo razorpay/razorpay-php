@@ -10,10 +10,9 @@ class TestCase extends \PHPUnit_Framework_TestCase
     
     public function setUp()
     {
-        $apiKey = '';
-
-        $apiSecret = '';
+        $apiKey = 'rzp_test_1DP5mmOlF5G5ag';
+        $apiSecret = 'thisissupersecret';
         
-        $this->api = new Api($apiKey, $apiSecret);
+        $this->api = new Api( $apiKey, $apiSecret);
     }
 }
