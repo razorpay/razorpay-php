@@ -6,7 +6,7 @@ use Razorpay\Api\Request;
 
 class OrdersTest extends TestCase
 {
-    private static $orderId;
+    private $orderId = 'order_IEfF1OrQbqxYJq';
 
     public function setUp()
     {
@@ -16,11 +16,9 @@ class OrdersTest extends TestCase
     /**
      * Create order
      */
-    public function testcreate()
+    public function testCreateOrder()
     {
         $data = $this->api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
-
-        self::$orderId = $data->id;
 
         $this->assertTrue(is_array($data->toArray()));
 
@@ -30,7 +28,7 @@ class OrdersTest extends TestCase
     /**
      * Fetch all orders
      */
-    public function testAll()
+    public function testAllOrders()
     {
         $data = $this->api->order->all();
 
@@ -42,9 +40,9 @@ class OrdersTest extends TestCase
     /**
      * Fetch particular order
      */
-    public function testfetch()
+    public function testFetchOrder()
     {
-        $data = $this->api->order->fetch(self::$orderId);
+        $data = $this->api->order->fetch($this->orderId);
 
         $this->assertTrue(is_array($data->toArray()));
 
@@ -54,9 +52,9 @@ class OrdersTest extends TestCase
     /**
      * Fetch payments for an order
      */
-    public function testfetchById()
+    public function testOrderFetchById()
     {
-        $data = $this->api->order->fetch(self::$orderId)->payments();
+        $data = $this->api->order->fetch($this->orderId)->payments();
 
         $this->assertTrue(is_array($data->toArray()));
 
@@ -65,9 +63,9 @@ class OrdersTest extends TestCase
     /**
      * Update Order
      */
-    public function testUpdate()
+    public function testUpdateOrder()
     {
-        $data = $this->api->order->fetch(self::$orderId)->edit(array('notes'=> array('notes_key_1'=>'Beam me up Scotty. 1', 'notes_key_2'=>'Engage')));
+        $data = $this->api->order->fetch($this->orderId)->edit(array('notes'=> array('notes_key_1'=>'Beam me up Scotty. 1', 'notes_key_2'=>'Engage')));
 
         $this->assertTrue(is_array($data->toArray()));
 

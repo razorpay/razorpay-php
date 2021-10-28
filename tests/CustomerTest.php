@@ -6,7 +6,7 @@ use Razorpay\Api\Request;
 
 class CustomerTest extends TestCase
 {
-    private static $customerId;
+    private $customerId = 'cust_IEfAt3ruD4OEzo';
 
     public function setUp()
     {
@@ -16,11 +16,9 @@ class CustomerTest extends TestCase
     /**
      * Create customer
      */
-    public function testcreate()
+    public function testCreateCustomer()
     {
-        $data = $this->api->customer->create(array('name' => 'Razorpay User 38', 'email' => 'customer38@razorpay.com'));
-
-        self::$customerId = $data->id;
+        $data = $this->api->customer->create(array('name' => 'Razorpay User 38', 'email' => 'customer38@razorpay.com' ,'fail_existing'=>'0'));
 
         $this->assertTrue(is_array($data->toArray()));
 
@@ -30,19 +28,19 @@ class CustomerTest extends TestCase
     /**
      * Edit customer
      */
-    public function testedit()
+    public function testEditCustomer()
     {
-        $data = $this->api->customer->fetch(self::$customerId)->edit(array('name' => 'Razorpay User'.time() ,'contact'=>'9123456780'));
+        $data = $this->api->customer->fetch($this->customerId)->edit(array('name' => 'Razorpay User 21' ,'contact'=>'9123456780'));
         
         $this->assertTrue(is_array($data->toArray()));
 
-        $this->assertTrue(in_array(self::$customerId, $data->toArray()));
+        $this->assertTrue(in_array($this->customerId, $data->toArray()));
     }
 
     /**
      * Fetch customer All
      */
-    public function testfetchAll()
+    public function testFetchAll()
     {
         $data = $this->api->customer->all();
         
@@ -54,12 +52,12 @@ class CustomerTest extends TestCase
     /**
      * Fetch a customer
      */
-    public function testfetch()
+    public function testFetchCustomer()
     {
-        $data = $this->api->customer->fetch(self::$customerId);
+        $data = $this->api->customer->fetch($this->customerId);
         
         $this->assertTrue(is_array($data->toArray()));
 
-        $this->assertTrue(in_array(self::$customerId, $data->toArray()));
+        $this->assertTrue(in_array($this->customerId, $data->toArray()));
     }
 }
