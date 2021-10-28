@@ -22,7 +22,7 @@ class paperNachTest extends TestCase
      */
     public function testcreate()
     {
-        $data = $this->api->customer->create(array('name' => 'Razorpay User 65', 'email' => 'customer65@razorpay.com'));
+        $data = $this->api->customer->create(array('name' => 'Razorpay User 72', 'email' => 'customer72@razorpay.com'));
         
         self::$customerId = $data->id;
 

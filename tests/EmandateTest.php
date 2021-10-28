@@ -20,7 +20,7 @@ class EmandateTest extends TestCase
      */
     public function testcreate()
     {
-        $data = $this->api->customer->create(array('name' => 'Razorpay User 67', 'email' => 'customer67@razorpay.com', 'contact'=> 9999999999));
+        $data = $this->api->customer->create(array('name' => 'Razorpay User 71', 'email' => 'customer71@razorpay.com', 'contact'=> 9999999999));
         
         self::$customerId = $data->id;
 
