@@ -44,7 +44,7 @@ class SubscriptionTest extends TestCase
     /**
      * Pause a Subscription
      */
-    public function testPause()
+    public function testPauseSubscription()
     {
 
       $data = $this->api->subscription->fetch(self::$subscriptionId)->pause(['pause_at'=>'now']);
@@ -60,7 +60,7 @@ class SubscriptionTest extends TestCase
     /**
      * Resume a Subscription
      */
-    public function testResume()
+    public function testResumeSubscription()
     {
       $data = $this->api->subscription->fetch(self::$subscriptionId)->resume(['resume_at'=>'now']);
 
@@ -74,7 +74,7 @@ class SubscriptionTest extends TestCase
     /**
      * Update a Subscription
      */
-    public function testupdate()
+    public function testupdateSubscription()
     {
         $data = $this->api->subscription->fetch(self::$subscriptionId)->update(array('schedule_change_at'=>'cycle_end','quantity'=>2));
         
@@ -134,7 +134,7 @@ class SubscriptionTest extends TestCase
     /**
      * Fetch all subscriptions
      */
-    public function testSubscriptions()
+    public function testFetchAllSubscriptions()
     {
         $data = $this->api->subscription->all();
 
