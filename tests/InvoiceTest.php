@@ -6,7 +6,7 @@ use Razorpay\Api\Request;
 
 class InvoiceTest extends TestCase
 {
-    private $invoiceId = 'inv_IEfRSEQQYzr9kZ';
+    private $invoiceId = 'inv_IEjVoNaeZj3jhw';
 
     private $customerId = 'cust_IEfAt3ruD4OEzo';
 
