@@ -13,29 +13,7 @@ class paymentTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-    }
-    
-    /**
-     * Create Plan
-     */
-    public function testcapture()
-    {
-        $payment = $this->api->payment->all();
-
-        if($payment['count'] !== 0){
-
-            try{
-                $data = $this->api->payment->fetch($payment['items'][0]['id'])->capture(array('amount'=> 5 ,'currency' => 'INR'));
-
-                $this->assertTrue(is_array($data->toArray()));
-
-                $this->assertTrue(in_array('order',$data->toArray()));
-
-            }catch(\Exception $e){
-                $this->markTestSkipped($e->getMessage());
-            }
-        }
-    }
+    }    
 
     /**
      * Fetch all payment
@@ -55,14 +33,14 @@ class paymentTest extends TestCase
     public function testfetchPayment()
     {
         $payment = $this->api->payment->all();
-
+        
         if($payment['count'] !== 0){
              
             $data = $this->api->payment->fetch($payment['items'][0]['id']);
+            
+            self::$orderId = 'order_IEcrUMyevZFuCS';
 
-            self::$orderId = $data->order_id;
-
-            self::$paymentId = $data->id;
+            self::$paymentId = 'pay_IEczPDny6uzSnx';
 
             $this->assertTrue(is_array($data->toArray()));
 
