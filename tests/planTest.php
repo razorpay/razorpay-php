@@ -6,7 +6,7 @@ use Razorpay\Api\Request;
 
 class planTest extends TestCase
 {
-    private static $planId;
+    private $planId = 'plan_IEeswu4zFBRGwi';
 
     public function setUp()
     {
@@ -16,11 +16,9 @@ class planTest extends TestCase
     /**
      * Create Plan
      */
-    public function testcreate()
+    public function testCreatePlan()
     {
         $data = $this->api->plan->create(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR'),'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
-
-        self::$planId = $data->id;
 
         $this->assertTrue(is_array($data->toArray()));
 
@@ -30,7 +28,7 @@ class planTest extends TestCase
     /**
      * Fetch all plans
      */
-    public function testfetchAll()
+    public function testFetchAllPlans()
     {
         $data = $this->api->plan->all();
 
@@ -42,9 +40,9 @@ class planTest extends TestCase
     /**
      * Fetch particular plan
      */
-    public function testfetchPlan()
+    public function testFetchPlan()
     {
-        $data = $this->api->plan->fetch(self::$planId);
+        $data = $this->api->plan->fetch($this->planId);
 
         $this->assertTrue(is_array($data->toArray()));
         

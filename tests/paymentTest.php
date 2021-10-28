@@ -6,9 +6,9 @@ use Razorpay\Api\Request;
 
 class paymentTest extends TestCase
 {
-    private static $orderId;
+    private $orderId = 'order_IEcrUMyevZFuCS';
 
-    private static $paymentId;
+    private $paymentId = 'pay_IEczPDny6uzSnx';
 
     public function setUp()
     {
@@ -18,7 +18,7 @@ class paymentTest extends TestCase
     /**
      * Fetch all payment
      */
-    public function testfetchAll()
+    public function testFetchAllPayment()
     {
         $data = $this->api->payment->all();
 
@@ -30,17 +30,13 @@ class paymentTest extends TestCase
     /**
      * Fetch a payment
      */
-    public function testfetchPayment()
+    public function testFetchPayment()
     {
         $payment = $this->api->payment->all();
         
         if($payment['count'] !== 0){
              
             $data = $this->api->payment->fetch($payment['items'][0]['id']);
-            
-            self::$orderId = 'order_IEcrUMyevZFuCS';
-
-            self::$paymentId = 'pay_IEczPDny6uzSnx';
 
             $this->assertTrue(is_array($data->toArray()));
 
@@ -51,9 +47,9 @@ class paymentTest extends TestCase
     /**
      * Fetch a payment
      */
-    public function testfetchOrderPayment()
+    public function testFetchOrderPayment()
     {
-        $data = $this->api->order->fetch(self::$orderId)->payments();
+        $data = $this->api->order->fetch($this->orderId)->payments();
 
         $this->assertTrue(is_array($data->toArray()));
         
@@ -65,7 +61,7 @@ class paymentTest extends TestCase
      */
     public function testUpdatePayment()
     {
-        $data = $this->api->payment->fetch(self::$paymentId)->edit(array('notes'=> array('key_1'=> 'value1','key_2'=> 'value2')));
+        $data = $this->api->payment->fetch($this->paymentId)->edit(array('notes'=> array('key_1'=> 'value1','key_2'=> 'value2')));
 
         $this->assertTrue(is_array($data->toArray()));
         
@@ -73,35 +69,11 @@ class paymentTest extends TestCase
     }
 
     /**
-     * Update a payment
-     */
-    public function testFetchCard()
-    {
-        $data = $this->api->payment->all(array('expand[]'=>'card'));
-
-        $this->assertTrue(is_array($data->toArray()));
-        
-        $this->assertTrue(is_array($data['items']));
-    }
-
-    /**
-     * Update a payment
-     */
-    public function testFetchEmi()
-    {
-        $data = $this->api->payment->all(array('expand[]'=>'emi'));
-
-        $this->assertTrue(is_array($data->toArray()));
-        
-        $this->assertTrue(is_array($data['items']));
-    }
-
-    /**
      * Fetch card details with paymentId
      */
     public function testFetchCardWithPaymentId()
     {
-        $data = $this->api->payment->fetch(self::$paymentId)->fetchCardDetails();
+        $data = $this->api->payment->fetch($this->paymentId)->fetchCardDetails();
         
         $this->assertTrue(is_array($data->toArray()));
         
