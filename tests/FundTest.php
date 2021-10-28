@@ -6,7 +6,7 @@ use Razorpay\Api\Request;
 
 class fundTest extends TestCase
 {
-    private static $customerId;
+    private $customerId = 'cust_IEfAt3ruD4OEzo';
 
     public function setUp()
     {
@@ -16,13 +16,9 @@ class fundTest extends TestCase
     /**
      * Create a fund account
      */
-    public function testcreate()
+    public function testCreateFundAccount()
     {
-        $customer = $this->api->customer->create(array('name' => 'Razorpay User 34', 'email' => 'customer34@razorpay.com'));
-
-        $data = $this->api->fundAccount->create(array('customer_id'=>$customer->id,'account_type'=>'bank_account','bank_account'=>array('name'=>'Gaurav Kumar', 'account_number'=>'11214311215411', 'ifsc'=>'HDFC0000053')));
-
-        self::$customerId = $customer->id;
+        $data = $this->api->fundAccount->create(array('customer_id'=>$this->customerId,'account_type'=>'bank_account','bank_account'=>array('name'=>'Gaurav Kumar', 'account_number'=>'11214311215411', 'ifsc'=>'HDFC0000053')));
 
         $this->assertTrue(is_array($data->toArray()));
 
@@ -32,9 +28,9 @@ class fundTest extends TestCase
     /**
      * Fetch all fund accounts
      */
-    public function testcreateOrder()
+    public function testCreateOrder()
     {
-        $data = $this->api->fundAccount->all(array('customer_id'=>self::$customerId));
+        $data = $this->api->fundAccount->all(array('customer_id'=>$this->customerId));
 
         $this->assertTrue(is_array($data->toArray()));
 

@@ -6,9 +6,9 @@ use Razorpay\Api\Request;
 
 class InvoiceTest extends TestCase
 {
-    private static $invoiceId ;
+    private $invoiceId = 'inv_IEfRSEQQYzr9kZ';
 
-    private static $customerId ;
+    private $customerId = 'cust_IEfAt3ruD4OEzo';
 
     public function setUp()
     {
@@ -18,15 +18,9 @@ class InvoiceTest extends TestCase
     /**
      * Create Invoice
      */
-    public function testcreate()
+    public function testCreateInvoice()
     {
-        $customer = $this->api->customer->create(array('name' => 'Razorpay User 55', 'email' => 'customer55@razorpay.com'));
-
-        $data = $this->api->invoice->create(array ('type' => 'invoice', 'date' => time(), 'customer_id'=> $customer->id, 'line_items'=>array(array("name"=> "Master Cloud Computing in 30 Days", "amount"=>10000, "currency" => "INR", "quantity"=> 1))));
-
-        self::$invoiceId = $data->id;
-
-        self::$customerId = $customer->id;
+        $data = $this->api->invoice->create(array ('type' => 'invoice', 'date' => time(), 'customer_id'=> $this->customerId, 'line_items'=>array(array("name"=> "Master Cloud Computing in 30 Days", "amount"=>10000, "currency" => "INR", "quantity"=> 1))));
 
         $this->assertTrue(is_array($data->toArray()));
 
@@ -36,10 +30,10 @@ class InvoiceTest extends TestCase
     /**
      * Fetch all invoices
      */
-    public function testfetch()
+    public function testFetchAllInvoice()
     {
 
-        $data = $this->api->invoice->fetch(self::$invoiceId);
+        $data = $this->api->invoice->fetch($this->invoiceId);
 
         $this->assertTrue(is_array($data->toArray()));
 
@@ -49,9 +43,9 @@ class InvoiceTest extends TestCase
     /**
      * Update invoice
      */
-    public function testUpdate()
+    public function testUpdateInvoice()
     {
-        $data = $this->api->invoice->fetch(self::$invoiceId)->edit(array('notes' => array('updated-key' => 'An updated note.')));
+        $data = $this->api->invoice->fetch($this->invoiceId)->edit(array('notes' => array('updated-key' => 'An updated note.')));
         
         $this->assertTrue(is_array($data->toArray()));
 
@@ -62,9 +56,9 @@ class InvoiceTest extends TestCase
     /**
      * Send notification
      */
-    public function testNotification()
+    public function testSendNotification()
     {
-        $data = $this->api->invoice->fetch(self::$invoiceId)->notifyBy('email');
+        $data = $this->api->invoice->fetch($this->invoiceId)->notifyBy('email');
 
         $this->assertTrue(is_array($data));
 
@@ -75,7 +69,7 @@ class InvoiceTest extends TestCase
      */
     public function testInvoiceIssue()
     {
-        $invoice = $this->api->invoice->create(array ('type' => 'invoice', 'draft'=> true , 'date' => time(), 'customer_id'=> self::$customerId, 'line_items'=>array(array("name"=> "Master Cloud Computing in 30 Days", "amount"=>10000, "currency" => "INR", "quantity"=> 1))));
+        $invoice = $this->api->invoice->create(array ('type' => 'invoice', 'draft'=> true , 'date' => time(), 'customer_id'=> $this->customerId, 'line_items'=>array(array("name"=> "Master Cloud Computing in 30 Days", "amount"=>10000, "currency" => "INR", "quantity"=> 1))));
         
         $data = $this->api->invoice->fetch($invoice->id)->issue();
 
@@ -88,9 +82,9 @@ class InvoiceTest extends TestCase
     /**
      * Delete an invoice
      */
-    public function testDelete()
+    public function testDeleteInvoice()
     {
-        $invoice = $this->api->invoice->create(array ('type' => 'invoice', 'draft'=> true , 'date' => time(), 'customer_id'=> self::$customerId, 'line_items'=>array(array("name"=> "Master Cloud Computing in 30 Days", "amount"=>10000, "currency" => "INR", "quantity"=> 1))));
+        $invoice = $this->api->invoice->create(array ('type' => 'invoice', 'draft'=> true , 'date' => time(), 'customer_id'=> $this->customerId, 'line_items'=>array(array("name"=> "Master Cloud Computing in 30 Days", "amount"=>10000, "currency" => "INR", "quantity"=> 1))));
 
         $data = $this->api->invoice->fetch($invoice->id)->delete();
 
@@ -101,9 +95,9 @@ class InvoiceTest extends TestCase
     /**
      * Cancel an invoice
      */
-    public function testCancel()
+    public function testCancelInvoice()
     {
-        $invoice = $this->api->invoice->create(array ('type' => 'invoice', 'draft'=> true , 'date' => time(), 'customer_id'=> self::$customerId, 'line_items'=>array(array("name"=> "Master Cloud Computing in 30 Days", "amount"=>10000, "currency" => "INR", "quantity"=> 1))));
+        $invoice = $this->api->invoice->create(array ('type' => 'invoice', 'draft'=> true , 'date' => time(), 'customer_id'=> $this->customerId, 'line_items'=>array(array("name"=> "Master Cloud Computing in 30 Days", "amount"=>10000, "currency" => "INR", "quantity"=> 1))));
 
         $data = $this->api->invoice->fetch($invoice->id)->cancel();
 
