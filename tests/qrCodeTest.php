@@ -30,7 +30,7 @@ class qrCodeTest extends TestCase
     /**
      * Fetch all Qr code
      */
-    public function testfetchAll()
+    public function testFetchAllQrCode()
     {
         $data = $this->api->plan->all();
 
@@ -42,7 +42,7 @@ class qrCodeTest extends TestCase
     /**
      * Fetch a Qr code
      */
-    public function testfetchQrCode()
+    public function testFetchQrCode()
     {
         $data = $this->api->qrCode->fetch($this->qrCodeId);
 
@@ -53,7 +53,7 @@ class qrCodeTest extends TestCase
     /**
      * Fetch a Qr code for customer id
      */
-    public function testfetchQrCodeCustomer()
+    public function testFetchQrCodeByCustomerId()
     {
         $data = $this->api->qrCode->all(["customer_id" => $this->customerId ]);
 
@@ -65,7 +65,7 @@ class qrCodeTest extends TestCase
     /**
      * Fetch a Qr code for payment id
      */
-    public function testfetchQrCodePayment()
+    public function testFetchQrCodePaymentById()
     {
         $data = $this->api->qrCode->all();
 
@@ -74,7 +74,7 @@ class qrCodeTest extends TestCase
     }
 
     /**
-     * Fetch a Qr code for payment id
+     * Close a QR Code
      */
     public function testCloseQrCode()
     {
