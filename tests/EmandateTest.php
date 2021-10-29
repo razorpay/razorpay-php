@@ -6,9 +6,11 @@ use Razorpay\Api\Request;
 
 class EmandateTest extends TestCase
 {
-    private $customerId = 'cust_IEfAt3ruD4OEzo';
+    private $customerId = 'cust_BMB3EwbqnqZ2EI';
 
-    private $invoiceId = 'inv_IEfS5mBV49bIQY';
+    private $invoiceId = 'inv_IF37M4q6SdOpjT';
+
+    private $tokenId = 'token_IF1ThOcFC9J7pU';
 
     public function setUp()
     {

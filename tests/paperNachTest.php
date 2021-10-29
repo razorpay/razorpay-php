@@ -6,11 +6,13 @@ use Razorpay\Api\Request;
 
 class paperNachTest extends TestCase
 {
-    private $customerId = 'cust_IEfAt3ruD4OEzo';
+    private $customerId = 'cust_BMB3EwbqnqZ2EI';
 
-    private $invoiceId = 'inv_IEfS5mBV49bIQY';
+    private $invoiceId = 'inv_IF37M4q6SdOpjT';
 
-    private $orderId = 'order_IEgBdwYACpMLxd';
+    private $orderId = 'order_IF1TQZozl6Leaw';
+
+    private $tokenId = 'token_IF1ThOcFC9J7pU'; 
 
     public function setUp()
     {
@@ -110,13 +112,13 @@ class paperNachTest extends TestCase
      */
     public function testCreateRecurring()
     {
-        $this->markTestSkipped(); 
-        
-        $data = $this->api->payment->createRecurring(array('email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>100,'currency'=>'INR','order_id'=>'order_I80LnO03SgjIzD','customer_id'=>'cust_HzoFfk52EjwayH','token'=>'token_I80QtqvWJrTzSl','recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar'));
+        $order = $this->api->order->create(array("amount" => 100, "currency" => "INR","method" => "emandate", "payment_capture" => "1","customer_id" => $this->customerId ,"token" => array("auth_type" => "netbanking","max_amount" => 9999900,"expire_at" => 2147483647,"bank_account" => array("beneficiary_name" => "Gaurav Kumar","account_number" => "1121431121541121","account_type" => "savings","ifsc_code" => "HDFC0000001")
+            ),"receipt" => "Receipt No. 1"));
+
+        $data = $this->api->payment->createRecurring(array('email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>100,'currency'=>'INR','order_id'=>$order->id,'customer_id'=>$this->customerId,'token'=>$this->tokenId,'recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar'));
 
         $this->assertTrue(is_array($data->toArray()));
 
-        $this->assertTrue(in_array('razorpay_payment_id',$data->toArray()));
     }
 
 }

@@ -8,7 +8,7 @@ class registerNachTest extends TestCase
 {
     private $customerId = 'cust_BMB3EwbqnqZ2EI';
 
-    private $invoiceId = 'inv_IF1TQYhhhJB7dK';
+    private $invoiceId = 'inv_IF37M4q6SdOpjT';
 
     private $orderId = 'order_IF1TQZozl6Leaw';
 
@@ -48,12 +48,9 @@ class registerNachTest extends TestCase
      */
     public function testSendNotification()
     {
-        $invoice = $this->api->invoice->create(array ('type' => 'invoice', 'date' => time(), 'customer_id'=> $this->customerId, 'line_items'=>array(array("name"=> "Master Cloud Computing in 30 Days", "amount"=>1000, "currency" => "INR", "quantity"=> 1))));
-        
-        $data = $this->api->invoice->fetch($invoice->id)->notifyBy('email');
+        $data = $this->api->invoice->fetch($this->invoiceId)->notifyBy('email');
 
         $this->assertTrue(in_array('success',$data));
-
      }
     
     /**
