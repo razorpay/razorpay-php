@@ -29,7 +29,10 @@ class TokenTest extends TestCase
         $this->assertTrue(in_array('id',$data->toArray()));
     }
 
-    public function testFetchTokenByPaymentId()  // Fetch token by payment id
+    /**
+     * Fetch token by payment id
+     */
+    public function testFetchTokenByPaymentId()
     {
         $data = $this->api->payment->fetch($this->paymentId);
 
@@ -38,7 +41,10 @@ class TokenTest extends TestCase
         $this->assertTrue(in_array('payment',$data->toArray()));
     }
 
-    public function testfetchTokenByCustomerId()  // Fetch particular token
+    /**
+     * Fetch particular token
+     */
+    public function testfetchTokenByCustomerId()
     {
         $data = $this->api->customer->fetch($this->customerId)->tokens()->fetch($this->tokenId);
 
