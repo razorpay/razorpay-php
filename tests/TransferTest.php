@@ -6,7 +6,7 @@ use Razorpay\Api\Request;
 
 class TransferTest extends TestCase
 {
-    private $transferId = 'trf_IFAy1jkZgtiBmp';
+    private $transferId = 'trf_IEn4KYFgfD7q3F';
 
     private $accountId = 'acc_HjVXbtpSCIxENR';
 
@@ -152,7 +152,9 @@ class TransferTest extends TestCase
     */
     public function testReverseLinkedAccount()
     {
-        $data = $this->api->transfer->fetch($this->transferId)->reverse(array('amount'=>100));
+        $transfer = $this->api->transfer->create(array('account' => $this->accountId, 'amount' => 100, 'currency' => 'INR'));
+
+        $data = $this->api->transfer->fetch($transfer->id)->reverse(array('amount'=>100));
 
         $this->assertTrue(is_array($data->toArray()));
 
