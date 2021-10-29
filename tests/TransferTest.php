@@ -45,7 +45,7 @@ class TransferTest extends TestCase
     /**
     * Create transfers from order
     */
-    public function testcreateTransferOrder()
+    public function testCreateTransferOrder()
     {
        $data = $this->api->order->create(array('amount' => 100,'currency' => 'INR','transfers' => array(array('account' =>$this->accountId,'amount' => 100,'currency' => 'INR','notes' => array('branch' => 'Acme Corp Bangalore North','name' => 'Gaurav Kumar'),'linked_account_notes' => array('branch'),'on_hold' => 1,'on_hold_until' => 1671222870))));
 
