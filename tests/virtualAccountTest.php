@@ -66,18 +66,6 @@ class virtualAccountTest extends TestCase
     }
 
     /**
-     * Fetch payment details using id and transfer method
-     */
-    public function testFetchBankTransfer()
-    {
-        $data = $this->api->payment->fetch($this->paymentId)->bankTransfer();
-        
-        $this->assertTrue(is_array($data->toArray()));
-
-        $this->assertTrue(in_array('id',$data->toArray()));
-    }
-
-    /**
      * Refund payments made to a virtual account
      */
     public function testFetchRefund()
