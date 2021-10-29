@@ -44,7 +44,7 @@ class TokenTest extends TestCase
     /**
      * Fetch particular token
      */
-    public function testfetchTokenByCustomerId()
+    public function testFetchTokenByCustomerId()
     {
         $data = $this->api->customer->fetch($this->customerId)->tokens()->fetch($this->tokenId);
 
