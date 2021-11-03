@@ -3,12 +3,7 @@
 ### Create item
 
 ```php
-$api->Item->create(array(
-    "name" => "Book / English August",
-    "description" => "An indian story, Booker prize winner.",
-    "amount" => 20000,
-    "currency" => "INR"
-));
+$api->Item->create(array("name" => "Book / English August","description" => "An indian story, Booker prize winner.","amount" => 20000,"currency" => "INR"));
 ```
 
 **Parameters:**
@@ -21,23 +16,23 @@ $api->Item->create(array(
 | currency           | string  | Currency of the order. Currently only `INR` is supported.    |
 
 **Response:**
-```json
-{
-  "id": "item_7Oxp4hmm6T4SCn",
-  "active": true,
-  "name": "Book / English August",
-  "description": "An indian story, Booker prize winner.",
-  "amount": 20000,
-  "currency": "INR"
-}
-```
+For create item response please click [here](https://razorpay.com/docs/api/items/#create-an-item)
+
 -------------------------------------------------------------------------------------------------------
 
 ### Fetch all items
 
 ```php
-$api->Item->all();
+$api->Item->all($options);
 ```
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| from  | timestamp | timestamp after which the item were created  |
+| to    | timestamp | timestamp before which the item were created |
+| count | integer   | number of item to fetch (default: 10)        |
+| skip  | integer   | number of item to be skipped (default: 0)    |
 
 **Response:**
 ```json
@@ -101,12 +96,7 @@ $api->Item->fetch($itemId);
 ### Update item
 
 ```php
-$api->Item->fetch($itemId)->edit(array(
-    "name" => "Book / Ignited Minds - Updated name!",
-    "description" => "New descirption too. :).",
-    "amount" => 20000,
-    "currency" => "INR",
-    "active" => true
+$api->Item->fetch($itemId)->edit(array("name" => "Book / Ignited Minds - Updated name!","description" => "New descirption too. :).","amount" => 20000,"currency" => "INR","active" => true
 ));
 ```
 **Parameters**
