@@ -16,7 +16,7 @@ $api->utility->verifyPaymentSignature(array('razorpay_order_id' => $razorpayOrde
 | signature* | string   | Signature returned by the Checkout. This is used to verify the payment. |
 
 -------------------------------------------------------------------------------------------------------
-### Verify subsciption verification
+### Verify subscription verification
 
 ```php
 $api->utility->verifyPaymentSignature(array('razorpay_subscription_id' => $razorpaySubscriptionId, 'razorpay_payment_id' => $razorpayPaymentId, 'razorpay_signature' => $razorpaySignature));
