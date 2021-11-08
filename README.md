@@ -70,7 +70,7 @@ The resources can be accessed via the `$api` object. All the methods invocations
 - [UPI](documents/upi.md)
 - [Register Emandate and Charge First Payment Together](documents/registeremandate.md)
 - [Register NACH and Charge First Payment Together](documents/registernach.md)
-
+- [Payment Verification](documents/paymentVerfication.md)
 
 ## Development
 
