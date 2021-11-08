@@ -409,7 +409,7 @@ $api->payment->createPaymentJson(array('amount' => 100,'currency' => 'INR','emai
 ### OTP Generate
 
 ```php
-$api->payment->fetch($paymenmtId)->otpGenerate();
+$api->payment->fetch($paymentId)->otpGenerate();
 ```
 
 **Parameters:**
@@ -447,7 +447,7 @@ $api->payment->fetch($paymenmtId)->otpGenerate();
 ### OTP Submit
 
 ```php
-$api->payment->fetch($paymenmtId)->otpSubmit(array('otp'=> '12345'));
+$api->payment->fetch($paymentId)->otpSubmit(array('otp'=> '12345'));
 ```
 
 **Parameters:**
