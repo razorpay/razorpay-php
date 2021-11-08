@@ -2,7 +2,7 @@
 
 ### Create a virtual account
 ```php
-$api->virtualAccount->create(array('receivers' => array('types'=> arra('bank_account')),'allowed_payers' => array(array('type'=>'bank_account','bank_account'=>array('ifsc'=>'RATN0VAAPIS','account_number'=>'2223330027558515'))),'description' => 'Virtual Account created for Raftar Soft','customer_id' => 'cust_HssUOFiOd2b1TJ', 'notes' => array('project_name' => 'Banking Software')));
+$api->virtualAccount->create(array('receivers' => array('types' => array('bank_account')),'description' => 'Virtual Account created for Raftar Soft','customer_id' => 'cust_CaVDm8eDRSXYME','close_by' => 1681615838,'notes' => array('project_name' => 'Banking Software')));
 ```
 
 **Parameters:**
@@ -10,58 +10,108 @@ $api->virtualAccount->create(array('receivers' => array('types'=> arra('bank_acc
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
 | receivers*    | array      | Array that defines what receivers are available for this Virtual Account                        |
-| allowed_payers*  | array      | All parameters listed [here](https://razorpay.com/docs/api/smart-collect-tpv/#create-virtual-account) are supported                    |
-
-**Response:**
-For create virtual account response please click [here](https://razorpay.com/docs/api/smart-collect/#create-virtual-account)
-
--------------------------------------------------------------------------------------------------------
-
-### Create static qr
-```php
-$api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'amount_expected' => 100, 'notes' => array('receiver_key' => 'receiver_value')));
-```
-
-**Parameters:**
-
-| Name          | Type        | Description                                 |
-|---------------|-------------|---------------------------------------------|
-| receivers*    | array      | Array that defines what receivers are available for this Virtual Account                        |
-| description  | string      | A brief description of the payment.   |
-| amount_expected  | integer   | The maximum amount you expect to receive in this virtual account. Pass `69999` for ₹699.99.   |
-| notes       | array | All keys listed [here](https://razorpay.com/docs/payments/payments/payment-methods/bharatqr/api/#create) are supported   |
+| description  | string      | A brief description of the virtual account.                    |
+| customer_id  | string      | Unique identifier of the customer to whom the virtual account must be tagged.                    |
+| close_by  | integer      | UNIX timestamp at which the virtual account is scheduled to be automatically closed.                  |
+| notes  | integer      | Any custom notes you might want to add to the virtual account can be entered here.                  |
 
 **Response:**
 ```json
 {
-  "id": "va_4xbQrmEoA5WJ0G",
-  "name": "Acme Corp",
-  "entity": "virtual_account",
-  "status": "active",
-  "description": "First Payment by BharatQR",
-  "amount_expected": null,
-  "notes": {
-    "reference_key": "reference_value"
+  "id":"va_DlGmm7jInLudH9",
+  "name":"Acme Corp",
+  "entity":"virtual_account",
+  "status":"active",
+  "description":"Virtual Account created for Raftar Soft",
+  "amount_expected":null,
+  "notes":{
+    "project_name":"Banking Software"
   },
-  "amount_paid": 0,
-  "customer_id": "cust_805c8oBQdBGPwS",
-  "receivers": [
+  "amount_paid":0,
+  "customer_id":"cust_CaVDm8eDRSXYME",
+  "receivers":[
     {
-      "id": "qr_4lsdkfldlteskf",
-      "entity": "qr_code",
-      "reference": "AgdeP8aBgZGckl",
-      "short_url": "https://rzp.io/i/PLs03pOc"
+      "id":"ba_DlGmm9mSj8fjRM",
+      "entity":"bank_account",
+      "ifsc":"RATN0VAAPIS",
+      "bank_name": "RBL Bank",
+      "name":"Acme Corp",
+      "notes":[],
+      "account_number":"2223330099089860"
     }
   ],
-  "close_by": null,
-  "closed_at": null,
-  "created_at": 1607938184
+  "close_by":1681615838,
+  "closed_at":null,
+  "created_at":1574837626
 }
 ```
 
 -------------------------------------------------------------------------------------------------------
 
-### Create dynamic qr
+### Create a virtual account with TPV
+```php
+$api->virtualAccount->create(array('receivers' => array('types'=> array('bank_account')),'allowed_payers' => array(array('type'=>'bank_account','bank_account'=>array('ifsc'=>'RATN0VAAPIS','account_number'=>'2223330027558515'))),'description' => 'Virtual Account created for Raftar Soft','customer_id' => 'cust_HssUOFiOd2b1TJ', 'notes' => array('project_name' => 'Banking Software')));
+```
+
+**Parameters:**
+
+| Name          | Type        | Description                                 |
+|---------------|-------------|---------------------------------------------|
+| receivers*    | array      | Array that defines what receivers are available for this Virtual Account                        |
+| allowed_payers*  | array      | All parameters listed [here](https://razorpay.com/docs/api/smart-collect-tpv/#create-virtual-account) are supported
+
+**Response:**
+```json
+{
+  "id":"va_DlGmm7jInLudH9",
+  "name":"Acme Corp",
+  "entity":"virtual_account",
+  "status":"active",
+  "description":"Virtual Account created for Raftar Soft",
+  "amount_expected":null,
+  "notes":{
+    "project_name":"Banking Software"
+  },
+  "amount_paid":0,
+  "customer_id":"cust_CaVDm8eDRSXYME",
+  "receivers":[
+    {
+      "id":"ba_DlGmm9mSj8fjRM",
+      "entity":"bank_account",
+      "ifsc":"RATN0VAAPIS",
+      "bank_name": "RBL Bank",
+      "name":"Acme Corp",
+      "notes":[],
+      "account_number":"2223330099089860"
+    }
+  ],
+  "allowed_payers": [
+    {
+      "type": "bank_account",
+      "id":"ba_DlGmm9mSj8fjRM",
+      "bank_account": {
+        "ifsc": "UTIB0000013",
+        "account_number": "914010012345679"
+      }
+    },
+    {
+      "type": "bank_account",
+      "id":"ba_Cmtnm5tSj6agUW",
+      "bank_account": {
+        "ifsc": "UTIB0000014",
+        "account_number": "914010012345680"
+      }
+    }
+  ],
+  "close_by":1681615838,
+  "closed_at":null,
+  "created_at":1574837626
+}
+```
+
+-------------------------------------------------------------------------------------------------------
+
+### Create static/dynamic qr
 ```php
 $api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'amount_expected' => 100, 'notes' => array('receiver_key' => 'receiver_value')));
 ```
@@ -228,7 +278,7 @@ $api->virtualAccount->fetch($virtualId)->payments($options);
 
 ### Fetch payment details using id and transfer method
 ```php
-$api->payment->fetch($virtualId)->bankTransfer();
+$api->payment->fetch($paymentId)->bankTransfer();
 ```
 
 **Parameters:**
@@ -337,6 +387,77 @@ For add receiver to an existing virtual account response please click [here](htt
 
 -------------------------------------------------------------------------------------------------------
 
+### Add an Allowed Payer Account
+```php
+$api->virtualAccount->fetch($virtualId)->addAllowedPayer(array('types' => 'bank_account','bank_account' => array('ifsc'=>'UTIB0000013','account_number'=>'914010012345679')));
+```
+
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| virtualId*  | string    | The id of the virtual to be updated  |
+| bank_account*    | array | Indicates the bank account details such as `ifsc` and `account_number` |
+
+**Response:**
+```json
+{
+  "id":"va_DlGmm7jInLudH9",
+  "name":"Acme Corp",
+  "entity":"virtual_account",
+  "status":"active",
+  "description":"Virtual Account created for Raftar Soft",
+  "amount_expected":null,
+  "notes":{
+    "project_name":"Banking Software"
+  },
+  "amount_paid":0,
+  "customer_id":"cust_CaVDm8eDRSXYME",
+  "receivers":[
+    {
+      "id":"ba_DlGmm9mSj8fjRM",
+      "entity":"bank_account",
+      "ifsc":"RATN0VAAPIS",
+      "bank_name": "RBL Bank",
+      "name":"Acme Corp",
+      "notes":[],
+      "account_number":"2223330099089860"
+    }
+  ],
+  "allowed_payers": [
+    {
+      "type": "bank_account",
+      "id":"ba_DlGmm9mSj8fjRM",
+      "bank_account": {
+        "ifsc": "UTIB0000013",
+        "account_number": "914010012345679"
+      }
+    }
+  ],
+  "close_by":1681615838,
+  "closed_at":null,
+  "created_at":1574837626
+}
+```
+-------------------------------------------------------------------------------------------------------
+
+### Delete an Allowed Payer Account
+```php
+$api->virtualAccount->fetch($virtualId)->deleteAllowedPayer($allowedPayersId);
+```
+
+**Parameters:**
+
+| Name  | Type      | Description                                      |
+|-------|-----------|--------------------------------------------------|
+| virtualId*  | string    | The id of the virtual to be updated  |
+| allowedPayersId*  | string    | The id of the allowed payers to be updated  |
+
+**Response:**
+```json
+{}
+```
+-------------------------------------------------------------------------------------------------------
 ### Close virtual account
 ```php
 $api->virtualAccount->fetch($virtualId)->close();
