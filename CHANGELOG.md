@@ -4,6 +4,13 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 
 ## Unreleased
 
+## [2.8.1] - 2021-11-08
+
+### Added
+
+- Added Item Api
+- Added Unit Tests
+
 ## [2.8.0][2.8.0] - 2021-10-07
 
 ### Added
@@ -201,3 +208,4 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 [2.4.0-beta]: https://github.com/razorpay/razorpay-php/compare/2.3.0...2.4.0-beta
 [2.5.0]: https://github.com/razorpay/razorpay-php/compare/2.4.0-beta...2.5.0
 [2.8.0]: https://github.com/razorpay/razorpay-php/compare/2.7.1...2.8.0
+[2.8.1]: https://github.com/razorpay/razorpay-php/compare/2.8.0...2.8.1
