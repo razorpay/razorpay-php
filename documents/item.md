@@ -11,7 +11,7 @@ $api->Item->create(array("name" => "Book / English August","description" => "An 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
 | name*          | string | Name of the item.                    |
-| desciprition        | string  | A brief description of the item.  |
+| description        | string  | A brief description of the item.  |
 | amount         | integer  | Amount of the order to be paid     |
 | currency           | string  | Currency of the order. Currently only `INR` is supported.    |
 
@@ -43,7 +43,7 @@ $api->Item->all($options);
 | count | integer   | number of item to fetch (default: 10)        |
 | skip  | integer   | number of item to be skipped (default: 0)    |
 | name        | string | Name of the item.                    |
-| desciprition        | string  | A brief description of the item.  |
+| description        | string  | A brief description of the item.  |
 | amount         | integer  | Amount of the order to be paid     |
 | currency           | string  | Currency of the order. Currently only `INR` is supported.    |
 | active   | boolean  | Possible values is `0` or `1` |
@@ -119,7 +119,7 @@ $api->Item->fetch($itemId)->edit(array("name" => "Book / Ignited Minds - Updated
 |----------|--------|-------------------------------------|
 | itemId* | string | The id of the item to be fetched |
 | name       | string | Name of the item.                    |
-| desciprition  | string  | A brief description of the item.  |
+| description  | string  | A brief description of the item.  |
 | amount         | integer  | Amount of the order to be paid     |
 | currency           | string  | Currency of the order. Currently only `INR` is supported.    |
 | active   | boolean  | Possible values is `0` or `1` |
