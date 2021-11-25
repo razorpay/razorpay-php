@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class paperNachTest extends TestCase
+class PaperNachTest extends TestCase
 {
     private $customerId = 'cust_BMB3EwbqnqZ2EI';
 
@@ -12,13 +12,13 @@ class paperNachTest extends TestCase
 
     private $orderId = 'order_IF1TQZozl6Leaw';
 
-    private $tokenId = 'token_IF1ThOcFC9J7pU'; 
+    private $tokenId = 'token_IF1ThOcFC9J7pU';
 
     public function setUp()
     {
         parent::setUp();
     }
-    
+
     /**
      * Create customer
      */
@@ -42,7 +42,7 @@ class paperNachTest extends TestCase
 
         $this->assertTrue(in_array('id',$data->toArray()));
     }
-    
+
     /**
      * Send notification
      */
@@ -106,7 +106,7 @@ class paperNachTest extends TestCase
 
         $this->assertTrue(in_array('id',$data->toArray()));
     }
-    
+
     /**
      * Create a Recurring Payment
      */

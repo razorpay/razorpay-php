@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class registerNachTest extends TestCase
+class RegisterEmandateTest extends TestCase
 {
     private $customerId = 'cust_BMB3EwbqnqZ2EI';
 
@@ -18,14 +18,14 @@ class registerNachTest extends TestCase
     {
         parent::setUp();
     }
-    
+
     /**
      * Create customer
      */
-    public function testCreateCustomerForNachTest() 
+    public function testCreateCustomer()
     {
         $data = $this->api->customer->create(array('name' => 'Razorpay User 21', 'email' => 'customer21@razorpay.com','fail_existing'=>'0'));
-        
+
         $this->assertTrue(is_array($data->toArray()));
 
         $this->assertTrue(in_array('customer',$data->toArray()));
@@ -34,7 +34,7 @@ class registerNachTest extends TestCase
     /**
      * Create Order
      */
-    public function testCreateOrderForNachTest()
+    public function testCreateOrder()
     {
         $data = $this->api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
 
@@ -42,7 +42,7 @@ class registerNachTest extends TestCase
 
         $this->assertTrue(in_array('id',$data->toArray()));
     }
-    
+
     /**
      * Send/Resend notifications
      */
@@ -51,8 +51,9 @@ class registerNachTest extends TestCase
         $data = $this->api->invoice->fetch($this->invoiceId)->notifyBy('email');
 
         $this->assertTrue(in_array('success',$data));
-     }
-    
+
+    }
+
     /**
      * Create registration link
      */
@@ -127,4 +128,5 @@ class registerNachTest extends TestCase
         $this->assertTrue(is_array($data->toArray()));
 
     }
+
 }

@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class planTest extends TestCase
+class PlanTest extends TestCase
 {
     private $planId = 'plan_IEeswu4zFBRGwi';
 
@@ -12,7 +12,7 @@ class planTest extends TestCase
     {
         parent::setUp();
     }
-    
+
     /**
      * Create Plan
      */
@@ -45,7 +45,7 @@ class planTest extends TestCase
         $data = $this->api->plan->fetch($this->planId);
 
         $this->assertTrue(is_array($data->toArray()));
-        
+
         $this->assertTrue(in_array('plan',$data->toArray()));
-    } 
+    }
 }

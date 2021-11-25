@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class fundTest extends TestCase
+class FundTest extends TestCase
 {
     private $customerId = 'cust_IEfAt3ruD4OEzo';
 
@@ -12,7 +12,7 @@ class fundTest extends TestCase
     {
         parent::setUp();
     }
-    
+
     /**
      * Create a fund account
      */
@@ -24,7 +24,7 @@ class fundTest extends TestCase
 
         $this->assertTrue(in_array('customer_id',$data->toArray()));
     }
-    
+
     /**
      * Fetch all fund accounts
      */

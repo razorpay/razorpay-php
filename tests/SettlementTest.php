@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class settlementTest extends TestCase
+class SettlementTest extends TestCase
 {
     private $settlementId =  'setl_IAj6iuvvTATqOM';
 
@@ -19,12 +19,12 @@ class settlementTest extends TestCase
     public function testCreateOndemandSettlement()
     {
       $data = $this->api->settlement->createOndemandSettlement(array("amount"=> 1221, "settle_full_balance"=> false, "description"=>"Testing","notes" => array("notes_key_1"=> "Tea, Earl Grey, Hot","notes_key_2"=> "Tea, Earl Grey… decaf.")));
-      
+
       $this->assertTrue(is_array($data->toArray()));
 
       $this->assertTrue(in_array('settlement.ondemand',$data->toArray()));
     }
-    
+
     /**
      * Fetch all settlements
      */
@@ -33,7 +33,7 @@ class settlementTest extends TestCase
         $data = $this->api->settlement->all();
 
         $this->assertTrue(is_array($data->toArray()));
-        
+
         $this->assertTrue(in_array('collection',$data->toArray()));
     }
 
@@ -43,7 +43,7 @@ class settlementTest extends TestCase
     public function testFetchSettlement()
     {
         $data = $this->api->settlement->fetch($this->settlementId);
-        
+
         $this->assertTrue(is_array($data->toArray()));
 
         $this->assertTrue(in_array('settlement',$data->toArray()));
@@ -71,7 +71,7 @@ class settlementTest extends TestCase
 
         $this->assertTrue(is_array($data['items']));
     }
-   
+
     /**
      * Fetch all on-demand settlements
      */

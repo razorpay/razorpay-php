@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class signatureVerificationTest extends TestCase
+class SignatureVerificationTest extends TestCase
 {
     private static $subscriptionId;
 
@@ -12,7 +12,7 @@ class signatureVerificationTest extends TestCase
     {
         parent::setUp();
     }
-    
+
     /**
      * Verify Payment verification
      */
@@ -28,7 +28,7 @@ class signatureVerificationTest extends TestCase
           'razorpay_signature' => $signature
         )));
     }
-    
+
     /**
      * Verify PaymentLink verification
      */

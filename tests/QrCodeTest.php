@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class qrCodeTest extends TestCase
+class QrCodeTest extends TestCase
 {
     private $qrCodeId = 'qr_IEjmDxjAY3iCnw';
 
@@ -14,12 +14,12 @@ class qrCodeTest extends TestCase
     {
         parent::setUp();
     }
-    
+
     /**
      * Create Qr code
      */
     public function testCreateQrCode()
-    {   
+    {
         $data = $this->api->qrCode->create(array("type" => "upi_qr","name" => "Store_1", "usage" => "single_use","fixed_amount" => 1,"payment_amount" => 300,"customer_id" => $this->customerId, "description" => "For Store 1","close_by" => 1681615838,"notes" => array("purpose" => "Test UPI QR code notes")));
 
         $this->assertTrue(is_array($data->toArray()));
@@ -47,9 +47,9 @@ class qrCodeTest extends TestCase
         $data = $this->api->qrCode->fetch($this->qrCodeId);
 
         $this->assertTrue(is_array($data->toArray()));
-        
+
     }
-    
+
     /**
      * Fetch a Qr code for customer id
      */
@@ -70,7 +70,7 @@ class qrCodeTest extends TestCase
         $data = $this->api->qrCode->all();
 
         $this->assertTrue(is_array($data->toArray()));
-        
+
     }
 
     /**
@@ -79,11 +79,11 @@ class qrCodeTest extends TestCase
     public function testCloseQrCode()
     {
         $qrCodeId = $this->api->qrCode->create(array("type" => "upi_qr","name" => "Store_1", "usage" => "single_use","fixed_amount" => 1,"payment_amount" => 300,"customer_id" => $customer['items'][0]['id'], "description" => "For Store 1","close_by" => 1681615838,"notes" => array("purpose" => "Test UPI QR code notes")));
-        
+
         $data = $this->api->qrCode->fetch($qrCodeId->id)->close();
 
         $this->assertTrue(is_array($data->toArray()));
-        
+
         $this->assertTrue(in_array('qr_code',$data->toArray()));
     }
 }

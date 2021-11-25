@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class refundTest extends TestCase
+class RefundTest extends TestCase
 {
     private $paymentId = 'pay_IEjvQO0923IqEu';
 
@@ -14,7 +14,7 @@ class refundTest extends TestCase
     {
         parent::setUp();
     }
-    
+
     /**
      * Create an instant refund
      */
@@ -48,7 +48,7 @@ class refundTest extends TestCase
         $data = $this->api->payment->fetch($this->paymentId)->fetchRefund($this->refundId);
 
         $this->assertTrue(is_array($data->toArray()));
-      
+
     }
 
     /**
@@ -74,14 +74,14 @@ class refundTest extends TestCase
 
         $this->assertTrue(in_array('refund',$data->toArray()));
     }
-    
+
     /**
      * Update the refund
      */
     public function testUpdateRefund()
     {
         $data = $this->api->refund->fetch($this->refundId)->edit(array('notes'=> array('notes_key_1'=>'Beam me up Scotty.', 'notes_key_2'=>'Engage')));
-        
+
         $this->assertTrue(is_array($data->toArray()));
 
         $this->assertTrue(in_array('refund',$data->toArray()));

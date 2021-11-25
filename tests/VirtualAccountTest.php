@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class virtualAccountTest extends TestCase
+class VirtualAccountTest extends TestCase
 {
     private $customerId = 'cust_IEm1ERQLCdRGPV';
 
@@ -16,12 +16,12 @@ class virtualAccountTest extends TestCase
     {
         parent::setUp();
     }
-    
+
     /**
      * Create a virtual account
      */
     public function testCreateVirtualAccount()
-    {       
+    {
         $data = $this->api->virtualAccount->create(array('receivers' => array('types' => array('bank_account')),'description' => 'Virtual Account created for Raftar Soft','customer_id' => $this->customerId ,'close_by' => 1681615838,'notes' => array('project_name' => 'Banking Software')));
 
         $this->assertTrue(is_array($data->toArray()));
@@ -73,11 +73,11 @@ class virtualAccountTest extends TestCase
         $payment = $this->api->payment->all();
 
         $data = $this->api->payment->fetch($this->paymentId)->refunds();
-        
+
         $this->assertTrue(is_array($data->toArray()));
 
         $this->assertTrue(in_array('id',$data->toArray()));
-        
+
     }
 
     /**
@@ -90,9 +90,9 @@ class virtualAccountTest extends TestCase
         if($payment['count'] !== 0){
 
             $data = $this->api->virtualAccount->fetch($payment['items'][0]['id'])->close();
-            
+
             $this->assertTrue(is_array($data->toArray()));
-    
+
             $this->assertTrue(in_array('id',$data->toArray()));
         }
     }
