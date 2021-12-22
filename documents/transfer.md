@@ -149,7 +149,7 @@ $api->transfer->create(array('account' => $accountId, 'amount' => 500, 'currency
 ### Fetch transfer for a payment
 
 ```php
-$api->payment->fetch($paymentId)->transfer();
+$api->payment->fetch($paymentId)->transfers();
 ```
 
 **Parameters:**
