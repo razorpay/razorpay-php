@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class registerEmandateTest extends TestCase
+class RegisterEmandateTest extends TestCase
 {
     private $customerId = 'cust_BMB3EwbqnqZ2EI';
 

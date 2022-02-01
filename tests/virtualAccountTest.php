@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class virtualAccountTest extends TestCase
+class VirtualAccountTest extends TestCase
 {
     private $customerId = 'cust_IEm1ERQLCdRGPV';
 

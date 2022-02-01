@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class qrCodeTest extends TestCase
+class QrCodeTest extends TestCase
 {
     private $qrCodeId = 'qr_IEjmDxjAY3iCnw';
 

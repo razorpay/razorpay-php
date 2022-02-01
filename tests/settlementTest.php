@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class settlementTest extends TestCase
+class SettlementTest extends TestCase
 {
     private $settlementId =  'setl_IAj6iuvvTATqOM';
 
