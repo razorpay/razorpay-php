@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class paymentLinkTest extends TestCase
+class PaymentLinkTest extends TestCase
 {
     private $paymentLinkId = 'plink_IEjOvfQs5AyjMN';
 

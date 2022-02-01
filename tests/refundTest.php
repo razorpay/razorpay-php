@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class refundTest extends TestCase
+class RefundTest extends TestCase
 {
     private $paymentId = 'pay_IEjvQO0923IqEu';
 

@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class planTest extends TestCase
+class PlanTest extends TestCase
 {
     private $planId = 'plan_IEeswu4zFBRGwi';
 

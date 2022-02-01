@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class fundTest extends TestCase
+class FundTest extends TestCase
 {
     private $customerId = 'cust_IEfAt3ruD4OEzo';
 

@@ -4,7 +4,7 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class signatureVerificationTest extends TestCase
+class SignatureVerificationTest extends TestCase
 {
     private static $subscriptionId;
 
