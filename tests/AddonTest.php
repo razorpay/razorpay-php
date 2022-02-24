@@ -11,9 +11,9 @@ class AddonTest extends TestCase
      * for example ao_IEf05Yeu52LlKL & plan_IEeswu4zFBRGwi
      */
     
-    private $addonId = "ao_IzoDRyx044Kdxd";
+    private $addonId = "";
 
-    private $planId = "plan_HnMiCCZ0JCsxv4";
+    private $planId = "";
 
     public function setUp()
     {
