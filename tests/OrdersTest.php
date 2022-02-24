@@ -5,8 +5,13 @@ namespace Razorpay\Tests;
 use Razorpay\Api\Request;
 
 class OrdersTest extends TestCase
-{
-    private $orderId = 'order_IEfF1OrQbqxYJq';
+{   
+    /**
+     * Specify unique order id
+     * for example order_IEfF1OrQbqxYJq
+     */
+
+    private $orderId = "";
 
     public function setUp()
     {

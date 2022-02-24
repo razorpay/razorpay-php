@@ -6,11 +6,17 @@ use Razorpay\Api\Request;
 
 class TokenTest extends TestCase
 {
-    private $paymentId = 'pay_IEczPDny6uzSnx';
+    /**
+     * Specify unique payment id, token id & customer id
+     * for example pay_IEczPDny6uzSnx, cust_IEcn7UdBOFmaNi &
+     * token_IEcux6sQtS8eLx
+     */
 
-    private $customerId = 'cust_IEcn7UdBOFmaNi';
+    private $paymentId = "";
 
-    private $tokenId = 'token_IEcux6sQtS8eLx';
+    private $customerId = "";
+
+    private $tokenId = "";
 
     public function setUp()
     {

@@ -6,11 +6,17 @@ use Razorpay\Api\Request;
 
 class UpiTest extends TestCase
 {
-    private $customerId = 'cust_IEfAt3ruD4OEzo';
+     /**
+     * Specify unique customer id, invoice id & order id
+     * for example cust_IEfAt3ruD4OEzo, inv_IEfS5mBV49bIQY &
+     * order_IEgBdwYACpMLxd
+     */
 
-    private $invoiceId = 'inv_IEfS5mBV49bIQY';
+    private $customerId = "";
 
-    private $orderId = 'order_IEgBdwYACpMLxd';
+    private $invoiceId = "";
+
+    private $orderId = "";
 
     public function setUp()
     {

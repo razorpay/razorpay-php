@@ -6,7 +6,12 @@ use Razorpay\Api\Request;
 
 class PlanTest extends TestCase
 {
-    private $planId = 'plan_IEeswu4zFBRGwi';
+    /**
+     * Specify unique plan id
+     * for example plan_IEeswu4zFBRGwi 
+     */
+
+    private $planId = "";
 
     public function setUp()
     {
