@@ -5,10 +5,15 @@ namespace Razorpay\Tests;
 use Razorpay\Api\Request;
 
 class InvoiceTest extends TestCase
-{
-    private $invoiceId = 'inv_IEjVoNaeZj3jhw';
+{   
+    /**
+     * Specify unique invoice id & customer id
+     * for example inv_IF37M4q6SdOpjT & cust_IEfAt3ruD4OEzo
+     */
 
-    private $customerId = 'cust_IEfAt3ruD4OEzo';
+    private $invoiceId = "";
+
+    private $customerId = "";
 
     public function setUp()
     {

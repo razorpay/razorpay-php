@@ -6,13 +6,19 @@ use Razorpay\Api\Request;
 
 class PaperNachTest extends TestCase
 {
-    private $customerId = 'cust_BMB3EwbqnqZ2EI';
+    /**
+     * Specify unique customer id, invoice id , order id & token id
+     * for example cust_IEfAt3ruD4OEzo, inv_IF37M4q6SdOpjT, 
+     * order_IF1TQZozl6Leaw & token_IF1ThOcFC9J7pU
+     */
 
-    private $invoiceId = 'inv_IF37M4q6SdOpjT';
+    private $customerId = "";
 
-    private $orderId = 'order_IF1TQZozl6Leaw';
+    private $invoiceId = "";
 
-    private $tokenId = 'token_IF1ThOcFC9J7pU'; 
+    private $orderId = "";
+
+    private $tokenId = ""; 
 
     public function setUp()
     {

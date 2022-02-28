@@ -6,7 +6,11 @@ use Razorpay\Api\Request;
 
 class PaymentLinkTest extends TestCase
 {
-    private $paymentLinkId = 'plink_IEjOvfQs5AyjMN';
+    /**
+     * Specify unique paymentlink id
+     * for example plink_IEjOvfQs5AyjMN 
+     */
+    private $paymentLinkId = "";
 
     public function setUp()
     {

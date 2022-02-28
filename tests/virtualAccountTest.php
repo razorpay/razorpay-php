@@ -6,11 +6,17 @@ use Razorpay\Api\Request;
 
 class VirtualAccountTest extends TestCase
 {
-    private $customerId = 'cust_IEm1ERQLCdRGPV';
+    /**
+     * Specify unique customer id, payment id & virtual-account id
+     * for example cust_IEm1ERQLCdRGPV, pay_IEljgrElHGxXAC &
+     * va_IEmC8SOoyGxsNn
+     */
 
-    private $paymentId = 'pay_IEljgrElHGxXAC';
+    private $customerId = "";
 
-    private $virtualAccountId = 'va_IEmC8SOoyGxsNn';
+    private $paymentId = "";
+
+    private $virtualAccountId = "";
 
     public function setUp()
     {

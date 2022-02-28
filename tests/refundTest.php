@@ -6,9 +6,14 @@ use Razorpay\Api\Request;
 
 class RefundTest extends TestCase
 {
-    private $paymentId = 'pay_IEjvQO0923IqEu';
+    /**
+     * Specify unique payment id & refund id
+     * for example plan_IEeswu4zFBRGwi & rfnd_IEjzeVghAS4vd1
+     */
 
-    private $refundId = 'rfnd_IEjzeVghAS4vd1';
+    private $paymentId = "";
+
+    private $refundId = "";
 
     public function setUp()
     {

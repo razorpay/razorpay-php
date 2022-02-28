@@ -5,12 +5,17 @@ namespace Razorpay\Tests;
 use Razorpay\Api\Request;
 
 class EmandateTest extends TestCase
-{
-    private $customerId = 'cust_BMB3EwbqnqZ2EI';
+{ 
+    /**
+     * Specify unique customer id, invoice id & token id 
+     * for example cust_IEfAt3ruD4OEzo, inv_IF37M4q6SdOpjT & token_IF1ThOcFC9J7pU
+     */
+    
+    private $customerId = "";
+    
+    private $invoiceId = "";
 
-    private $invoiceId = 'inv_IF37M4q6SdOpjT';
-
-    private $tokenId = 'token_IF1ThOcFC9J7pU';
+    private $tokenId = "";
 
     public function setUp()
     {

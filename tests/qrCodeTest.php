@@ -6,9 +6,14 @@ use Razorpay\Api\Request;
 
 class QrCodeTest extends TestCase
 {
-    private $qrCodeId = 'qr_IEjmDxjAY3iCnw';
+    /**
+     * Specify unique qrcode id & customer id
+     * for example qr_IEjmDxjAY3iCnw & cust_IEfAt3ruD4OEzo
+     */
 
-    private $customerId = 'cust_IEfAt3ruD4OEzo';
+    private $qrCodeId = "";
+
+    private $customerId = "";
 
     public function setUp()
     {

@@ -6,7 +6,12 @@ use Razorpay\Api\Request;
 
 class SettlementTest extends TestCase
 {
-    private $settlementId =  'setl_IAj6iuvvTATqOM';
+    /**
+     * Specify unique settlement id
+     * for example : setl_IAj6iuvvTATqOM 
+     */
+
+    private $settlementId =  "";
 
     public function setUp()
     {
