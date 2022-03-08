@@ -4,6 +4,11 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 
 ## Unreleased
 
+## [2.8.2] - 2022-03-08
+
+- Change name convention to standard in Unit test 
+- Removed test api key due to security concern from test cases
+
 ## [2.8.1] - 2021-11-08
 
 ### Added
@@ -209,3 +214,4 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 [2.5.0]: https://github.com/razorpay/razorpay-php/compare/2.4.0-beta...2.5.0
 [2.8.0]: https://github.com/razorpay/razorpay-php/compare/2.7.1...2.8.0
 [2.8.1]: https://github.com/razorpay/razorpay-php/compare/2.8.0...2.8.1
+[2.8.2]: https://github.com/razorpay/razorpay-php/compare/2.8.0...2.8.2
