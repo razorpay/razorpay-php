@@ -4,11 +4,11 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class PaperNachTest extends TestCase
+class RegisterNachTest extends TestCase
 {
     /**
-     * Specify unique customer id, invoice id , order id & token id
-     * for example cust_IEfAt3ruD4OEzo, inv_IF37M4q6SdOpjT, 
+     * Specify unique customer id, invoice id, order id & token id
+     * for example : cust_BMB3EwbqnqZ2EI, inv_IF37M4q6SdOpjT, 
      * order_IF1TQZozl6Leaw & token_IF1ThOcFC9J7pU
      */
 
@@ -18,7 +18,7 @@ class PaperNachTest extends TestCase
 
     private $orderId = "";
 
-    private $tokenId = ""; 
+    private $tokenId = "";
 
     public function setUp()
     {
@@ -28,10 +28,10 @@ class PaperNachTest extends TestCase
     /**
      * Create customer
      */
-    public function testCreateCustomerPaperNach()
+    public function testCreateCustomerForNachTest() 
     {
-        $data = $this->api->customer->create(array('name' => 'Razorpay User 72', 'email' => 'customer72@razorpay.com', 'fail_existing'=>'0'));
-
+        $data = $this->api->customer->create(array('name' => 'Razorpay User 21', 'email' => 'customer21@razorpay.com','fail_existing'=>'0'));
+        
         $this->assertTrue(is_array($data->toArray()));
 
         $this->assertTrue(in_array('customer',$data->toArray()));
@@ -40,7 +40,7 @@ class PaperNachTest extends TestCase
     /**
      * Create Order
      */
-    public function testCreateOrderPaperNach()
+    public function testCreateOrderForNachTest()
     {
         $data = $this->api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
 
@@ -50,21 +50,19 @@ class PaperNachTest extends TestCase
     }
     
     /**
-     * Send notification
+     * Send/Resend notifications
      */
     public function testSendNotification()
     {
         $data = $this->api->invoice->fetch($this->invoiceId)->notifyBy('email');
 
         $this->assertTrue(in_array('success',$data));
-
-    }
-
-
+     }
+    
     /**
      * Create registration link
      */
-    public function testRegistrationLink()
+    public function testCreateSubscriptionRegistration()
     {
         $data = $this->api->subscription->createSubscriptionRegistration(array('customer' => array('name' => 'Gaurav Kumar','email' => 'gaurav.kumar@example.com','contact' => '9123456780'),'amount' => 0,'currency' => 'INR','type' => 'link','description' => '12 p.m. Meals','subscription_registration' => array('method' => 'nach','auth_type' => 'physical','bank_account' => array('beneficiary_name' => 'Gaurav Kumar','account_number' => '11214311215411','account_type' => 'savings','ifsc_code' => 'HDFC0001233'),'nach' => array('form_reference1' => 'Recurring Payment for Gaurav Kumar','form_reference2' => 'Method Paper NACH'),'expire_at' => 1636772800,'max_amount' => 50000),'receipt' => 'Receipt No. '.time(),'sms_notify' => 1,'email_notify' => 1,'expire_by' => 1636772800,'notes' => array('note_key 1' => 'Beam me up Scotty','note_key 2' => 'Tea. Earl Gray. Hot.')));
 
@@ -81,7 +79,16 @@ class PaperNachTest extends TestCase
         $data = $this->api->order->fetch($this->orderId)->payments();
 
         $this->assertTrue(is_array($data->toArray()));
+    }
 
+    /**
+     * Fetch tokens by customer id
+     */
+    public function testFetchTokenByCustomerId()
+    {
+       $data = $this->api->customer->fetch($this->customerId)->tokens()->all();
+
+       $this->assertTrue(is_array($data->toArray()));
     }
 
     /**
@@ -112,7 +119,7 @@ class PaperNachTest extends TestCase
 
         $this->assertTrue(in_array('id',$data->toArray()));
     }
-    
+
     /**
      * Create a Recurring Payment
      */
@@ -126,5 +133,4 @@ class PaperNachTest extends TestCase
         $this->assertTrue(is_array($data->toArray()));
 
     }
-
 }
