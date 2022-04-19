@@ -8,7 +8,7 @@ Official PHP library for [Razorpay API](https://docs.razorpay.com/docs/payments)
 Read up here for getting started and understanding the payment flow with Razorpay: <https://docs.razorpay.com/docs/getting-started>
 
 ### Prerequisites
-- A minimum of PHP 5.6 is required
+- A minimum of PHP 5.6 upto 8.0
 
 
 ## Installation
