@@ -1,13 +1,14 @@
 # razorpay-php
 
-[![Build Status](https://travis-ci.org/razorpay/razorpay-php.svg?branch=master)](https://travis-ci.org/razorpay/razorpay-php) [![Latest Stable Version](https://poser.pugx.org/razorpay/razorpay/v/stable.svg)](https://packagist.org/packages/razorpay/razorpay) [![License](https://poser.pugx.org/razorpay/razorpay/license.svg)](https://packagist.org/packages/razorpay/razorpay)
+[![Build Status](https://travis-ci.org/razorpay/razorpay-php.svg?branch=master)](https://travis-ci.org/razorpay/razorpay-php) [![Stable](https://img.shields.io/badge/stable-v2.8.0-blue.svg)](https://packagist.org/packages/razorpay/razorpay#2.8.0) [![License](https://poser.pugx.org/razorpay/razorpay/license.svg)](https://packagist.org/packages/razorpay/razorpay)
+
 
 Official PHP library for [Razorpay API](https://docs.razorpay.com/docs/payments).
 
 Read up here for getting started and understanding the payment flow with Razorpay: <https://docs.razorpay.com/docs/getting-started>
 
 ### Prerequisites
-- A minimum of PHP 5.3 is required
+- A minimum of PHP 5.6 is required
 
 
 ## Installation
