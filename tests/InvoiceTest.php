@@ -11,11 +11,13 @@ class InvoiceTest extends TestCase
      * for example inv_IF37M4q6SdOpjT & cust_IEfAt3ruD4OEzo
      */
 
-    private $invoiceId = "";
+    private $invoiceId = "inv_IH69XFNA9IMQ7k";
 
-    private $customerId = "";
+    private $invoiceIdNotify = "inv_JM5rC3ddYKVWgy";
 
-    public function setUp()
+    private $customerId = "cust_IEfAt3ruD4OEzo";
+
+    public function setUp(): void
     {
         parent::setUp();
     }
@@ -63,7 +65,7 @@ class InvoiceTest extends TestCase
      */
     public function testSendNotification()
     {
-        $data = $this->api->invoice->fetch($this->invoiceId)->notifyBy('email');
+        $data = $this->api->invoice->fetch($this->invoiceId)->notifyBy('sms');
 
         $this->assertTrue(is_array($data));
 

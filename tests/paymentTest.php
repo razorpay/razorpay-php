@@ -11,11 +11,11 @@ class PaymentTest extends TestCase
      * for example order_IEcrUMyevZFuCS & pay_IEczPDny6uzSnx
      */
 
-    private $orderId = "";
+    private $orderId = "order_IEcrUMyevZFuCS";
 
-    private $paymentId = "";
+    private $paymentId = "pay_IEczPDny6uzSnx";
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }    
@@ -94,7 +94,7 @@ class PaymentTest extends TestCase
 
         $this->assertTrue(is_array($data->toArray()));
        
-        $this->assertTrue(in_array('count',$data->toArray())); 
+        $this->assertArrayHasKey('count',$data->toArray());
     }
 
     /**

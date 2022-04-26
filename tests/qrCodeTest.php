@@ -11,11 +11,11 @@ class QrCodeTest extends TestCase
      * for example qr_IEjmDxjAY3iCnw & cust_IEfAt3ruD4OEzo
      */
 
-    private $qrCodeId = "";
+    private $qrCodeId = "qr_IEjmDxjAY3iCnw";
 
-    private $customerId = "";
+    private $customerId = "cust_IEfAt3ruD4OEzo";
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }

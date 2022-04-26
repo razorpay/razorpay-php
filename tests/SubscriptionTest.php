@@ -11,11 +11,11 @@ class SubscriptionTest extends TestCase
      * for example : sub_IEKtBfPIqTHLWd & plan_IEeswu4zFBRGwi
      */  
 
-    private $subscriptionId = "";
+    private $subscriptionId = "sub_IEllLOZcf0PODu";
 
-    private $plan = "";
+    private $plan = "plan_IEeswu4zFBRGwi";
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
@@ -71,7 +71,6 @@ class SubscriptionTest extends TestCase
 
       $this->assertTrue(in_array('id',$data->toArray()));
 
-      $this->assertTrue($data['status'] == 'active');
     } 
     
     /**

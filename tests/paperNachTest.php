@@ -12,15 +12,15 @@ class PaperNachTest extends TestCase
      * order_IF1TQZozl6Leaw & token_IF1ThOcFC9J7pU
      */
 
-    private $customerId = "";
+    private $customerId = "cust_IEfAt3ruD4OEzo";
 
-    private $invoiceId = "";
+    private $invoiceId = "inv_IF37M4q6SdOpjT";
 
-    private $orderId = "";
+    private $orderId = "order_IF1TQZozl6Leaw";
 
-    private $tokenId = ""; 
+    private $tokenId = "token_IF1ThOcFC9J7pU"; 
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
@@ -46,7 +46,7 @@ class PaperNachTest extends TestCase
 
         $this->assertTrue(is_array($data->toArray()));
 
-        $this->assertTrue(in_array('id',$data->toArray()));
+        $this->assertArrayHasKey('id',$data->toArray());
     }
     
     /**
@@ -97,7 +97,7 @@ class PaperNachTest extends TestCase
 
             $this->assertTrue(is_array($data->toArray()));
 
-            $this->assertTrue(in_array('id',$data->toArray()));
+            $this->assertArrayHasKey('id',$data->toArray());
         }
     }
 
@@ -110,7 +110,7 @@ class PaperNachTest extends TestCase
 
         $this->assertTrue(is_array($data->toArray()));
 
-        $this->assertTrue(in_array('id',$data->toArray()));
+        $this->assertArrayHasKey('id',$data->toArray());
     }
     
     /**
