@@ -11,8 +11,8 @@ class TestCase extends PhpUnitTest
     
     public function setUp(): void
     {
-        $apiKey = "rzp_test_1DP5mmOlF5G5ag";
-        $apiSecret = "thisissupersecret";
+        $apiKey = "";
+        $apiSecret = "";
         
         $this->api = new Api( $apiKey, $apiSecret);
     }

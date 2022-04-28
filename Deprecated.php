@@ -16,5 +16,5 @@ const REQUESTS_SILENCE_PSR0_DEPRECATIONS = true;
 if (class_exists('WpOrg\Requests\Autoload') === false) {
 	require_once dirname(__DIR__) . '/src/Autoload.php';
 }
-
+print_r(WpOrg\Requests\Autoload::register());
 WpOrg\Requests\Autoload::register();

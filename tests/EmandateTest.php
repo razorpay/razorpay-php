@@ -51,7 +51,7 @@ class EmandateTest extends TestCase
      */
     public function testCreateSubscriptionRegistrationEmandate()
     {
-        $data = $this->api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'7000569565'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('method'=>'card','max_amount'=>'500','expire_at'=> strtotime("+1 month") ),'receipt'=>'Receipt No. '.time(),'email_notify'=>1,'sms_notify'=>1,'expire_by'=>strtotime("+1 month"),'notes' => array('note_key 1' => 'Beam me up Scotty','note_key 2' => 'Tea. Earl Gray. Hot.')));
+        $data = $this->api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9999999999'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('method'=>'card','max_amount'=>'500','expire_at'=> strtotime("+1 month") ),'receipt'=>'Receipt No. '.time(),'email_notify'=>1,'sms_notify'=>1,'expire_by'=>strtotime("+1 month"),'notes' => array('note_key 1' => 'Beam me up Scotty','note_key 2' => 'Tea. Earl Gray. Hot.')));
 
         $this->assertTrue(is_array($data->toArray()));
 

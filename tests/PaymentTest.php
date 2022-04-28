@@ -31,16 +31,16 @@ class PaymentTest extends TestCase
 
         $this->assertTrue(is_array($data['items']));
     }
-    
+
     /**
      * Fetch a payment
      */
     public function testFetchPayment()
     {
         $payment = $this->api->payment->all();
-        
+
         if($payment['count'] !== 0){
-             
+
             $data = $this->api->payment->fetch($payment['items'][0]['id']);
 
             $this->assertTrue(is_array($data->toArray()));
@@ -48,7 +48,7 @@ class PaymentTest extends TestCase
             $this->assertTrue(in_array('payment',$data->toArray()));
         }
     } 
-    
+
     /**
      * Fetch a payment
      */
@@ -57,7 +57,7 @@ class PaymentTest extends TestCase
         $data = $this->api->order->fetch($this->orderId)->payments();
 
         $this->assertTrue(is_array($data->toArray()));
-        
+
         $this->assertTrue(is_array($data['items']));
     }
 
@@ -69,7 +69,7 @@ class PaymentTest extends TestCase
         $data = $this->api->payment->fetch($this->paymentId)->edit(array('notes'=> array('key_1'=> 'value1','key_2'=> 'value2')));
 
         $this->assertTrue(is_array($data->toArray()));
-        
+
         $this->assertTrue(in_array('payment',$data->toArray()));
     }
 
@@ -79,9 +79,9 @@ class PaymentTest extends TestCase
     public function testFetchCardWithPaymentId()
     {
         $data = $this->api->payment->fetch($this->paymentId)->fetchCardDetails();
-        
+
         $this->assertTrue(is_array($data->toArray()));
-        
+
         $this->assertTrue(in_array('card',$data->toArray())); 
     }
 
@@ -93,7 +93,7 @@ class PaymentTest extends TestCase
         $data = $this->api->payment->fetchPaymentDowntime();
 
         $this->assertTrue(is_array($data->toArray()));
-       
+
         $this->assertArrayHasKey('count',$data->toArray());
     }
 
@@ -103,11 +103,12 @@ class PaymentTest extends TestCase
     public function testfetchPaymentDowntimeById()
     {
         $downtime = $this->api->payment->fetchPaymentDowntime();
- 
-        $data = $this->api->payment->fetchPaymentDowntimeById($downtime['items'][0]['id']);
-
-        $this->assertTrue(is_array($data->toArray()));
-        
+        if(count($downtime['items'])>0){
+          $data = $this->api->payment->fetchPaymentDowntimeById($downtime['items'][0]['id']);
+          $this->assertTrue(is_array($data->toArray()));
+        }else{
+          $this->assertArrayHasKey('count',$downtime->toArray());
+        }
     }
 
 }

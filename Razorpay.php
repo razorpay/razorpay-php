@@ -1,7 +1,7 @@
 <?php
 
 // Include Requests only if not already defined
-$REQUESTS_SILENCE_PSR0_DEPRECATIONS = true;
+const REQUESTS_SILENCE_PSR0_DEPRECATIONS = true;
 
 if (class_exists('Requests') === false)
 {
