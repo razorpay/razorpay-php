@@ -83,7 +83,7 @@ class QrCodeTest extends TestCase
      */
     public function testCloseQrCode()
     {
-        $qrCodeId = $this->api->qrCode->create(array("type" => "upi_qr","name" => "Store_1", "usage" => "single_use","fixed_amount" => 1,"payment_amount" => 300,"customer_id" => $customerId, "description" => "For Store 1","close_by" => 1681615838,"notes" => array("purpose" => "Test UPI QR code notes")));
+        $qrCodeId = $this->api->qrCode->create(array("type" => "upi_qr","name" => "Store_1", "usage" => "single_use","fixed_amount" => 1,"payment_amount" => 300,"customer_id" => $customer['items'][0]['id'], "description" => "For Store 1","close_by" => 1681615838,"notes" => array("purpose" => "Test UPI QR code notes")));
         
         $data = $this->api->qrCode->fetch($qrCodeId->id)->close();
 
