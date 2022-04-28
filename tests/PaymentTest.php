@@ -96,19 +96,18 @@ class PaymentTest extends TestCase
        
         $this->assertArrayHasKey('count',$data->toArray());
     }
-    
+
     /**
      * Fetch Payment Downtime Details
      */
     public function testfetchPaymentDowntimeById()
     {
         $downtime = $this->api->payment->fetchPaymentDowntime();
-        if(count($downtime['items'])>0){
-          $data = $this->api->payment->fetchPaymentDowntimeById($downtime['items'][0]['id']);
-          $this->assertTrue(is_array($data->toArray()));
-        }else{
-          $this->assertArrayHasKey('count',$downtime->toArray());
-        }
+ 
+        $data = $this->api->payment->fetchPaymentDowntimeById($downtime['items'][0]['id']);
+
+        $this->assertTrue(is_array($data->toArray()));
+        
     }
 
 }
