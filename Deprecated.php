@@ -11,10 +11,10 @@
  *
  * @deprecated 2.0.0 Use the PSR-4 class names instead.
  */
-const REQUESTS_SILENCE_PSR0_DEPRECATIONS = true;
+define("REQUESTS_SILENCE_PSR0_DEPRECATIONS",true);
 
 if (class_exists('WpOrg\Requests\Autoload') === false) {
-	require_once dirname(__DIR__) . '/src/Autoload.php';
+	require_once __DIR__. 'libs/Requests-2.0.0/src/Autoload.php';
 }
-print_r(WpOrg\Requests\Autoload::register());
+
 WpOrg\Requests\Autoload::register();
