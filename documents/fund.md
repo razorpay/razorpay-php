@@ -11,7 +11,7 @@ $api->fundAccount->create(array('customer_id'=>$customerId,'account_type'=>'bank
 |---------------|-------------|---------------------------------------------|
 | customerId*   | string      | The id of the customer to be fetched  |
 | account_type* | string      | The bank_account to be linked to the customer ID  |
-| bank_account* | array      | A key-value pair  |
+| bank_account* | array      | All keys listed [here](https://razorpay.com/docs/payments/customers/customer-fund-account-api/#create-a-fund-account) are supported |
 
 **Response:**
 ```json

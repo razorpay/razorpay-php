@@ -12,8 +12,8 @@ $api->Item->create(array("name" => "Book / English August","description" => "An 
 |-----------------|---------|------------------------------------------------------------------------------|
 | name*          | string | Name of the item.                    |
 | description        | string  | A brief description of the item.  |
-| amount         | integer  | Amount of the order to be paid     |
-| currency           | string  | Currency of the order. Currently only `INR` is supported.    |
+| amount*         | integer  | Amount of the order to be paid     |
+| currency*           | string  | Currency of the order. Currently only `INR` is supported.    |
 
 **Response:**
 ```json
@@ -42,10 +42,6 @@ $api->Item->all($options);
 | to    | timestamp | timestamp before which the item were created |
 | count | integer   | number of item to fetch (default: 10)        |
 | skip  | integer   | number of item to be skipped (default: 0)    |
-| name        | string | Name of the item.                    |
-| description        | string  | A brief description of the item.  |
-| amount         | integer  | Amount of the order to be paid     |
-| currency           | string  | Currency of the order. Currently only `INR` is supported.    |
 | active   | boolean  | Possible values is `0` or `1` |
 
 **Response:**

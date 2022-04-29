@@ -116,7 +116,7 @@ $api->plan->fetch($planId);
 
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
-| planId  | string | The id of the plan to be fetched  |
+| planId*  | string | The id of the plan to be fetched  |
 
 **Response:**
 ```json

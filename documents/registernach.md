@@ -241,6 +241,7 @@ $api->order->create(array('amount' => '100', 'currency' => 'INR',  'receipt' => 
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | receipt      | string  | Your system order reference id.  |
+| payment_capture  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
 | notes | array  | A key-value pair  |
 
 **Response:**
