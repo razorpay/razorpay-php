@@ -5,8 +5,9 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 ## Unreleased
 
 ## [2.8.3] - 2022-04-29
+
 - PHP v8.1 is officially supported
-- Update [Request] (https://github.com/WordPress/Requests/tree/v2.0.0) library to v2.0
+- Update [Request](https://github.com/WordPress/Requests/tree/v2.0.0) library to v2.0
 - Improve documentation 
 - Add PHPUnit v9
 
