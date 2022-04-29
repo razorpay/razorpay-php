@@ -8,7 +8,7 @@ class SignatureVerificationTest extends TestCase
 {
     private static $subscriptionId;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }

@@ -113,7 +113,7 @@ $api->virtualAccount->create(array('receivers' => array('types'=> array('bank_ac
 
 ### Create static/dynamic qr
 ```php
-$api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code', 'amount_expected' => 100, 'notes' => array('receiver_key' => 'receiver_value')));
+$api->virtualAccount->create(array('receivers' => array('types' => array('qr_code')), 'description' => 'First QR code','customer_id'=> 'cust_IOyIY3JvbVny9o', 'amount_expected' => 100, 'notes' => array('receiver_key' => 'receiver_value')));
 ```
 
 **Parameters:**
@@ -123,7 +123,8 @@ $api->virtualAccount->create(array('receivers' => array('types' => array('qr_cod
 | receivers*    | array      | Array that defines what receivers are available for this Virtual Account                        |
 | description  | string      | A brief description of the payment.   |
 | amount_expected  | integer   | The maximum amount you expect to receive in this virtual account. Pass `69999` for ₹699.99.   |
-| notes       | array | All keys listed [here](https://razorpay.com/docs/payments/payments/payment-methods/bharatqr/api/#create) are supported   |
+| customer_id  | string      | Unique identifier of the customer to whom the virtual account must be tagged.                    |
+| notes       | object | All keys listed [here](https://razorpay.com/docs/payments/payments/payment-methods/bharatqr/api/#create) are supported   |
 
 **Response:**
 ```json
@@ -389,7 +390,7 @@ For add receiver to an existing virtual account response please click [here](htt
 
 ### Add an Allowed Payer Account
 ```php
-$api->virtualAccount->fetch($virtualId)->addAllowedPayer(array('types' => 'bank_account','bank_account' => array('ifsc'=>'UTIB0000013','account_number'=>'914010012345679')));
+$api->virtualAccount->fetch($virtualId)->addAllowedPayer(array('type' => 'bank_account','bank_account' => array('ifsc'=>'UTIB0000013','account_number'=>'914010012345679')));
 ```
 
 **Parameters:**
@@ -397,6 +398,7 @@ $api->virtualAccount->fetch($virtualId)->addAllowedPayer(array('types' => 'bank_
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
 | virtualId*  | string    | The id of the virtual to be updated  |
+| type*  | string    | Possible value is `bank_account`  |
 | bank_account*    | array | Indicates the bank account details such as `ifsc` and `account_number` |
 
 **Response:**

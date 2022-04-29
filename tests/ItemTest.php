@@ -6,7 +6,7 @@ use Razorpay\Api\Request;
 
 class ItemTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }

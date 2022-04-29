@@ -4,23 +4,23 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class RegisterNachTest extends TestCase
+class RegisterEmandateTest extends TestCase
 {
     /**
      * Specify unique customer id, invoice id, order id & token id
-     * for example : cust_BMB3EwbqnqZ2EI, inv_IF37M4q6SdOpjT, 
+     * for example cust_BMB3EwbqnqZ2EI, inv_IF37M4q6SdOpjT, 
      * order_IF1TQZozl6Leaw & token_IF1ThOcFC9J7pU
      */
 
-    private $customerId = "";
+    private $customerId = "cust_BMB3EwbqnqZ2EI";
 
-    private $invoiceId = "";
+    private $invoiceId = "inv_IF37M4q6SdOpjT";
 
-    private $orderId = "";
+    private $orderId = "order_IF1TQZozl6Leaw";
 
-    private $tokenId = "";
+    private $tokenId = "token_IF1ThOcFC9J7pU";
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
@@ -28,7 +28,7 @@ class RegisterNachTest extends TestCase
     /**
      * Create customer
      */
-    public function testCreateCustomerForNachTest() 
+    public function testCreateCustomer()
     {
         $data = $this->api->customer->create(array('name' => 'Razorpay User 21', 'email' => 'customer21@razorpay.com','fail_existing'=>'0'));
         
@@ -40,7 +40,7 @@ class RegisterNachTest extends TestCase
     /**
      * Create Order
      */
-    public function testCreateOrderForNachTest()
+    public function testCreateOrder()
     {
         $data = $this->api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
 
@@ -57,7 +57,8 @@ class RegisterNachTest extends TestCase
         $data = $this->api->invoice->fetch($this->invoiceId)->notifyBy('email');
 
         $this->assertTrue(in_array('success',$data));
-     }
+
+    }
     
     /**
      * Create registration link
@@ -104,7 +105,7 @@ class RegisterNachTest extends TestCase
 
             $this->assertTrue(is_array($data->toArray()));
 
-            $this->assertTrue(in_array('id',$data->toArray()));
+            $this->assertArrayHasKey('id',$data->toArray());
         }
     }
 
@@ -133,4 +134,5 @@ class RegisterNachTest extends TestCase
         $this->assertTrue(is_array($data->toArray()));
 
     }
+
 }

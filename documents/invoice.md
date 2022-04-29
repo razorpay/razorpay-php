@@ -5,8 +5,23 @@
 Request #1
 In this example, an invoice is created using the customer and item details. Here, the customer and item are created while creating the invoice.
 ```php
-$api->order->create(array ('type' => 'invoice','description' => 'Invoice for the month of January 2020','partial_payment' => true,'customer' =>array ('name' => 'Gaurav Kumar','contact' => 9999999999,'email' => 'gaurav.kumar@example.com','billing_address' => array ('line1' => 'Ground & 1st Floor, SJR Cyber Laskar','line2' => 'Hosur Road','zipcode' => '560068','city' => 'Bengaluru','state' => 'Karnataka','country' => 'in'),'shipping_address' => array ('line1' => 'Ground & 1st Floor, SJR Cyber Laskar','line2' => 'Hosur Road','zipcode' => '560068','city' => 'Bengaluru','state' => 'Karnataka','country' => 'in')),'line_items' => array (array ('name' => 'Master Cloud Computing in 30 Days','description' => 'Book by Ravena Ravenclaw','amount' => 399,'currency' => 'USD','quantity' => 1)),'sms_notify' => 1,'email_notify' => 1,'currency' => 'USD','expire_by' => 1589765167));
+$api->invoice->create(array ('type' => 'invoice','description' => 'Invoice for the month of January 2020','partial_payment' => true,'customer' =>array ('name' => 'Gaurav Kumar','contact' => 9999999999,'email' => 'gaurav.kumar@example.com','billing_address' => array ('line1' => 'Ground & 1st Floor, SJR Cyber Laskar','line2' => 'Hosur Road','zipcode' => '560068','city' => 'Bengaluru','state' => 'Karnataka','country' => 'in'),'shipping_address' => array ('line1' => 'Ground & 1st Floor, SJR Cyber Laskar','line2' => 'Hosur Road','zipcode' => '560068','city' => 'Bengaluru','state' => 'Karnataka','country' => 'in')),'line_items' => array (array ('name' => 'Master Cloud Computing in 30 Days','description' => 'Book by Ravena Ravenclaw','amount' => 399,'currency' => 'USD','quantity' => 1)),'sms_notify' => 1,'email_notify' => 1,'currency' => 'USD','expire_by' => 1589765167));
 ```
+**Parameters:**
+
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+|type*          | string | entity type (here its invoice)                                               |
+|description        | string  | A brief description of the invoice.                      |
+|customer_id           | string  | customer id for which invoice need be raised                     |
+|customer           | array  | customer details in a array format                     |
+|line_items*           | array  | Details of the line item that is billed in the invoice.  |
+|expire_by           | array  | Details of the line item that is billed in the invoice.  |
+|sms_notify           | array  | Details of the line item that is billed in the invoice.  |
+|email_notify           | array  | Details of the line item that is billed in the invoice.  |
+|partial_payment | boolean  | Indicates whether customers can make partial payments on the invoice . Possible values: true - Customer can make partial payments. false (default) - Customer cannot make partial payments. |
+| currency*   | string  | The currency of the payment (defaults to INR)  |
+
 
 Request #2
 In this example, an invoice is created using existing `customer_id` and `item_id`

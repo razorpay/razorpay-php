@@ -11,11 +11,11 @@ class AddonTest extends TestCase
      * for example ao_IEf05Yeu52LlKL & plan_IEeswu4zFBRGwi
      */
     
-    private $addonId = "";
+    private $addonId = "ao_IEf05Yeu52LlKL";
 
-    private $planId = "";
+    private $planId = "plan_IEeswu4zFBRGwi";
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }

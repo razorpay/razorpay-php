@@ -11,9 +11,9 @@ class PlanTest extends TestCase
      * for example plan_IEeswu4zFBRGwi 
      */
 
-    private $planId = "";
+    private $planId = "plan_IEeswu4zFBRGwi";
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }

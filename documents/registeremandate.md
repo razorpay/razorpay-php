@@ -46,7 +46,8 @@ $api->order->create(array('amount' => 100, 'currency' => 'INR', 'method'=>'emand
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | customerId*   | string      | The id of the customer to be fetched |
-| method*      | string  | Payment method used to make the registration transaction. Possible value is `emandate`.  |
+| payment_capture* |  boolean  | Indicates whether payment status should be changed to `captured` automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically.|
+| method*      | string  | Payment method used to make the registration transaction. Possible value is `emandate`. |
 | receipt      | string  | Your system order reference id.  |
 | token  | array  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#112-create-an-order) are supported |
 | notes | array  | A key-value pair  |
@@ -72,7 +73,7 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 
 | Name            | Type    | Description                                                   |
 |-----------------|---------|---------------------------------------------------------------|
-| customer   | array      | Details of the customer to whom the registration link will be sent. |
+| customer   | array | Details of the customer to whom the registration link will be sent. |
 | type*  | array | the value is `link`. |
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
@@ -99,7 +100,8 @@ $api->order->create(array('amount' => '100', 'currency' => 'INR',  'receipt' => 
 |-----------------|---------|------------------------------------------------------------------------------|
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
-| receipt      | string  | Your system order reference id.  |
+| receipt      | string  | Your system order reference id. |
+| payment_capture* |  boolean  | Indicates whether payment status should be changed to `captured` automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically.|
 | notes | array  | A key-value pair  |
 
 **Response:**
@@ -140,7 +142,7 @@ $api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'
 | orderId*   | string      | The id of the order to be fetched |
 | customerId*   | string      | The id of the customer to be fetched |
 | tokenId*   | string      | The id of the token to be fetched |
-| recurring*   | boolean      | Possible values is `0` or `1` |
+| recurring*   | boolean  | Possible values is `0` or `1` |
 | description  | string      | A brief description of the payment.   |
 | notes | array  | A key-value pair  |
 

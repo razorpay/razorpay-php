@@ -4,14 +4,15 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Api;
 use Razorpay\Api\Request;
+use PHPUnit\Framework\TestCase as PhpUnitTest;
 
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends PhpUnitTest
 {
     
-    public function setUp()
+    public function setUp(): void
     {
-        $apiKey = "api_key";
-        $apiSecret = "api_secret";
+        $apiKey = "";
+        $apiSecret = "";
         
         $this->api = new Api( $apiKey, $apiSecret);
     }

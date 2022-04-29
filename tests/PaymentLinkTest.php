@@ -10,9 +10,9 @@ class PaymentLinkTest extends TestCase
      * Specify unique paymentlink id
      * for example plink_IEjOvfQs5AyjMN 
      */
-    private $paymentLinkId = "";
+    private $paymentLinkId = "plink_IEjOvfQs5AyjMN";
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }

@@ -12,13 +12,13 @@ class UpiTest extends TestCase
      * order_IEgBdwYACpMLxd
      */
 
-    private $customerId = "";
+    private $customerId = "cust_IEfAt3ruD4OEzo";
 
-    private $invoiceId = "";
+    private $invoiceId = "inv_IEfS5mBV49bIQY";
 
-    private $orderId = "";
+    private $orderId = "order_IEgBdwYACpMLxd";
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
@@ -44,7 +44,7 @@ class UpiTest extends TestCase
 
         $this->assertTrue(is_array($data->toArray()));
 
-        $this->assertTrue(in_array('id',$data->toArray()));
+        $this->assertArrayHasKey('id',$data->toArray());
     }
     
     /**
@@ -120,7 +120,7 @@ class UpiTest extends TestCase
 
             $this->assertTrue(is_array($data->toArray()));
 
-            $this->assertTrue(in_array('id',$data->toArray()));
+            $this->assertArrayHasKey('id',$data->toArray());
         }
     }
 
@@ -134,6 +134,6 @@ class UpiTest extends TestCase
 
         $this->assertTrue(is_array($data->toArray()));
 
-        $this->assertTrue(in_array('id',$data->toArray()));
+        $this->assertArrayHasKey('id',$data->toArray());
     }
 }

@@ -146,6 +146,12 @@ $api->addon->fetch($addonId);
 
 ```php
 $api->addon->fetch($addonId)->delete();
+
+**Parameters:**
+
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| addonId*          | string | addon id to be fetched    
 ```
 
 **Parameters:**

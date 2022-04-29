@@ -11,11 +11,11 @@ class RefundTest extends TestCase
      * for example plan_IEeswu4zFBRGwi & rfnd_IEjzeVghAS4vd1
      */
 
-    private $paymentId = "";
+    private $paymentId = "plan_IEeswu4zFBRGwi";
 
-    private $refundId = "";
+    private $refundId = "rfnd_IEjzeVghAS4vd1";
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
     }
