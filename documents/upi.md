@@ -12,6 +12,7 @@ $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@raz
 | name*          | string      | Name of the customer                        |
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
+| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `0` or `1`|
 | notes         | array      | A key-value pair                            |
 
 **Response:**
@@ -88,13 +89,17 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| customer          | array | Details of the customer to whom the registration link will be sent.           |
+| customer          | array | Details of the customer to whom the registration link will be sent. |
 | type*        | string  | In this case, the value is `link`.                      |
 | currency*        | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
 | amount*         | integer  | The payment amount in the smallest currency sub-unit.                 |
 | description*    | string  | A description that appears on the hosted page. For example, `12:30 p.m. Thali meals (Gaurav Kumar`).                                                             |
 | subscription_registration           | array  | Details of the authorization payment.                      |
-| notes           | array  | A key-value pair                                                             |
+|sms_notify           | array  | Details of the line item that is billed in the invoice.  |
+|email_notify           | array  | Details of the line item that is billed in the invoice.  |
+|expire_by           | array  | Details of the line item that is billed in the invoice.  |
+|receipt         | string  | Your system order reference id.  |
+|notes           | object  | A key-value pair     |
 
 **Response:**
 ```json

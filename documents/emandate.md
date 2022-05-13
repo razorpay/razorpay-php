@@ -46,7 +46,8 @@ $api->order->create(array('amount' => 0,'currency' => 'INR','method' => 'emandat
 | amount*          | integer | Amount of the order to be paid                                               |
 | currency*        | string  | Currency of the order. Currently only `INR` is supported.                      |
 | method*        | string  | The authorization method. In this case the value will be `emandate`                      |
-| receipt         | string  | Your system order reference id.                                              |
+| receipt         | string  | Your system order reference id.   |
+| payment_capture  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
 | notes           | array  | A key-value pair                                                             |
 | token           | array  | A key-value pair                                                             |
 
