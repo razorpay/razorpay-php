@@ -1,0 +1,19 @@
+
+name: OWASP Scanner
+
+# Controls when the workflow will run
+on:
+  push:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  scan-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v3
+      - name: Clone OWASP
+        run: brew install dependency-check && set +e && dependency-check --out . --scan "." -f CSV --enableExperimental --disableGolangMod
+      - name: Check report
+        run: ls -al && cat dependency-check-report.csv
