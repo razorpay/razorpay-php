@@ -1,0 +1,22 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Grype Dependency Scanner
+
+# Controls when the workflow will run
+on:
+  push:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  scan-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v3
+      - name: Clone Syft
+        run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin && syft . --scope all-layers -o syft-json=sbom.syft.json 
+      - name: Clone Grype
+        run: curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin && grype sbom:./sbom.syft.json > vulnerability.txt
+      - name: Scan Dependencies
+        run: if [ -s vulnerability.txt ]; then echo "Vulnerability found!" && cat vulnerability.txt && exit 1; else echo "Checks Passed!"; fi
