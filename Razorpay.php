@@ -1,7 +1,9 @@
 <?php
 
 // Include Requests only if not already defined
-const REQUESTS_SILENCE_PSR0_DEPRECATIONS = true;
+if(!defined('REQUESTS_SILENCE_PSR0_DEPRECATIONS')){
+    define('REQUESTS_SILENCE_PSR0_DEPRECATIONS', true);
+}
 
 if (class_exists('WpOrg\Requests\Autoload') === false)
 {
