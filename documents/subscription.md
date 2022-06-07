@@ -3,7 +3,7 @@
 ### Create subscription
 
 ```php
-$api->subscription->create(array('plan_id' => 'plan_7wAosPWtrkhqZw', 'customer_notify' => 1,'quantity'=>5, 'total_count' => 6, 'start_at' => 1495995837, 'addons' => array(array('item' => array('name' => 'Delivery charges', 'amount' => 30000, 'currency' => 'INR'))),'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+$api->subscription->create(array("plan_id" => "plan_Jc7wDk5iZX88wx","total_count" => 6,"quantity" => 1,"customer_notify" => 1,"start_at" => 1580453311,"expire_by" => 1580626111,"addons" => array(array("item" => array("name" => "Delivery charges","amount" => 30000,"currency" => "INR"))),"offer_id" => "offer_JCTD1XMlUmzF6Z","notes" => array("notes_key_1" => "Tea, Earl Grey, Hot","notes_key_2" => "Tea, Earl Grey… decaf.")));
 ```
 
 **Parameters:**
@@ -13,11 +13,14 @@ $api->subscription->create(array('plan_id' => 'plan_7wAosPWtrkhqZw', 'customer_n
 | plan_id*          | string | The unique identifier for a plan that should be linked to the subscription.|
 | total_count*   | string | The number of billing cycles for which the customer should be charged  |
 | customer_notify    | boolean | Indicates whether the communication to the customer would be handled by you or us |
-| quantity    | integer | The number of times the customer should be charged the plan amount per invoice |
+| quantity      | integer | The number of times the customer should be charged the plan amount per invoice |
 | start_at    | integer | The timestamp, in Unix format, for when the subscription should start. If not passed, the subscription starts immediately after the authorization payment. |
 | expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
-| addons    | array | Array that contains details of any upfront amount you want to collect as part of the authorization transaction. |
+| addons["item"]["name"]    | string | A name for the upfront amount you want to charge the customer. For example, Delivery Fee. |
+| addons["item"]["amount"]  | string | The upfront amount in the currency subunit you want to charge the customer. For example ,`30000`. |
+| addons["item"]["currency"] | string  | The currency of the payment (defaults to INR) |
 | notes          | array | Notes you can enter for the contact for future reference.   |
+| offer_id   | string | The unique identifier of the offer that is linked to the subscription. |
 
 **Response:**
 ```json
@@ -56,7 +59,7 @@ $api->subscription->create(array('plan_id' => 'plan_7wAosPWtrkhqZw', 'customer_n
 ### Create subscription link
 
 ```php
-$api->subscription->create(array('plan_id' => 'plan_HoYg68p5kmuvzD','total_count' => 12,'quantity' => 1,'expire_by' => 1633237807,'customer_notify' => 1, 'addons' => array(array('item'=>array('name' => 'Delivery charges','amount' => 30000,'currency' => 'INR'))),'notes'=>array('notes_key_1'=>'Tea, Earl Grey, Hot','notes_key_2'=>'Tea, Earl Grey… decaf.'),'notify_info'=>array('notify_phone' => '9123456789','notify_email'=> 'gaurav.kumar@example.com')));
+$api->subscription->create(array("plan_id" => "plan_Jc7wDk5iZX88wx","total_count" => 12,"quantity" => 1,"start_at" => 1561852800,"expire_by" => 1561939199,"customer_notify" => 1,"addons" => array(array("item" => array("name" => "Delivery charges","amount" => 30000,"currency" => "INR"))),"offer_id" => "offer_JCTD1XMlUmzF6Z","notes" => array("notes_key_1" => "Tea, Earl Grey, Hot","notes_key_2" => "Tea, Earl Grey… decaf."),"notify_info" => array("notify_phone" => "9123456789","notify_email" => "gaurav.kumar@example.com")));
 ```
 
 **Parameters:**
@@ -72,6 +75,7 @@ $api->subscription->create(array('plan_id' => 'plan_HoYg68p5kmuvzD','total_count
 | addons    | array | Array that contains details of any upfront amount you want to collect as part of the authorization transaction. |
 | notes          | array | Notes you can enter for the contact for future reference.   |
 | notify_info          | array | The customer's email and phone number to which notifications are to be sent. (PN: Use this array only if you have set the `customer_notify` parameter to 1. That is, Razorpay sends notifications to the customer.)  |
+| offer_id   | string | The unique identifier of the offer that is linked to the subscription. |
 
 **Response:**
 ```json
