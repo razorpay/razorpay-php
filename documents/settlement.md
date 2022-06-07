@@ -20,7 +20,7 @@ $api->settlement->all($options);
 ```json
 {
   "entity": "collection",
-  "count": 1,
+  "count": 2,
   "items": [
     {
       "id": "setl_DGlQ1Rj8os78Ec",
@@ -31,6 +31,16 @@ $api->settlement->all($options);
       "tax": 42070,
       "utr": "1568176960vxp0rj",
       "created_at": 1568176960
+    },
+    {
+      "id": "setl_4xbSwsPABDJ8oK",
+      "entity": "settlement",
+      "amount": 50000,
+      "status": "processed",
+      "fees": 123,
+      "tax": 12,
+      "utr": "RZRP173069230702",
+      "created_at": 1509622306
     }
   ]
 }
