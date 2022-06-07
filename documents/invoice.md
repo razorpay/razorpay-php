@@ -15,8 +15,28 @@ $api->invoice->create(array ('type' => 'invoice','description' => 'Invoice for t
 |description        | string  | A brief description of the invoice.                      |
 |customer_id           | string  | customer id for which invoice need be raised   |
 |draft           | string  |  Invoice is created in draft state when value is set to `1`   |
-|customer           | array  | customer details in a array format                     |
-|line_items*           | array  | Details of the line item that is billed in the invoice.  |
+| customer["name"]*          | string | Customer's name.           |
+| customer["email"]*          | string | Customer's email address.           |
+| customer["contact"]*          | string | Customer's phone number.          |
+| customer["billing_address"]["line1"]*          | string | The first line of the customer's address.          |
+| customer["billing_address"]["line2"]*          | string | The second line of the customer's address.          |
+| customer["billing_address"]["city"]          | string | The city          |
+| customer["billing_address"]["zipcode"]*          | string | The zipcode          |
+| customer["billing_address"]["state"]*          | string | The state          |
+| customer["billing_address"]["country"]*          | string | The country          |
+| customer["shipping_address"]["line1"]*          | string | The first line of the customer's address.          |
+| customer["shipping_address"]["line2"]*          | string | The second line of the customer's address.          |
+| customer["shipping_address"]["city"]          | string | The city          |
+| customer["shipping_address"]["zipcode"]*          | string | The zipcode          |
+| customer["shipping_address"]["state"]*          | string | The state          |
+| customer["shipping_address"]["country"]*          | string | The country          |
+
+| line_items["item_id"]*  (conditionally mandatory)    | string | If you are using the Items API, you may use an existing item. You can choose to override details such as name, description by passing these along with item_id.          |
+| line_items["name"]* (conditionally mandatory)         | string | The item name. Mandatory if `item_id` is not provided.          |
+| line_items["description"]*          | string | A brief description of the item.       |
+| line_items["amount"]* (conditionally mandatory)         | integer | Amount to be paid using the invoice. Must be in the smallest unit of the currency         |
+| line_items["currency"]*          | string | The currency associated with the item. Defaults to `INR`.          |
+| line_items["quantity"]*          | string | The number of units of the item billed in the invoice. Defaults to `1`.         |
 |expire_by           | array  | Details of the line item that is billed in the invoice.  |
 |sms_notify           | array  | Details of the line item that is billed in the invoice.  |
 |email_notify           | array  | Details of the line item that is billed in the invoice.  |
@@ -37,7 +57,32 @@ $api->invoice->create(array ('type' => 'invoice','date' => 1589994898, 'customer
 |type*          | string | entity type (here its invoice)                                               |
 |description        | string  | A brief description of the invoice.                      |
 |customer_id           | string  | customer id for which invoice need be raised                     |
-|customer           | array  | customer details in a array format                     |
+| customer["name"]*          | string | Customer's name.           |
+| customer["email"]*          | string | Customer's email address.           |
+| customer["contact"]*          | string | Customer's phone number.          |
+| customer["billing_address"]["line1"]*          | string | The first line of the customer's address.          |
+| customer["billing_address"]["line2"]*          | string | The second line of the customer's address.          |
+| customer["billing_address"]["city"]          | string | The city          |
+| customer["billing_address"]["zipcode"]*          | string | The zipcode          |
+| customer["billing_address"]["state"]*          | string | The state          |
+| customer["billing_address"]["country"]*          | string | The country          |
+| customer["shipping_address"]["line1"]*          | string | The first line of the customer's address.          |
+| customer["shipping_address"]["line2"]*          | string | The second line of the customer's address.          |
+| customer["shipping_address"]["city"]          | string | The city          |
+| customer["shipping_address"]["zipcode"]*          | string | The zipcode          |
+| customer["shipping_address"]["state"]*          | string | The state          |
+| customer["shipping_address"]["country"]*          | string | The country          |
+
+| line_items["item_id"]*  (conditionally mandatory)    | string | If you are using the Items API, you may use an existing item. You can choose to override details such as name, description by passing these along with item_id.          |
+| line_items["name"]* (conditionally mandatory)         | string | The item name. Mandatory if `item_id` is not provided.          |
+| line_items["description"]*          | string | A brief description of the item.       |
+| line_items["amount"]* (conditionally mandatory)         | integer | Amount to be paid using the invoice. Must be in the smallest unit of the currency         |
+| line_items["currency"]*          | string | The currency associated with the item. Defaults to `INR`.          |
+| line_items["quantity"]*          | string | The number of units of the item billed in the invoice. Defaults to `1`.         |
+| sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
+| currency*  (conditionally mandatory) | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
+| email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
+| expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
 
 **Response:**
 For create invoice response please click [here](https://razorpay.com/docs/api/invoices/#create-an-invoice)
