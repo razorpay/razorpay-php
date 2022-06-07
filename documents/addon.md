@@ -11,8 +11,11 @@ $api->subscription->fetch($subscriptionId)->createAddon(array('item' => array('n
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
 | subscriptionId*  | boolean | The subscription ID to which the add-on is being added. |
-| items*  | array | Details of the add-on you want to create. |
-| quantity*  | integer | This specifies the number of units of the add-on to be charged to the customer. |
+| items["name"]  | string | A name for the add-on. For example, `Extra appala (papadum)` |
+| items["amount"]  | integer | The amount, in the currency subunit, you want to charge the customer for the add-on |
+| items["currency"]  | string | The currency of the payment (defaults to INR) |
+| items["description"]  | string | Description for the add-on. For example, `1 extra oil fried appala with meals.` |
+| quantity  | integer | This specifies the number of units of the add-on to be charged to the customer. |
 
 **Response:**
 ```json
@@ -146,19 +149,13 @@ $api->addon->fetch($addonId);
 
 ```php
 $api->addon->fetch($addonId)->delete();
-
-**Parameters:**
-
-| Name            | Type    | Description                                                                  |
-|-----------------|---------|------------------------------------------------------------------------------|
-| addonId*          | string | addon id to be fetched    
 ```
 
 **Parameters:**
 
-| Name            | Type    | Description                                                                  |
-|-----------------|---------|------------------------------------------------------------------------------|
-| addonId*          | string | addon id to be deleted |
+| Name            | Type    | Description  |
+|-----------------|---------|--------------|
+| addonId*        | string | addon id to be fetched|    
 
 **Response:**
 ```json
