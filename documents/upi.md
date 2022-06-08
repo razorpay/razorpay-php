@@ -2,7 +2,7 @@
 
 ### Create customer
 ```php
-$api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com','contact'=>'9123456780','notes'=> array('notes_key_1'=> 'Tea, Earl Grey, Hot','notes_key_2'=> 'Tea, Earl Grey… decaf'));
+$api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com','contact'=>'9123456780', 'fail_existing'=> '0', 'notes'=> array('notes_key_1'=> 'Tea, Earl Grey, Hot','notes_key_2'=> 'Tea, Earl Grey… decaf')));
 ```
 
 **Parameters:**
@@ -11,6 +11,7 @@ $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@raz
 |---------------|-------------|---------------------------------------------|
 | name*          | string      | Name of the customer                        |
 | email        | string      | Email of the customer                       |
+| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `0` or `1`|
 | contact      | string      | Contact number of the customer              |
 | notes         | array      | A key-value pair                            |
 
@@ -48,7 +49,9 @@ $api->order->create(array('amount' => 0,'currency' => 'INR','method' => 'upi','c
 | method*        | string  | The authorization method. In this case the value will be `upi`                      |
 | receipt         | string  | Your system order reference id.                                              |
 | notes           | array  | A key-value pair                                                             |
-| token           | array  | A key-value pair                                                             |
+| token["max_amount"]*  | integer  | Use to set the maximum amount per debit request. The value can range from `500` - `1000000000` (1cr, default value)  |
+| token["expire_at"]*  | integer | The timestamp, in Unix format, till when the  registration link should expire |
+| token["frequency"]*  | string  | The frequency at which you can charge your customer. Currently supported frequencies are `as_presented` and `monthly`.  |
 
 **Response:**
 ```json
@@ -81,7 +84,7 @@ Please refer this [doc](https://razorpay.com/docs/api/recurring-payments/upi/aut
 ### Create registration link
 
 ```php
-$api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('method'=>'upi','max_amount'=>'500','expire_at'=>'1634215992'),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992,'notes' => array('note_key 1' => 'Beam me up Scotty','note_key 2' => 'Tea. Earl Gray. Hot.')));
+$api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>0,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('method'=>'upi', 'max_amount'=>'500', 'expire_at'=>'1634215992', 'frequency'=>'monthly'),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992,'notes' => array('note_key 1' => 'Beam me up Scotty','note_key 2' => 'Tea. Earl Gray. Hot.')));
 ```
 
 **Parameters:**
@@ -93,7 +96,10 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 | currency*        | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
 | amount*         | integer  | The payment amount in the smallest currency sub-unit.                 |
 | description*    | string  | A description that appears on the hosted page. For example, `12:30 p.m. Thali meals (Gaurav Kumar`).                                                             |
-| subscription_registration           | array  | Details of the authorization payment.                      |
+| subscription_registration["method"]           | string  | The authorization method. In this case, it will be `card`.|
+| subscription_registration["max_amount"]           | integer  | Use to set the maximum amount (in paise) per debit request. |
+| subscription_registration["expire_at"]           | integer  | when you can use the token (authorization on the payment method) to charge the customer subsequent payments. Defaults to 10 years for `emandate`. |
+| subscription_registration["frequency"]*  | string  | The frequency at which you can charge your customer.|
 | notes           | array  | A key-value pair                                                             |
 
 **Response:**
@@ -376,7 +382,7 @@ $api->customer->fetch($customerId)->tokens()->delete($tokenId);
 ### Create an order to charge the customer
 
 ```php
-$api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+$api->order->create(array('amount' => 1000,'currency' => 'INR','payment_capture' => true,'receipt' => 'Receipt No. 1','notes'=> array('notes_key_1' => 'Tea, Earl Grey, Hot', 'notes_key_2' => 'Tea, Earl Grey… decaf.')));
 ```
 
 **Parameters:**
@@ -386,7 +392,8 @@ $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'IN
 | amount*          | integer | Amount of the order to be paid                                               |
 | currency*        | string  | Currency of the order. Currently only `INR` is supported.                      |
 | receipt         | string  | Your system order reference id.                                              |
-| notes           | array  | A key-value pair                                                             |
+| notes           | array  | A key-value pair  |
+| payment_capture  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
 
 **Response:**
 ```json
