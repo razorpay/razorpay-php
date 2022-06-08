@@ -2,7 +2,7 @@
 
 ### Create customer
 ```php
-$api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com','contact'=>'9123456780','notes'=> array('notes_key_1'=> 'Tea, Earl Grey, Hot','notes_key_2'=> 'Tea, Earl Grey… decaf'));
+$api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com','contact'=>'9123456780', 'fail_existing'=> '0', 'notes'=> array('notes_key_1'=> 'Tea, Earl Grey, Hot','notes_key_2'=> 'Tea, Earl Grey… decaf')));
 ```
 
 **Parameters:**
@@ -12,6 +12,7 @@ $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@raz
 | name*          | string      | Name of the customer                        |
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
+| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `0` or `1`|
 | notes         | array      | A key-value pair                            |
 
 **Response:**
@@ -40,7 +41,25 @@ $api->order->create(array('amount' => 0,'currency' => 'INR','method' => 'nach','
 
 **Parameters:**
 
-All parameters listed [here](https://razorpay.com/docs/api/route/#create-transfers-from-payments) are supported
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
+| currency*   | string  | The currency of the payment (defaults to INR)  |
+| customerId*   | string      | The id of the customer to be fetched |
+| method*      | string  | Payment method used to make the registration transaction. Possible value is `nach`.  |
+| receipt      | string  | Your system order reference id.  |
+| token["auth_type"]  | string  | Possible value is `physical`|
+| token["max_amount"]  | integer  | Use to set the maximum amount per debit request. The value can range from `500` - `1000000000` (1cr, default value)  |
+| token["expire_at"]  | integer | The timestamp, in Unix format, till when the  registration link should expire |
+| token["notes"]  | object  | A key-value pair  |
+| bank["account_number"]  | string  | Customer's bank account number.  |
+| bank["ifsc_code"]  | string  | Customer's bank IFSC  |
+| bank["beneficiary_name"]  | string  |  Customer's name  |
+| bank["account_type"]  | string  | Customer's bank account. Possible value is `saving`(default), `current`, `cc`, `nre`, `nro`  |
+| nach["form_reference1"]  | string  | A user-entered reference that appears on the NACH form  |
+| nach["form_reference2"]  | string  | A user-entered reference that appears on the NACH form  |
+| nach["description"]  | string  | All keys listed  |
+| notes | object  | A key-value pair  |
 
 **Response:**
 ```json
@@ -116,7 +135,32 @@ $api->subscription->createSubscriptionRegistration(array('customer' => array('na
 ```
 
 **Parameters:**
-All parameters listed [here](https://razorpay.com/docs/api/recurring-payments/paper-nach/authorization-transaction/#121-create-a-registration-link) are supported
+
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| customer["name"]*          | string | Customer's name.           |
+| customer["email"]*          | string | Customer's email address.           |
+| customer["contact"]*          | string | Customer's phone number.          |
+| type*        | string  | In this case, the value is `link`.                      |
+| currency*        | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
+| amount*         | integer  | The payment amount in the smallest currency sub-unit.                 |
+| description*    | string  | A description that appears on the hosted page. For example, `12:30 p.m. Thali meals (Gaurav Kumar`).                                                             |
+| subscription_registration["method"]           | string  | In this case, it will be `physical`.|
+| subscription_registration["auth_type"]           | string  | Possible values `nach`|
+| subscription_registration["max_amount"]           | integer  | Use to set the maximum amount, in paise, per debit request.|
+| subscription_registration["expire_at"]           | integer  | when you can use the token (authorization on the payment method) to charge the customer subsequent payments. Defaults to 10 years for `emandate`. |
+| subscription_registration["bank"]["account_number"]*  | integer  | Customer's bank account number.  |
+| subscription_registration["bank"]["ifsc_code"]*  | string  | Customer's bank IFSC  |
+| subscription_registration["bank"]["beneficiary_name"]*  | string  |  Name on the bank account.   |
+| subscription_registration["bank"]["account_type"]*  | string  | Customer's bank account. Possible value is `saving`(default), `current`  |
+| subscription_registration["nach"]["form_reference1"]  | string  | A user-entered reference that appears on the NACH form  |
+| subscription_registration["nach"]["form_reference2"]  | string  | A user-entered reference that appears on the NACH form  |
+| subscription_registration["nach"]["description"]  | string  | A user entered description that appears on the hosted page.  |
+| sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
+| email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
+| expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
+| receipt      | string  | Your system order reference id.  |
+| notes           | array  | A key-value pair  |
 
 **Response:**
 ```json
@@ -509,7 +553,7 @@ $api->customer->fetch($customerId)->tokens()->delete($tokenId);
 ### Create an order to charge the customer
 
 ```php
-$api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+$api->order->create(array('amount' => 1000,'currency' => 'INR','payment_capture' => true,'receipt' => 'Receipt No. 1','notes'=> array('notes_key_1' => 'Tea, Earl Grey, Hot', 'notes_key_2' => 'Tea, Earl Grey… decaf.')));
 ```
 
 **Parameters:**
@@ -518,6 +562,7 @@ $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'IN
 |-----------------|---------|------------------------------------------------------------------------------|
 | amount*          | integer | Amount of the order to be paid                                               |
 | currency*        | string  | Currency of the order. Currently only `INR` is supported.                      |
+| payment_capture*  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
 | receipt         | string  | Your system order reference id.                                              |
 | notes           | array  | A key-value pair                                                             |
 **Response:**
