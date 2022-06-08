@@ -49,8 +49,16 @@ $api->order->create(array('amount' => 100, 'currency' => 'INR', 'method'=>'emand
 | payment_capture* |  boolean  | Indicates whether payment status should be changed to `captured` automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically.|
 | method*      | string  | Payment method used to make the registration transaction. Possible value is `emandate`. |
 | receipt      | string  | Your system order reference id.  |
-| token  | array  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#112-create-an-order) are supported |
-| notes | array  | A key-value pair  |
+| token["first_payment_amount"]  | integer  |  The amount, in paise, the customer should be auto-charged in addition to the authorization amount. |
+| token["auth_type"]  | string  | Possible value is `netbanking`, `debitcard` or `aadhaar`|
+| token["max_amount"]  | integer  | The maximum amount, in paise, that a customer can be charged in one transaction.. The value can range from `500` - `1000000000` (1cr, default value)  |
+| token["expire_at"]  | integer | The timestamp, in Unix format, till when the  registration link should expire |
+| token["notes"]  | object  | A key-value pair  |
+| bank["account_number"]  | string  | Customer's bank account number.  |
+| bank["ifsc_code"]  | string  | Customer's bank IFSC  |
+| bank["beneficiary_name"]  | string  |  Customer's name  |
+| bank["account_type"]  | string  | Customer's bank account. Possible value is `saving`(default), `current`|
+| notes | object  | A key-value pair  |
 
 **Response:**
 For create order response please click [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#112-create-an-order)
@@ -66,7 +74,7 @@ Please refer this [doc](https://razorpay.com/docs/api/recurring-payments/emandat
 ### Create registration link
 
 ```php
-$api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('first_payment_amount'=>100, 'method'=>'emandate', 'auth_type'=>'netbanking' ,'max_amount'=>'50000','expire_at'=>'1634215992','bank_account'=>array('beneficiary_name'=>'Gaurav Kumar', 'account_number'=>'11214311215411', 'account_type'=>'savings', 'ifsc_code'=>'HDFC0001233')),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992, 'notes'=> array('note_key 1'=> 'Beam me up Scotty','note_key 2'=> 'Tea. Earl Gray. Hot.'))   );
+$api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>0,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('first_payment_amount'=>100, 'method'=>'emandate', 'auth_type'=>'netbanking' ,'max_amount'=>'50000','expire_at'=>'1634215992','bank_account'=>array('beneficiary_name'=>'Gaurav Kumar', 'account_number'=>'11214311215411', 'account_type'=>'savings', 'ifsc_code'=>'HDFC0001233')),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992, 'notes'=> array('note_key 1'=> 'Beam me up Scotty','note_key 2'=> 'Tea. Earl Gray. Hot.'))   );
 ```
 
 **Parameters:**
@@ -78,7 +86,14 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | description*  | string      | A brief description of the payment.   |
-| subscription_registration   | array  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/emandate/auto-debit/#121-create-a-registration-link) are supported  |
+| subscription_registration["first_payment_amount"]      | integer  | The amount, in paise, the customer should be auto-charged in addition to the authorization amount. |
+| subscription_registration["auth_type"]           | string  | Possible values `netbanking`, `debitcard` or `aadhaar`|
+| subscription_registration["max_amount"]           | integer  | The maximum amount, in paise, that a customer can be charged in one transaction.|
+| subscription_registration["expire_at"]           | integer  | when you can use the token (authorization on the payment method) to charge the customer subsequent payments. Defaults to 10 years for `emandate`. |
+| subscription_registration["bank"]["account_number"]  | integer  | Customer's bank account number.  |
+| subscription_registration["bank"]["ifsc_code"]  | string  | Customer's bank IFSC  |
+| subscription_registration["bank"]["beneficiary_name"]  | string  |  Name on the bank account.   |
+| subscription_registration["bank"]["account_type"]  | string  | Customer's bank account. Possible value is `saving`(default), `current`  |
 | receipt      | string  | Your system order reference id.  |
 | sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
 | email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
