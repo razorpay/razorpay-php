@@ -47,19 +47,7 @@ $api->order->create(array('amount' => 100, 'currency' => 'INR', 'method'=>'nach'
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | customerId*   | string      | The id of the customer to be fetched |
 | method*      | string  | Payment method used to make the registration transaction. Possible value is `nach`.  |
-| token["first_payment_amount"]  | integer  |  The amount, in paise, the customer should be auto-charged in addition to the authorization amount. |
-| token["auth_type"]  | string  | Possible value is `physical`|
-| token["max_amount"]  | integer  | Use to set the maximum amount per debit request. The value can range from `500` - `1000000000` (1cr, default value)  |
-| token["expire_at"]  | integer | The timestamp, in Unix format, till when the  registration link should expire |
-| token["notes"]  | object  | A key-value pair  |
-| bank["account_number"]  | string  | Customer's bank account number.  |
-| bank["ifsc_code"]  | string  | Customer's bank IFSC  |
-| bank["beneficiary_name"]  | string  |  Customer's name  |
-| bank["account_type"]  | string  | Customer's bank account. Possible value is `saving`(default), `current`, `cc`, `nre`, `nro`  |
-| nach["form_reference1"]  | string  | A user-entered reference that appears on the NACH form  |
-| nach["form_reference2"]  | string  | A user-entered reference that appears on the NACH form  |
-| nach["description"]  | string  | All keys listed  |
-
+| token  | array  |  All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/paper-nach/auto-debit/#112-create-an-order) are supported |
 | notes | array  | A key-value pair  |
 
 **Response:**
@@ -136,19 +124,12 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 
 | Name            | Type    | Description                                                   |
 |-----------------|---------|---------------------------------------------------------------|
-| customer   | array      | Details of the customer to whom the registration link will be sent. |
+| customer   | array      | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/paper-nach/auto-debit/#121-create-a-registration-link) are supported |
 | type*  | array | the value is `link`. |
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 | description*  | string      | A brief description of the payment.   |
-| subscription_registration["first_payment_amount"]      | integer  | The amount, in paise, the customer should be auto-charged in addition to the authorization amount. |
-| subscription_registration["auth_type"]           | string  | Possible values `nach`|
-| subscription_registration["max_amount"]           | integer  | The maximum amount, in paise, that a customer can be charged in one transaction.|
-| subscription_registration["expire_at"]           | integer  | when you can use the token (authorization on the payment method) to charge the customer subsequent payments. Defaults to 10 years for `emandate`. |
-| subscription_registration["bank"]["account_number"]  | integer  | Customer's bank account number.  |
-| subscription_registration["bank"]["ifsc_code"]  | string  | Customer's bank IFSC  |
-| subscription_registration["bank"]["beneficiary_name"]  | string  |  Name on the bank account.   |
-| subscription_registration["bank"]["account_type"]  | string  | Customer's bank account. Possible value is `saving`(default), `current`  |
+| subscription_registration           | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/paper-nach/auto-debit/#121-create-a-registration-link) are supported |
 | receipt      | string  | Your system order reference id.  |
 | sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
 | email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
