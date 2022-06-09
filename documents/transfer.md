@@ -12,12 +12,7 @@ $api->payment->fetch($paymentId)->transfer(array('transfers' => array(array('acc
 |---------------|-------------|---------------------------------------------|
 | paymentId*   | string      | The id of the payment to be fetched  |
 | transfers["account"]*   | string     | The id of the account to be fetched   |
-| transfers["amount"]*   | integer     | The transaction amount, in paise |
-| transfers["currency"]*   | string     | The currency of the payment (defaults to INR)  |
-| transfers["notes"]   | array     | Key-value pair that can be used to store additional  |
-| transfers["linked_account_notes"]   | array     | A key-value pair  |
-| transfers["on_hold"]   | boolean     | Possible values is `0` or `1`  |
-| transfers["on_hold_until"]   | integer     | Timestamp, in Unix, that indicates until when the settlement of the transfer must be put on hold |
+| transfers   | array     | All parameters listed [here](https://razorpay.com/docs/api/payments/route/#fetch-transfers-for-a-payment) are supported ||
 
 **Response:**
 ```json
@@ -109,13 +104,7 @@ $api->order->create(array('amount' => 2000,'currency' => 'INR','transfers' => ar
 | amount*   | integer      | The transaction amount, in paise |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
 |  receipt      | string      | A unique identifier provided by you for your internal reference. |
-| transfers["account"]*   | string     | The id of the account to be fetched   |
-| transfers["amount"]*   | integer     | The transaction amount, in paise |
-| transfers["currency"]*   | string     | The currency of the payment (defaults to INR)  |
-| transfers["notes"]   | array     | Key-value pair that can be used to store additional  |
-| transfers["linked_account_notes"]   | array     | A key-value pair  |
-| transfers["on_hold"]   | boolean     | Possible values is `0` or `1`  |
-| transfers["on_hold_until"]   | integer     | Timestamp, in Unix, that indicates until when the settlement of the transfer must be put on hold |
+| transfers   | array     | All parameters listed [here](https://razorpay.com/docs/api/payments/route/#create-transfers-from-orders) are supported |
 
 **Response:**
 ```json
