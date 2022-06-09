@@ -49,18 +49,13 @@ $api->order->create(array('amount' => 0,'currency' => 'INR','method' => 'emandat
 | method*      | string  | Payment method used to make the registration transaction. Possible value is `emandate`.  |
 | receipt      | string  | Your system order reference id.  |
 | payment_capture*  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
-| token["auth_type"]  | string  | Possible value is `netbanking`, `debitcard` or `aadhaar`|
-| token["max_amount"]  | integer  | Use to set the maximum amount per debit request. The value can range from `500` - `1000000000` (1cr, default value)  |
-| token["expire_at"]  | integer | The timestamp, in Unix format, till when the  registration link should expire |
-| token["notes"]  | object  | A key-value pair  |
-| bank["account_number"]  | string  | Customer's bank account number.  |
-| bank["ifsc_code"]  | string  | Customer's bank IFSC  |
-| bank["beneficiary_name"]  | string  |  Customer's name  |
-| bank["account_type"]  | string  | Customer's bank account. Possible value is `saving`(default), `current`  |
+| token  | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/emandate/create-authorization-transaction/#112-create-an-order) are supported|
+| token.bank | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/emandate/create-authorization-transaction/#112-create-an-order) are supported |
 | notes | object  | A key-value pair  |
 
 **Response:**
 Create order response please click [here](https://razorpay.com/docs/api/recurring-payments/emandate/authorization-transaction/#112-create-an-order)
+
 -------------------------------------------------------------------------------------------------------
 
 ### Create an Authorization Payment
@@ -86,22 +81,15 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 | currency*        | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
 | amount*         | integer  | The payment amount in the smallest currency sub-unit.                 |
 | description*    | string  | A description that appears on the hosted page. For example, `12:30 p.m. Thali meals (Gaurav Kumar`).                                                             |
-| subscription_registration["method"]           | string  | The authorization method. In this case, it will be `emandate`.|
-| subscription_registration["auth_type"]           | string  | Possible values `netbanking`, `debitcard` or `aadhaar`|
-| subscription_registration["max_amount"]           | integer  | The maximum amount, in paise, that a customer can be charged in one transaction.|
-| subscription_registration["expire_at"]           | integer  | when you can use the token (authorization on the payment method) to charge the customer subsequent payments. Defaults to 10 years for `emandate`. |
-| subscription_registration["bank"]["account_number"]  | integer  | Customer's bank account number.  |
-| subscription_registration["bank"]["ifsc_code"]  | string  | Customer's bank IFSC  |
-| subscription_registration["bank"]["beneficiary_name"]  | string  |  Name on the bank account.   |
-| subscription_registration["bank"]["account_type"]  | string  | Customer's bank account. Possible value is `saving`(default), `current`  |
-| sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
+| subscription_registration           | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/emandate/create-authorization-transaction/#121-create-a-registration-link) are supported  |
 | email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
 | expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
 | receipt      | string  | Your system order reference id.  |
 | notes           | array  | A key-value pair  |
 
 **Response:**
-Create registration link response please click [here](https://razorpay.com/docs/api/recurring-payments/emandate/authorization-transaction/#121-create-a-registration-link)
+Create registration link response please click [here](https://razorpay.com/docs/api/payments/recurring-payments/emandate/create-authorization-transaction/#121-create-a-registration-link)
+
 -------------------------------------------------------------------------------------------------------
 
 ### Send/Resend notifications
