@@ -207,8 +207,8 @@ $api->virtualAccount->all($options);
 |-------|-----------|--------------------------------------------------|
 | from  | timestamp | timestamp after which the payments were created  |
 | to    | timestamp | timestamp before which the payments were created |
-| count | integer   | number of payments to fetch (default: 10)        |
-| skip  | integer   | number of payments to be skipped (default: 0)    |
+| count | integer   | number of virtual accounts to fetch (default: 10)        |
+| skip  | integer   | number of virtual accounts to be skipped (default: 0)    |
 
 **Response:**
 ```json
@@ -250,8 +250,6 @@ $api->virtualAccount->all($options);
 
 ### Fetch payments for a virtual account
 ```php
-$options = array("count" => 2);
-
 $api->virtualAccount->fetch($virtualId)->payments($options);
 ```
 
@@ -262,8 +260,8 @@ $api->virtualAccount->fetch($virtualId)->payments($options);
 | virtualId*  | string    | The id of the virtual to be updated  |
 | from  | timestamp | timestamp after which the payments were created  |
 | to    | timestamp | timestamp before which the payments were created |
-| count | integer   | number of payments to fetch (default: 10)        |
-| skip  | integer   | number of payments to be skipped (default: 0)    |
+| count | integer   | number of virtual accounts to fetch (default: 10)        |
+| skip  | integer   | number of virtual accounts to be skipped (default: 0)    |
 
 **Response:**
 ```json
