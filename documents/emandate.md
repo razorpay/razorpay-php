@@ -74,9 +74,7 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| customer["name"]*          | string | Customer's name.           |
-| customer["email"]*          | string | Customer's email address.           |
-| customer["contact"]*          | string | Customer's phone number.          |
+| customer*          | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/emandate/create-authorization-transaction/#121-create-a-registration-link) are supported  |
 | type*        | string  | In this case, the value is `link`.                      |
 | currency*        | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
 | amount*         | integer  | The payment amount in the smallest currency sub-unit.                 |
