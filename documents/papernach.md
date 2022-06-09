@@ -48,17 +48,7 @@ $api->order->create(array('amount' => 0,'currency' => 'INR','method' => 'nach','
 | customerId*   | string      | The id of the customer to be fetched |
 | method*      | string  | Payment method used to make the registration transaction. Possible value is `nach`.  |
 | receipt      | string  | Your system order reference id.  |
-| token["auth_type"]  | string  | Possible value is `physical`|
-| token["max_amount"]  | integer  | Use to set the maximum amount per debit request. The value can range from `500` - `1000000000` (1cr, default value)  |
-| token["expire_at"]  | integer | The timestamp, in Unix format, till when the  registration link should expire |
-| token["notes"]  | object  | A key-value pair  |
-| bank["account_number"]  | string  | Customer's bank account number.  |
-| bank["ifsc_code"]  | string  | Customer's bank IFSC  |
-| bank["beneficiary_name"]  | string  |  Customer's name  |
-| bank["account_type"]  | string  | Customer's bank account. Possible value is `saving`(default), `current`, `cc`, `nre`, `nro`  |
-| nach["form_reference1"]  | string  | A user-entered reference that appears on the NACH form  |
-| nach["form_reference2"]  | string  | A user-entered reference that appears on the NACH form  |
-| nach["description"]  | string  | All keys listed  |
+| token  | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/paper-nach/create-authorization-transaction/#112-create-an-order) are supported |
 | notes | object  | A key-value pair  |
 
 **Response:**
@@ -138,24 +128,12 @@ $api->subscription->createSubscriptionRegistration(array('customer' => array('na
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| customer["name"]*          | string | Customer's name.           |
-| customer["email"]*          | string | Customer's email address.           |
-| customer["contact"]*          | string | Customer's phone number.          |
+| customer         | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/paper-nach/create-authorization-transaction/#121-create-a-registration-link) |
 | type*        | string  | In this case, the value is `link`.                      |
 | currency*        | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
 | amount*         | integer  | The payment amount in the smallest currency sub-unit.                 |
 | description*    | string  | A description that appears on the hosted page. For example, `12:30 p.m. Thali meals (Gaurav Kumar`).                                                             |
-| subscription_registration["method"]           | string  | In this case, it will be `physical`.|
-| subscription_registration["auth_type"]           | string  | Possible values `nach`|
-| subscription_registration["max_amount"]           | integer  | Use to set the maximum amount, in paise, per debit request.|
-| subscription_registration["expire_at"]           | integer  | when you can use the token (authorization on the payment method) to charge the customer subsequent payments. Defaults to 10 years for `emandate`. |
-| subscription_registration["bank"]["account_number"]*  | integer  | Customer's bank account number.  |
-| subscription_registration["bank"]["ifsc_code"]*  | string  | Customer's bank IFSC  |
-| subscription_registration["bank"]["beneficiary_name"]*  | string  |  Name on the bank account.   |
-| subscription_registration["bank"]["account_type"]*  | string  | Customer's bank account. Possible value is `saving`(default), `current`  |
-| subscription_registration["nach"]["form_reference1"]  | string  | A user-entered reference that appears on the NACH form  |
-| subscription_registration["nach"]["form_reference2"]  | string  | A user-entered reference that appears on the NACH form  |
-| subscription_registration["nach"]["description"]  | string  | A user entered description that appears on the hosted page.  |
+| subscription_registration | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/paper-nach/create-authorization-transaction/#121-create-a-registration-link) |
 | sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
 | email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
 | expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
