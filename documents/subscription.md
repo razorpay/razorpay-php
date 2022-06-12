@@ -16,9 +16,7 @@ $api->subscription->create(array("plan_id" => "plan_Jc7wDk5iZX88wx","total_count
 | quantity      | integer | The number of times the customer should be charged the plan amount per invoice |
 | start_at    | integer | The timestamp, in Unix format, for when the subscription should start. If not passed, the subscription starts immediately after the authorization payment. |
 | expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
-| addons["item"]["name"]    | string | A name for the upfront amount you want to charge the customer. For example, Delivery Fee. |
-| addons["item"]["amount"]  | string | The upfront amount in the currency subunit you want to charge the customer. For example ,`30000`. |
-| addons["item"]["currency"] | string  | The currency of the payment (defaults to INR) |
+| addons    | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/subscriptions/#create-a-subscription) are supported |
 | notes          | array | Notes you can enter for the contact for future reference.   |
 | offer_id   | string | The unique identifier of the offer that is linked to the subscription. |
 
@@ -72,9 +70,9 @@ $api->subscription->create(array("plan_id" => "plan_Jc7wDk5iZX88wx","total_count
 | quantity    | integer | The number of times the customer should be charged the plan amount per invoice |
 | start_at    | integer | The timestamp, in Unix format, for when the subscription should start. If not passed, the subscription starts immediately after the authorization payment. |
 | expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
-| addons    | array | Array that contains details of any upfront amount you want to collect as part of the authorization transaction. |
+| addons    | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/subscriptions/#create-a-subscription-link) are supported |
 | notes          | array | Notes you can enter for the contact for future reference.   |
-| notify_info          | array | The customer's email and phone number to which notifications are to be sent. (PN: Use this array only if you have set the `customer_notify` parameter to 1. That is, Razorpay sends notifications to the customer.)  |
+| notify_info    | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/subscriptions/#create-a-subscription-link) are supported |
 | offer_id   | string | The unique identifier of the offer that is linked to the subscription. |
 
 **Response:**
@@ -123,8 +121,8 @@ $api->subscription->all($options);
 |-------|-----------|--------------------------------------------------|
 | from  | timestamp | timestamp after which the payments were created  |
 | to    | timestamp | timestamp before which the payments were created |
-| count | integer   | number of payments to fetch (default: 10)        |
-| skip  | integer   | number of payments to be skipped (default: 0)    |
+| count | integer   | number of subscriptions to fetch (default: 10)        |
+| skip  | integer   | number of subscriptions to be skipped (default: 0)    |
 | plan_id  | string   | The unique identifier of the plan for which you want to retrieve all the subscriptions    |
 
 **Response:**
