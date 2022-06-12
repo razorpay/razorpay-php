@@ -15,28 +15,8 @@ $api->invoice->create(array ('type' => 'invoice','description' => 'Invoice for t
 |description        | string  | A brief description of the invoice.                      |
 |customer_id           | string  | customer id for which invoice need be raised   |
 |draft           | string  |  Invoice is created in draft state when value is set to `1`   |
-| customer["name"]*          | string | Customer's name.           |
-| customer["email"]*          | string | Customer's email address.           |
-| customer["contact"]*          | string | Customer's phone number.          |
-| customer["billing_address"]["line1"]*          | string | The first line of the customer's address.          |
-| customer["billing_address"]["line2"]*          | string | The second line of the customer's address.          |
-| customer["billing_address"]["city"]          | string | The city          |
-| customer["billing_address"]["zipcode"]*          | string | The zipcode          |
-| customer["billing_address"]["state"]*          | string | The state          |
-| customer["billing_address"]["country"]*          | string | The country          |
-| customer["shipping_address"]["line1"]*          | string | The first line of the customer's address.          |
-| customer["shipping_address"]["line2"]*          | string | The second line of the customer's address.          |
-| customer["shipping_address"]["city"]          | string | The city          |
-| customer["shipping_address"]["zipcode"]*          | string | The zipcode          |
-| customer["shipping_address"]["state"]*          | string | The state          |
-| customer["shipping_address"]["country"]*          | string | The country          |
-
-| line_items["item_id"]*  (conditionally mandatory)    | string | If you are using the Items API, you may use an existing item. You can choose to override details such as name, description by passing these along with item_id.          |
-| line_items["name"]* (conditionally mandatory)         | string | The item name. Mandatory if `item_id` is not provided.          |
-| line_items["description"]*          | string | A brief description of the item.       |
-| line_items["amount"]* (conditionally mandatory)         | integer | Amount to be paid using the invoice. Must be in the smallest unit of the currency         |
-| line_items["currency"]*          | string | The currency associated with the item. Defaults to `INR`.          |
-| line_items["quantity"]*          | string | The number of units of the item billed in the invoice. Defaults to `1`.         |
+| customer*     | array | All parameters listed [here](https://razorpay.com/docs/api/payments/invoices/#create-an-invoice) are supported           |
+| line_items    | array | All parameters listed [here](https://razorpay.com/docs/api/payments/invoices/#create-an-invoice) are supported |
 |expire_by           | array  | Details of the line item that is billed in the invoice.  |
 |sms_notify           | array  | Details of the line item that is billed in the invoice.  |
 |email_notify           | array  | Details of the line item that is billed in the invoice.  |
@@ -57,28 +37,8 @@ $api->invoice->create(array ('type' => 'invoice','date' => 1589994898, 'customer
 |type*          | string | entity type (here its invoice)                                               |
 |description        | string  | A brief description of the invoice.                      |
 |customer_id           | string  | customer id for which invoice need be raised                     |
-| customer["name"]*          | string | Customer's name.           |
-| customer["email"]*          | string | Customer's email address.           |
-| customer["contact"]*          | string | Customer's phone number.          |
-| customer["billing_address"]["line1"]*          | string | The first line of the customer's address.          |
-| customer["billing_address"]["line2"]*          | string | The second line of the customer's address.          |
-| customer["billing_address"]["city"]          | string | The city          |
-| customer["billing_address"]["zipcode"]*          | string | The zipcode          |
-| customer["billing_address"]["state"]*          | string | The state          |
-| customer["billing_address"]["country"]*          | string | The country          |
-| customer["shipping_address"]["line1"]*          | string | The first line of the customer's address.          |
-| customer["shipping_address"]["line2"]*          | string | The second line of the customer's address.          |
-| customer["shipping_address"]["city"]          | string | The city          |
-| customer["shipping_address"]["zipcode"]*          | string | The zipcode          |
-| customer["shipping_address"]["state"]*          | string | The state          |
-| customer["shipping_address"]["country"]*          | string | The country          |
-
-| line_items["item_id"]*  (conditionally mandatory)    | string | If you are using the Items API, you may use an existing item. You can choose to override details such as name, description by passing these along with item_id.          |
-| line_items["name"]* (conditionally mandatory)         | string | The item name. Mandatory if `item_id` is not provided.          |
-| line_items["description"]*          | string | A brief description of the item.       |
-| line_items["amount"]* (conditionally mandatory)         | integer | Amount to be paid using the invoice. Must be in the smallest unit of the currency         |
-| line_items["currency"]*          | string | The currency associated with the item. Defaults to `INR`.          |
-| line_items["quantity"]*          | string | The number of units of the item billed in the invoice. Defaults to `1`.         |
+| customer*     | array | All parameters listed [here](https://razorpay.com/docs/api/payments/invoices/#create-an-invoice) are supported           |
+| line_items    | array | All parameters listed [here](https://razorpay.com/docs/api/payments/invoices/#create-an-invoice) are supported |
 | sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
 | currency*  (conditionally mandatory) | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
 | email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
@@ -217,10 +177,98 @@ $api->invoice->fetch($invoiceId)->edit(array('line_items' => array(array('id' =>
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
 | invoiceId*          | string | The id of the invoice to be fetched                         |
+| line_items    | array | All parameters listed [here](https://razorpay.com/docs/api/payments/invoices/#update-an-invoice) are supported |
+| notes    | array | key value pair |
 
 **Response:**
-For update invoice response please click [here](https://razorpay.com/docs/api/invoices/#update-an-invoice)
-
+```json
+{
+  "id": "inv_DAweOiQ7amIUVd",
+  "entity": "invoice",
+  "receipt": "#0961",
+  "invoice_number": "#0961",
+  "customer_id": "cust_DAtUWmvpktokrT",
+  "customer_details": {
+    "id": "cust_DAtUWmvpktokrT",
+    "name": "Gaurav Kumar",
+    "email": "gaurav.kumar@example.com",
+    "contact": "9977886633",
+    "gstin": null,
+    "billing_address": {
+      "id": "addr_DAtUWoxgu91obl",
+      "type": "billing_address",
+      "primary": true,
+      "line1": "318 C-Wing, Suyog Co. Housing Society Ltd.",
+      "line2": "T.P.S Road, Vazira, Borivali",
+      "zipcode": "400092",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "country": "in"
+    },
+    "shipping_address": null,
+    "customer_name": "Gaurav Kumar",
+    "customer_email": "gaurav.kumar@example.com",
+    "customer_contact": "9977886633"
+  },
+  "order_id": null,
+  "line_items": [
+    {
+      "id": "li_DAweOizsysoJU6",
+      "item_id": null,
+      "name": "Book / English August - Updated name and quantity",
+      "description": "150 points in Quidditch",
+      "amount": 400,
+      "unit_amount": 400,
+      "gross_amount": 400,
+      "tax_amount": 0,
+      "taxable_amount": 400,
+      "net_amount": 400,
+      "currency": "INR",
+      "type": "invoice",
+      "tax_inclusive": false,
+      "hsn_code": null,
+      "sac_code": null,
+      "tax_rate": null,
+      "unit": null,
+      "quantity": 1,
+      "taxes": []
+    }
+  ],
+  "payment_id": null,
+  "status": "draft",
+  "expire_by": 1567103399,
+  "issued_at": null,
+  "paid_at": null,
+  "cancelled_at": null,
+  "expired_at": null,
+  "sms_status": null,
+  "email_status": null,
+  "date": 1566891149,
+  "terms": null,
+  "partial_payment": false,
+  "gross_amount": 600,
+  "tax_amount": 0,
+  "taxable_amount": 600,
+  "amount": 600,
+  "amount_paid": null,
+  "amount_due": null,
+  "currency": "INR",
+  "currency_symbol": "₹",
+  "description": "This is a test invoice.",
+  "notes": {
+    "updated-key": "An updated note."
+  },
+  "comment": null,
+  "short_url": null,
+  "view_less": true,
+  "billing_start": null,
+  "billing_end": null,
+  "type": "invoice",
+  "group_taxes_discounts": false,
+  "created_at": 1566906474,
+  "idempotency_key": null
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ### Issue an invoice
