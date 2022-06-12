@@ -49,9 +49,7 @@ $api->order->create(array('amount' => 0,'currency' => 'INR','method' => 'upi','c
 | method*        | string  | The authorization method. In this case the value will be `upi`                      |
 | receipt         | string  | Your system order reference id.                                              |
 | notes           | array  | A key-value pair                                                             |
-| token["max_amount"]*  | integer  | Use to set the maximum amount per debit request. The value can range from `500` - `1000000000` (1cr, default value)  |
-| token["expire_at"]*  | integer | The timestamp, in Unix format, till when the  registration link should expire |
-| token["frequency"]*  | string  | The frequency at which you can charge your customer. Currently supported frequencies are `as_presented` and `monthly`.  |
+| token*  | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/upi/create-authorization-transaction/#112-create-an-order) are supported  |
 
 **Response:**
 ```json
@@ -96,11 +94,8 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 | currency*        | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
 | amount*         | integer  | The payment amount in the smallest currency sub-unit.                 |
 | description*    | string  | A description that appears on the hosted page. For example, `12:30 p.m. Thali meals (Gaurav Kumar`).                                                             |
-| subscription_registration["method"]           | string  | The authorization method. In this case, it will be `card`.|
-| subscription_registration["max_amount"]           | integer  | Use to set the maximum amount (in paise) per debit request. |
-| subscription_registration["expire_at"]           | integer  | when you can use the token (authorization on the payment method) to charge the customer subsequent payments. Defaults to 10 years for `emandate`. |
-| subscription_registration["frequency"]*  | string  | The frequency at which you can charge your customer.|
-| notes           | array  | A key-value pair                                                             |
+| subscription_registration      | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/upi/create-authorization-transaction/#121-create-a-registration-link) are supported |
+| notes           | array  | A key-value pair    |
 
 **Response:**
 ```json
