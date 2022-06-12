@@ -49,7 +49,6 @@ $api->order->create(array('amount' => 100, 'currency' => 'INR', 'method'=>'emand
 | payment_capture* |  boolean  | Indicates whether payment status should be changed to `captured` automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically.|
 | method*      | string  | Payment method used to make the registration transaction. Possible value is `emandate`. |
 | receipt      | string  | Your system order reference id.  |
-| token["first_payment_amount"]  | integer  |  The amount, in paise, the customer should be auto-charged in addition to the authorization amount. |
 | token  | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/emandate/auto-debit/#112-create-an-order) are supported |
 | auth_type | string  | Possible values is `netbanking`, `debitcard` or `aadhaar` |
 | max_amount | integer  | The maximum amount, in paise, that a customer can be charged in one transaction. The value can range from `500` - `100000000`.  |
