@@ -11,7 +11,6 @@ $api->payment->fetch($paymentId)->transfer(array('transfers' => array(array('acc
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
 | paymentId*   | string      | The id of the payment to be fetched  |
-| transfers["account"]*   | string     | The id of the account to be fetched   |
 | transfers   | array     | All parameters listed [here](https://razorpay.com/docs/api/payments/route/#fetch-transfers-for-a-payment) are supported ||
 
 **Response:**
