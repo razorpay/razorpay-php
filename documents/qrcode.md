@@ -378,14 +378,14 @@ $api->qrCode->fetch($qrCodeId)->close()
 ### Refund a Payment
 
 ```php
-$api->payment->fetch("pay_JccakgG2EZbHZO")->refund(array("amount"=> "100","notes"=>array("notes_key_1"=>"Beam me up Scotty.", "notes_key_2"=>"Engage"));
+$api->payment->fetch($paymentId)->refund(array("amount"=> "100","notes"=>array("notes_key_1"=>"Beam me up Scotty.", "notes_key_2"=>"Engage")));
 ```
 
 **Parameters:**
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| payment*  | string | The id of the payment to be refunded |
+| paymentId*  | string | The id of the payment to be refunded |
 | amount  | string | Amount to be refunded |
 | notes       | array | Key-value pair that can be used to store additional information about the QR code. Maximum 15 key-value pairs, 256 characters (maximum) each. |
 
