@@ -378,7 +378,7 @@ $api->qrCode->fetch($qrCodeId)->close()
 ### Refund a Payment
 
 ```php
-$api->payment->fetch($paymentId)->refund(array("amount"=> "100", "speed"=>"normal", "notes"=>array("notes_key_1"=>"Beam me up Scotty.", "notes_key_2"=>"Engage"), "receipt"=>"Receipt No. 31"));
+$api->payment->fetch("pay_JccakgG2EZbHZO")->refund(array("amount"=> "100","notes"=>array("notes_key_1"=>"Beam me up Scotty.", "notes_key_2"=>"Engage"));
 ```
 
 **Parameters:**
