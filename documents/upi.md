@@ -89,13 +89,16 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| customer          | array | Details of the customer to whom the registration link will be sent.           |
+| customer   | array      | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/upi/create-authorization-transaction/#121-create-a-registration-link) are supported |
 | type*        | string  | In this case, the value is `link`.                      |
 | currency*        | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
 | amount*         | integer  | The payment amount in the smallest currency sub-unit.                 |
 | description*    | string  | A description that appears on the hosted page. For example, `12:30 p.m. Thali meals (Gaurav Kumar`).                                                             |
 | subscription_registration      | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/upi/create-authorization-transaction/#121-create-a-registration-link) are supported |
-| notes           | array  | A key-value pair    |
+| sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
+| email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
+| expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
+| notes | array  | A key-value pair  |
 
 **Response:**
 ```json
@@ -193,59 +196,65 @@ $api->invoice->fetch($invoiceId)->cancel();
 **Response:**
 ```json
 {
-    "id": "inv_FHrfRupD2ouKIt",
-    "entity": "invoice",
-    "receipt": "Receipt No. 1",
-    "invoice_number": "Receipt No. 1",
-    "customer_id": "cust_BMB3EwbqnqZ2EI",
-    "customer_details": {
-        "id": "cust_BMB3EwbqnqZ2EI",
-        "name": "Gaurav Kumar",
-        "email": "gaurav.kumar@example.com",
-        "contact": "9123456780",
-        "gstin": null,
-        "billing_address": null,
-        "shipping_address": null,
-        "customer_name": "Gaurav Kumar",
-        "customer_email": "gaurav.kumar@example.com",
-        "customer_contact": "9123456780"
-    },
-    "order_id": "order_FHrfRw4TZU5Q2L",
-    "line_items": [],
-    "payment_id": null,
-    "status": "cancelled",
-    "expire_by": 4102444799,
-    "issued_at": 1595491479,
-    "paid_at": null,
-    "cancelled_at": 1595491488,
-    "expired_at": null,
-    "sms_status": "sent",
-    "email_status": "sent",
-    "date": 1595491479,
-    "terms": null,
-    "partial_payment": false,
-    "gross_amount": 100,
-    "tax_amount": 0,
-    "taxable_amount": 0,
     "amount": 100,
-    "amount_paid": 0,
     "amount_due": 100,
+    "amount_paid": 0,
+    "auth_link_status": "cancelled",
+    "billing_end": null,
+    "billing_start": null,
+    "cancelled_at": 1655110334,
+    "comment": null,
+    "created_at": 1655110315,
     "currency": "INR",
     "currency_symbol": "₹",
+    "customer_details": {
+        "billing_address": null,
+        "contact": "9123456780",
+        "customer_contact": "9123456780",
+        "customer_email": "gaurav.kumar@example.com",
+        "customer_name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "gstin": null,
+        "id": "cust_DzYEzfJLV03rkp",
+        "name": "Gaurav Kumar",
+        "shipping_address": null
+    },
+    "customer_id": "cust_DzYEzfJLV03rkp",
+    "date": 1655110315,
     "description": "Registration Link for Gaurav Kumar",
+    "email_status": "sent",
+    "entity": "invoice",
+    "expire_by": 1657699317,
+    "expired_at": null,
+    "first_payment_min_amount": null,
+    "gross_amount": 100,
+    "group_taxes_discounts": false,
+    "id": "inv_Jgv4UErmFzfrA0",
+    "idempotency_key": null,
+    "invoice_number": "Receipt No. #51",
+    "issued_at": 1655110315,
+    "line_items": [],
     "notes": {
         "note_key 1": "Beam me up Scotty",
         "note_key 2": "Tea. Earl Gray. Hot."
     },
-    "comment": null,
-    "short_url": "https://rzp.io/i/QlfexTj",
-    "view_less": true,
-    "billing_start": null,
-    "billing_end": null,
+    "order_id": "order_Jgv4UAyqlixvOB",
+    "paid_at": null,
+    "partial_payment": false,
+    "payment_id": null,
+    "receipt": "Receipt No. #51",
+    "reminder_status": null,
+    "short_url": "https://rzp.io/i/VuAC1WG",
+    "sms_status": "sent",
+    "status": "cancelled",
+    "subscription_status": null,
+    "supply_state_code": null,
+    "tax_amount": 0,
+    "taxable_amount": 0,
+    "terms": null,
     "type": "link",
-    "group_taxes_discounts": false,
-    "created_at": 1595491480,
-    "idempotency_key": null
+    "user_id": null,
+    "view_less": true
 }
 ```
 -------------------------------------------------------------------------------------------------------
