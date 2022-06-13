@@ -91,7 +91,7 @@ $api->subscription->createSubscriptionRegistration(array('customer'=>array('name
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| customer   | array      | Details of the customer to whom the registration link will be sent. |
+| customer   | array      | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/cards/create-authorization-transaction/#121-create-a-registration-link) are supported |
 | type*  | array | the value is `link`. |
 | amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency*   | string  | The currency of the payment (defaults to INR)  |
