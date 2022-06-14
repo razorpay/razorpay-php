@@ -152,7 +152,7 @@ $api->addon->fetch($addonId)->delete();
 
 | Name            | Type    | Description  |
 |-----------------|---------|--------------|
-| addonId*        | string | addon id to be fetched|    
+| addonId*        | string | addon id to be deleted |    
 
 **Response:**
 ```json
