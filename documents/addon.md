@@ -110,6 +110,7 @@ $api->addon->fetch($addonId);
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
 | addonId*          | string | addon id to be fetched                                               |
+
 **Response:**
 ```json
 {
