@@ -426,7 +426,9 @@ $api->payment->createPaymentJson(array('amount' => 100,'currency' => 'INR','emai
 ### OTP Generate
 
 ```php
-$api->payment->fetch($paymentId)->otpGenerate();
+$api = new Api("key","");  // Use Only razorpay key
+
+$api->payment->otpGenerate($paymentId);
 ```
 
 **Parameters:**
@@ -471,7 +473,8 @@ $api->payment->fetch($paymentId)->otpSubmit(array('otp'=> '12345'));
 
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| paymentId*    | integer | Unique identifier of the payment                                               |
+| paymentId*    | integer | Unique identifier of the payment  |
+| otp*    | string | The customer receives the OTP using their preferred notification medium - SMS or email |
 
 **Response:** <br>
 Success
@@ -494,6 +497,33 @@ Failure
 ```
 -------------------------------------------------------------------------------------------------------
 
+### OTP Resend
+
+```php
+$api->payment->fetch($paymentId)->otpResend();
+```
+
+**Parameters:**
+
+| Name        | Type    | Description                          |
+|-------------|---------|--------------------------------------|
+| paymentId*    | integer | Unique identifier of the payment                                               |
+
+Doc reference [doc](https://razorpay.com/docs/payments/payment-methods/cards/authentication/native-otp/#otp-resend)
+
+**Response:** <br>
+
+```json
+{
+  "next": [
+    "otp_submit",
+    "otp_resend"
+  ],
+  "razorpay_payment_id": "pay_JWaNvYmrx75sXo"
+}
+```
+
+-------------------------------------------------------------------------------------------------------
 **PN: * indicates mandatory fields**
 <br>
 <br>
