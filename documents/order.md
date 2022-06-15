@@ -53,6 +53,7 @@ $api->order->all($options);
 | skip       | integer   | number of orders to be skipped (default: 0)                |
 | authorized | boolean   | Orders for which orders are currently in authorized state. |
 | receipt    | string    | Orders with the provided value for receipt.                  |
+| expand[]   | string    |  Used to retrieve additional information about the payment. Possible value is `payments`,`payments.card`,`transfers` or `virtual_account` |
 
 **Response:**
 
@@ -95,17 +96,21 @@ $api->order->fetch($orderId);
 
 ```json
 {
-  "id":"order_DaaS6LOUAASb7Y",
-  "entity":"order",
-  "amount":2200,
-  "amount_paid":0,
-  "amount_due":2200,
-  "currency":"INR",
-  "receipt":"Receipt #211",
-  "status":"attempted",
-  "attempts":1,
-  "notes":[],
-  "created_at":1572505143
+    "id": "order_IXnOAMw6SSqKvN",
+    "entity": "order",
+    "amount": 100,
+    "amount_paid": 0,
+    "amount_due": 100,
+    "currency": "INR",
+    "receipt": "Receipt no. 1",
+    "offer_id": null,
+    "status": "created",
+    "attempts": 0,
+    "notes": {
+        "notes_key_1": "Tea, Earl Grey, Hot",
+        "notes_key_2": "Tea, Earl Grey… decaf."
+    },
+    "created_at": 1639581113
 }
 ```
 -------------------------------------------------------------------------------------------------------
