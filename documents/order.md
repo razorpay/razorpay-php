@@ -36,6 +36,42 @@ $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'IN
 ```
 
 -------------------------------------------------------------------------------------------------------
+### Create order (Third party validation)
+
+```php
+$api->order->create(array('amount' => 500, 'receipt' => 'BILL13375649', 'method' => 'netbanking', 'currency' => 'INR', 'bank_account'=> array('account_number'=> '765432123456789','name'=> 'Gaurav Kumar','ifsc'=>'HDFC0000053')));
+```
+
+**Parameters:**
+
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| amount*          | integer | Amount of the order to be paid                                               |
+| method        | string  | The payment method used to make the payment. If this parameter is not passed, customers will be able to make payments using both netbanking and UPI payment methods. Possible values is `netbanking` or `upi`|
+| currency*        | string  | Currency of the order. Currently only `INR` is supported.       |
+| receipt         | string  | Your system order reference id.                                              |
+|bank_account | array  | All keys listed [here](https://razorpay.com/docs/payments/third-party-validation/#step-2-create-an-order) are supported |
+
+**Response:**
+
+```json
+{
+  "id": "order_GAWN9beXgaqRyO",
+  "entity": "order",
+  "amount": 500,
+  "amount_paid": 0,
+  "amount_due": 500,
+  "currency": "INR",
+  "receipt": "BILL13375649",
+  "offer_id": null,
+  "status": "created",
+  "attempts": 0,
+  "notes": [],
+  "created_at": 1573044247
+}
+```
+
+-------------------------------------------------------------------------------------------------------
 
 ### Fetch all orders
 
