@@ -12,7 +12,7 @@ $api->payment->fetch($paymentId)->capture(array('amount'=>$amount,'currency' => 
 |-----------|---------|--------------------------------------------------------------------------------|
 | paymentId* | string  | Id of the payment to capture                                                   |
 | amount*    | integer | The amount to be captured (should be equal to the authorized amount, in paise) |
-| currency   | string  | The currency of the payment (defaults to INR)                                  |
+| currency*   | string  | The currency of the payment (defaults to INR)                                  |
 
 **Response:**
 ```json
@@ -67,6 +67,7 @@ $api->payment->all($options)
 | to    | timestamp | timestamp before which the payments were created |
 | count | integer   | number of payments to fetch (default: 10)        |
 | skip  | integer   | number of payments to be skipped (default: 0)    |
+| expand[]   | string    |  Used to retrieve additional information about the payment. Possible value is `cards` or `emi`|
 
 **Response:**
 ```json
@@ -251,6 +252,7 @@ $api->payment->fetch($paymentId)->edit(array('notes'=> array('key_1'=> 'value1',
   "wallet": null,
   "vpa": null,
   "email": "testme@acme.com",
+  "customer_id": "cust_JR4BVKjKyJ7enk",
   "notes": {
     "key1": "value1",
     "key2": "value2"
@@ -424,7 +426,9 @@ $api->payment->createPaymentJson(array('amount' => 100,'currency' => 'INR','emai
 ### OTP Generate
 
 ```php
-$api->payment->fetch($paymentId)->otpGenerate();
+$api = new Api("key","");  // Use Only razorpay key
+
+$api->payment->otpGenerate($paymentId);
 ```
 
 **Parameters:**
@@ -469,7 +473,8 @@ $api->payment->fetch($paymentId)->otpSubmit(array('otp'=> '12345'));
 
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| paymentId*    | integer | Unique identifier of the payment                                               |
+| paymentId*    | integer | Unique identifier of the payment  |
+| otp*    | string | The customer receives the OTP using their preferred notification medium - SMS or email |
 
 **Response:** <br>
 Success
@@ -625,6 +630,33 @@ $api->payment->fetchPaymentMethods();
 ```
 -------------------------------------------------------------------------------------------------------
 
+### OTP Resend
+
+```php
+$api->payment->fetch($paymentId)->otpResend();
+```
+
+**Parameters:**
+
+| Name        | Type    | Description                          |
+|-------------|---------|--------------------------------------|
+| paymentId*    | integer | Unique identifier of the payment                                               |
+
+Doc reference [doc](https://razorpay.com/docs/payments/payment-methods/cards/authentication/native-otp/#otp-resend)
+
+**Response:** <br>
+
+```json
+{
+  "next": [
+    "otp_submit",
+    "otp_resend"
+  ],
+  "razorpay_payment_id": "pay_JWaNvYmrx75sXo"
+}
+```
+
+-------------------------------------------------------------------------------------------------------
 **PN: * indicates mandatory fields**
 <br>
 <br>

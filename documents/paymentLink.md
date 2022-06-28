@@ -7,7 +7,7 @@ Standard Payment Link
 
 ```php
 $api->paymentLink->create(array('amount'=>500, 'currency'=>'INR', 'accept_partial'=>true,
-'first_min_partial_amount'=>100, 'description' => 'For XYZ purpose', 'customer' => array('name'=>'Gaurav Kumar',
+'first_min_partial_amount'=>100,'expire_by' => 1691097057, 'reference_id' => 'TS1989', 'description' => 'For XYZ purpose', 'customer' => array('name'=>'Gaurav Kumar',
 'email' => 'gaurav.kumar@example.com', 'contact'=>'+919999999999'),  'notify'=>array('sms'=>true, 'email'=>true) ,
 'reminder_enable'=>true ,'notes'=>array('policy_name'=> 'Jeevan Bima'),'callback_url' => 'https://example-callback-url.com/',
 'callback_method'=>'get'));
@@ -17,10 +17,7 @@ Request #2
 UPI Payment Link
 
 ```php
-$api->paymentLink->create(array('upi_link'=>true,'amount'=>500, 'currency'=>'INR', 'accept_partial'=>true,
-'first_min_partial_amount'=>100, 'description' => 'For XYZ purpose', 'customer' => array('name'=>'Gaurav Kumar',
-'email' => 'gaurav.kumar@example.com', 'contact'=>'+919999999999'),  'notify'=>array('sms'=>true, 'email'=>true) ,
-'reminder_enable'=>true ,'notes'=>array('policy_name'=> 'Jeevan Bima')));
+$api->paymentLink->create(array('upi_link'=>true,'amount'=>500, 'currency'=>'INR', 'expire_by' => 1691097057, 'reference_id' => 'TS1989','description' => 'For XYZ purpose', 'customer' => array('name'=>'Gaurav Kumar','email' => 'gaurav.kumar@example.com', 'contact'=>'+919999999999'),'notify'=>array('sms'=>true, 'email'=>true) ,'reminder_enable'=>true ,'notes'=>array('policy_name'=> 'Jeevan Bima')));
 ```
 
 **Parameters:**
@@ -30,7 +27,9 @@ $api->paymentLink->create(array('upi_link'=>true,'amount'=>500, 'currency'=>'INR
 |upi_link*          | boolean | boolean Must be set to true   //   to creating UPI Payment Link only                                     |
 |amount*        | integer  | Amount to be paid using the Payment Link.                     |
 |currency           | string  |  A three-letter ISO code for the currency in which you want to accept the payment. For example, INR.                     |
+|accept_partial        | boolean  | Indicates whether customers can make partial payments using the Payment Link. Possible values: true - Customer can make partial payments. false (default) - Customer cannot make partial payments. // UPI Payment Link is not supported partial payment  |
 |description           | string  | A brief description of the Payment Link                     |
+|first_min_partial_amount           | integer  |Minimum amount, in currency subunits, that must be paid by the customer as the first partial payment. // UPI Payment Link is not supported partial payment  |
 |reference_id           | string  | AReference number tagged to a Payment Link.                      |
 |customer           | array  | name, email, contact                 |
 |expire_by           | integer  | Timestamp, in Unix, at which the Payment Link will expire. By default, a Payment Link will be valid for six months from the date of creation.                     |

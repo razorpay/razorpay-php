@@ -2,7 +2,7 @@
 
 ### Create customer
 ```php
-$api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com','contact'=>'9123456780','notes'=> array('notes_key_1'=> 'Tea, Earl Grey, Hot','notes_key_2'=> 'Tea, Earl Grey… decaf'));
+$api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@razorpay.com','contact'=>'9123456780', 'fail_existing'=> '0', 'notes'=> array('notes_key_1'=> 'Tea, Earl Grey, Hot','notes_key_2'=> 'Tea, Earl Grey… decaf')));
 ```
 
 **Parameters:**
@@ -11,6 +11,7 @@ $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@raz
 |---------------|-------------|---------------------------------------------|
 | name*          | string      | Name of the customer                        |
 | email        | string      | Email of the customer                       |
+| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `0` or `1`|
 | contact      | string      | Contact number of the customer              |
 | notes         | array      | A key-value pair                            |
 
@@ -48,7 +49,7 @@ $api->order->create(array('amount' => 0,'currency' => 'INR','method' => 'upi','c
 | method*        | string  | The authorization method. In this case the value will be `upi`                      |
 | receipt         | string  | Your system order reference id.                                              |
 | notes           | array  | A key-value pair                                                             |
-| token           | array  | A key-value pair                                                             |
+| token*  | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/upi/create-authorization-transaction/#112-create-an-order) are supported  |
 
 **Response:**
 ```json
@@ -81,20 +82,23 @@ Please refer this [doc](https://razorpay.com/docs/api/recurring-payments/upi/aut
 ### Create registration link
 
 ```php
-$api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>100,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('method'=>'upi','max_amount'=>'500','expire_at'=>'1634215992'),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992,'notes' => array('note_key 1' => 'Beam me up Scotty','note_key 2' => 'Tea. Earl Gray. Hot.')));
+$api->subscription->createSubscriptionRegistration(array('customer'=>array('name'=>'Gaurav Kumar','email'=>'gaurav.kumar@example.com','contact'=>'9123456780'),'type'=>'link','amount'=>0,'currency'=>'INR','description'=>'Registration Link for Gaurav Kumar','subscription_registration'=>array('method'=>'upi', 'max_amount'=>'500', 'expire_at'=>'1634215992', 'frequency'=>'monthly'),'receipt'=>'Receipt No. 5','email_notify'=>1,'sms_notify'=>1,'expire_by'=>1634215992,'notes' => array('note_key 1' => 'Beam me up Scotty','note_key 2' => 'Tea. Earl Gray. Hot.')));
 ```
 
 **Parameters:**
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| customer          | array | Details of the customer to whom the registration link will be sent.           |
+| customer   | array      | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/upi/create-authorization-transaction/#121-create-a-registration-link) are supported |
 | type*        | string  | In this case, the value is `link`.                      |
 | currency*        | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
 | amount*         | integer  | The payment amount in the smallest currency sub-unit.                 |
 | description*    | string  | A description that appears on the hosted page. For example, `12:30 p.m. Thali meals (Gaurav Kumar`).                                                             |
-| subscription_registration           | array  | Details of the authorization payment.                      |
-| notes           | array  | A key-value pair                                                             |
+| subscription_registration      | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/upi/create-authorization-transaction/#121-create-a-registration-link) are supported |
+| sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
+| email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
+| expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
+| notes | array  | A key-value pair  |
 
 **Response:**
 ```json
@@ -192,59 +196,65 @@ $api->invoice->fetch($invoiceId)->cancel();
 **Response:**
 ```json
 {
-    "id": "inv_FHrfRupD2ouKIt",
-    "entity": "invoice",
-    "receipt": "Receipt No. 1",
-    "invoice_number": "Receipt No. 1",
-    "customer_id": "cust_BMB3EwbqnqZ2EI",
-    "customer_details": {
-        "id": "cust_BMB3EwbqnqZ2EI",
-        "name": "Gaurav Kumar",
-        "email": "gaurav.kumar@example.com",
-        "contact": "9123456780",
-        "gstin": null,
-        "billing_address": null,
-        "shipping_address": null,
-        "customer_name": "Gaurav Kumar",
-        "customer_email": "gaurav.kumar@example.com",
-        "customer_contact": "9123456780"
-    },
-    "order_id": "order_FHrfRw4TZU5Q2L",
-    "line_items": [],
-    "payment_id": null,
-    "status": "cancelled",
-    "expire_by": 4102444799,
-    "issued_at": 1595491479,
-    "paid_at": null,
-    "cancelled_at": 1595491488,
-    "expired_at": null,
-    "sms_status": "sent",
-    "email_status": "sent",
-    "date": 1595491479,
-    "terms": null,
-    "partial_payment": false,
-    "gross_amount": 100,
-    "tax_amount": 0,
-    "taxable_amount": 0,
     "amount": 100,
-    "amount_paid": 0,
     "amount_due": 100,
+    "amount_paid": 0,
+    "auth_link_status": "cancelled",
+    "billing_end": null,
+    "billing_start": null,
+    "cancelled_at": 1655110334,
+    "comment": null,
+    "created_at": 1655110315,
     "currency": "INR",
     "currency_symbol": "₹",
+    "customer_details": {
+        "billing_address": null,
+        "contact": "9123456780",
+        "customer_contact": "9123456780",
+        "customer_email": "gaurav.kumar@example.com",
+        "customer_name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "gstin": null,
+        "id": "cust_DzYEzfJLV03rkp",
+        "name": "Gaurav Kumar",
+        "shipping_address": null
+    },
+    "customer_id": "cust_DzYEzfJLV03rkp",
+    "date": 1655110315,
     "description": "Registration Link for Gaurav Kumar",
+    "email_status": "sent",
+    "entity": "invoice",
+    "expire_by": 1657699317,
+    "expired_at": null,
+    "first_payment_min_amount": null,
+    "gross_amount": 100,
+    "group_taxes_discounts": false,
+    "id": "inv_Jgv4UErmFzfrA0",
+    "idempotency_key": null,
+    "invoice_number": "Receipt No. #51",
+    "issued_at": 1655110315,
+    "line_items": [],
     "notes": {
         "note_key 1": "Beam me up Scotty",
         "note_key 2": "Tea. Earl Gray. Hot."
     },
-    "comment": null,
-    "short_url": "https://rzp.io/i/QlfexTj",
-    "view_less": true,
-    "billing_start": null,
-    "billing_end": null,
+    "order_id": "order_Jgv4UAyqlixvOB",
+    "paid_at": null,
+    "partial_payment": false,
+    "payment_id": null,
+    "receipt": "Receipt No. #51",
+    "reminder_status": null,
+    "short_url": "https://rzp.io/i/VuAC1WG",
+    "sms_status": "sent",
+    "status": "cancelled",
+    "subscription_status": null,
+    "supply_state_code": null,
+    "tax_amount": 0,
+    "taxable_amount": 0,
+    "terms": null,
     "type": "link",
-    "group_taxes_discounts": false,
-    "created_at": 1595491480,
-    "idempotency_key": null
+    "user_id": null,
+    "view_less": true
 }
 ```
 -------------------------------------------------------------------------------------------------------
@@ -376,7 +386,7 @@ $api->customer->fetch($customerId)->tokens()->delete($tokenId);
 ### Create an order to charge the customer
 
 ```php
-$api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+$api->order->create(array('amount' => 1000,'currency' => 'INR','payment_capture' => true,'receipt' => 'Receipt No. 1','notes'=> array('notes_key_1' => 'Tea, Earl Grey, Hot', 'notes_key_2' => 'Tea, Earl Grey… decaf.')));
 ```
 
 **Parameters:**
@@ -386,7 +396,8 @@ $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'IN
 | amount*          | integer | Amount of the order to be paid                                               |
 | currency*        | string  | Currency of the order. Currently only `INR` is supported.                      |
 | receipt         | string  | Your system order reference id.                                              |
-| notes           | array  | A key-value pair                                                             |
+| notes           | array  | A key-value pair  |
+| payment_capture  | boolean  | Indicates whether payment status should be changed to captured automatically or not. Possible values: true - Payments are captured automatically. false - Payments are not captured automatically. |
 
 **Response:**
 ```json
@@ -413,7 +424,7 @@ $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'IN
 ### Create a recurring payment
 
 ```php
-$api->payment->createRecurring(array('email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>100,'currency'=>'INR','order_id'=>'order_1Aa00000000002','customer_id'=>'cust_1Aa00000000001','token'=>'token_1Aa00000000001','recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar'));
+$api->payment->createRecurring(array('email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>100,'currency'=>'INR','order_id'=>'order_1Aa00000000002','customer_id'=>'cust_1Aa00000000001','token'=>'token_1Aa00000000001','recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar', 'notes'=> array('note_key 1' => 'Beam me up Scotty', 'note_key 2' => 'Tea. Earl Gray. Hot.')));
 ```
 
 **Parameters:**
