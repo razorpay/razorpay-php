@@ -3,6 +3,7 @@
 namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
+use Razorpay\Api\Api;
 
 class PaymentTest extends TestCase
 {
@@ -14,6 +15,8 @@ class PaymentTest extends TestCase
     private $orderId = "order_IEcrUMyevZFuCS";
 
     private $paymentId = "pay_IEczPDny6uzSnx";
+
+    private $OtpPaymentId = "";
 
     public function setUp(): void
     {
@@ -109,6 +112,44 @@ class PaymentTest extends TestCase
         }else{
           $this->assertArrayHasKey('count',$downtime->toArray());
         }
+    }
+
+    /**
+     * Otp Generate
+     */
+    public function testOtpGenerate()
+    {
+        $api = new Api("key", "");
+
+        $data = $api->payment->otpGenerate($OtpPaymentId);
+
+        $this->assertTrue(is_array($data->toArray()));
+
+        $this->assertArrayHasKey('razorpay_payment_id',$data->toArray());
+    }
+
+    /**
+     * Otp Submit
+     */
+    public function testOtpSubmit()
+    {
+        $data = $this->api->payment->fetch($paymentId)->otpSubmit(array('otp'=> '12345'));
+        
+        $this->assertTrue(is_array($data->toArray()));
+
+        $this->assertArrayHasKey('razorpay_payment_id',$data->toArray());
+    }
+
+    /**
+     * Otp Resend
+     */
+    public function testOtpResend()
+    {
+        $data = $this->api->payment->fetch($paymentId)->otpResend();
+        
+        $this->assertTrue(is_array($data->toArray()));
+        
+        $this->assertArrayHasKey('razorpay_payment_id',$data->toArray());
     }
 
 }

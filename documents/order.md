@@ -36,6 +36,44 @@ $api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'IN
 ```
 
 -------------------------------------------------------------------------------------------------------
+### Create order (Third party validation)
+
+```php
+$api->order->create(array('amount' => 500, 'receipt' => 'BILL13375649', 'method' => 'netbanking', 'currency' => 'INR', 'bank_account'=> array('account_number'=> '765432123456789','name'=> 'Gaurav Kumar','ifsc'=>'HDFC0000053')));
+```
+
+**Parameters:**
+
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| amount*          | integer | Amount of the order to be paid                                               |
+| method        | string  | The payment method used to make the payment. If this parameter is not passed, customers will be able to make payments using both netbanking and UPI payment methods. Possible values is `netbanking` or `upi`|
+| notes         | array      | A key-value pair  |
+| currency*        | string  | Currency of the order. Currently only `INR` is supported.       |
+| receipt         | string  | Your system order reference id.                                              |
+| notes         | array      | A key-value pair  |
+|bank_account | array  | All keys listed [here](https://razorpay.com/docs/payments/third-party-validation/#step-2-create-an-order) are supported |
+
+**Response:**
+
+```json
+{
+  "id": "order_GAWN9beXgaqRyO",
+  "entity": "order",
+  "amount": 500,
+  "amount_paid": 0,
+  "amount_due": 500,
+  "currency": "INR",
+  "receipt": "BILL13375649",
+  "offer_id": null,
+  "status": "created",
+  "attempts": 0,
+  "notes": [],
+  "created_at": 1573044247
+}
+```
+
+-------------------------------------------------------------------------------------------------------
 
 ### Fetch all orders
 
@@ -53,6 +91,7 @@ $api->order->all($options);
 | skip       | integer   | number of orders to be skipped (default: 0)                |
 | authorized | boolean   | Orders for which orders are currently in authorized state. |
 | receipt    | string    | Orders with the provided value for receipt.                  |
+| expand[]   | string    |  Used to retrieve additional information about the payment. Possible value is `payments`,`payments.card`,`transfers` or `virtual_account` |
 
 **Response:**
 
@@ -95,17 +134,21 @@ $api->order->fetch($orderId);
 
 ```json
 {
-  "id":"order_DaaS6LOUAASb7Y",
-  "entity":"order",
-  "amount":2200,
-  "amount_paid":0,
-  "amount_due":2200,
-  "currency":"INR",
-  "receipt":"Receipt #211",
-  "status":"attempted",
-  "attempts":1,
-  "notes":[],
-  "created_at":1572505143
+    "id": "order_IXnOAMw6SSqKvN",
+    "entity": "order",
+    "amount": 100,
+    "amount_paid": 0,
+    "amount_due": 100,
+    "currency": "INR",
+    "receipt": "Receipt no. 1",
+    "offer_id": null,
+    "status": "created",
+    "attempts": 0,
+    "notes": {
+        "notes_key_1": "Tea, Earl Grey, Hot",
+        "notes_key_2": "Tea, Earl Grey… decaf."
+    },
+    "created_at": 1639581113
 }
 ```
 -------------------------------------------------------------------------------------------------------

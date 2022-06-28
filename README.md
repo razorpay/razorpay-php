@@ -58,6 +58,7 @@ The resources can be accessed via the `$api` object. All the methods invocations
 - [Payments](documents/payment.md)
 - [Settlements](documents/settlement.md)
 - [Refunds](documents/refund.md)
+- [Fund](documents/fund.md)
 - [Invoice](documents/invoice.md)
 - [Plan](documents/plan.md)
 - [Item](documents/item.md)

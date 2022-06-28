@@ -167,7 +167,33 @@ $api->virtualAccount->fetch($virtualId);
 | virtualId*          | string      | The id of the virtual to be updated  |
 
 **Response:**
-For fetch virtual account by id response please click [here](https://razorpay.com/docs/api/smart-collect/#fetch-a-virtual-account-by-id)
+```json
+ {
+    "id": "va_JccTXwXA6UG4Gi",
+    "name": "ankit",
+    "entity": "virtual_account",
+    "status": "active",
+    "description": null,
+    "amount_expected": null,
+    "notes": [],
+    "amount_paid": 0,
+    "customer_id": null,
+    "receivers": [
+        {
+            "id": "ba_JccTY5ZkO3ZGHQ",
+            "entity": "bank_account",
+            "ifsc": "RAZR0000001",
+            "bank_name": null,
+            "name": "ankit",
+            "notes": [],
+            "account_number": "1112220057339365"
+        }
+    ],
+    "close_by": null,
+    "closed_at": null,
+    "created_at": 1654171468
+}
+```
 -------------------------------------------------------------------------------------------------------
 
 ### Fetch all virtual account
@@ -181,8 +207,8 @@ $api->virtualAccount->all($options);
 |-------|-----------|--------------------------------------------------|
 | from  | timestamp | timestamp after which the payments were created  |
 | to    | timestamp | timestamp before which the payments were created |
-| count | integer   | number of payments to fetch (default: 10)        |
-| skip  | integer   | number of payments to be skipped (default: 0)    |
+| count | integer   | number of virtual accounts to fetch (default: 10)        |
+| skip  | integer   | number of virtual accounts to be skipped (default: 0)    |
 
 **Response:**
 ```json
@@ -234,8 +260,8 @@ $api->virtualAccount->fetch($virtualId)->payments($options);
 | virtualId*  | string    | The id of the virtual to be updated  |
 | from  | timestamp | timestamp after which the payments were created  |
 | to    | timestamp | timestamp before which the payments were created |
-| count | integer   | number of payments to fetch (default: 10)        |
-| skip  | integer   | number of payments to be skipped (default: 0)    |
+| count | integer   | number of virtual accounts to fetch (default: 10)        |
+| skip  | integer   | number of virtual accounts to be skipped (default: 0)    |
 
 **Response:**
 ```json
@@ -286,7 +312,7 @@ $api->payment->fetch($paymentId)->bankTransfer();
 
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
-| virtualId*  | string    | The id of the virtual to be updated  |
+| paymentId*  | string    | The id of the payment to be updated  |
 
 **Response:**
 ```json
@@ -352,20 +378,22 @@ $api->payment->fetch($paymentId)->refunds();
 **Response:**
 ```json
 {
-  "id": "rfnd_E6j36ZEKvsWsEn",
+  "id": "rfnd_FP8QHiV938haTz",
   "entity": "refund",
-  "amount": 100,
+  "amount": 500100,
+  "receipt": "Receipt No. 31",
   "currency": "INR",
-  "payment_id": "pay_E54n391WnEAV9H",
-  "notes": {
-    "key_1": "value1",
-    "key_2": "value2"
-  },
+  "payment_id": "pay_FCXKPFtYfPXJPy",
+  "notes": []
   "receipt": null,
   "acquirer_data": {
-    "rrn": null
+    "arn": null
   },
-  "created_at": 1579522301
+  "created_at": 1597078866,
+  "batch_id": null,
+  "status": "processed",
+  "speed_processed": "normal",
+  "speed_requested": "normal"
 }
 ```
 -------------------------------------------------------------------------------------------------------
@@ -381,7 +409,7 @@ $api->virtualAccount->fetch($virtualId)->addReceiver(array('types' => array('vpa
 |-------|-----------|--------------------------------------------------|
 | virtualId*  | string    | The id of the virtual to be updated  |
 | types*  | array | The receiver type to be added to the virtual account. Possible values are `vpa` or `bank_account`  |
-| vpa    | array | This is to be passed only when `vpa` is passed as the receiver types. |
+| vpa["descriptor"]    | string | This is a unique identifier provided by you to identify the customer. For example, `gaurikumar` and `akashkumar` are the descriptors |
 
 **Response:**
 For add receiver to an existing virtual account response please click [here](https://razorpay.com/docs/api/smart-collect/#add-receiver-to-an-existing-virtual-account)
@@ -457,7 +485,7 @@ $api->virtualAccount->fetch($virtualId)->deleteAllowedPayer($allowedPayersId);
 
 **Response:**
 ```json
-{}
+null
 ```
 -------------------------------------------------------------------------------------------------------
 ### Close virtual account

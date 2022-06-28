@@ -40,7 +40,9 @@ $api->qrCode->create(array("type" => "upi_qr","name" => "Store_1", "usage" => "s
     "purpose": "Test UPI QR code notes"
   },
   "customer_id": "cust_HKsR5se84c5LTO",
-  "close_by": 1681615838
+  "close_by": 1681615838,
+  "closed_at": 1623660445,
+  "close_reason": "on_demand"
 }
 ```
 -------------------------------------------------------------------------------------------------------
@@ -373,6 +375,42 @@ $api->qrCode->fetch($qrCodeId)->close()
 ```
 -------------------------------------------------------------------------------------------------------
 
+### Refund a Payment
+
+```php
+$api->payment->fetch($paymentId)->refund(array("amount"=> "100","notes"=>array("notes_key_1"=>"Beam me up Scotty.", "notes_key_2"=>"Engage")));
+```
+
+**Parameters:**
+
+| Name            | Type    | Description                                                                  |
+|-----------------|---------|------------------------------------------------------------------------------|
+| paymentId*  | string | The id of the payment to be refunded |
+| amount  | string | Amount to be refunded |
+| notes       | array | Key-value pair that can be used to store additional information about the QR code. Maximum 15 key-value pairs, 256 characters (maximum) each. |
+
+**Response:**
+```json
+{
+  "id": "rfnd_FP8QHiV938haTz",
+  "entity": "refund",
+  "amount": 500100,
+  "receipt": "Receipt No. 31",
+  "currency": "INR",
+  "payment_id": "pay_29QQoUBi66xm2f",
+  "notes": []
+  "receipt": null,
+  "acquirer_data": {
+    "arn": null
+  },
+  "created_at": 1597078866,
+  "batch_id": null,
+  "status": "processed",
+  "speed_processed": "normal",
+  "speed_requested": "normal"
+}
+```
+-------------------------------------------------------------------------------------------------------
 
 **PN: * indicates mandatory fields**
 <br>

@@ -162,7 +162,7 @@ class Payment extends Entity
         return $this->request('POST', $relativeUrl, $attributes);
     }
     /**
-     * submit otp
+     * Submit otp
      *
      * @param id $id
      *
@@ -182,11 +182,45 @@ class Payment extends Entity
      *
      * @param array $attributes
      */
-    public function otpGenerate()
+    public function otpGenerate($id)
     {
-        $relativeUrl = $this->getEntityUrl(). $this->id . '/otp_generate';
+        $relativeUrl = $this->getEntityUrl(). $id . '/otp_generate';
 
         return $this->request('POST', $relativeUrl);
     }
 
+    /**
+     * Resend otp
+     *
+     * @param id $id
+     *
+     * @param array $attributes
+     */
+    public function otpResend()
+    {
+        $relativeUrl = $this->getEntityUrl(). $this->id . '/otp/resend';
+
+        return $this->request('POST', $relativeUrl);
+    }
+    
+    public function createUpi($attributes = array())
+    {
+        $relativeUrl = $this->getEntityUrl() . 'create/upi';
+
+        return $this->request('POST', $relativeUrl, $attributes);
+    }
+
+    public function validateVpa($attributes = array())
+    {
+        $relativeUrl = $this->getEntityUrl() . 'validate/vpa';
+
+        return $this->request('POST', $relativeUrl, $attributes);
+    }
+
+    public function fetchPaymentMethods()
+    {
+        $relativeUrl = 'methods';
+
+        return $this->request('GET', $relativeUrl);
+    }
 }
