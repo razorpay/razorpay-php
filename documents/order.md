@@ -48,6 +48,7 @@ $api->order->create(array('amount' => 500, 'receipt' => 'BILL13375649', 'method'
 |-----------------|---------|------------------------------------------------------------------------------|
 | amount*          | integer | Amount of the order to be paid                                               |
 | method        | string  | The payment method used to make the payment. If this parameter is not passed, customers will be able to make payments using both netbanking and UPI payment methods. Possible values is `netbanking` or `upi`|
+| notes         | array      | A key-value pair  |
 | currency*        | string  | Currency of the order. Currently only `INR` is supported.       |
 | receipt         | string  | Your system order reference id.                                              |
 | notes         | array      | A key-value pair  |
