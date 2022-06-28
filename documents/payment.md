@@ -627,7 +627,6 @@ $api->payment->fetchPaymentMethods();
 **Response:** <br>
  please refer this [doc](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/methods-api/#fetch-payment-methods) for response
 
-```
 -------------------------------------------------------------------------------------------------------
 
 ### OTP Resend
