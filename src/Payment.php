@@ -202,5 +202,25 @@ class Payment extends Entity
 
         return $this->request('POST', $relativeUrl);
     }
+    
+    public function createUpi($attributes = array())
+    {
+        $relativeUrl = $this->getEntityUrl() . 'create/upi';
 
+        return $this->request('POST', $relativeUrl, $attributes);
+    }
+
+    public function validateVpa($attributes = array())
+    {
+        $relativeUrl = $this->getEntityUrl() . 'validate/vpa';
+
+        return $this->request('POST', $relativeUrl, $attributes);
+    }
+
+    public function fetchPaymentMethods()
+    {
+        $relativeUrl = 'methods';
+
+        return $this->request('GET', $relativeUrl);
+    }
 }
