@@ -4,6 +4,11 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 
 ## Unreleased
 
+## [2.8.4] - 2022-06-28
+
+- New APIs for Third party validation (createUpi, validateVpa, fetchPaymentMethods)
+- Update documentation 
+
 ## [2.8.3] - 2022-04-29
 
 - PHP v8.1 is officially supported
