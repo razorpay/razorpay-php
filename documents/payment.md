@@ -56,7 +56,7 @@ $api->payment->fetch($paymentId)->capture(array('amount'=>$amount,'currency' => 
 ### Fetch all payments
 
 ```php
-$api->payment->all($options)
+$api->payment->all($options);
 ```
 
 **Parameters:**
