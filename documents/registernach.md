@@ -36,7 +36,7 @@ $api->customer->create(array('name' => 'Razorpay User', 'email' => 'customer@raz
 ### Create Order
 
 ```php
-$api->order->create(array('amount' => 100, 'currency' => 'INR', 'method'=>'nach', 'customer_id'=>$customerId, 'receipt'=>'Receipt No. 5', 'notes'=> array('note_key 1'=> 'Beam me up Scotty','note_key 2'=> 'Tea. Earl Gray. Hot.'), 'token'=>array('first_payment_amount'=>10000, 'auth_type'=>'physical' ,'max_amount'=>'50000','expire_at'=>'1634215992', 'notes'=>array('note_key 1'=> 'Tea, Earl Grey… decaf.','note_key 2'=> 'Tea. Earl Gray. Hot.'), 'bank_account'=>array('beneficiary_name'=>'Gaurav Kumar', 'account_number'=>'11214311215411', 'account_type'=>'savings', 'ifsc_code'=>'HDFC0001233'), 'nach'=> array('form_reference1'=> 'Recurring Payment for Gaurav Kumar','form_reference2'=> 'Method Paper NACH', 'description'=>'Paper NACH Gaurav Kumar'))));
+$api->order->create(array('amount' => 0, 'currency' => 'INR', 'method'=>'nach', 'customer_id'=>$customerId, 'receipt'=>'Receipt No. 5', 'notes'=> array('note_key 1'=> 'Beam me up Scotty','note_key 2'=> 'Tea. Earl Gray. Hot.'), 'token'=>array('first_payment_amount'=>10000, 'auth_type'=>'physical' ,'max_amount'=>'50000','expire_at'=>'1634215992', 'notes'=>array('note_key 1'=> 'Tea, Earl Grey… decaf.','note_key 2'=> 'Tea. Earl Gray. Hot.'), 'bank_account'=>array('beneficiary_name'=>'Gaurav Kumar', 'account_number'=>'11214311215411', 'account_type'=>'savings', 'ifsc_code'=>'HDFC0001233'), 'nach'=> array('form_reference1'=> 'Recurring Payment for Gaurav Kumar','form_reference2'=> 'Method Paper NACH', 'description'=>'Paper NACH Gaurav Kumar'))));
 ```
 
 **Parameters:**
