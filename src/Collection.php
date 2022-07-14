@@ -6,7 +6,7 @@ use Countable;
 
 class Collection extends Entity implements Countable
 {
-    public function count():int
+    public function count()
     {
         $count = 0;
 

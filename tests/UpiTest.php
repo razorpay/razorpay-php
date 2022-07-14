@@ -18,7 +18,7 @@ class UpiTest extends TestCase
 
     private $orderId = "order_IEgBdwYACpMLxd";
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
     }
@@ -38,13 +38,17 @@ class UpiTest extends TestCase
     /**
      * Create Order
      */
-    public function testCreateOrder()
+    public function testCreateOrderforUpiTest()
     {
-        $data = $this->api->order->create(array('receipt' => '123', 'amount' => 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+        $attributes = json_encode(array('receipt' => '123', 'amount' => "100", 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+
+        Request::addHeader('Content-Type', 'application/json');
+
+        $data = $this->api->order->create($attributes);
 
         $this->assertTrue(is_array($data->toArray()));
 
-        $this->assertArrayHasKey('id',$data->toArray());
+        $this->assertTrue(in_array('id',$data->toArray()));
     }
     
     /**
@@ -63,7 +67,11 @@ class UpiTest extends TestCase
      */
     public function testCreateSubscriptionRegistration()
     {
-        $data = $this->api->subscription->createSubscriptionRegistration(array('customer' => array('name' => 'Gaurav Kumar','email' => 'gaurav.kumar@example.com','contact' => '9123456780'),'amount' => 0,'currency' => 'INR','type' => 'link','description' => '12 p.m. Meals','subscription_registration' => array('method' => 'nach','auth_type' => 'physical','bank_account' => array('beneficiary_name' => 'Gaurav Kumar','account_number' => '11214311215411','account_type' => 'savings','ifsc_code' => 'HDFC0001233'),'nach' => array('form_reference1' => 'Recurring Payment for Gaurav Kumar','form_reference2' => 'Method Paper NACH'),'expire_at' => 1636772800,'max_amount' => 50000),'receipt' => 'Receipt No. '.time(),'sms_notify' => 1,'email_notify' => 1,'expire_by' => 1636772800,'notes' => array('note_key 1' => 'Beam me up Scotty','note_key 2' => 'Tea. Earl Gray. Hot.')));
+        $attributes = json_encode(array('customer' => array('name' => 'Gaurav Kumar','email' => 'gaurav.kumar@example.com','contact' => '9123456780'),'amount' => 0,'currency' => 'INR','type' => 'link','description' => '12 p.m. Meals','subscription_registration' => array('method' => 'nach','auth_type' => 'physical','bank_account' => array('beneficiary_name' => 'Gaurav Kumar','account_number' => '11214311215411','account_type' => 'savings','ifsc_code' => 'HDFC0001233'),'nach' => array('form_reference1' => 'Recurring Payment for Gaurav Kumar','form_reference2' => 'Method Paper NACH'),'max_amount' => 50000),'receipt' => 'Receipt No. '.time(),'sms_notify' => 1,'email_notify' => 1,'notes' => array('note_key 1' => 'Beam me up Scotty','note_key 2' => 'Tea. Earl Gray. Hot.')));
+        
+        Request::addHeader('Content-Type', 'application/json');
+
+        $data = $this->api->subscription->createSubscriptionRegistration($attributes);
 
         $this->assertTrue(is_array($data->toArray()));
 
@@ -75,9 +83,14 @@ class UpiTest extends TestCase
      */
     public function testCancelRegistrationLink()
     {
-        $data = $this->api->subscription->createSubscriptionRegistration(array('customer' => array('name' => 'Gaurav Kumar','email' => 'gaurav.kumar@example.com','contact' => '9123456780'),'amount' => 0,'currency' => 'INR','type' => 'link','description' => '12 p.m. Meals','subscription_registration' => array('method' => 'nach','auth_type' => 'physical','bank_account' => array('beneficiary_name' => 'Gaurav Kumar','account_number' => '11214311215411','account_type' => 'savings','ifsc_code' => 'HDFC0001233'),'nach' => array('form_reference1' => 'Recurring Payment for Gaurav Kumar','form_reference2' => 'Method Paper NACH'),'expire_at' => 1636772800,'max_amount' => 50000),'receipt' => 'Receipt No. '.time(),'sms_notify' => 1,'email_notify' => 1,'expire_by' => 1636772800,'notes' => array('note_key 1' => 'Beam me up Scotty','note_key 2' => 'Tea. Earl Gray. Hot.')));
+        
+        $attributes = json_encode(array('customer' => array('name' => 'Gaurav Kumar','email' => 'gaurav.kumar@example.com','contact' => '9123456780'),'amount' => 0,'currency' => 'INR','type' => 'link','description' => '12 p.m. Meals','subscription_registration' => array('method' => 'nach','auth_type' => 'physical','bank_account' => array('beneficiary_name' => 'Gaurav Kumar','account_number' => '11214311215411','account_type' => 'savings','ifsc_code' => 'HDFC0001233'),'nach' => array('form_reference1' => 'Recurring Payment for Gaurav Kumar','form_reference2' => 'Method Paper NACH'),'max_amount' => 50000),'receipt' => 'Receipt No. '.time(),'sms_notify' => 1,'email_notify' => 1,'notes' => array('note_key 1' => 'Beam me up Scotty','note_key 2' => 'Tea. Earl Gray. Hot.')));
+        
+        Request::addHeader('Content-Type', 'application/json');
+
+        $subscription = $this->api->subscription->createSubscriptionRegistration($attributes);
  
-        $data = $this->api->invoice->fetch($data->id)->cancel();
+        $data = $this->api->invoice->fetch($subscription->id)->cancel();
 
         $this->assertTrue(is_array($data->toArray()));
 
@@ -130,10 +143,14 @@ class UpiTest extends TestCase
      */
     public function testCreateOrderCharge()
     {
-        $data = $this->api->order->create(array('receipt' => '122', 'amount' => 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+        $attributes = json_encode(array('receipt' => '122', 'amount' => 100, 'currency' => 'INR', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+
+        Request::addHeader('Content-Type', 'application/json');
+        
+        $data = $this->api->order->create($attributes);
 
         $this->assertTrue(is_array($data->toArray()));
 
-        $this->assertArrayHasKey('id',$data->toArray());
+        $this->assertTrue(in_array('id',$data->toArray()));
     }
 }

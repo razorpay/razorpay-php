@@ -17,7 +17,7 @@ class EmandateTest extends TestCase
 
     private $tokenId = "token_IF1ThOcFC9J7pU";
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
     }

@@ -18,7 +18,7 @@ class PaymentTest extends TestCase
 
     private $OtpPaymentId = "";
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
     }    

@@ -18,18 +18,18 @@ class VirtualAccountTest extends TestCase
 
     private $virtualAccountId = "va_IEmC8SOoyGxsNn";
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
     }
-    
-    /**
-     * Create a virtual account
-     */
     public function testCreateVirtualAccount()
     {       
-        $data = $this->api->virtualAccount->create(array('receivers' => array('types' => array('bank_account')),'description' => 'Virtual Account created for Raftar Soft','customer_id' => $this->customerId ,'close_by' => 1681615838,'notes' => array('project_name' => 'Banking Software')));
+        $attributes = json_encode(array('receivers' => array('types' => array('bank_account')),'description' => 'Virtual Account created for Raftar Soft','customer_id' => $this->customerId ,'close_by' => 1681615838,'notes' => array('project_name' => 'Banking Software')));
 
+        Request::addHeader('Content-Type', 'application/json');
+
+        $data = $this->api->virtualAccount->create($attributes);
+      
         $this->assertTrue(is_array($data->toArray()));
 
         $this->assertArrayHasKey('customer_id',$data->toArray());
@@ -40,13 +40,16 @@ class VirtualAccountTest extends TestCase
      */
     public function testCreateVirtualAccountTpv()
     {
-        $data = $this->api->virtualAccount->create(array('receivers' => array('types'=> array('bank_account')),'allowed_payers' => array(array('type'=>'bank_account','bank_account'=>array('ifsc'=>'RATN0VAAPIS','account_number'=>'2223330027558515'))),'description' => 'Virtual Account created for Raftar Soft','customer_id' => $this->customerId, 'notes' => array('project_name' => 'Banking Software')));
+        $attributes = json_encode(array('allowed_payers' => array(array('type'=>'bank_account','bank_account'=>array('ifsc'=>'RATN0VAAPIS','account_number'=>'2223330027558515'))),'description' => 'Virtual Account created for Raftar Soft','customer_id' => $this->customerId, 'notes' => array('project_name' => 'Banking Software'),'receivers' => array('types'=> array('bank_account'))));
+        
+        Request::addHeader('Content-Type', 'application/json');
+
+        $data = $this->api->virtualAccount->create($attributes);
 
         $this->assertTrue(is_array($data->toArray()));
 
         $this->assertArrayHasKey('customer_id',$data->toArray());
-    }
-
+    } 
     /**
      * Fetch all virtual account
      */

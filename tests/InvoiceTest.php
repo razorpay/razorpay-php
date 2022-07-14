@@ -17,7 +17,7 @@ class InvoiceTest extends TestCase
 
     private $customerId = "cust_IEfAt3ruD4OEzo";
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
     }
@@ -65,12 +65,13 @@ class InvoiceTest extends TestCase
      */
     public function testSendNotification()
     {
-        $data = $this->api->invoice->fetch($this->invoiceId)->notifyBy('sms');
+        $invoice = $this->api->invoice->create(array ('type' => 'invoice', 'date' => time(), 'customer_id'=> $this->customerId, 'line_items'=>array(array("name"=> "Master Cloud Computing in 30 Days", "amount"=>10000, "currency" => "INR", "quantity"=> 1))));
+        
+        $data = $this->api->invoice->fetch($invoice['id'])->notifyBy('sms');
 
         $this->assertTrue(is_array($data));
 
     }
-
     /**
      * Issue an invoice
      */

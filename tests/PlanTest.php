@@ -13,7 +13,7 @@ class PlanTest extends TestCase
 
     private $planId = "plan_IEeswu4zFBRGwi";
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
     }
@@ -23,7 +23,11 @@ class PlanTest extends TestCase
      */
     public function testCreatePlan()
     {
-        $data = $this->api->plan->create(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR'),'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+        $attributes = json_encode(array('period' => 'weekly', 'interval' => 1, 'item' => array('name' => 'Test Weekly 1 plan', 'description' => 'Description for the weekly 1 plan', 'amount' => 600, 'currency' => 'INR'),'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+        
+        Request::addHeader('Content-Type', 'application/json');
+
+        $data = $this->api->plan->create($attributes);
 
         $this->assertTrue(is_array($data->toArray()));
 
