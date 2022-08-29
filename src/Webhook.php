@@ -1,7 +1,7 @@
 <?php
 
 namespace Razorpay\Api;
-use Requests;
+
 
 class Webhook extends Entity
 {
@@ -28,12 +28,12 @@ class Webhook extends Entity
      *
      * @param array $attributes
      *
-     * @return Webhooks
+     * @return Webhook
      */
-    public function edit($attributes = array(), $id)
+    public function edit($id, array $attributes = array())
     {
         $url = $this->getEntityUrl() . $id;
 
-        return $this->request(Requests::PUT, $url, $attributes);
+        return $this->request('PUT', $url, $attributes);
     }
 }
