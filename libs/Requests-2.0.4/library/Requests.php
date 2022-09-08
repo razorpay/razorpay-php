@@ -30,7 +30,7 @@ if (!defined('REQUESTS_SILENCE_PSR0_DEPRECATIONS') || REQUESTS_SILENCE_PSR0_DEPR
 	}
 }
 
-require_once dirname(__DIR__) . '/src/Requests.php';
+require_once dirname(__DIR__) . '/src/Requests.php';  // nosemgrep : https://semgrep.dev/s/e5El
 
 /**
  * Requests for PHP
@@ -57,7 +57,7 @@ class Requests extends WpOrg\Requests\Requests {
 	 */
 	public static function autoloader($class) {
 		if (class_exists('WpOrg\Requests\Autoload') === false) {
-			require_once dirname(__DIR__) . '/src/Autoload.php';
+			require_once dirname(__DIR__) . '/src/Autoload.php';  // nosemgrep : https://semgrep.dev/s/e5El
 		}
 
 		return WpOrg\Requests\Autoload::load($class);
@@ -72,7 +72,7 @@ class Requests extends WpOrg\Requests\Requests {
 	 * @codeCoverageIgnore
 	 */
 	public static function register_autoloader() {
-		require_once dirname(__DIR__) . '/src/Autoload.php';
+		require_once dirname(__DIR__) . '/src/Autoload.php';  // nosemgrep : https://semgrep.dev/s/e5El
 		WpOrg\Requests\Autoload::register();
 	}
 }

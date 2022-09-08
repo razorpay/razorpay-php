@@ -13,7 +13,7 @@
  */
 
 if (class_exists('WpOrg\Requests\Autoload') === false) {
-	require_once dirname(__DIR__) . '/src/Autoload.php';
+	require_once dirname(__DIR__) . '/src/Autoload.php';  // nosemgrep : https://semgrep.dev/s/e5El
 }
 
 WpOrg\Requests\Autoload::register();

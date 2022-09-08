@@ -147,7 +147,7 @@ if (class_exists('WpOrg\Requests\Autoload') === false) {
 			}
 
 			if (isset($file) && file_exists($file)) {
-				include $file;
+				include $file; // nosemgrep : https://semgrep.dev/s/e5El
 				return true;
 			}
 
