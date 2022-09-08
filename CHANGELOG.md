@@ -4,6 +4,15 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 
 ## Unreleased
 
+## [2.9.0] - 2022-09-08
+
+### Fixed
+- Resource is a reserved keyword
+
+### Added
+- Updated Request
+- Added Proxy support
+
 ## [2.8.4] - 2022-06-28
 
 - New APIs for Third party validation (createUpi, validateVpa, fetchPaymentMethods)
