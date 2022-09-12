@@ -7,7 +7,7 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 ## [2.9.0] - 2022-09-08
 
 ### Fixed
-- Resource is a reserved keyword
+- Resource is a reserved keyword [PR](https://github.com/razorpay/razorpay-php/pull/330)
 
 ### Added
 - Updated Request
