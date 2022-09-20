@@ -54,14 +54,14 @@ class Request
 
         $hooks->register('curl.before_send', array($this, 'setCurlSslOpts'));
 
-        $options = array_merge(self::$options,array(
+        $opts = array_merge(self::$options,array(
             'auth' => array(Api::getKey(), Api::getSecret()),
             'hook' => $hooks
         ));
         
         $headers = $this->getRequestHeaders();
 
-        $response = Requests::request($url, $headers, $data, $method, $options);  
+        $response = Requests::request($url, $headers, $data, $method, $opts);
         $this->checkErrors($response);
 
         return json_decode($response->body, true);
