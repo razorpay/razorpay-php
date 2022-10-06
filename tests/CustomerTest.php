@@ -13,7 +13,7 @@ class CustomerTest extends TestCase
     
     private $customerId = "cust_IEfAt3ruD4OEzo";
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
     }

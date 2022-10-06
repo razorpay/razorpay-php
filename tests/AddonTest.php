@@ -15,7 +15,9 @@ class AddonTest extends TestCase
 
     private $planId = "plan_IEeswu4zFBRGwi";
 
-    public function setUp(): void
+    private $paymentId = "pay_JsZdnTYps6TRqr";
+
+    public function setUp()
     {
         parent::setUp();
     }
@@ -32,6 +34,48 @@ class AddonTest extends TestCase
         $this->assertTrue(is_array($data->toArray()));
         
         $this->assertTrue(is_object($data['item']));
+    }
+
+    /**
+     * Create an instant refund
+     */
+    public function testCreateRefund()
+    {
+        $data = $this->api->payment->fetch($this->paymentId)->refund(array("amount"=> "100", "speed"=>"optimum", "receipt"=>"Receipt No. ".time()));
+
+        $this->assertTrue(is_array($data->toArray()));
+
+        $this->assertTrue(in_array('refund',$data->toArray()));
+    }
+
+    /**
+    * Refund payments and reverse transfer from a linked account
+    */
+    public function testRefundPayment()
+    {
+        $data = $this->api->payment->fetch("pay_Jsxnbh4vr6TLsA")->refund(array('amount'=> '100'));
+        
+        $this->assertTrue(is_array($data->toArray()));
+
+        $this->assertTrue(in_array('refund',$data->toArray()));
+    }
+
+        /**
+     * Update the refund
+     */
+    public function UpdateRefund()
+    {
+        $attributes = json_encode(array('notes'=> array('notes_key_1'=>'Beam me up Scotty.', 'notes_key_2'=>'Engage')));
+
+        Request::addHeader('Content-Type', 'application/json');
+        
+        $refund = $this->api->payment->fetch($this->paymentId)->fetchMultipleRefund(array("count"=>1));
+
+        $data = $this->api->refund->fetch($refund['items'][0]['id'])->edit($attributes);
+         
+        $this->assertTrue(is_array($data->toArray()));
+
+        $this->assertTrue(in_array('refund',$data->toArray()));
     }
     
     /**

@@ -18,7 +18,7 @@ class PaymentTest extends TestCase
 
     private $OtpPaymentId = "";
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
     }    
@@ -116,6 +116,7 @@ class PaymentTest extends TestCase
 
     /**
      * Otp Generate
+     * note : This feature needs to be enabled for testing
      */
     public function testOtpGenerate()
     {
@@ -129,7 +130,8 @@ class PaymentTest extends TestCase
     }
 
     /**
-     * Otp Submit
+     * Otp Submit 
+     * note : This feature needs to be enabled for testing
      */
     public function testOtpSubmit()
     {
@@ -142,6 +144,7 @@ class PaymentTest extends TestCase
 
     /**
      * Otp Resend
+     * note : This feature needs to be enabled for testing
      */
     public function testOtpResend()
     {

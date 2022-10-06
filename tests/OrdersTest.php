@@ -13,7 +13,7 @@ class OrdersTest extends TestCase
 
     private $orderId = "order_IEfF1OrQbqxYJq";
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
     }

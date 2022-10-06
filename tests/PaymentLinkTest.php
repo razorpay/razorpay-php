@@ -10,9 +10,9 @@ class PaymentLinkTest extends TestCase
      * Specify unique paymentlink id
      * for example plink_IEjOvfQs5AyjMN 
      */
-    private $paymentLinkId = "plink_IEjOvfQs5AyjMN";
+    private $paymentLinkId = "plink_JspD96W63U1nsd";
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
     }
@@ -64,8 +64,14 @@ class PaymentLinkTest extends TestCase
      */
     public function testUpdatePaymentLink()
     {
-        $data = $this->api->paymentLink->fetch($this->paymentLinkId)->edit(array("reference_id"=>"TS".time(), "reminder_enable"=>0, "notes"=>["policy_name"=>"Jeevan Saral 2"]));
+        $paymentLink = $this->api->paymentLink->create(array('amount'=>500, 'currency'=>'INR', 'accept_partial'=>true,
+        'first_min_partial_amount'=>100, 'description' => 'For XYZ purpose', 'customer' => array('name'=>'Gaurav Kumar',
+        'email' => 'gaurav.kumar@example.com', 'contact'=>'+919999999999'),  'notify'=>array('sms'=>true, 'email'=>true) ,
+        'reminder_enable'=>true ,'notes'=>array('policy_name'=> 'Jeevan Bima'),'callback_url' => 'https://example-callback-url.com/',
+        'callback_method'=>'get'));
 
+        $data = $this->api->paymentLink->fetch($paymentLink->id)->edit(array("reference_id"=>"TS".time(), "reminder_enable"=>0, "notes"=>["policy_name"=>"Jeevan Saral 2"]));
+     
         $this->assertTrue(is_array($data->toArray()));
 
         $this->assertTrue(in_array('accept_partial',$data->toArray()));

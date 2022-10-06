@@ -1,10 +1,8 @@
 dist: precise
 language: php
 php:
-- 7.3
-- 7.4
-- 8.0
-- 8.1
+- 5.6
+
 
 install: composer install
 before_script:
@@ -36,7 +34,7 @@ deploy:
   file: razorpay-php.zip
   on:
     # Only do the release for one build every tag
-    php: 7.3
+    php: 5.6
     # GitHub refuses to accept releases that are not tagged
     tags: true
     # Allow builds for non-master branches as well

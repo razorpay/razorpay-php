@@ -11,11 +11,11 @@ class SubscriptionTest extends TestCase
      * for example : sub_IEKtBfPIqTHLWd & plan_IEeswu4zFBRGwi
      */  
 
-    private $subscriptionId = "sub_IEllLOZcf0PODu";
+    private $subscriptionId = "sub_JskaoLsvBHHCtP";
 
     private $plan = "plan_IEeswu4zFBRGwi";
 
-    public function setUp(): void
+    public function setUp()
     {
         parent::setUp();
     }
@@ -25,11 +25,15 @@ class SubscriptionTest extends TestCase
      */
     public function testCreateSubscription()
     {
-        $data = $this->api->subscription->create(array('plan_id' => $this->plan, 'customer_notify' => 1,'quantity'=>1, 'total_count' => 6, 'addons' => array(array('item' => array('name' => 'Delivery charges', 'amount' => 3000, 'currency' => 'INR'))),'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+      $attributes = json_encode(array('plan_id' => $this->plan, 'customer_notify' => 1,'quantity'=>1, 'total_count' => 6, 'addons' => array(array('item' => array('name' => 'Delivery charges', 'amount' => 3000, 'currency' => 'INR'))),'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+        
+      Request::addHeader('Content-Type', 'application/json');
+      
+      $data = $this->api->subscription->create($attributes);
 
-        $this->assertTrue(is_array($data->toArray()));
+      $this->assertTrue(is_array($data->toArray()));
 
-        $this->assertTrue(in_array('id',$data->toArray()));
+      $this->assertTrue(in_array('id',$data->toArray()));
     }
     
     /**
@@ -78,11 +82,15 @@ class SubscriptionTest extends TestCase
      */
     public function testUpdateSubscription()
     {
-        $data = $this->api->subscription->fetch($this->subscriptionId)->update(array('schedule_change_at'=>'cycle_end','quantity'=>2));
+      $attributes = json_encode(array('schedule_change_at'=>'cycle_end','quantity'=>2));
         
-        $this->assertTrue(is_array($data->toArray()));
+      Request::addHeader('Content-Type', 'application/json');
+      
+      $data = $this->api->subscription->fetch($this->subscriptionId)->update($attributes);
 
-        $this->assertTrue(in_array('customer_id',$data->toArray()));
+      $this->assertTrue(is_array($data->toArray()));
+
+      $this->assertTrue(in_array('customer_id',$data->toArray()));
     }
 
     /**
