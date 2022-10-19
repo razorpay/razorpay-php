@@ -268,7 +268,7 @@ $api->order->create(array('amount' => '100', 'currency' => 'INR', 'payment_captu
 ## Create a recurring payment
 
 ```php
-$api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>1000,'currency'=>'INR','order_id'=>$orderid,'customer_id'=>$customerId,'token'=>$tokenId,'recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar', 'notes'=> array('key1'=> 'value3','key2'=> 'value2')));
+$api->payment->createRecurring(['email'=>'gaurav.kumar@example.com','contact'=>'9123456789','amount'=>1000,'currency'=>'INR','order_id'=>$orderid,'customer_id'=>$customerId,'token'=>$tokenId,'recurring'=>'1','description'=>'Creating recurring payment for Gaurav Kumar', 'notes'=> array('key1'=> 'value3','key2'=> 'value2'));
 ```
 **Parameters:**
 

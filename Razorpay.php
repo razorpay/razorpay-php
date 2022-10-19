@@ -8,7 +8,7 @@ if (!defined('REQUESTS_SILENCE_PSR0_DEPRECATIONS'))
 
 if (class_exists('WpOrg\Requests\Autoload') === false)
 {
-    require_once __DIR__.'/libs/Requests-2.0.0/src/Autoload.php';
+    require_once __DIR__.'/libs/Requests-2.0.4/src/Autoload.php';
 }
 
 try
