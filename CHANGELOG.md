@@ -4,14 +4,10 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 
 ## Unreleased
 
-## [2.9.0] - 2022-09-08
-
-### Fixed
-- Resource is a reserved keyword [PR](https://github.com/razorpay/razorpay-php/pull/330)
+## [2.8.5] - 2022-10-19
 
 ### Added
-- Updated Request
-- Added Proxy support
+- Update [Request](https://github.com/WordPress/Requests/tree/v2.0.4) library to v2.0.4
 
 ## [2.8.4] - 2022-06-28
 
