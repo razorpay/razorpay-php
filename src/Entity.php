@@ -129,7 +129,7 @@ class Entity extends Resource implements ArrayableInterface
         }
         else
         {
-            $entity = new static;
+                $entity = new StdClass();                    
         }
 
         $entity->fill($data);
@@ -146,11 +146,22 @@ class Entity extends Resource implements ArrayableInterface
             'order',
             'customer',
             'token',
+            'items',
+            'plan',
+            'subscription',
+            'addon',
+            'invoice',
+            'qrcode',
+            'transfer',
+            'qr_code',
+            'virtual_account',
+            'payment_link',
             'settlement');
     }
 
     protected static function getEntityClass($name)
     {
+        $name = str_replace('_', '', ucwords($name, '_'));
         return __NAMESPACE__.'\\'.ucfirst($name);
     }
 
@@ -192,9 +203,7 @@ class Entity extends Resource implements ArrayableInterface
                 }
                 else
                 {
-                    $stdCls = new StdClass();
-                    $stdCls->attributes = $value;
-                    $value = $stdCls;                     
+                    $value = static::buildEntity($value);
                 }
             }
 
