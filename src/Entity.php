@@ -129,7 +129,8 @@ class Entity extends Resource implements ArrayableInterface
         }
         else
         {
-                $entity = new StdClass();                    
+            $class = static::getEntityClass('std_class');
+            $entity = new $class;               
         }
 
         $entity->fill($data);
