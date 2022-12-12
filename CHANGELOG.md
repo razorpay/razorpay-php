@@ -4,6 +4,12 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 
 ## Unreleased
 
+
+## [2.8.6] - 2022-12-12
+
+- [#336](https://github.com/razorpay/razorpay-php/pull/336) [`7631f52`](https://github.com/razorpay/razorpay-php/commit/7631f52a98f88496b733ba6e741ded649d9b95e4) : Thanks [@ankitdas13](https://github.com/ankitdas13)! - fix: response typecast issue
+
+
 ## [2.8.5] - 2022-10-19
 
 ### Added
