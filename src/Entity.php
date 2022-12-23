@@ -129,8 +129,7 @@ class Entity extends Resource implements ArrayableInterface
         }
         else
         {
-            $class = static::getEntityClass('std_class');
-            $entity = new $class;               
+            $entity = new static;
         }
 
         $entity->fill($data);
@@ -147,22 +146,11 @@ class Entity extends Resource implements ArrayableInterface
             'order',
             'customer',
             'token',
-            'items',
-            'plan',
-            'subscription',
-            'addon',
-            'invoice',
-            'qrcode',
-            'transfer',
-            'qr_code',
-            'virtual_account',
-            'payment_link',
             'settlement');
     }
 
     protected static function getEntityClass($name)
     {
-        $name = str_replace('_', '', ucwords($name, '_'));
         return __NAMESPACE__.'\\'.ucfirst($name);
     }
 
