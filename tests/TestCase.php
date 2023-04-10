@@ -6,13 +6,17 @@ use Razorpay\Api\Api;
 use Razorpay\Api\Request;
 use PHPUnit\Framework\TestCase as PhpUnitTest;
 
+$key = $_ENV["RAZORPAY_API_KEY"];
+$secret = $_ENV["RAZORPAY_API_KEY"];
+
+
 class TestCase extends PhpUnitTest
 {
     
     public function setUp(): void
     {
-        $apiKey = "";
-        $apiSecret = "";
+        $apiKey = $key;
+        $apiSecret = $secret;
         
         $this->api = new Api( $apiKey, $apiSecret);
     }
