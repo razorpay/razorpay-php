@@ -17,8 +17,8 @@ jobs:
            ls ${{ github.workspace }}
       - name: Set env variables
         run: | 
-         echo "RAZORPAY_API_KEY=${{ secrets.RAZORPAY_API_KEY }}" >> ${{ github.workspace }}/tests/.env
-         echo "RAZORPAY_API_SECRET=${{ secrets.RAZORPAY_API_SECRET }}" >> ${{ github.workspace }}/tests/.env
+         echo "RAZORPAY_API_KEY=${{ secrets.RAZORPAY_API_KEY }}" >> .env
+         echo "RAZORPAY_API_SECRET=${{ secrets.RAZORPAY_API_SECRET }}" >> .env
          cat ${{ github.workspace }}/tests/.env
       - name: Checkout
         uses: actions/checkout@v2
