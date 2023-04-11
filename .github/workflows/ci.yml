@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set env variables
+        run: | 
          echo "RAZORPAY_API_KEY=${{ secrets.RAZORPAY_API_KEY }}" >> .env
          echo "RAZORPAY_API_SECRET=${{ secrets.RAZORPAY_API_SECRET }}" >> .env
-         cat .env
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up php 8.0
