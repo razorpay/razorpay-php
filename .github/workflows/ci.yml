@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: List files
-         run | 
-          ls -R ${{ github.workspace }}/tests/
+        run: | 
+           ls -R ${{ github.workspace }}/tests/
       - name: Set env variables
         run: | 
          echo "RAZORPAY_API_KEY=${{ secrets.RAZORPAY_API_KEY }}" >> ${{ github.workspace }}/tests/.env
