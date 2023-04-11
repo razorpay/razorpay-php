@@ -22,7 +22,7 @@ jobs:
         with:
           php-version: '8.0'
       - name: Install dependencies
-        run: composer self-update && composer install && composer dump-autoload
+        run: composer self-update && composer install && composer require vlucas/phpdotenv && composer dump-autoload
       - name: Run tests and collect coverage
         run: vendor/bin/phpunit ./tests/CoverageTest.php --coverage-clover coverage.xml
         env:
