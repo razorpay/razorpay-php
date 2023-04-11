@@ -14,8 +14,8 @@ jobs:
     steps:
       - name: Set env variables
         run: | 
-         echo "RAZORPAY_API_KEY=${{ secrets.RAZORPAY_API_KEY }}" >> tests/.env
-         echo "RAZORPAY_API_SECRET=${{ secrets.RAZORPAY_API_SECRET }}" >> tests/.env
+         echo "RAZORPAY_API_KEY=${{ secrets.RAZORPAY_API_KEY }}" >> ${{ github.workspace }}/razorpay-php/tests/.env
+         echo "RAZORPAY_API_SECRET=${{ secrets.RAZORPAY_API_SECRET }}" >> ${{ github.workspace }}/razorpay-php/tests/.env
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up php 8.0
