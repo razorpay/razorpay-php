@@ -18,6 +18,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.0'
+      - name: 'Create env file'
+        run: |
+          touch ${{ github.workspace }}/tests/.env
+          echo RAZORPAY_API_KEY=${{ secrets.RAZORPAY_API_KEY }} >> ${{ github.workspace }}/tests/.env
+          echo RAZORPAY_API_SECRET=${{ secrets.RAZORPAY_API_SECRET }} >> ${{ github.workspace }}/tests/.env
+          cat ${{ github.workspace }}/tests/.env          
       - name: Install dependencies
         run: composer self-update && composer install && composer require vlucas/phpdotenv && composer dump-autoload
       - name: Run tests and collect coverage
