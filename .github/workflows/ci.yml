@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: List files
         run: | 
-           ls -R ${{ github.workspace }}/tests/
+           ls -R ${{ github.workspace }}
       - name: Set env variables
         run: | 
          echo "RAZORPAY_API_KEY=${{ secrets.RAZORPAY_API_KEY }}" >> ${{ github.workspace }}/tests/.env
