@@ -1,7 +1,7 @@
 <?php
 
 namespace Razorpay\Tests;
-require_once realpath(__DIR__ . "/vendor/autoload.php");
+require_once realpath(__DIR__ . "/../vendor/autoload.php");
 
 use Razorpay\Api\Api;
 use Razorpay\Api\Request;
