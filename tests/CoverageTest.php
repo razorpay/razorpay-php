@@ -7,23 +7,10 @@ use Razorpay\Api\Request;
 class CoverageTest extends TestCase
 {
     /**
-     * @covers \Razorpay\Tests\AddonTest::testCreateAddon
-     * @covers \Razorpay\Tests\AddonTest::testFetchSubscriptionLink
-     * @covers \Razorpay\Tests\AddonTest::testFetchAllAddon
-     */
-    public function testAddonCoverage(){
-      $addon = new AddonTest();
-      $addon->setUp();
-      $addon->testCreateAddon();
-      $addon->testFetchSubscriptionLink();
-      $addon->testFetchAllAddon();
-    }
-
-    /**
-     * @covers \Razorpay\Tests\CustomerTest::testCreateCustomer
-     * @covers \Razorpay\Tests\CustomerTest::testEditCustomer
-     * @covers \Razorpay\Tests\CustomerTest::testFetchAll
-     * @covers \Razorpay\Tests\CustomerTest::testFetchCustomer
+     * @covers \Razorpay\Api\CustomerTest::create
+     * @covers \Razorpay\Api\CustomerTest::edit
+     * @covers \Razorpay\Api\CustomerTest::all
+     * @covers \Razorpay\Api\CustomerTest::fetch
      */   
     public function testCustomerCoverage(){
       $customer = new CustomerTest();
