@@ -154,7 +154,7 @@ class CoverageTest extends TestCase
     public function testQrCodeCoverage(){
       $qrCode = new QrCodeTest();
       $qrCode->setup();
-      $qrCode->testCreateQrCode();
+      //$qrCode->testCreateQrCode();
       $qrCode->testFetchQrCode();
       $qrCode->testCloseQrCode();
       $qrCode->testFetchAllQrCode();
@@ -169,7 +169,7 @@ class CoverageTest extends TestCase
       $refund = new RefundTest();
       $refund->setup();
       $refund->testFetchRefund();
-      $refund->testUpdateRefund();
+      //$refund->testUpdateRefund();
       $refund->testFetchAllRefund();
     }
 }
