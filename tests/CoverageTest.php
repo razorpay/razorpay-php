@@ -7,10 +7,10 @@ use Razorpay\Api\Request;
 class CoverageTest extends TestCase
 {
     /**
-     * @covers \Razorpay\Api\CustomerTest::create
-     * @covers \Razorpay\Api\CustomerTest::edit
-     * @covers \Razorpay\Api\CustomerTest::all
-     * @covers \Razorpay\Api\CustomerTest::fetch
+     * @covers \Razorpay\Api\Customer::create
+     * @covers \Razorpay\Api\Customer::edit
+     * @covers \Razorpay\Api\Customer::all
+     * @covers \Razorpay\Api\Customer::fetch
      */   
     public function testCustomerCoverage(){
       $customer = new CustomerTest();
