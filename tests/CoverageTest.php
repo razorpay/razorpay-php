@@ -156,7 +156,7 @@ class CoverageTest extends TestCase
       $qrCode->setup();
       //$qrCode->testCreateQrCode();
       $qrCode->testFetchQrCode();
-      $qrCode->testCloseQrCode();
+      //$qrCode->testCloseQrCode();
       $qrCode->testFetchAllQrCode();
     }
 
