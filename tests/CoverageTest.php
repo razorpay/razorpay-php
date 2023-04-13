@@ -7,6 +7,65 @@ use Razorpay\Api\Request;
 class CoverageTest extends TestCase
 {
     /**
+     * @covers \Razorpay\Api\QrCode::create
+     * @covers \Razorpay\Api\QrCode::fetch
+     * @covers \Razorpay\Api\QrCode::close
+     * @covers \Razorpay\Api\QrCode::all
+     * @covers \Razorpay\Api\QrCode::fetchAllPayments
+     */
+    public function testQrCodeCoverage(){
+      $qrCode = new QrCodeTest();
+      $qrCode->setup();
+      $qrCode->testCreateQrCode();
+      $qrCode->testFetchQrCode();
+      $qrCode->testCloseQrCode();
+      $qrCode->testFetchAllQrCode();
+    }
+
+    /**
+     * @covers \Razorpay\Api\Refund::fetch
+     * @covers \Razorpay\Api\Refund::edit
+     * @covers \Razorpay\Api\Refund::all
+     */
+    public function testRefundCoverage(){
+      $refund = new RefundTest();
+      $refund->setup();
+      $refund->testFetchRefund();
+      $refund->testUpdateRefund();
+      $refund->testFetchAllRefund();
+    }
+
+    /**
+     * @covers \Razorpay\Api\Subscription::create
+     * @covers \Razorpay\Api\Subscription::fetch
+     * @covers \Razorpay\Api\Addon::fetchAll
+     * @covers \Razorpay\Api\Subscription::all
+     */
+    public function testSubscriptionCoverage(){
+      $subscription = new SubscriptionTest();
+      $subscription->setup();
+      $subscription->testCreateSubscription();
+      $subscription->testSubscriptionFetchId();
+      $subscription->testFetchAddons();
+      $subscription->testFetchAllSubscriptions();
+    }
+
+    /**
+     * @covers \Razorpay\Api\VirtualAccount::create
+     * @covers \Razorpay\Api\VirtualAccount::all
+     * @covers \Razorpay\Api\VirtualAccount::payments
+     * @covers \Razorpay\Api\VirtualAccount::close
+     */
+    public function testVirtualAccountCoverage(){
+      $virtualAccount = new VirtualAccountTest();
+      $virtualAccount->setup();
+      $virtualAccount->testCreateVirtualAccount();
+      $virtualAccount->testFetchAllVirtualAccounts();
+      $virtualAccount->testFetchPayment();
+      $virtualAccount->testCloseVirtualAccount();
+    } 
+
+    /**
      * @covers \Razorpay\Api\Addon::fetch
      * @covers \Razorpay\Api\Addon::fetchAll
      */
@@ -125,7 +184,7 @@ class CoverageTest extends TestCase
       $order->testfetchPaymentDowntimeById();
     }
 
-      /**
+    /**
      * @covers \Razorpay\Api\PaymentLink::create
      * @covers \Razorpay\Api\PaymentLink::fetch
      * @covers \Razorpay\Api\PaymentLink::all
@@ -145,31 +204,24 @@ class CoverageTest extends TestCase
     }
 
     /**
-     * @covers \Razorpay\Api\QrCode::create
-     * @covers \Razorpay\Api\QrCode::fetch
-     * @covers \Razorpay\Api\QrCode::close
-     * @covers \Razorpay\Api\QrCode::all
-     * @covers \Razorpay\Api\QrCode::fetchAllPayments
+     * @covers \Razorpay\Api\Settlement::all
+     * @covers \Razorpay\Api\Settlement::settlementRecon
      */
-    public function testQrCodeCoverage(){
-      $qrCode = new QrCodeTest();
-      $qrCode->setup();
-      //$qrCode->testCreateQrCode();
-      $qrCode->testFetchQrCode();
-      //$qrCode->testCloseQrCode();
-      $qrCode->testFetchAllQrCode();
+    public function testSettlementCoverage(){
+      $paymentlink = new SettlementTest();
+      $paymentlink->setup();
+      $paymentlink->testAllSettlements();
+      $paymentlink->testSettlementRecon();
     }
 
     /**
-     * @covers \Razorpay\Api\Refund::fetch
-     * @covers \Razorpay\Api\Refund::edit
-     * @covers \Razorpay\Api\Refund::all
+     * @covers \Razorpay\Api\Order::transfers
+     * @covers \Razorpay\Api\Transfer::all
      */
-    public function testRefundCoverage(){
-      $refund = new RefundTest();
-      $refund->setup();
-      $refund->testFetchRefund();
-      //$refund->testUpdateRefund();
-      $refund->testFetchAllRefund();
+    public function testTransferCoverage(){
+      $transfer = new TransferTest();
+      $transfer->setup();
+      $transfer->testFetchTransferOrder();
+      $transfer->testFetchSettlement();;
     }
 }
