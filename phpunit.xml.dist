@@ -14,7 +14,16 @@
     <include>
       <directory>./src</directory>
     </include>
-    <exclude/>
+    <exclude>
+      <directory>./src/Errors</directory>
+      <file>./src/Api.php</file>
+      <file>./src/ArrayableInterface.php</file>
+      <file>./src/Collection.php</file>
+      <file>./src/Entity.php</file>
+      <file>./src/Request.php</file>
+      <file>./src/Resource.php</file>
+      <file>./src/Webhook.php</file>
+    </exclude>
   </coverage>
   <php>
     <!-- copy this file to phpunit.xml and replace with your API key to run tests -->

@@ -7,6 +7,19 @@ use Razorpay\Api\Request;
 class CoverageTest extends TestCase
 {
     /**
+     * @covers \Razorpay\Api\Plan::create
+     * @covers \Razorpay\Api\Plan::fetch
+     * @covers \Razorpay\Api\Plan::all
+     */
+    public function testPlanCoverage(){
+      $subscription = new PlanTest();
+      $subscription->setup();
+      $subscription->testCreatePlan();
+      $subscription->testFetchAllPlans();
+      $subscription->testFetchPlan();
+    }
+    
+    /**
      * @covers \Razorpay\Api\QrCode::create
      * @covers \Razorpay\Api\QrCode::fetch
      * @covers \Razorpay\Api\QrCode::close
@@ -89,6 +102,7 @@ class CoverageTest extends TestCase
       $customer->testEditCustomer();
       $customer->testFetchAll();
       $customer->testFetchCustomer();
+      usleep(500000);
     }
 
     /**
@@ -223,5 +237,16 @@ class CoverageTest extends TestCase
       $transfer->setup();
       $transfer->testFetchTransferOrder();
       $transfer->testFetchSettlement();;
+    }
+
+    /**
+     * @covers \Razorpay\Api\Token::all
+     * @covers \Razorpay\Api\Token::fetch
+     */
+    public function testTokenCoverage(){
+      $transfer = new TokenTest();
+      $transfer->setup();
+      $transfer->testFetchTokenByCustomerId();
+      $transfer->testFetchTokenByPaymentId();;
     }
 }
