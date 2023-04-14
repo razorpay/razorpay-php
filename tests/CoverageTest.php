@@ -33,12 +33,15 @@ class CoverageTest extends TestCase
       $qrCode->testFetchQrCode();
       $qrCode->testCloseQrCode();
       $qrCode->testFetchAllQrCode();
+      $qrCode->testFetchQrCodePaymentById();
     }
 
     /**
      * @covers \Razorpay\Api\Refund::fetch
      * @covers \Razorpay\Api\Refund::edit
      * @covers \Razorpay\Api\Refund::all
+     * @covers \Razorpay\Api\Payment::fetchMultipleRefund
+     * @covers \Razorpay\Api\Payment::fetchRefund
      */
     public function testRefundCoverage(){
       $refund = new RefundTest();
@@ -46,6 +49,8 @@ class CoverageTest extends TestCase
       $refund->testFetchRefund();
       $refund->testUpdateRefund();
       $refund->testFetchAllRefund();
+      $refund->testFetchMultipalRefund();
+      $refund->testFetchRefund();
     }
 
     /**
@@ -67,6 +72,7 @@ class CoverageTest extends TestCase
      * @covers \Razorpay\Api\VirtualAccount::create
      * @covers \Razorpay\Api\VirtualAccount::all
      * @covers \Razorpay\Api\VirtualAccount::payments
+     * @uses \Razorpay\Api\VirtualAccount::fetch
      * @covers \Razorpay\Api\VirtualAccount::close
      */
     public function testVirtualAccountCoverage(){
@@ -231,12 +237,18 @@ class CoverageTest extends TestCase
     /**
      * @covers \Razorpay\Api\Order::transfers
      * @covers \Razorpay\Api\Transfer::all
+     * @covers \Razorpay\Api\Payment::transfers
+     * @covers \Razorpay\Api\Transfer::fetch
+     * @covers \Razorpay\Api\Transfer::all
      */
     public function testTransferCoverage(){
       $transfer = new TransferTest();
       $transfer->setup();
       $transfer->testFetchTransferOrder();
-      $transfer->testFetchSettlement();;
+      $transfer->testFetchSettlement();
+      $transfer->testFetchTransferPayment();
+      $transfer->testFetchTransfer();
+      $transfer->testFetchSettlement();
     }
 
     /**
