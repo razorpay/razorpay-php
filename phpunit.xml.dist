@@ -22,7 +22,9 @@
       <file>./src/Entity.php</file>
       <file>./src/Request.php</file>
       <file>./src/Resource.php</file>
+      <file>./src/PaymentPage.php</file>
       <file>./src/Webhook.php</file>
+      <file>./src/Utility.php</file>
     </exclude>
   </coverage>
   <php>
