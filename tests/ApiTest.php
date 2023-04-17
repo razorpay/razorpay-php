@@ -46,7 +46,7 @@ class ApiTest extends TestCase
     public function testGetkey()
     {
         $data = $this->api->getKey();
-        print_r($data);
+
         $this->assertTrue(strlen($data) > 0);
     }
 
