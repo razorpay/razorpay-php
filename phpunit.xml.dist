@@ -16,7 +16,6 @@
     </include>
     <exclude>
       <directory>./src/Errors</directory>
-      <file>./src/Api.php</file>
       <file>./src/ArrayableInterface.php</file>
       <file>./src/Collection.php</file>
       <file>./src/Entity.php</file>

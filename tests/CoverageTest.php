@@ -7,6 +7,24 @@ use Razorpay\Api\Request;
 class CoverageTest extends TestCase
 {
     /**
+     * @covers \Razorpay\Api\Api::getAppsDetails
+     * @uses \Razorpay\Api\Api::setAppDetails
+     * @covers \Razorpay\Api\Api::getBaseUrl
+     * @uses \Razorpay\Api\Api::setBaseUrl
+     * @cover \Razorpay\Api\Api::getKey
+     * @cover \Razorpay\Api\Api::getSecret
+     * @cover \Razorpay\Api\Api::getFullUrl
+     */
+    public function testApiInstance(){
+      $instance = new ApiTest();
+      $instance->setup();
+      $instance->testGetAppDetails();
+      $instance->testSetBaseUrl();
+      $instance->testGetkey();
+      $instance->testGetSecret();
+      $instance->testFullUrl();
+    }
+    /**
      * @covers \Razorpay\Api\Plan::create
      * @covers \Razorpay\Api\Plan::fetch
      * @covers \Razorpay\Api\Plan::all
