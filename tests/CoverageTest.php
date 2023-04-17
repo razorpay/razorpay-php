@@ -41,6 +41,7 @@ class CoverageTest extends TestCase
      * @covers \Razorpay\Api\QrCode::create
      * @covers \Razorpay\Api\QrCode::fetch
      * @covers \Razorpay\Api\QrCode::close
+     * @uses \Razorpay\Api\ArrayableInterface
      * @covers \Razorpay\Api\QrCode::all
      * @covers \Razorpay\Api\QrCode::fetchAllPayments
      */
