@@ -14,7 +14,7 @@
     <include>
       <directory>./src</directory>
     </include>
-    <exclude/>    
+    <exclude/>
   </coverage>
   <php>
     <!-- copy this file to phpunit.xml and replace with your API key to run tests -->
