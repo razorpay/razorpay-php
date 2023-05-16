@@ -14,6 +14,9 @@ class CoverageTest extends TestCase
      * @cover \Razorpay\Api\Api::getKey
      * @cover \Razorpay\Api\Api::getSecret
      * @cover \Razorpay\Api\Api::getFullUrl
+     * @cover \Razorpay\Api\Api::testgetheader
+     * @cover \Razorpay\Api\Request::addHeader
+     * @cover \Razorpay\Api\Request::getHeader
      */
     public function testApiInstance(){
       $instance = new ApiTest();
@@ -23,7 +26,9 @@ class CoverageTest extends TestCase
       $instance->testGetkey();
       $instance->testGetSecret();
       $instance->testFullUrl();
+      $instance->testgetheader();
     }
+
     /**
      * @covers \Razorpay\Api\Plan::create
      * @covers \Razorpay\Api\Plan::fetch
@@ -116,9 +121,25 @@ class CoverageTest extends TestCase
 
     /**
      * @covers \Razorpay\Api\Customer::create
+     * @covers \Razorpay\Api\Entity::create
      * @covers \Razorpay\Api\Customer::edit
+     * @covers \Razorpay\Api\Entity::getEntityUrl
      * @covers \Razorpay\Api\Customer::all
+     * @covers \Razorpay\Api\Entity::all
      * @covers \Razorpay\Api\Customer::fetch
+     * @covers \Razorpay\Api\Entity::fetch
+     * @covers \Razorpay\Api\Entity::validateIdPresence
+     * @covers \Razorpay\Api\Entity::snakeCase
+     * @covers \Razorpay\Api\Entity::request
+     * @covers \Razorpay\Api\Entity::buildEntity
+     * @covers \Razorpay\Api\Entity::getDefinedEntitiesArray
+     * @covers \Razorpay\Api\Entity::getEntityClass
+     * @covers \Razorpay\Api\Entity::getEntity
+     * @covers \Razorpay\Api\Entity::fill
+     * @covers \Razorpay\Api\Entity::isAssocArray
+     * @covers \Razorpay\Api\Entity::toArray
+     * @covers \Razorpay\Api\Entity::convertToArray
+     * @covers \Razorpay\Api\Collection::count
      */   
     public function testCustomerCoverage(){
       $customer = new CustomerTest();
@@ -132,6 +153,11 @@ class CoverageTest extends TestCase
 
     /**
      * @covers \Razorpay\Api\Card::fetch
+     * @covers \Razorpay\Api\Request::request
+     * @covers \Razorpay\Api\Request::checkErrors
+     * @covers \Razorpay\Api\Request::getRequestHeaders
+     * @covers \Razorpay\Api\Request::constructUa
+     * @covers \Razorpay\Api\Request::getAppDetailsUa
      */   
     public function testCardCoverage(){
       $card = new CardTest();
@@ -279,5 +305,19 @@ class CoverageTest extends TestCase
       $transfer->setup();
       $transfer->testFetchTokenByCustomerId();
       $transfer->testFetchTokenByPaymentId();;
+    }
+
+    /**
+     * @covers \Razorpay\Api\Utility::verifyPaymentSignature
+     * @covers \Razorpay\Api\Utility::verifySignature
+     * @covers \Razorpay\Api\Utility::hashEquals
+     * @covers \Razorpay\Api\Errors\SignatureVerificationError
+     */
+    public function testUtilityCoverage(){
+      $utility = new SignatureVerificationTest();
+      $utility->setup();
+      $utility->testPaymentVerification();
+      $utility->testPaymentLinkVerification();
+      $utility->testSubscriptionVerification();
     }
 }

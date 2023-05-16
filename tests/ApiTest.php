@@ -63,4 +63,12 @@ class ApiTest extends TestCase
         $this->assertTrue(preg_match($pattern, $url, $matches)==true);      
     }
 
+    /**
+     * @covers \Request
+     */
+    public function testgetheader()
+    {
+        $data = Request::getHeaders();
+        $this->assertTrue(is_array($data));
+    }
 }
