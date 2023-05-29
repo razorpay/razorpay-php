@@ -11,6 +11,7 @@ if (class_exists('Dotenv'))
  $dotenv = Dotenv::createImmutable(__DIR__);
  $dotenv->load();
 }
+echo 'not load dot env';
 
 class PartnerTest extends TestCase
 {
