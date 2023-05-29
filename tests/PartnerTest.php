@@ -7,6 +7,7 @@ use Dotenv\Dotenv;
 
 if (class_exists('Dotenv'))
 {
+ echo 'load dot env';   
  $dotenv = Dotenv::createImmutable(__DIR__);
  $dotenv->load();
 }
@@ -27,7 +28,7 @@ class PartnerTest extends TestCase
     {
         $apiKey = getenv("RAZORPAY_PARTNER_API_KEY") ? getenv("RAZORPAY_PARTNER_API_KEY") : "";
         $apiSecret = getenv("RAZORPAY_PARTNER_API_SECRET") ? getenv("RAZORPAY_PARTNER_API_SECRET") : "";
-        
+        print_r(getenv("RAZORPAY_PARTNER_API_SECRET"));
         $this->instance = new Api( $apiKey, $apiSecret);
     }
     
