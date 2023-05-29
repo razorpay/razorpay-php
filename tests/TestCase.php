@@ -19,8 +19,8 @@ class TestCase extends PhpUnitTest
     
     public function setUp(): void
     {
-        $apiKey = getenv("RAZORPAY_API_KEY") ? getenv("RAZORPAY_API_KEY") : "";
-        $apiSecret = getenv("RAZORPAY_API_SECRET") ? getenv("RAZORPAY_API_SECRET") : "";
+        $apiKey = getenv("RAZORPAY_API_KEY") ? getenv("RAZORPAY_API_KEY") : "rzp_test_1DP5mmOlF5G5ag";
+        $apiSecret = getenv("RAZORPAY_API_SECRET") ? getenv("RAZORPAY_API_SECRET") : "thisissupersecret";
         
         $this->api = new Api( $apiKey, $apiSecret);
     }

@@ -9,7 +9,7 @@ class ApiTest extends TestCase
     
     private $title = "codecov_test";
 
-    private $url = 'https://api.razorpay.com/v1/';
+    private $url = 'https://api.razorpay.com';
 
     public function setUp(): void
     {
@@ -59,7 +59,7 @@ class ApiTest extends TestCase
     public function testFullUrl()
     {
         $pattern = '/^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/.*)?$/i';
-        $url = $this->api->getFullUrl($this->api->getBaseUrl()."orders");
+        $url = $this->api->getFullUrl($this->api->getBaseUrl()."orders","v1");
         $this->assertTrue(preg_match($pattern, $url, $matches)==true);      
     }
 
