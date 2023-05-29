@@ -7,12 +7,11 @@ use Razorpay\Api\Api;
 use Dotenv\Dotenv;
 
 if (class_exists('Dotenv'))
-{
- echo 'load dot env';   
+{  
  $dotenv = Dotenv::createImmutable(__DIR__);
  $dotenv->load();
 }
-echo 'not load dot env';
+
 
 class PartnerTest extends TestCase
 {
@@ -28,8 +27,8 @@ class PartnerTest extends TestCase
 
     public function setUp(): void
     {
-        $apiKey = getenv("RAZORPAY_API_KEY") ? getenv("RAZORPAY_API_KEY") : "";
-        $apiSecret = getenv("RAZORPAY_API_SECRET") ? getenv("RAZORPAY_API_SECRET") : "";
+        $apiKey = getenv("RAZORPAY_API_KEY") ? getenv("RAZORPAY_PARTNER_API_KEY") : "";
+        $apiSecret = getenv("RAZORPAY_API_SECRET") ? getenv("RAZORPAY_PARTNER_API_SECRET") : "";
         print_r(getenv("RAZORPAY_PARTNER_API_SECRET"));
         $this->instance = new Api( $apiKey, $apiSecret);
     }
