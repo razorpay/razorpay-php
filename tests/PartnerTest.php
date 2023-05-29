@@ -25,8 +25,8 @@ class PartnerTest extends TestCase
 
     public function setUp(): void
     {
-        $apiKey = getenv("RAZORPAY_API_KEY") ? getenv("RAZORPAY_PARNTER_API_KEY") : "";
-        $apiSecret = getenv("RAZORPAY_API_SECRET") ? getenv("RAZORPAY_PARNTER_API_SECRET") : "";
+        $apiKey = getenv("RAZORPAY_PARNTER_API_KEY") ? getenv("RAZORPAY_PARNTER_API_KEY") : "";
+        $apiSecret = getenv("RAZORPAY_PARNTER_API_SECRET") ? getenv("RAZORPAY_PARNTER_API_SECRET") : "";
         
         $this->instance = new Api( $apiKey, $apiSecret);
     }
