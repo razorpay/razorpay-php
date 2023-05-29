@@ -1,4 +1,5 @@
 <?php
+require_once realpath(__DIR__ . "/../vendor/autoload.php");
 
 namespace Razorpay\Tests;
 
