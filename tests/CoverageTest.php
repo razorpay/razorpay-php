@@ -149,10 +149,8 @@ class CoverageTest extends TestCase
       $refund = new RefundTest();
       $refund->setup();
       $refund->testFetchRefund();
-      $refund->testUpdateRefund();
       $refund->testFetchAllRefund();
       $refund->testFetchMultipalRefund();
-      $refund->testFetchRefund();
     }
 
     /**
