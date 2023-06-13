@@ -84,7 +84,7 @@ class Api
         return self::$secret;
     }
 
-    public static function getFullUrl($relativeUrl,$apiVersion)
+    public static function getFullUrl($relativeUrl, $apiVersion = "v1")
     {
         return self::getBaseUrl() . "/". $apiVersion . "/". $relativeUrl;
     }
