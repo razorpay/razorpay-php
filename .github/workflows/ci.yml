@@ -31,5 +31,7 @@ jobs:
         env:
            RAZORPAY_API_KEY: ${{ secrets.RAZORPAY_API_KEY }}
            RAZORPAY_API_SECRET: ${{ secrets.RAZORPAY_API_SECRET }}
+           RAZORPAY_PARTNER_API_KEY: ${{ secrets.RAZORPAY_PARTNER_API_KEY }}
+           RAZORPAY_PARTNER_API_SECRET: ${{ secrets.RAZORPAY_PARTNER_API_SECRET }}
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
