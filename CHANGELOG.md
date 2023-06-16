@@ -4,8 +4,8 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 
 ## Unreleased
 
-## [2.8.6] - 2023-05-30
-[#348](https://github.com/razorpay/razorpay-php/pull/348) [`b6179a5`](https://github.com/razorpay/razorpay-java/commit/b6179a5a3425910a190f0d9e4f5ff0f8e423f6a9) feat: Added new API endpoints
+## [2.8.6] - 2023-06-16
+[#348](https://github.com/razorpay/razorpay-php/pull/348) [`68b2028`](https://github.com/razorpay/razorpay-php/commit/68b2028bafda49af970a098d6d11aa8e5a575d40) feat: Added new API endpoints
 
 * Added account onboarding API (create, fetch, edit, delete)
 * Added stakeholders API (create, fetch, fetchAll, edit)
