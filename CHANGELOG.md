@@ -13,7 +13,6 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 * Added webhooks API (create, fetch, fetchAll, edit, delete)
 * Added token sharing API (create, fetch, delete, processPaymentOnAlternatePAorPG)
 
-
 ## [2.8.5] - 2022-10-19
 
 ### Added
