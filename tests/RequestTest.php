@@ -4,14 +4,8 @@ namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
 
-class CustomerTest extends TestCase
+class RequestTest extends TestCase
 {   
-    /**
-     * Specify unique customer id
-     * for example cust_IEfAt3ruD4OEzo
-     */
-    
-    private $customerId = "cust_IEfAt3ruD4OEzo";
 
     public function setUp(): void
     {
@@ -21,7 +15,7 @@ class CustomerTest extends TestCase
     /**
      * Create customer
      */
-    public function testCreateCustomer()
+    public function testaddHeader()
     {
         $data = $this->api->customer->create(array('name' => 'Razorpay User 38', 'email' => 'customer38@razorpay.com' ,'fail_existing'=>'0'));
 
