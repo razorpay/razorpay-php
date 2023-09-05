@@ -385,4 +385,31 @@ class CoverageTest extends TestCase
       $utility->testPaymentLinkVerification();
       $utility->testSubscriptionVerification();
     }
+
+    /**
+     * @covers \Razorpay\Api\Order::create
+     */
+    public function testSetHeaderJson(){
+      $order = new ExceptionTest();
+      $order->setup();
+      $order->testCreateOrderSetHeaderException();
+    }
+    
+    /**
+     * @covers \Razorpay\Api\Order::create
+     */
+    public function testSendJsonPayload(){
+      $order = new ExceptionTest();
+      $order->setup();
+      $order->testCreateJsonOrderException();
+    }
+    
+    /**
+     * @covers \Razorpay\Api\Order::create
+     */
+    public function testSendArrayPayload(){
+      $order = new ExceptionTest();
+      $order->setup();
+      $order->testCreateOrderSuccess();
+    }
 }
