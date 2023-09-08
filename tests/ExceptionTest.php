@@ -18,7 +18,6 @@ class ExceptionTest extends TestCase
     public function testCreateJsonOrderException()
     {
         $payload = $this->payload();
-
         $attribute = json_encode($payload);
         try
         {
@@ -26,7 +25,8 @@ class ExceptionTest extends TestCase
 
          $this->assertTrue(is_array($data->toArray()));
 
-        }catch(Error $e){
+        }
+        catch(Error $e){
             throw new InvalidArgumentException($e);
         }
     }
@@ -37,7 +37,7 @@ class ExceptionTest extends TestCase
     public function testCreateOrderSetHeaderException()
     {
         $attribute = $this->payload();
-
+        
         try
         {
          $this->api->setHeader('content-type', 'application/json');
@@ -46,7 +46,8 @@ class ExceptionTest extends TestCase
 
          $this->assertTrue(is_array($data->toArray()));
         
-        }catch(Error $e){
+        }
+        catch(Error $e){
             throw new InvalidArgumentException($e);
         }
     }
@@ -63,7 +64,8 @@ class ExceptionTest extends TestCase
 
          $this->assertTrue(is_array($data->toArray()));
 
-        }catch(Error $e){
+        }
+        catch(Error $e){
             throw new InvalidArgumentException($e);
         }
     }
@@ -71,26 +73,28 @@ class ExceptionTest extends TestCase
     private function payload(){
         $date = new \DateTime();
         $receiptId = $date->getTimestamp();
-        return array(
-            "receipt"=> (string) $receiptId,
-            "amount"=>54900,
-            "currency"=>"INR",
-            "payment_capture"=>1,
-            "app_offer"=>0,
-            "notes" => array(
-                "woocommerce_order_number" => 240186
-            ),
-            "line_items_total" => 54900,
-            "line_items" => array(array(
-             "type" => "e-commerce",
-             "sku"=> "",
-             "variant_id" => "211444",
-             "price" => "54900",
-             "offer_price" => "54900",
-             "quantity" => 1,
-             "name" => "Personalised Kids T-shirts",
-             "description" => "description"
-           ))
-        );
+        return [
+                 "receipt"=> (string) $receiptId,
+                 "amount"=>54900,
+                 "currency"=>"INR",
+                 "payment_capture"=>1,
+                 "app_offer"=>0,
+                 "notes" => [
+                    "woocommerce_order_number" => 240186
+                 ],
+                 "line_items_total" => 54900,
+                 "line_items" => [
+                        [
+                            "type" => "e-commerce",
+                            "sku"=> "",
+                            "variant_id" => "211444",
+                            "price" => "54900",
+                            "offer_price" => "54900",
+                            "quantity" => 1,
+                            "name" => "Personalised Kids T-shirts",
+                            "description" => "description"
+                        ]
+                    ]
+                ];
     }
 }
