@@ -5,7 +5,7 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 ## Unreleased
 
 ## [2.8.7] - 2023-09-11
-Chore: Changed Content-Type of `order create` APIs from application/x-www-form-urlencoded to application/json
+Chore: Added Content-Type `application/json` for `order create` API from default `application/x-www-form-urlencoded`
 
 
 ## [2.8.6] - 2023-06-16
