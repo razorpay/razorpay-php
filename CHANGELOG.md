@@ -4,6 +4,10 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 
 ## Unreleased
 
+## [2.8.7] - 2023-09-11
+Chore: Changed Content-Type of `order create` APIs from application/x-www-form-urlencoded to application/json
+
+
 ## [2.8.6] - 2023-06-16
 [#348](https://github.com/razorpay/razorpay-php/pull/348) [`68b2028`](https://github.com/razorpay/razorpay-php/commit/68b2028bafda49af970a098d6d11aa8e5a575d40) feat: Added new API endpoints
 
