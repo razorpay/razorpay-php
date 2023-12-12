@@ -3,10 +3,9 @@
 ### Create a Document
 
 ```php
-$type = mime_content_type($file);
 
 $payload = array(
-    'file'=> new CURLFILE($file, $type),
+    'file'=> '/Users/your_name/Downloads/sample_uploaded.pdf'
     "purpose" => "dispute_evidence"
 );
 
