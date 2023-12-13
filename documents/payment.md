@@ -277,13 +277,13 @@ $api->payment->fetch($paymentId)->edit(array('notes'=> array('key_1'=> 'value1',
 Request #1: Card
 
 ```php
-$api->payment->all(array('expand[]'=>'card')
+$api->payment->all(array('expand[]'=>'card'));
 ```
 
 Request #2: EMI
 
 ```php
-$api->payment->all(array('expand[]'=>'emi')
+$api->payment->all(array('expand[]'=>'emi'));
 ```
 
 **Response:**<br>
@@ -655,6 +655,49 @@ Doc reference [doc](https://razorpay.com/docs/payments/payment-methods/cards/aut
 }
 ```
 
+-------------------------------------------------------------------------------------------------------
+### Token IIN API
+
+```php
+$tokenIin = "412345";
+$api->iin->fetch($tokenIin);
+```
+
+**Parameters:**
+
+| Name       | Type   | Description                       |
+|------------|--------|-----------------------------------|
+| tokenIin* | string | The token IIN. |
+
+**Response:**
+```json
+{
+  "iin": "412345",
+  "entity": "iin",
+  "network": "Visa",
+  "type": "credit",
+  "sub_type": "business",
+  "issuer_code": "HDFC",
+  "issuer_name": "HDFC Bank Ltd",
+  "international": false,
+  "is_tokenized": true,
+  "card_iin": "411111",
+  "emi":{
+     "available": true
+     },
+  "recurring": {
+     "available": true
+     },
+  "authentication_types": [
+   {
+       "type":"3ds"
+   },
+   {
+       "type":"otp"
+   }
+  ]
+}
+```
 -------------------------------------------------------------------------------------------------------
 **PN: * indicates mandatory fields**
 <br>
