@@ -62,7 +62,7 @@ class Account extends Entity
 
     public function uploadAccountDoc($attributes = array())
     {
-      $attributes = $this->convertToFile($attributes);
+      $attributes = $this->setFile($attributes);
 
       $entityUrl = $this->getEntityUrl() .$this->id .'/documents';
       

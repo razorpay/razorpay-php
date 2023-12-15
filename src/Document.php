@@ -7,7 +7,7 @@ class Document extends Entity
 
     public function create($attributes = array())
     {
-        $attributes = $this->convertToFile($attributes);
+        $attributes = $this->setFile($attributes);
 
         return parent::create($attributes);
     }

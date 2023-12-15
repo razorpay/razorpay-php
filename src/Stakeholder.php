@@ -34,7 +34,7 @@ class Stakeholder extends Entity
 
     public function uploadStakeholderDoc($id, $attributes = array())
     {
-      $attributes = $this->convertToFile($attributes);
+      $attributes = $this->setFile($attributes);
 
       $entityUrl = 'accounts/'.$this->account_id .'/'.$this->getEntityUrl().'/'.$id.'/documents';
       

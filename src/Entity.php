@@ -232,7 +232,7 @@ class Entity extends Resource implements ArrayableInterface
         return $array;
     }
 
-    public function convertToFile($attributes)
+    public function setFile($attributes)
     {
         if(isset($attributes['file'])){
             $attributes['file'] = new \CURLFILE(
