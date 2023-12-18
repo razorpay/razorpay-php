@@ -4,7 +4,7 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 
 ## Unreleased
 
-## [2.9.7] - 2023-12-15
+## [2.9.7] - 2023-12-18
 feat: Added new API endpoints
 
 * Added support for `addBankAccount`, `deleteBankAccount`, `requestEligibilityCheck` & `fetchEligibility` on customer
