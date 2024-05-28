@@ -10,13 +10,15 @@ class Api
 
     protected static $secret = null;
 
+    protected $config;
+
     /*
      * App info is to store the Plugin/integration
      * information
      */
     public static $appsDetails = array();
 
-    const VERSION = '2.9.0';
+    const VERSION = '2.9.1';
 
     /**
      * @param string $key
@@ -26,6 +28,8 @@ class Api
     {
         self::$key = $key;
         self::$secret = $secret;
+        $this->config = new Config\Config();
+        $this->setBaseUrl($this->config->getDNS(self::$key));
     }
 
     /*
@@ -43,7 +47,7 @@ class Api
             'version' => $version
         );
 
-        array_push(self::$appsDetails, $app);
+        self::$appsDetails[] = $app;
     }
 
     public function getAppsDetails()

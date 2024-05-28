@@ -6,7 +6,7 @@ use Razorpay\Api\Request;
 
 class ApiTest extends TestCase
 {
-    
+
     private $title = "codecov_test";
 
     private $url = 'https://api.razorpay.com';
@@ -15,7 +15,7 @@ class ApiTest extends TestCase
     {
         parent::setUp();
     }
-    
+
     /**
      * Get app details
      */
@@ -38,9 +38,8 @@ class ApiTest extends TestCase
         $this->api->setBaseUrl($this->url);
 
         $data = $this->api->getBaseUrl();
- 
-        $this->assertTrue($this->url==$data);
 
+        $this->assertTrue($this->url==$data);
     }
 
     public function testGetkey()
@@ -60,7 +59,7 @@ class ApiTest extends TestCase
     {
         $pattern = '/^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/.*)?$/i';
         $url = $this->api->getFullUrl($this->api->getBaseUrl()."orders","v1");
-        $this->assertTrue(preg_match($pattern, $url, $matches)==true);      
+        $this->assertTrue(preg_match($pattern, $url, $matches)==true);
     }
 
     /**
