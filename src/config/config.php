@@ -36,7 +36,9 @@ class Config
 
     private function fetchSDKConfig()
     {
-        if(!file_exists(self::CACHE_PATH) OR (filemtime(self::CACHE_PATH) < (time() - self::CACHE_TIME))) {
+        if(!file_exists(self::CACHE_PATH) OR
+            (filemtime(self::CACHE_PATH) < (time() - self::CACHE_TIME)))
+        {
            $content = $this->fetchConfigFromRemoteServer();
            file_put_contents(self::CACHE_PATH, $content, LOCK_EX);
            return json_decode($content);
@@ -71,7 +73,8 @@ class Config
     public function getDNS(string $key): string
     {
         $countryCode = $this->deriveCountryCode($key);
-        if (array_key_exists($countryCode, $this->dnsConfig)) {
+        if (array_key_exists($countryCode, $this->dnsConfig))
+        {
             return $this->dnsConfig[$countryCode];
         }
 
@@ -81,13 +84,19 @@ class Config
     private function deriveCountryCode(string $key): string
     {
         $tokens = explode("_", $key);
-        $identifier = end($tokens);
 
-        // Check for default format and return default country code
-        if (strlen($identifier) <= 14) {
+        if (count($tokens) < 4)
+        {
             return self::DEFAULT_COUNTRY_CODE;
         }
 
-        return strtoupper(substr($identifier, 0, 2));
+        $countryCode = array_slice($tokens, -2, 1);
+        // Check for default format and return default country code
+        if (strlen($countryCode) !== 2)
+        {
+            return self::DEFAULT_COUNTRY_CODE;
+        }
+
+        return strtoupper(substr($countryCode, 0, 2));
     }
 }
