@@ -19,7 +19,7 @@ class AmountToLowerUnitTest extends TestCase
     public function testTwoDecimalAmount()
     {
         $lowerUnitAmount = $this->api->utility->amountToLowerUnit(97.93, 'INR');
-        echo 'testTwoDecimalAmount:' . $lowerUnitAmount;
+
         $this->assertEquals(9793, $lowerUnitAmount);
     }
 
@@ -29,7 +29,7 @@ class AmountToLowerUnitTest extends TestCase
     public function testThreeDecimalAmount()
     {
         $lowerUnitAmount = $this->api->utility->amountToLowerUnit(97.937, 'KWD');
-        echo 'testTwoDecimalAmount:' . $lowerUnitAmount;
+
         $this->assertEquals(97937, $lowerUnitAmount);
     }
     
@@ -39,7 +39,7 @@ class AmountToLowerUnitTest extends TestCase
     public function testZeroDecimalAmount()
     {
         $lowerUnitAmount = $this->api->utility->amountToLowerUnit(973, 'JPY');
-        echo 'testTwoDecimalAmount:' . $lowerUnitAmount;
+
         $this->assertEquals(973, $lowerUnitAmount);
     }
 
