@@ -29,6 +29,8 @@ class Request
         'Razorpay-API'  =>  1    
     );
 
+    protected static $isOAuth = false;
+
     /**
      * Fires a request to the API
      * @param  string   $method HTTP Verb
@@ -39,21 +41,34 @@ class Request
      * @return array Response data in array format. Not meant
      * to be used directly
      */
-    public function request($method, $url, $data = array(), $apiVersion = "v1")
+    public function request($method, $url, $data = array(), $apiVersion = "v1", $oauth = false)
     { 
-        $url = Api::getFullUrl($url, $apiVersion);
+        if($oauth){
+          self::$isOAuth = true;  
+          $url = OAuthTokenClient::getFullUrl($url, "");  
+        }else{
+          $url = Api::getFullUrl($url, $apiVersion);
+        }
 
         $hooks = new Requests_Hooks();
 
         $hooks->register('curl.before_send', array($this, 'setCurlSslOpts'));
 
         $options = array(
-            'auth' => array(Api::getKey(), Api::getSecret()),
             'hook' => $hooks,
             'timeout' => 60
         );
         
         $headers = $this->getRequestHeaders();
+
+        if(!Api::getToken()){
+          $options['auth'] = array(Api::getKey(), Api::getSecret());
+        }
+        
+        if(Api::getToken()){
+          $token = Api::getToken();  
+          $headers['Authorization'] = "Bearer $token";   
+        }
 
         $response = Requests::request($url, $headers, $data, $method, $options);  
         $this->checkErrors($response);
@@ -113,6 +128,13 @@ class Request
 
     protected function processError($body, $httpStatusCode, $response)
     {
+        if(isset($body['error']) && self::$isOAuth){
+          if($httpStatusCode >= 400 && $httpStatusCode < 500){
+            $body['error']['code'] = ErrorCode::BAD_REQUEST_ERROR;
+          }else if($httpStatusCode >= 500){
+            $body['error']['code'] = ErrorCode::SERVER_ERROR;
+          }
+        }
         $this->verifyErrorFormat($body, $httpStatusCode);
 
         $code = $body['error']['code'];
