@@ -83,15 +83,15 @@ class PayloadValidator {
     private function validateGrantType($payload, $field){
         $this->validateNonNull($payload, $field);
         $grantType = $payload[$field];
-
         switch($grantType){
             case "authorization_code":
-                $this->validateNonNull($payload, "code");
+              $this->validateNonNull($payload, "code");
+              break;
             case "refresh_token":
-                $this->validateNonNull($payload, "refresh_token");
-                break;
+              $this->validateNonNull($payload, "refresh_token");
+              break;
             default:
-                break;
+              break;
         }
     }
 }
