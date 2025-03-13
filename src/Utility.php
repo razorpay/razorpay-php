@@ -71,7 +71,7 @@ class Utility
         }
     }
 
-    public function generateOnboardingSignature($data = array(), $secret){
+    public function generateOnboardingSignature($data, $secret){
         $jsonStr = json_encode($data);
         return $this->encrypt($jsonStr, $secret);
     }
