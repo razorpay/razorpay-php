@@ -30,7 +30,7 @@ class OAuthTokenClient extends Api {
 
     public function __construct(){
       $this->payloadValidator = new PayloadValidator();
-      $this->request = new Request();
+      $this->request = new Request(Request::$OAUTH);
     }
 
     public static function getBaseUrl()
@@ -74,17 +74,17 @@ class OAuthTokenClient extends Api {
     
     public function getAccessToken(array $data){
         $this->payloadValidator->validate($data, $this->getValidationsForAccessTokenRequest()); 
-        return $this->request->request('POST', 'token', $data, static::$version, true);
+        return $this->request->request('POST', 'token', $data, static::$version);
     }
 
     public function getRefreshToken(array $data){
         $this->payloadValidator->validate($data, $this->getValidationsForRefreshTokenRequest()); 
-        return $this->request->request('POST', 'token', $data, static::$version, true);
+        return $this->request->request('POST', 'token', $data, static::$version);
     }
 
     public function revokeToken(array $data){
         $this->payloadValidator->validate($data, $this->getValidationsForRevokeTokenRequest()); 
-        return $this->request->request('POST', 'revoke', $data, static::$version, true);
+        return $this->request->request('POST', 'revoke', $data, static::$version);
     }
 
     private function getValidationsForAuthRequestURL(): array {
@@ -110,7 +110,7 @@ class OAuthTokenClient extends Api {
             new ValidationConfig(self::$CLIENT_ID, [ValidationType::ID]),
             new ValidationConfig(self::$CLIENT_SECRET, [ValidationType::NON_EMPTY_STRING]),
             new ValidationConfig(self::$REFRESH_TOKEN, [ValidationType::NON_EMPTY_STRING]),
-            new ValidationConfig(self::$GRANT_TYPE, [ValidationType::NON_EMPTY_STRING, ValidationType::TOKEN_GRANT]),
+            new ValidationConfig(self::$GRANT_TYPE, [ValidationType::TOKEN_GRANT]),
         ];
     }
 

@@ -21,6 +21,12 @@ if (defined('CURL_SSLVERSION_TLSv1_1') === false)
  */
 class Request
 {
+    public static $OAUTH = 'oauth';
+    protected $authType;
+    public function __construct($authType = 'api')
+    {
+        $this->authType = $authType;
+    }
     /**
      * Headers to be sent with every http request to the API
      * @var array
@@ -28,8 +34,6 @@ class Request
     protected static $headers = array(
         'Razorpay-API'  =>  1    
     );
-
-    protected static $isOAuth = false;
 
     /**
      * Fires a request to the API
@@ -41,10 +45,9 @@ class Request
      * @return array Response data in array format. Not meant
      * to be used directly
      */
-    public function request($method, $url, $data = array(), $apiVersion = "v1", $oauth = false)
+    public function request($method, $url, $data = array(), $apiVersion = "v1")
     { 
-        if($oauth){
-          self::$isOAuth = true;  
+        if($this->authType == self::$OAUTH){
           $url = OAuthTokenClient::getFullUrl($url, "");  
         }else{
           $url = Api::getFullUrl($url, $apiVersion);
@@ -128,7 +131,7 @@ class Request
 
     protected function processError($body, $httpStatusCode, $response)
     {
-        if(isset($body['error']) && self::$isOAuth){
+        if(isset($body['error']) && $this->authType == self::$OAUTH){
           if($httpStatusCode >= 400 && $httpStatusCode < 500){
             $body['error']['code'] = ErrorCode::BAD_REQUEST_ERROR;
           }else if($httpStatusCode >= 500){
