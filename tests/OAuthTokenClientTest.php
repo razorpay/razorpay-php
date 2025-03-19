@@ -55,7 +55,7 @@ class OAuthTokenClientTest extends TestCase
 
     public function testGetAccessTokenValidationFailure(){
         $this->expectException(BadRequestError::class);
-        $this->expectExceptionMessage("Field redirect_uri is not a valid URL");
+        $this->expectExceptionMessage("The redirect_uri is not valid");
     
         $response = $this->oauthClient->getAccessToken([
             "client_id" => $this->clientId,  
@@ -107,7 +107,7 @@ class OAuthTokenClientTest extends TestCase
 
     public function testRevokeTokenExecutesValidationFailure(){
         $this->expectException(BadRequestError::class);
-        $this->expectExceptionMessage('Field client_id cannot be empty');
+        $this->expectExceptionMessage('The client_id field is required.');
     
         $response = $this->oauthClient->revokeToken([
             "client_id" => "",  

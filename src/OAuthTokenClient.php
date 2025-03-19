@@ -3,8 +3,7 @@
 namespace Razorpay\Api;
 
 use Razorpay\Api\Request;
-use Razorpay\Api\ValidationType;
-use Razorpay\Api\PayloadValidator;
+use Razorpay\Api\Validator;
 
 class OAuthTokenClient extends Api {
 
@@ -29,7 +28,6 @@ class OAuthTokenClient extends Api {
     private static $TOKEN_TYPE_HINT = "token_type_hint";
 
     public function __construct(){
-      $this->payloadValidator = new PayloadValidator();
       $this->request = new Request(Request::$OAUTH);
     }
 
@@ -44,8 +42,8 @@ class OAuthTokenClient extends Api {
     }
 
     function getAuthURL(array $request) { 
-        
-        $this->payloadValidator->validate($request, $this->getValidationsForAuthRequestURL());
+        $validator = new Validator($request, $this->getauthURLRule());
+        $validator->validateOrFail();
 
         $clientId = $request['client_id'];
         $redirectUri = $request['redirect_uri'];
@@ -73,53 +71,55 @@ class OAuthTokenClient extends Api {
     }
     
     public function getAccessToken(array $data){
-        $this->payloadValidator->validate($data, $this->getValidationsForAccessTokenRequest()); 
+        $validator = new Validator($data, $this->getAccessTokenRule());
+        $validator->validateOrFail();
         return $this->request->request('POST', 'token', $data, static::$version);
     }
 
     public function getRefreshToken(array $data){
-        $this->payloadValidator->validate($data, $this->getValidationsForRefreshTokenRequest()); 
+        $validator = new Validator($data, $this->getRefreshTokenRule());
+        $validator->validateOrFail();
         return $this->request->request('POST', 'token', $data, static::$version);
     }
 
     public function revokeToken(array $data){
-        $this->payloadValidator->validate($data, $this->getValidationsForRevokeTokenRequest()); 
+        $validator = new Validator($data, $this->revokeTokenRule());
+        $validator->validateOrFail();
         return $this->request->request('POST', 'revoke', $data, static::$version);
     }
 
-    private function getValidationsForAuthRequestURL(): array {
+    protected function getauthURLRule(){
         return [
-            new ValidationConfig(self::$CLIENT_ID, [ValidationType::ID]),
-            new ValidationConfig(self::$REDIRECT_URI, [ValidationType::NON_EMPTY_STRING, ValidationType::URL]),
-            new ValidationConfig(self::$SCOPES, [ValidationType::NON_NULL]),
-            new ValidationConfig(self::$STATE, [ValidationType::NON_EMPTY_STRING]),
+            self::$CLIENT_ID => 'required|id',
+            self::$REDIRECT_URI => 'required|url',
+            self::$SCOPES => 'required',
+            self::$STATE => 'required'
         ];
     }
 
-    private function getValidationsForAccessTokenRequest(): array {
+    protected function getAccessTokenRule(){
         return [
-            new ValidationConfig(self::$CLIENT_ID, [ValidationType::ID]),
-            new ValidationConfig(self::$CLIENT_SECRET, [ValidationType::NON_EMPTY_STRING]),
-            new ValidationConfig(self::$REDIRECT_URI, [ValidationType::NON_EMPTY_STRING, ValidationType::URL]),
-            new ValidationConfig(self::$GRANT_TYPE, [ValidationType::NON_EMPTY_STRING, ValidationType::TOKEN_GRANT]),
+            self::$CLIENT_ID => 'required|id',
+            self::$CLIENT_SECRET => 'required',
+            self::$REDIRECT_URI => 'required|url',
+            self::$GRANT_TYPE => 'required'
         ];
     }
 
-    private function getValidationsForRefreshTokenRequest(): array {
+    protected function getRefreshTokenRule(){
         return [
-            new ValidationConfig(self::$CLIENT_ID, [ValidationType::ID]),
-            new ValidationConfig(self::$CLIENT_SECRET, [ValidationType::NON_EMPTY_STRING]),
-            new ValidationConfig(self::$REFRESH_TOKEN, [ValidationType::NON_EMPTY_STRING]),
-            new ValidationConfig(self::$GRANT_TYPE, [ValidationType::TOKEN_GRANT]),
+            self::$CLIENT_ID => 'required|id',
+            self::$CLIENT_SECRET => 'required',
+            self::$REFRESH_TOKEN => 'required'
         ];
     }
 
-    private function getValidationsForRevokeTokenRequest(): array {
+    protected function revokeTokenRule(){
         return [
-            new ValidationConfig(self::$CLIENT_ID, [ValidationType::ID]),
-            new ValidationConfig(self::$CLIENT_SECRET, [ValidationType::NON_EMPTY_STRING]),
-            new ValidationConfig(self::$TOKEN, [ValidationType::NON_EMPTY_STRING]),
-            new ValidationConfig(self::$TOKEN_TYPE_HINT, [ValidationType::NON_EMPTY_STRING]),
+            self::$CLIENT_ID => 'required|id',
+            self::$CLIENT_SECRET => 'required',
+            self::$TOKEN_TYPE_HINT => 'required|token_type',
+            self::$TOKEN => 'required'
         ];
     }
 }
