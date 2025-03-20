@@ -4,7 +4,7 @@ Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachange
 
 ## Unreleased
 
-## [2.9.1] - 2024-03-20
+## [2.9.1] - 2025-03-20
 feat: Added support for access token based authentication mechanism
 - Added oauth APIs (getAuthURL, getAccessToken, getRefreshToken, revokeToken)
 - Added support for onboarding signature generation
