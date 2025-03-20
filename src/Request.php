@@ -48,7 +48,7 @@ class Request
     public function request($method, $url, $data = array(), $apiVersion = "v1")
     { 
         if($this->authType == self::$OAUTH){
-          $url = OAuthTokenClient::getFullUrl($url, "");  
+          $url = OAuthTokenClient::getFullUrl($url, $apiVersion);  
         }else{
           $url = Api::getFullUrl($url, $apiVersion);
         }
