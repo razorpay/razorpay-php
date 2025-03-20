@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Razorpay\Api\OAuthTokenClient;
+use Razorpay\Api\OAuthClient;
 use Razorpay\Api\Request;
 use Razorpay\Api\Errors\BadRequestError;
 use Razorpay\Api\Api;
@@ -18,7 +18,7 @@ class OAuthTokenClientTest extends TestCase
     protected function setUp(): void
     {
         $this->mockRequest = $this->createMock(Request::class);
-        $this->oauthClient = new OAuthTokenClient();
+        $this->oauthClient = new OAuthClient();
 
         // Use Reflection to override private $request property
         $reflection = new \ReflectionClass($this->oauthClient);
@@ -41,7 +41,7 @@ class OAuthTokenClientTest extends TestCase
         $this->mockRequest->method('request')->willReturn($fakeResponse);
 
         $response = $this->oauthClient->getAccessToken([
-            "client_id" => $this->clientId,  
+            "client_id" => $this->clientId,
             "client_secret" => "eZ3LK9trPs4l0bnpTiHx7r3G",
             "grant_type" => "authorization_code",
             "redirect_uri" => "http://localhost",

@@ -3,46 +3,35 @@
 namespace Razorpay\Api;
 
 use Razorpay\Api\Request;
-use Razorpay\Api\Validator;
+use Razorpay\Api\OAuthValidator;
 
-class OAuthTokenClient extends Api {
-
+class OAuthClient 
+{
     protected static $baseUrl = 'https://auth.razorpay.com';
-    
+
     protected static $authorize = 'authorize';
 
     protected static $version = '';
 
-    private $payloadValidator;
+    protected static $CLIENT_ID = 'client_id';
+    protected static $CLIENT_SECRET = 'client_secret';
+    protected static $REDIRECT_URI = 'redirect_uri';
+    protected static $STATE = 'state';
+    protected static $SCOPES = 'scopes';
+    protected static $GRANT_TYPE = 'grant_type';
+    protected static $REFRESH_TOKEN = 'refresh_token';
+    protected static $TOKEN = "token";
+    protected static $REVOKE = "revoke";
+    protected static $TOKEN_TYPE_HINT = "token_type_hint";
 
     private $request;
 
-    private static $CLIENT_ID = 'client_id';
-    private static $CLIENT_SECRET = 'client_secret';
-    private static $REDIRECT_URI = 'redirect_uri';
-    private static $STATE = 'state';
-    private static $SCOPES = 'scopes';
-    private static $GRANT_TYPE = 'grant_type';
-    private static $REFRESH_TOKEN = 'refresh_token';
-    private static $TOKEN = "token";
-    private static $TOKEN_TYPE_HINT = "token_type_hint";
-
     public function __construct(){
-      $this->request = new Request(Request::$OAUTH);
-    }
-
-    public static function getBaseUrl()
-    {
-        return static::$baseUrl;
-    }
-
-    public static function getFullUrl($relativeUrl, $apiVersion = "v1")
-    {
-        return static::getBaseUrl() . $apiVersion . "/". $relativeUrl;
+       $this->request = new Request(Request::$OAUTH);
     }
 
     function getAuthURL(array $request) { 
-        $validator = new Validator($request, $this->getauthURLRule());
+        $validator = new OAuthValidator($request, $this->getauthURLRule());
         $validator->validateOrFail();
 
         $clientId = $request['client_id'];
@@ -66,26 +55,26 @@ class OAuthTokenClient extends Api {
             $queryParams['onboarding_signature'] = $request['onboarding_signature'];
         }
 
-        $authUrl = static::$baseUrl . "/" . static::$authorize . "?" . $scopesParam . http_build_query($queryParams);
+        $authUrl = self::$baseUrl . "/" . self::$authorize . "?" . $scopesParam . http_build_query($queryParams);
         return $authUrl;
     }
     
     public function getAccessToken(array $data){
-        $validator = new Validator($data, $this->getAccessTokenRule());
+        $validator = new OAuthValidator($data, $this->getAccessTokenRule());
         $validator->validateOrFail();
-        return $this->request->request('POST', 'token', $data, static::$version);
+        return $this->request->request('POST', self::$TOKEN, $data, self::$version);
     }
 
     public function getRefreshToken(array $data){
-        $validator = new Validator($data, $this->getRefreshTokenRule());
+        $validator = new OAuthValidator($data, $this->getRefreshTokenRule());
         $validator->validateOrFail();
-        return $this->request->request('POST', 'token', $data, static::$version);
+        return $this->request->request('POST', self::$TOKEN, $data, self::$version);
     }
 
     public function revokeToken(array $data){
-        $validator = new Validator($data, $this->revokeTokenRule());
+        $validator = new OAuthValidator($data, $this->revokeTokenRule());
         $validator->validateOrFail();
-        return $this->request->request('POST', 'revoke', $data, static::$version);
+        return $this->request->request('POST', self::$REVOKE, $data, self::$version);
     }
 
     protected function getauthURLRule(){

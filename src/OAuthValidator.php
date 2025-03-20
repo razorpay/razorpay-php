@@ -3,7 +3,7 @@
 namespace Razorpay\Api;
 use Razorpay\Api\Errors;
 
-class Validator
+class OAuthValidator
 {
     protected $data;
     protected $rules;

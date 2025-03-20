@@ -18,7 +18,7 @@ $attributes = [
 $onboarding_signature = $utility->generateOnboardingSignature($attributes, "<YOUR_CLIENT_SECRET>");
 
 // Not an promise
-$authUrl = $oauth->getAuthURL([
+$authUrl = $oauth->oauthClient->getAuthURL([
   "client_id" => "<YOUR_CLIENT_ID>",
   "response_type" => "code",
   "redirect_uri" => "https://example.com/razorpay_callback",
@@ -40,14 +40,14 @@ $authUrl = $oauth->getAuthURL([
 
 **Response:**
 ```
-"https://auth.razorpay.com/authorize?response_type=code&client_id=<YOUR_CLIENT_ID>&redirect_uri=https:%2F%2Fexample.com%2Frazorpay_callback&scope[]=read_only&scope[]=rx_read_write&state=NOBYtv8r6c75ex6WZ&onboarding_signature=<GENERATED_ONBOARDING_SIGNATURE>"
+"https://auth.razorpay.com/authorize?response_type=code&client_id=<YOUR_CLIENT_ID>&redirect_uri=https:%2F%2Fexample.com%2Frazorpay_callback&scope[]=read_only&scope[]=read_write&state=NOBYtv8r6c75ex6WZ&onboarding_signature=<GENERATED_ONBOARDING_SIGNATURE>"
 ```
 
 -------------------------------------------------------------------------------------------------------
 
 ### Get Access token
 ```php
-$oauth->getAccessToken([
+$oauth->oauthClient->getAccessToken([
   "client_id" => "<YOUR_CLIENT_ID>",
   "client_secret" => "<YOUR_CLIENT_SECRET>",
   "grant_type" => "authorization_code",
@@ -83,7 +83,7 @@ $oauth->getAccessToken([
 
 ### Get Access token using refresh token
 ```php
-$oauth->getRefreshToken([
+$oauth->oauthClient->getRefreshToken([
   "client_id" => "<YOUR_CLIENT_ID>",
   "client_secret" => "<YOUR_CLIENT_SECRET>",
   "grant_type" => "authorization_code",
@@ -116,7 +116,7 @@ $oauth->getRefreshToken([
 
 ### Revoke a token
 ```php
-$oauth->revokeToken([
+$oauth->oauthClient->revokeToken([
   "client_id" => "<YOUR_CLIENT_ID>",
   "client_secret" => "<YOUR_CLIENT_SECRET>",
   "token" => "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijl4dTF",

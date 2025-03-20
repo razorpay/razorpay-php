@@ -22,10 +22,11 @@ if (defined('CURL_SSLVERSION_TLSv1_1') === false)
 class Request
 {
     public static $OAUTH = 'oauth';
+    public static $API = 'api';
     protected $authType;
-    public function __construct($authType = 'api')
+    public function __construct($authType = null)
     {
-        $this->authType = $authType;
+        $this->authType = $authType ?? self::$API;
     }
     /**
      * Headers to be sent with every http request to the API
@@ -48,7 +49,7 @@ class Request
     public function request($method, $url, $data = array(), $apiVersion = "v1")
     { 
         if($this->authType == self::$OAUTH){
-          $url = OAuthTokenClient::getFullUrl($url, $apiVersion);  
+          $url = OAuth::getFullUrl($url, $apiVersion);
         }else{
           $url = Api::getFullUrl($url, $apiVersion);
         }
