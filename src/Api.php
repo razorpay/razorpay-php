@@ -10,6 +10,8 @@ class Api
 
     protected static $secret = null;
 
+    protected static $oauthToken = null;
+
     /*
      * App info is to store the Plugin/integration
      * information
@@ -22,10 +24,11 @@ class Api
      * @param string $key
      * @param string $secret
      */
-    public function __construct($key, $secret)
+    public function __construct($key, $secret, $oauthToken=null)
     {
         self::$key = $key;
         self::$secret = $secret;
+        self::$oauthToken = $oauthToken;
     }
 
     /*
@@ -82,6 +85,11 @@ class Api
     public static function getSecret()
     {
         return self::$secret;
+    }
+
+    public static function getToken()
+    {
+        return self::$oauthToken;
     }
 
     public static function getFullUrl($relativeUrl, $apiVersion = "v1")
