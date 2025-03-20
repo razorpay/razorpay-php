@@ -13,7 +13,7 @@ class OAuth extends Api {
         return static::$baseUrl;
     }
 
-    public static function getFullUrl($relativeUrl, $apiVersion = "v1")
+    public static function getFullUrl($relativeUrl, $apiVersion = null)
     {
         return static::getBaseUrl() . $apiVersion . "/". $relativeUrl;
     }
