@@ -3,9 +3,12 @@
 namespace Razorpay\Tests;
 
 use Razorpay\Api\Request;
+use Razorpay\Api\Api;
+use Razorpay\Api\Utility;
 
 class SignatureVerificationTest extends TestCase
 {
+    protected $api;
     private static $subscriptionId;
 
     public function setUp(): void
@@ -63,5 +66,50 @@ class SignatureVerificationTest extends TestCase
           'razorpay_payment_id' => $paymentId,
           'razorpay_signature' => $signature
         )));
+    }
+    
+    /**
+     * Test verification with OAuth token authentication
+     */
+    public function testOAuthTokenVerification()
+    {
+        $orderId = 'order_123456789';
+        $paymentId = 'pay_123456789';
+        $secret = 'test_secret_key';
+        
+        // The payload that would be used for signature verification
+        $payload = $orderId . '|' . $paymentId;
+        
+        // Generate a valid signature using the test secret
+        $expectedSignature = hash_hmac('sha256', $payload, $secret);
+        
+        // Create a new API instance with OAuth token
+        $apiWithOAuth = new Api(null, null, 'test_oauth_token');
+        
+        // This should work now with the secret passed in attributes
+        $this->assertNull($apiWithOAuth->utility->verifyPaymentSignature([
+            'razorpay_order_id' => $orderId,
+            'razorpay_payment_id' => $paymentId,
+            'razorpay_signature' => $expectedSignature,
+            'secret' => $secret
+        ]));
+    }
+    
+    /**
+     * Test webhook verification with OAuth token authentication
+     */
+    public function testOAuthTokenWebhookVerification()
+    {
+        $payload = '{"payment_id":"pay_123456789","order_id":"order_123456789"}';
+        $secret = 'webhook_secret_key';
+        
+        // Generate a valid signature using the test secret
+        $expectedSignature = hash_hmac('sha256', $payload, $secret);
+        
+        // Create a new API instance with OAuth token
+        $apiWithOAuth = new Api(null, null, 'test_oauth_token');
+        
+        // Verify webhook signature with explicit secret
+        $this->assertNull($apiWithOAuth->utility->verifyWebhookSignature($payload, $expectedSignature, $secret));
     }
 }
