@@ -41,17 +41,49 @@ class Utility
         }
 
         $secret = Api::getSecret();
+        
+        // If we're using OAuth token authentication, check if secret is provided in attributes
+        if (empty($secret) && Api::getToken() !== null)
+        {
+            if (isset($attributes['secret']) === true)
+            {
+                $secret = $attributes['secret'];
+            }
+            else
+            {
+                throw new Errors\SignatureVerificationError(
+                    'When using OAuth authentication, you must provide the secret as an attribute for signature verification.');
+            }
+        }
 
         self::verifySignature($payload, $actualSignature, $secret);
     }
 
-    public function verifyWebhookSignature($payload, $actualSignature, $secret)
+    public function verifyWebhookSignature($payload, $actualSignature, $secret = null)
     {
+        // If secret isn't provided and we're using OAuth token authentication
+        if ($secret === null)
+        {
+            $secret = Api::getSecret();
+            
+            if (empty($secret) && Api::getToken() !== null)
+            {
+                throw new Errors\SignatureVerificationError(
+                    'When using OAuth authentication, you must explicitly provide the secret for webhook signature verification.');
+            }
+        }
+        
         self::verifySignature($payload, $actualSignature, $secret);
     }
 
     public function verifySignature($payload, $actualSignature, $secret)
     {
+        if (empty($secret))
+        {
+            throw new Errors\SignatureVerificationError(
+                'No secret available for signature verification. Make sure to provide it or initialize Api with a secret key.');
+        }
+
         $expectedSignature = hash_hmac(self::SHA256, $payload, $secret);
 
         // Use lang's built-in hash_equals if exists to mitigate timing attacks
@@ -90,7 +122,7 @@ class Utility
             $encryptedData = openssl_encrypt($dataToEncrypt, $cipher, $key, OPENSSL_RAW_DATA, $iv, $tag, '', 16);
     
             if ($encryptedData === false) {
-                throw new Exception('Encryption failed');
+                throw new \Exception('Encryption failed');
             }
     
             // Concatenate encrypted data with the authentication tag
@@ -98,8 +130,8 @@ class Utility
     
             // Convert to hex string
             return bin2hex($finalData);
-        } catch (Exception $e) {
-            throw new Exception('Encryption failed: ' . $e->getMessage());
+        } catch (\Exception $e) {
+            throw new \Exception('Encryption failed: ' . $e->getMessage());
         }
     }
 
