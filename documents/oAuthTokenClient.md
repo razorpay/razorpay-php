@@ -3,11 +3,11 @@
 ### Generate Authorize Url
 ```php
 
-use Razorpay\Api\OAuthTokenClient;
+use Razorpay\Api\OAuthClient;
 use Razorpay\Api\Utility;
 
 // Initialize client
-$oauth = new OAuthTokenClient();
+$oauthClient = new OAuthClient();
 $utility = new Utility();
 
 $attributes = [
@@ -18,7 +18,7 @@ $attributes = [
 $onboarding_signature = $utility->generateOnboardingSignature($attributes, "<YOUR_CLIENT_SECRET>");
 
 // Not an promise
-$authUrl = $oauth->oauthClient->getAuthURL([
+$authUrl = $oauthClient->getAuthURL([
   "client_id" => "<YOUR_CLIENT_ID>",
   "response_type" => "code",
   "redirect_uri" => "https://example.com/razorpay_callback",
