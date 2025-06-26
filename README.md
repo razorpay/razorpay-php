@@ -15,7 +15,7 @@ Read up here for getting started and understanding the payment flow with Razorpa
 -   If your project using composer, run the below command
 
 ```
-composer require razorpay/razorpay:2.*
+composer require razorpay/razorpay
 ```
 
 - If you are not using composer, download the latest release from [the releases section](https://github.com/razorpay/razorpay-php/releases).
