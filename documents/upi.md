@@ -5,13 +5,13 @@
 $api->customer->create(array(
   'name' => 'Gaurav Kumar', 
   'email' => 'gaurav.kumar@example.com', 
-  'fail_existing' => false, 
+  'fail_existing' => "1", 
   'contact'=>'9000090000',
   'notes'=> array(
     'notes_key_1'=> 'Tea, Earl Grey, Hot',
     'notes_key_2'=> 'Tea, Earl Grey... decaf'
    )
-);
+));
 ```
 
 **Parameters:**
@@ -20,7 +20,7 @@ $api->customer->create(array(
 |---------------|-------------|---------------------------------------------|
 | name*          | string      | Name of the customer                        |
 | email        | string      | Email of the customer                       |
-| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `true` or `false`|
+| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `1` or `0`|
 | contact      | string      | Contact number of the customer              |
 | notes         | array      | A key-value pair                            |
 
