@@ -11,10 +11,6 @@ class Order extends Entity
      */
     public function create($attributes = array())
     {
-        $attributes = json_encode($attributes);
-
-        Request::addHeader('Content-Type', 'application/json');
-
         return parent::create($attributes);
     }
 
