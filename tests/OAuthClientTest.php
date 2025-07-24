@@ -1,4 +1,6 @@
 <?php
+namespace Razorpay\Tests;
+
 
 use PHPUnit\Framework\TestCase;
 use Razorpay\Api\OAuthClient;
@@ -7,7 +9,7 @@ use Razorpay\Api\Errors\BadRequestError;
 use Razorpay\Api\Api;
 
 
-class OAuthTokenClientTest extends TestCase
+class OAuthClientTest extends TestCase
 {
 
     private $mockRequest;
