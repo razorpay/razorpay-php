@@ -11,7 +11,16 @@ class Order extends Entity
      */
     public function create($attributes = array())
     {
-        return parent::create($attributes);
+      $url = $this->getEntityUrl();
+      $attributes = json_encode($attributes);   
+      try{
+         Request::addHeader('Content-Type', 'application/json');
+         $response = $this->request('POST', $url, $attributes);
+         return $response;
+         Request::removeHeader('Content-Type');
+        }catch(\Exception $e){
+         Request::removeHeader('Content-Type');
+      }
     }
 
     public function fetch($id)
