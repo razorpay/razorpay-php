@@ -16,8 +16,8 @@ class Order extends Entity
       try{
          Request::addHeader('Content-Type', 'application/json');
          $response = $this->request('POST', $url, $attributes);
-         return $response;
          Request::removeHeader('Content-Type');
+         return $response;
         }catch(\Exception $e){
          Request::removeHeader('Content-Type');
       }
