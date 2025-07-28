@@ -13,14 +13,12 @@ class Order extends Entity
     {
       $url = $this->getEntityUrl();
       $attributes = json_encode($attributes);   
-      try{
-         Request::addHeader('Content-Type', 'application/json');
-         $response = $this->request('POST', $url, $attributes);
-         Request::removeHeader('Content-Type');
-         return $response;
-        }catch(\Exception $e){
-         Request::removeHeader('Content-Type');
-      }
+
+      Request::addHeader('Content-Type', 'application/json');
+      $response = $this->request('POST', $url, $attributes);
+      Request::removeHeader('Content-Type');
+      return $response;
+    
     }
 
     public function fetch($id)
