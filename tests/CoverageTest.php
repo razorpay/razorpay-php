@@ -22,22 +22,6 @@ class CoverageTest extends TestCase
     }
     
     /**
-     * @covers \Razorpay\Api\Webhook::create
-     * @covers \Razorpay\Api\Webhook::fetch
-     * @covers \Razorpay\Api\Webhook::all
-     * @covers \Razorpay\Api\Webhook::edit
-     * @covers \Razorpay\Api\Webhook::delete
-     */
-    public function testWebhookCoverage(){
-      $webhook = new PartnerTest();
-      $webhook->setup();
-      $webhook->testWebhookCreate();
-      $webhook->testWebhookFetch();
-      $webhook->testFetchAllWebhook();
-      $webhook->testEditWebhook();
-      $webhook->testDeleteWebhook();
-    }
-    /**
      * @covers \Razorpay\Api\Api::getAppsDetails
      * @uses \Razorpay\Api\Api::setAppDetails
      * @covers \Razorpay\Api\Api::getBaseUrl
