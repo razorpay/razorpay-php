@@ -3,11 +3,11 @@
 ### Generate Authorize Url
 ```php
 
-use Razorpay\Api\OAuthTokenClient;
+use Razorpay\Api\OAuthClient;
 use Razorpay\Api\Utility;
 
 // Initialize client
-$oauth = new OAuthTokenClient();
+$oauth = new OAuthClient();
 $utility = new Utility();
 
 $attributes = [
