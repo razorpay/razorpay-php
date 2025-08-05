@@ -1,7 +1,7 @@
 # Change Log
 
 Changelog for Razorpay-PHP SDK. Follows [keepachangelog.com](https://keepachangelog.com/en/1.0.0/) for formatting.
- 
+
 ## Unreleased
 
 ## [2.9.2] - 2025-08-05
