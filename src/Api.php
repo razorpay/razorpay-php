@@ -18,7 +18,7 @@ class Api
      */
     public static $appsDetails = array();
 
-    const VERSION = '2.9.1';
+    const VERSION = '2.9.2';
 
     /**
      * @param string $key

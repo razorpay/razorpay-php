@@ -97,6 +97,15 @@ class Request
     }
 
     /**
+     * Removes an additional header from all API requests
+     * @param string $key   Header key
+     * @return null
+     */
+    public static function removeHeader($key){
+        unset(self::$headers[$key]);
+    }
+
+    /**
      * Returns all headers attached so far
      * @return array headers
      */
