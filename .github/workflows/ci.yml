@@ -9,29 +9,33 @@ on:
     branches:
       - master
 jobs:
-  run:
+  test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: ['8.1', '8.2', '8.3', '8.4']
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Set up php 8.0
+        uses: actions/checkout@v4
+      - name: Set up PHP ${{ matrix.php-version }}
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: ${{ matrix.php-version }}
+          coverage: xdebug
       - name: 'Create env file'
         run: |
           touch ${{ github.workspace }}/tests/.env
           echo RAZORPAY_API_KEY=${{ secrets.RAZORPAY_API_KEY }} >> ${{ github.workspace }}/tests/.env
           echo RAZORPAY_API_SECRET=${{ secrets.RAZORPAY_API_SECRET }} >> ${{ github.workspace }}/tests/.env
-          cat ${{ github.workspace }}/tests/.env          
       - name: Install dependencies
         run: composer self-update && composer install && composer require vlucas/phpdotenv && composer dump-autoload
       - name: Run tests and collect coverage
-        run: vendor/bin/phpunit ./tests/CoverageTest.php --coverage-clover coverage.xml .
+        run: vendor/bin/phpunit ./tests/CoverageTest.php --coverage-clover coverage.xml
         env:
            RAZORPAY_API_KEY: ${{ secrets.RAZORPAY_API_KEY }}
            RAZORPAY_API_SECRET: ${{ secrets.RAZORPAY_API_SECRET }}
            RAZORPAY_PARTNER_API_KEY: ${{ secrets.RAZORPAY_PARTNER_API_KEY }}
            RAZORPAY_PARTNER_API_SECRET: ${{ secrets.RAZORPAY_PARTNER_API_SECRET }}
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        if: matrix.php-version == '8.4'
+        uses: codecov/codecov-action@v4
