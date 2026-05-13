@@ -29,7 +29,7 @@
     },
     "require-dev": {
         "kint-php/kint": "^5.0",
-        "phpunit/phpunit": "^10.5"
+        "phpunit/phpunit": "^9.6"
     },
     "autoload": {
         "psr-4": {
