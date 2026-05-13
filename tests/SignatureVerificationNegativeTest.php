@@ -44,16 +44,17 @@ class SignatureVerificationNegativeTest extends TestCase
     }
 
     /**
-     * Test that non-hex signature is rejected
+     * Test that wrong value signature is rejected
+     * (rejected because value doesn't match, not because SDK validates hex format)
      */
-    public function testNonHexSignatureRejected()
+    public function testWrongValueSignatureRejected()
     {
         $this->expectException(SignatureVerificationError::class);
 
-        $nonHexSig = str_repeat('z', 64);
+        $wrongSig = str_repeat('z', 64);
         $this->api->utility->verifyWebhookSignature(
             $this->webhookPayload,
-            $nonHexSig,
+            $wrongSig,
             $this->webhookSecret
         );
     }
