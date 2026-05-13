@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-version: ['8.1', '8.2', '8.3', '8.4']
+        php-version: ['8.2', '8.3', '8.4', '8.5']
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -37,5 +37,5 @@ jobs:
            RAZORPAY_PARTNER_API_KEY: ${{ secrets.RAZORPAY_PARTNER_API_KEY }}
            RAZORPAY_PARTNER_API_SECRET: ${{ secrets.RAZORPAY_PARTNER_API_SECRET }}
       - name: Upload coverage to Codecov
-        if: matrix.php-version == '8.4'
+        if: matrix.php-version == '8.5'
         uses: codecov/codecov-action@v4
