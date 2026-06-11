@@ -1,0 +1,12 @@
+{
+  "ownership": {
+    "type": "Team Specific",
+    "business_unit": "Platforms",
+    "group": "POS Payments",
+    "sub_group": "POS Payments",
+    "pod": "VAS",
+    "engineering_manager": {
+      "email": "hetal.rathod@razorpay.com"
+    }
+  }
+}
