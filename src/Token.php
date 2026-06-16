@@ -56,4 +56,11 @@ class Token extends Entity
 
         return $this->request('POST', $relativeUrl, $attributes);
     }
+
+    public function cancel($customer_id, $token_id)
+    {
+        $relativeUrl = 'customers/'.$customer_id.'/'.$this->getEntityUrl().$token_id.'/cancel';
+
+        return $this->request('PUT', $relativeUrl);
+    }
 }
