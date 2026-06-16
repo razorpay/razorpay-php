@@ -23,13 +23,13 @@
     "homepage": "https://docs.razorpay.com",
     "license": "MIT",
     "require": {
-        "php": ">=7.3",
+        "php": ">=8.2",
         "rmccue/requests": "^2.0",
         "ext-json": "*"
     },
     "require-dev": {
-        "raveren/kint": "1.*",
-        "phpunit/phpunit": "^9"
+        "kint-php/kint": "^5.0",
+        "phpunit/phpunit": "^9.6"
     },
     "autoload": {
         "psr-4": {
