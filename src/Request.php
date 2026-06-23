@@ -166,16 +166,13 @@ class Request
 
         $description = $body['error']['description'];
 
-        $field = null;
-        if (isset($body['error']['field']))
-        {
-            $field = $body['error']['field'];
+        $field    = isset($body['error']['field'])    ? $body['error']['field']    : null;
+        $source   = isset($body['error']['source'])   ? $body['error']['source']   : null;
+        $step     = isset($body['error']['step'])     ? $body['error']['step']     : null;
+        $reason   = isset($body['error']['reason'])   ? $body['error']['reason']   : null;
+        $metadata = isset($body['error']['metadata']) ? $body['error']['metadata'] : null;
 
-            // Create an instance of the error and then throw it
-            throw new $error($description, $code, $httpStatusCode, $field);
-        }
-
-        throw new $error($description, $code, $httpStatusCode);
+        throw new $error($description, $code, $httpStatusCode, $field, $source, $step, $reason, $metadata);
     }
 
     protected function throwServerError($body, $httpStatusCode)
