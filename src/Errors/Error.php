@@ -7,23 +7,15 @@ use Exception;
 class Error extends Exception
 {
     protected $httpStatusCode;
-    protected $field    = null;
-    protected $source   = null;
-    protected $step     = null;
-    protected $reason   = null;
-    protected $metadata = null;
+    protected $context = [];
 
-    public function __construct($message, $code, $httpStatusCode, $field = null, $source = null, $step = null, $reason = null, $metadata = null)
+    public function __construct($message, $code, $httpStatusCode, array $context = [])
     {
-        $this->code     = $code;
-        $this->message  = $message;
+        parent::__construct($message);
 
+        $this->code           = $code;
         $this->httpStatusCode = $httpStatusCode;
-        $this->field          = $field;
-        $this->source         = $source;
-        $this->step           = $step;
-        $this->reason         = $reason;
-        $this->metadata       = $metadata;
+        $this->context        = $context;
     }
 
     public function getHttpStatusCode()
@@ -31,28 +23,25 @@ class Error extends Exception
         return $this->httpStatusCode;
     }
 
-    public function getField()
-    {
-        return $this->field;
-    }
-
     public function getSource()
     {
-        return $this->source;
+        return $this->context['source'] ?? null;
     }
 
     public function getStep()
     {
-        return $this->step;
+        return $this->context['step'] ?? null;
     }
 
     public function getReason()
     {
-        return $this->reason;
+        return $this->context['reason'] ?? null;
     }
 
     public function getMetadata()
     {
-        return $this->metadata;
+        $metadata = $this->context['metadata'] ?? null;
+
+        return is_array($metadata) ? $metadata : null;
     }
 }

@@ -164,15 +164,22 @@ class Request
         // This is the fully qualified error class name
         $error = __NAMESPACE__.'\Errors\\' . $error;
 
-        $description = $body['error']['description'];
+        $err         = $body['error'];
+        $description = $err['description'] ?? '';
 
-        $field    = isset($body['error']['field'])    ? $body['error']['field']    : null;
-        $source   = isset($body['error']['source'])   ? $body['error']['source']   : null;
-        $step     = isset($body['error']['step'])     ? $body['error']['step']     : null;
-        $reason   = isset($body['error']['reason'])   ? $body['error']['reason']   : null;
-        $metadata = isset($body['error']['metadata']) ? $body['error']['metadata'] : null;
+        $context = [
+            'source'   => $err['source']   ?? null,
+            'step'     => $err['step']     ?? null,
+            'reason'   => $err['reason']   ?? null,
+            'metadata' => isset($err['metadata']) && is_array($err['metadata']) ? $err['metadata'] : null,
+        ];
 
-        throw new $error($description, $code, $httpStatusCode, $field, $source, $step, $reason, $metadata);
+        if ($error === __NAMESPACE__.'\Errors\BadRequestError')
+        {
+            throw new $error($description, $code, $httpStatusCode, $err['field'] ?? null, $context);
+        }
+
+        throw new $error($description, $code, $httpStatusCode, $context);
     }
 
     protected function throwServerError($body, $httpStatusCode)
