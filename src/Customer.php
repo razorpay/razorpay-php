@@ -54,14 +54,14 @@ class Customer extends Entity
 
     public function requestEligibilityCheck($attributes = array())
     {
-        $entityUrl = $this->getEntityUrl(). '/eligibility';
+        $entityUrl = $this->getEntityUrl(). 'eligibility';
 
         return $this->request('POST', $entityUrl, $attributes);
     }
 
     public function fetchEligibility($id)
     {
-        $entityUrl = $this->getEntityUrl(). '/eligibility/'. $id;
+        $entityUrl = $this->getEntityUrl(). 'eligibility/'. $id;
 
         return $this->request('GET', $entityUrl);
     }
