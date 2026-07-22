@@ -6,3 +6,5 @@ updates:
     interval: daily
     time: "04:00"
     timezone: Asia/Calcutta
+  cooldown:
+    default-days: 7
