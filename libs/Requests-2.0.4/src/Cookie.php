@@ -466,7 +466,7 @@ class Cookie {
 	 * @param int|null $time Reference time for expiration calculation
 	 * @return array
 	 */
-	public static function parse_from_headers(Headers $headers, Iri $origin = null, $time = null) {
+	public static function parse_from_headers(Headers $headers, ?Iri $origin = null, $time = null) {
 		$cookie_headers = $headers->getValues('Set-Cookie');
 		if (empty($cookie_headers)) {
 			return [];
